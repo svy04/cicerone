@@ -2600,6 +2600,27 @@ if (shared.includes('_profile.md')) {
   }
 }
 
+// --- 한국 자기소개서 모드는 초안을 실제로 쓴다 (한국판 전환 2026-08-21) ---
+// 회사가 문항을 정해 주는 한국 자기소개서는 초안까지 만들어 주는 것이 이 도구의
+// 몫이다. 다만 초안을 쓴다는 결정에 네 가지가 딸려 있고, 넷 중 하나라도 빠지면
+// 초안이 후보자에게 해가 된다. 그 넷이 문서에 남아 있는지 여기서 고정한다.
+{
+  const cover = readFile('modes/cover.md');
+  const checks = [
+    ['문항별 초안 작성 절차', /초안 작성/.test(cover) && /문항 수집/.test(cover)],
+    ['탐지 고지는 세션당 한 번', /처음 한 번 알릴 것/.test(cover) && /매번 반복하지 않습니다/.test(cover)],
+    ['없는 경험을 만들지 않는다', /없는 경험과 없는 수치를 만들지 않습니다/.test(cover)],
+    ['고쳐 쓸 자리를 표시한다', /고쳐 쓰면 좋은 곳/.test(cover)],
+    ['표절 검사를 알린다', /표절 검사/.test(cover)],
+  ];
+  const missing = checks.filter(([, ok]) => !ok).map(([name]) => name);
+  if (missing.length === 0) {
+    pass('cover.md drafts Korean 자기소개서 with its four attached obligations');
+  } else {
+    fail('cover.md lost a drafting obligation: ' + missing.join(', '));
+  }
+}
+
 // --- _custom.md must be READ, not just written (#1388): Sources of Truth row +
 // honor rule in _shared.md, and an explicit pre-generation read in pdf.md ---
 const pdfModeCustom = readFile('modes/pdf.md');
