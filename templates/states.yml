@@ -16,59 +16,65 @@
 states:
   - id: evaluated
     label: Evaluated
-    aliases: [evaluada, condicional, hold, evaluar, verificar, değerlendirildi, degerlendirildi]
+    aliases: [evaluada, condicional, hold, evaluar, verificar, değerlendirildi, degerlendirildi, 평가완료, 평가, 보류, 검토중]
     description: Offer evaluated with report, pending decision
     dashboard_group: evaluated
 
   - id: applied
     label: Applied
-    aliases: [aplicado, enviada, aplicada, sent, başvuruldu, basvuruldu]
+    aliases: [aplicado, enviada, aplicada, sent, başvuruldu, basvuruldu, 지원, 지원완료, 접수, 제출]
     description: Application submitted
     dashboard_group: applied
 
   - id: responded
     label: Responded
-    aliases: [respondido, "yanıt verildi", yanıt_verildi, "yanit verildi", yanit_verildi]
+    aliases: [respondido, "yanıt verildi", yanıt_verildi, "yanit verildi", yanit_verildi, 서류합격, 서류통과, 회신, 연락받음]
     description: Company has responded (not yet interview)
+    dashboard_group: responded
+
+  - id: written
+    label: Written
+    aliases: [필기, 필기전형, 인적성, 인적성검사, 코딩테스트, 코테, 과제전형, 온라인테스트, gsat, skct]
+    description: 필기 전형 진행 중 (인적성검사·코딩테스트·과제). 한국 채용에서 서류와 면접 사이에 놓이는 단계
     dashboard_group: responded
 
   - id: interview
     label: Interview
-    aliases: [entrevista, mülakat, mulakat]
+    aliases: [entrevista, mülakat, mulakat, 면접, 면접중, 1차면접, 2차면접, 실무면접, 임원면접, 최종면접, 컬처핏]
     description: Active interview process
     dashboard_group: interview
 
   - id: offer
     label: Offer
-    aliases: [oferta, teklif]
+    aliases: [oferta, teklif, 최종합격, 합격, 오퍼, 처우협의, 처우협의중]
     description: Offer received
     dashboard_group: offer
     terminal: true
 
   - id: rejected
     label: Rejected
-    aliases: [rechazado, rechazada, reddedildi]
+    aliases: [rechazado, rechazada, reddedildi, 불합격, 탈락, 서류탈락, 최종탈락]
     description: Rejected by company
     dashboard_group: rejected
     terminal: true
 
   - id: discarded
     label: Discarded
-    aliases: [descartado, descartada, cerrada, cancelada, "iptal edildi", iptal_edildi, "ıptal edildi", ıptal_edildi]
+    aliases: [descartado, descartada, cerrada, cancelada, "iptal edildi", iptal_edildi, "ıptal edildi", ıptal_edildi, 지원취소, 마감, 포기, 철회]
     description: Discarded by candidate or offer closed
     dashboard_group: discarded
     terminal: true
 
   - id: skip
     label: SKIP
-    aliases: [no_aplicar, no aplicar, skip, monitor, geo blocker, geo_blocker, "uygun değil", uygun_değil, "uygun degil", uygun_degil]
+    aliases: [no_aplicar, no aplicar, skip, monitor, geo blocker, geo_blocker, "uygun değil", uygun_değil, "uygun degil", uygun_degil, 미지원, 해당없음, 관심없음]
     description: Doesn't fit, don't apply
     dashboard_group: skip
     terminal: true
 
   - id: hired
     label: Hired
-    aliases: [contratado, contratada, hired, accepted, accept, "kabul edildi", kabul_edildi, "işe alındı", "ise alindi", "işe alindi"]
+    aliases: [contratado, contratada, hired, accepted, accept, "kabul edildi", kabul_edildi, "işe alındı", "ise alindi", "işe alindi", 입사확정, 입사, 수락]
     description: Offer accepted, job landed!
     dashboard_group: hired
     terminal: true

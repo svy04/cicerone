@@ -80,6 +80,7 @@ const SYSTEM_PATHS = [
   'modes/pdf/',
   'modes/cover.md',
   'modes/career-description.md',
+  'modes/written-test.md',
   'modes/global/_shared.md',
   'modes/global/oferta.md',
   'modes/global/apply.md',

@@ -10,32 +10,52 @@ When the user asks to prep for an interview at a specific company+role, or when 
 4. **CV** at `cv.md` + `article-digest.md` — read for proof points
 5. **Profile** at `config/profile.yml` + `modes/_profile.md` — read for candidate context
 6. **Recruiter-side risk map** from the evaluation/PDF/application flow if present — use `modes/heuristics/recruiter-side.md` for the risk categories the interview process must resolve
-7. **Coffee chat notes** for this company, if the user has any (optional — see "Coffee Chat Cross-Reference" below)
-8. **Prior stated compensation** — if the tracker# is known, run `node salary-gap.mjs --stated-for <tracker#>` (zero tokens). Any prior `stated` observation is a number already committed to a specific interviewer in an earlier round — surface it in the Process Overview (Step 2) or Recruiter/HR pack (Step 4) as a "already discussed" reminder so the candidate stays consistent.
+7. **제출한 자기소개서** — `applications/{회사}-{직무}/자소서.md` 가 있으면 반드시 읽습니다. 한국 면접에서 가장 흔한 질문이 여기서 나옵니다
+8. **Prior stated compensation** — if the tracker# is known, run `node salary-gap.mjs --stated-for <tracker#>` (zero tokens). 제시액 분해가 필요하면 `node salary-korea.mjs offer <금액>` 을 함께 씁니다. Any prior `stated` observation is a number already committed to a specific interviewer in an earlier round — surface it in the Process Overview (Step 2) or Recruiter/HR pack (Step 4) as a "already discussed" reminder so the candidate stays consistent.
 9. **HM audit** — the evaluation report's `## HM Audit` section, if present (written by `modes/pdf/hm-audit.md`). It carries the reviewer persona, the sources behind it, and which CV bullets that reviewer would have cut. Reuse it rather than re-researching the hiring manager from scratch.
 
-## Coffee Chat Cross-Reference (optional, North America-specific)
+## 한국 전형에서 이 모드가 다루는 것
 
-Before generating prep for a company, check whether the user has a coffee chat note for that company — an off-the-record informational-interview conversation with someone already inside the target company. This is common North American (especially US/CA) job-search practice, grounded in university-career-services norms; other regions may have different or no equivalent informal-networking practice. **This step is additive/opt-in — "if a coffee chat note exists for this company, use it" — never a required step, and never implies every candidate should have coffee chat notes.** If none exists, or the user doesn't do coffee chats, skip this section silently and move on to Step 1.
+한국의 면접은 미국식 행동 면접과 구조가 다릅니다. 준비 항목을 아래로 잡습니다.
 
-**How to get it:** the same pasted-in input pattern the Panel Intel table below already relies on (Step 4, `panel-mixed`) — the user references or pastes the note inline. This mode does not scan the filesystem or any external location for it.
+### 공채 면접
 
-If a coffee chat note exists for this company, cross-reference it against:
+| 라운드 | 무엇을 보는가 | 준비할 것 |
+|---|---|---|
+| 직무·실무 면접 | 전공 지식, 직무 이해, 자기소개서에 적은 경험 | 자기소개서 문장마다 근거. 전공 구술. 발표 과제가 있는 회사가 있음 |
+| 임원 면접 | 사람됨, 조직 적합성, 지원 동기 | 왜 이 회사인지, 오래 다닐 것인지에 대한 자기 답 |
+| 창의성·과제 면접 | 문제를 푸는 방식 | 회사가 안내한 형식 확인 |
 
-- **What's known/expected about the interview itself** — the JD, named interviewers (Step 1 research, Panel Intel table in Step 4), and the Step 2 Process Overview.
-- **Any existing interview transcript for the same company** — prior rounds already captured in `interview-prep/{company-slug}-{role-slug}.md`, and structured session records in `interview-prep/sessions/` (written by `modes/interview/debrief.md` Step 9).
+**자기소개서 꼬리질문이 한국 면접에서 가장 흔합니다.** 제출한 자기소개서를 읽고 문장마다 나올 질문을 만듭니다.
 
-Surface explicitly whether the coffee chat **corroborates** or **contradicts** something known or suspected about the interview process:
+- "그때 본인 역할이 정확히 무엇이었나"
+- "왜 그 방법을 골랐나"
+- "결과가 그렇게 나온 이유가 무엇이라고 보나"
+- "그 경험에서 아쉬운 점이 있다면"
 
-```markdown
-## Coffee Chat Cross-Reference
-| Coffee chat signal | Cross-referenced against | Read |
-|---------------------|---------------------------|------|
-| {what the contact said} | {JD line / named interviewer / prior transcript} | Corroborates — {why, e.g. "confirms this is a consistent screening focus, not a one-off tangent"} / Contradicts — {why} |
-```
+자기소개서에 쓴 것 중 근거를 댈 수 없는 문장이 있으면 **면접 전에 알려 줍니다.** 그것이 가장 위험한 지점입니다.
 
-- **One coffee chat is one data point, not proof.** Use corroborating language ("this is consistent with…", "this lines up with…"), never "confirmed" or "fact" language — unless a second independent source (a second coffee chat, or a matching pattern already recorded across two transcripts) exists for the same claim.
-- **Contradictions matter as much as corroborations.** If the coffee chat conflicts with the JD or a prior transcript, say so plainly and flag it for the candidate to probe — don't silently trust either source over the other.
+### 수시 면접
+
+| 라운드 | 무엇을 보는가 | 준비할 것 |
+|---|---|---|
+| 1차 기술 면접 | 이력서에 적은 프로젝트의 깊이 | 프로젝트마다 왜 그렇게 만들었는지. 병목과 해결 과정 |
+| 라이브 코딩 | 생각하며 코드를 짜는 과정 | 말하면서 푸는 연습 |
+| 시스템 설계 | 규모를 다루는 방식 | 시니어 지원에서 나옴 |
+| 2차·컬처핏 | 함께 일할 수 있는가 | 회사가 내세우는 일하는 방식과 본인 경험의 접점 |
+
+### 평판 조회 (경력 지원)
+
+최종 면접 전후에 요청받을 수 있습니다.
+
+- 추천인을 누구로 세울지 미리 정해 둡니다. 보통 두세 명입니다
+- **동의 없이 현 직장에 연락하는 것은 개인정보보호법 위반 소지가 있습니다.** 동의서 범위를 확인하게 합니다
+- 현 직장에 이직 사실이 알려지는 것을 걱정하는 경우가 실제로 많습니다. 어디까지 연락해도 되는지 명확히 전달하게 합니다
+
+### 처우 협의
+
+면접이 끝나면 처우 협의로 넘어갑니다. `salary-korea.mjs`로 제시액을 분해하고, `oferta.md` 블록 D의 확인 질문 목록을 씁니다.
+
 
 ## URL entry — prep for a role that was never evaluated
 

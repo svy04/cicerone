@@ -12,7 +12,8 @@
 - **경력 지원이면 경력기술서를 따로 만듭니다.** `modes/career-description.md` 를 씁니다
 - 신체 조건·출신지역·혼인 여부·재산·가족의 학력과 직업은 이력서에 넣지 않습니다. 채용절차법 제4조의3이 금지한 항목입니다
 
-Optional pass:
+선택 기능 (원문 유지 — 실행 인자와 1:1 대응):
+- **`--hm-audit`** 은 완성된 이력서를 채용 책임자 관점에서 적대적으로 한 번 더 읽는 단계입니다. 기본은 꺼져 있고, 조사 비용이 듭니다. 한국 지원에서도 그대로 쓸 수 있습니다.
 - **`--hm-audit`:** `/career-ops pdf --hm-audit` adds the hiring-manager audit at Step 20 — an adversarial read of the tailored CV by a separate, research-grounded reviewer before it becomes a PDF (`modes/pdf/hm-audit.md`). Off by default: it costs a subagent dispatch plus web research. Turn it on per run with the flag, or for every run in your own `modes/_custom.md`.
 
 ## Full pipeline
