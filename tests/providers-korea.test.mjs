@@ -24,6 +24,7 @@ import saraminWeb, { parseSaraminList } from '../providers/saramin-web.mjs';
 import jobkorea, { parseJobKoreaList, filterByKeywords } from '../providers/jobkorea.mjs';
 import jumpit, { normalizeJumpitPosition, findJumpitPositions } from '../providers/jumpit.mjs';
 import remember, { parseSitemapIds, extractPostingData, normalizePosting } from '../providers/remember.mjs';
+import worknet, { parseWorknetXml, readErrorMessage } from '../providers/worknet.mjs';
 import { parseRobots, isAllowed, clearRobotsCache } from '../providers/_robots.mjs';
 
 const here = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'providers');
@@ -646,6 +647,142 @@ test('리멤버: robots 가 막은 목록 경로를 코드가 부르지 않는�
   assert.ok(!/seed=/.test(built), 'robots 가 막은 seed 매개변수가 코드에 있다');
 });
 
+// ── 고용24 (옛 워크넷) ───────────────────────────────────────
+// 공개 API 입니다. 오류 응답은 2026-08-21 실제로 받아 확인했고,
+// 정상 응답의 필드 이름은 문서 기준입니다(인증키가 있어야 볼 수 있음).
+
+const WORKNET_ERROR_XML =
+  '<?xml version="1.0" encoding="UTF-8"?><wantedRoot>' +
+  '<message>유효하지 않은 인증키 입니다.</message><messageCd>002</messageCd></wantedRoot>';
+
+const WORKNET_OK_XML = `<?xml version="1.0" encoding="UTF-8"?>
+<wantedRoot>
+  <total>2</total>
+  <wanted>
+    <company>(주)한국소프트</company>
+    <title>웹 백엔드 개발자 모집</title>
+    <salTpNm>연봉</salTpNm>
+    <sal>4,000만원</sal>
+    <region>서울 구로구</region>
+    <holidayTpNm>주5일근무</holidayTpNm>
+    <minEdubg>대졸</minEdubg>
+    <career>경력</career>
+    <regDt>20260820</regDt>
+    <closeDt>20360930</closeDt>
+    <wantedAuthNo>K120260820001</wantedAuthNo>
+    <wantedInfoUrl>https://www.work24.go.kr/wk/a/b/1200/retriveDtlEmpSrchList.do?wantedAuthNo=K120260820001</wantedInfoUrl>
+  </wanted>
+  <wanted>
+    <company>지방자치단체</company>
+    <title>마감된 공고</title>
+    <region>부산 해운대구</region>
+    <regDt>20200101</regDt>
+    <closeDt>20200201</closeDt>
+    <wantedAuthNo>K120200101001</wantedAuthNo>
+  </wanted>
+</wantedRoot>`;
+
+test('고용24: 서버가 준 오류 문장을 그대로 읽는다', () => {
+  assert.equal(readErrorMessage(WORKNET_ERROR_XML), '유효하지 않은 인증키 입니다. (코드 002)');
+  assert.equal(readErrorMessage(WORKNET_OK_XML), null);
+  assert.equal(readErrorMessage(null), null);
+});
+
+test('고용24: 응답을 스캐너가 쓰는 모양으로 옮긴다', () => {
+  const jobs = parseWorknetXml(WORKNET_OK_XML);
+  assert.equal(jobs.length, 2);
+  assert.equal(jobs[0].title, '웹 백엔드 개발자 모집');
+  assert.equal(jobs[0].company, '(주)한국소프트');
+  assert.equal(jobs[0].location, '서울 구로구');
+  assert.ok(jobs[0].url.includes('work24.go.kr'), '원문 주소가 아니다: ' + jobs[0].url);
+  assert.equal(jobs[0].description, '경력 · 대졸 · 주5일근무 · 연봉 4,000만원');
+  assert.ok(Number.isFinite(jobs[0].postedAt), '등록일이 없다');
+});
+
+test('고용24: 주소가 없으면 인증번호로 되돌린다', () => {
+  const jobs = parseWorknetXml(WORKNET_OK_XML);
+  assert.ok(jobs[1].url.includes('K120200101001'), '인증번호가 빠졌다: ' + jobs[1].url);
+});
+
+test('고용24: 제목이 없거나 응답이 아니면 버린다', () => {
+  assert.deepEqual(parseWorknetXml('<wantedRoot><wanted><company>회사만</company></wanted></wantedRoot>'), []);
+  assert.deepEqual(parseWorknetXml(''), []);
+  assert.deepEqual(parseWorknetXml(null), []);
+});
+
+await testAsync('고용24: 인증키가 없으면 신청 절차를 알리고 멈춘다', async () => {
+  const saved = process.env.WORKNET_API_KEY;
+  delete process.env.WORKNET_API_KEY;
+  try {
+    await worknet.fetch({ provider: 'worknet' }, { fetchText: async () => '' });
+    throw new Error('열쇠 없이 진행됐다');
+  } catch (err) {
+    assert.ok(/인증키가 없습니다/.test(err.message), '안내가 없다: ' + err.message);
+    assert.ok(/openapi\.work\.go\.kr/.test(err.message), '신청 경로가 없다');
+    assert.ok(/대신 신청하지 않습니다/.test(err.message), '대리 신청 금지 문구가 없다');
+  } finally {
+    if (saved !== undefined) process.env.WORKNET_API_KEY = saved;
+  }
+});
+
+await testAsync('고용24: 인증키가 틀리면 서버 문장을 그대로 전한다', async () => {
+  clearRobotsCache();
+  const saved = process.env.WORKNET_API_KEY;
+  process.env.WORKNET_API_KEY = '틀린열쇠';
+  try {
+    await worknet.fetch({ provider: 'worknet' }, {
+      fetchText: async (url) => (url.endsWith('/robots.txt') ? '' : WORKNET_ERROR_XML),
+    });
+    throw new Error('오류 응답인데 진행됐다');
+  } catch (err) {
+    assert.ok(/유효하지 않은 인증키/.test(err.message), '서버 문장이 없다: ' + err.message);
+  } finally {
+    if (saved === undefined) delete process.env.WORKNET_API_KEY;
+    else process.env.WORKNET_API_KEY = saved;
+    clearRobotsCache();
+  }
+});
+
+await testAsync('고용24: 마감된 공고를 걸러 낸다', async () => {
+  clearRobotsCache();
+  const saved = process.env.WORKNET_API_KEY;
+  process.env.WORKNET_API_KEY = '열쇠';
+  try {
+    const jobs = await worknet.fetch({ provider: 'worknet', display: 100 }, {
+      fetchText: async (url) => (url.endsWith('/robots.txt') ? '' : WORKNET_OK_XML),
+      sleep: async () => {},
+    });
+    assert.equal(jobs.length, 1, '마감된 공고가 남았다');
+    assert.equal(jobs[0].title, '웹 백엔드 개발자 모집');
+    assert.ok(!('closesAt' in jobs[0]), '계약에 없는 필드가 나갔다');
+  } finally {
+    if (saved === undefined) delete process.env.WORKNET_API_KEY;
+    else process.env.WORKNET_API_KEY = saved;
+    clearRobotsCache();
+  }
+});
+
+await testAsync('고용24: 필드 이름이 바뀌면 조용히 빈손으로 끝내지 않는다', async () => {
+  // 정상 응답의 필드 이름은 실측하지 못했습니다. 이름이 어긋났을 때
+  // 「공고 0건」으로 조용히 지나가면 원인을 못 찾습니다.
+  clearRobotsCache();
+  const saved = process.env.WORKNET_API_KEY;
+  process.env.WORKNET_API_KEY = '열쇠';
+  const changed = '<wantedRoot><wanted><companyName>회사</companyName><jobTitle>제목</jobTitle></wanted></wantedRoot>';
+  try {
+    await worknet.fetch({ provider: 'worknet' }, {
+      fetchText: async (url) => (url.endsWith('/robots.txt') ? '' : changed),
+    });
+    throw new Error('필드가 어긋났는데 조용히 끝났다');
+  } catch (err) {
+    assert.ok(/필드 이름이 바뀐 것으로 보입니다/.test(err.message), '안내가 없다: ' + err.message);
+  } finally {
+    if (saved === undefined) delete process.env.WORKNET_API_KEY;
+    else process.env.WORKNET_API_KEY = saved;
+    clearRobotsCache();
+  }
+});
+
 // ── robots.txt 판정 ──────────────────────────────────────────
 // 실측한 robots.txt 원문(2026-08-21)으로 검증한다. 이 판정이 수집 규칙 둘째
 // ("robots.txt 를 본다")를 코드로 집행하는 자리다.
@@ -738,7 +875,7 @@ test('수집 모듈이 정체를 밝히고 요청 간격을 둔다', () => {
   // 원문 주소를 남긴다 · 재배포하지 않는다. 앞의 둘을 코드에서 확인한다.
   const korean = fs.readdirSync(here)
     .filter(f => f.endsWith('.mjs') && !f.startsWith('_'))
-    .filter(f => /saramin|greetinghr|jobkorea|jumpit|remember|wanted/.test(f));
+    .filter(f => /saramin|greetinghr|jobkorea|jumpit|remember|worknet|wanted/.test(f));
   assert.ok(korean.length > 0, '한국 수집 모듈이 하나도 없다');
   for (const f of korean) {
     const src = fs.readFileSync(path.join(here, f), 'utf8');

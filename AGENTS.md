@@ -48,7 +48,7 @@ Built and used by [santifer](https://santifer.io) to evaluate 740+ offers, gener
 
 **원티드를 뺀 이유는 다릅니다**: 금지가 아니라 읽을 문이 없습니다. 도구 이름을 밝힌 요청은 robots.txt 를 포함해 모든 경로가 CloudFront 403 입니다(2026-08-21 실측). 2번 규칙을 지키려면 그 파일을 받아야 하는데 그 파일부터 못 받습니다. 브라우저 문자열을 쓰면 열리지만 1번 규칙을 버리는 일이라 하지 않았습니다. **이 판단을 뒤집으려면 두 규칙을 어떻게 할 것인지부터 정하세요** — 모듈만 조용히 추가하지 마세요.
 
-**읽는 곳 (2026-08-21 기준)**: 사람인(공식 API `saramin` + 검색 결과 `saramin-web`), 잡코리아(`jobkorea`, 목록 탭만 — robots 가 `/Search/?stext=` 를 막음), 점핏(`jumpit`), 리멤버 커리어(`remember`, 사이트맵 + 공고 상세 — robots 가 `/job_postings/` 를 막음), 그리팅(`greetinghr`). 자세한 것은 `docs/SUPPORTED_JOB_BOARDS.md`.
+**읽는 곳 (2026-08-21 기준)**: 사람인(공식 API `saramin` + 검색 결과 `saramin-web`), 잡코리아(`jobkorea`, 목록 탭만 — robots 가 `/Search/?stext=` 를 막음), 점핏(`jumpit`), 리멤버 커리어(`remember`, 사이트맵 + 공고 상세 — robots 가 `/job_postings/` 를 막음), 그리팅(`greetinghr`), 고용24(`worknet`, 사용자 인증키). 자세한 것은 `docs/SUPPORTED_JOB_BOARDS.md`.
 
 **공식 API 도 씁니다**: 사람인 공개 API 와 공공데이터포털은 사용자가 본인 명의로 발급받은 열쇠로 접근합니다. 도구가 대신 신청하지 않습니다.
 

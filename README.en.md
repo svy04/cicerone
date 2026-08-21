@@ -73,6 +73,7 @@ Paste a URL and it reads that one. To collect several at once, `portals.yml` lis
 | Jumpit | Developer-only listing | Tech stack and experience range arrive with the list |
 | Remember Career | Sitemap for IDs, then one posting at a time | The only source whose request count scales with postings — about 30 seconds for 25 |
 | Companies on Greeting | The company's own careers page | Only the companies you list |
+| Worknet / 고용24 | Public API | Needs a key you register for yourself. Public-sector and smaller-employer postings live here, and more of them publish a salary figure |
 
 Four rules govern every request: identify the tool in the User-Agent, read robots.txt before fetching, keep the source URL, redistribute nothing. The second is enforced in code — `providers/_robots.mjs` fetches and parses the file, and a disallowed path stops there.
 
