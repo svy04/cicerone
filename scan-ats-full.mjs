@@ -1093,7 +1093,7 @@ async function main() {
     log('\n(dry run — run without --dry-run to save results)');
     return;
   }
-  log(`\n→ Run /career-ops pipeline to evaluate new offers.`);
+  log(`\n→ Run /hwadu pipeline to evaluate new offers.`);
 }
 
 // Only run main() when invoked directly, not when imported by tests.

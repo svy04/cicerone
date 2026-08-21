@@ -1102,7 +1102,7 @@ async function generatePDF() {
     console.error('This script only converts an already-built HTML file to PDF.');
     console.error('The input HTML is produced by the pdf mode: the agent fills cv-template.html');
     console.error('with content tailored to the specific job (see modes/pdf.md) — there is no');
-    console.error('mechanical markdown-to-HTML step by design. Run `/career-ops pdf` in your AI');
+    console.error('mechanical markdown-to-HTML step by design. Run `/hwadu pdf` in your AI');
     console.error('CLI to drive the full flow end to end.');
     process.exit(1);
   }

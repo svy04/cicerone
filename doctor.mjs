@@ -377,7 +377,7 @@ const USER_LAYER_PREREQS = [
   {
     path: 'portals.yml',
     fix: [
-      'Run: cp templates/portals.example.yml portals.yml',
+      'Run: cp templates/portals.korea.example.yml portals.yml   (해외 지원은 portals.example.yml)',
       'Then customize with your target companies',
     ],
   },
@@ -474,7 +474,7 @@ async function checkPortalSlugs(root) {
 
 const PIPELINE_SKELETON = `# Pipeline — Pending URLs
 
-Paste job URLs below as \`- [ ] {url}\` then run \`/career-ops pipeline\`.
+Paste job URLs below as \`- [ ] {url}\` then run \`/hwadu pipeline\`.
 
 ## Pending
 
@@ -525,7 +525,7 @@ function checkPlugins(root) {
 }
 
 async function main() {
-  console.log('\ncareer-ops doctor');
+  console.log('\n화두 (hwadu) doctor');
   console.log('================\n');
 
   const { cli: activeCli, source: cliSource, warning: cliWarning } = resolveActiveCli();

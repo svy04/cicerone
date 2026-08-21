@@ -87,11 +87,9 @@ const requiredSystemPaths = [
   '.cursor/skills/',
   'tracker-columns-tests.mjs',
   'updater-migration-tests.mjs',
-  'README.ar.md',
-  'README.de.md',
-  'README.hi.md',
-  'README.ja.md',
-  'README.ua.md',
+  // 한국판 전환(2026-08-21): 정본은 한국어 README.md, 영어판이 README.en.md 다.
+  // 원본이 유지하던 15개 언어 번역판은 갱신 부담이 커서 뺐다.
+  'README.en.md',
   'CHANGELOG.md',
   'CODE_OF_CONDUCT.md',
   'GOVERNANCE.md',

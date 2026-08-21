@@ -1,4 +1,4 @@
-# Career-Ops -- AI Job Search Pipeline
+# 화두 (hwadu) — 한국 취업 파이프라인
 
 ## Origin
 
@@ -10,7 +10,7 @@ Built and used by [santifer](https://santifer.io) to evaluate 740+ offers, gener
 
 이 저장소는 [santifer/career-ops](https://github.com/santifer/career-ops)에서 갈라져 나와 한국 취업 시장 기준으로 다시 만들어졌습니다. `modes/` 아래의 지시문은 한국 채용 절차를 전제로 씁니다. 해외·외국계 지원용 영어판은 `modes/global/` 에 보존돼 있습니다.
 
-한국 시장에 대한 모든 주장의 출처는 `docs/시장근거.md` 에 있습니다. 근거를 못 찾은 항목은 그 사실도 적혀 있습니다.
+한국 시장에 대한 모든 주장의 출처는 `docs/market-evidence.md` 에 있습니다. 근거를 못 찾은 항목은 그 사실도 적혀 있습니다.
 
 **미국 시장 전제를 되돌리지 마세요.** 아래는 한국에서 근거가 없거나 해당하지 않아 의도적으로 뺀 것입니다.
 
@@ -111,7 +111,7 @@ AI-powered, CLI-agnostic job search automation: pipeline tracking, offer evaluat
 
 ### Codex invocation
 
-- **Interactive:** run `codex` in the repo root; if `/career-ops` is unavailable, ask Codex to run the mode directly.
+- **Interactive:** run `codex` in the repo root; if `/hwadu` is unavailable, ask Codex to run the mode directly.
 - **Headless:** `codex exec "prompt"` for one-shot workers.
 - **Examples:** `Run career-ops scan mode`, `Run career-ops pipeline mode for data/pipeline.md`, `Run career-ops pdf mode`, `Run career-ops tracker mode`, `Evaluate this JD with career-ops auto-pipeline: https://company.com/jobs/123`
 
@@ -251,8 +251,8 @@ Store insights in `config/profile.yml` (narrative), `modes/_profile.md`, or `art
 Once all files exist, confirm:
 > "You're all set! You can now:
 > - Paste a job URL to evaluate it
-> - Run the scan entrypoint for your CLI to search portals: `/career-ops scan`, `/career-ops-scan`, or ask Codex to run `scan`
-> - Open the command menu for your CLI: `/career-ops`, the CLI-specific alias, or ask Codex to show the available career-ops modes
+> - Run the scan entrypoint for your CLI to search portals: `/hwadu scan`, `/hwadu-scan`, or ask Codex to run `scan`
+> - Open the command menu for your CLI: `/hwadu`, the CLI-specific alias, or ask Codex to show the available career-ops modes
 >
 > Everything is customizable — just ask me to change anything.
 >
@@ -261,7 +261,7 @@ Once all files exist, confirm:
 Then suggest automation:
 > "Want me to scan for new offers automatically? I can set up a recurring scan every few days so you don't miss anything. Just say 'scan every 3 days' and I'll configure it."
 
-If the user accepts, use the `/loop` or `/schedule` skill (if available) to set up a recurring scan entrypoint for their CLI (`/career-ops scan`, `/career-ops-scan`, or the equivalent Codex prompt). If those aren't available, point them to [docs/AUTOMATION.md](docs/AUTOMATION.md) for copy-paste cron / launchd / Windows Task Scheduler recipes plus a zero-token triage-to-shortlist prompt, or remind them to run the scan mode periodically.
+If the user accepts, use the `/loop` or `/schedule` skill (if available) to set up a recurring scan entrypoint for their CLI (`/hwadu scan`, `/hwadu-scan`, or the equivalent Codex prompt). If those aren't available, point them to [docs/AUTOMATION.md](docs/AUTOMATION.md) for copy-paste cron / launchd / Windows Task Scheduler recipes plus a zero-token triage-to-shortlist prompt, or remind them to run the scan mode periodically.
 
 ### Personalization
 

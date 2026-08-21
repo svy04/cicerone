@@ -1,6 +1,6 @@
 # 模式: pipeline — 待处理 URL 收件箱 (第二大脑)
 
-用于批量处理记录在 `data/pipeline.md` 中的职位 URL 链接。候选人可以随时向待处理列表中追加抓取的岗位链接，然后运行 `/career-ops pipeline` 一键自动化评估所有待投递机会。
+用于批量处理记录在 `data/pipeline.md` 中的职位 URL 链接。候选人可以随时向待处理列表中追加抓取的岗位链接，然后运行 `/hwadu pipeline` 一键自动化评估所有待投递机会。
 
 ## 实时工作流
 
@@ -14,7 +14,7 @@
 
    **关于自动生成 PDF 的分流控制 (Configurable)：**
    系统将读取个人配置 `config/profile.yml` 中的 `auto_pdf_score_threshold`（自动生成 PDF 评分阈值）。如果该配置项不存在，则默认阈值为 `3.0`。
-   如果本次岗位的评估得分低于该阈值，系统将**跳过**简历 PDF 的生成步骤（照常撰写评估报告，并在报告头部标明 `**PDF:** not generated — run /career-ops pdf {company-slug} to create on demand`，同时在 tracker 的 PDF 列登记为 ❌）。
+   如果本次岗位的评估得分低于该阈值，系统将**跳过**简历 PDF 的生成步骤（照常撰写评估报告，并在报告头部标明 `**PDF:** not generated — run /hwadu pdf {company-slug} to create on demand`，同时在 tracker 的 PDF 列登记为 ❌）。
    如果评分等于或高于该阈值，则照常自动生成量身定制的简历 PDF。
 
    *注：此机制可以大幅节省批量扫描时的 Playwright 渲染排版开销（每次渲染需要 30-60 秒）。候选人可在后续通过执行命令单独生成心仪岗位的 PDF。*

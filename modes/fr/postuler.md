@@ -104,7 +104,7 @@ Notes :
 Si le candidat confirme que la candidature est envoyee :
 1. Mettre a jour le statut vers "Applied" via le CLI canonique : `node set-status.mjs <report#> Applied` (ne pas editer la table `applications.md` a la main)
 2. Mettre a jour le Bloc G du report avec les reponses finales
-3. Suggerer l'etape suivante : `/career-ops contacto` pour du LinkedIn outreach vers le hiring manager
+3. Suggerer l'etape suivante : `/hwadu contacto` pour du LinkedIn outreach vers le hiring manager
 
 ## Gestion du defilement
 

@@ -20,7 +20,7 @@ Two independent pieces, smallest first. You can use either on its own.
 > machine — none of your data is uploaded. The scan does reach out to *public*
 > job-board APIs to read listings (the same zero-key reads the manual scan makes),
 > but it sends none of your personal data with them, and the triage only reads your
-> local files. Evaluating a shortlisted role later (`/career-ops pipeline`) is the
+> local files. Evaluating a shortlisted role later (`/hwadu pipeline`) is the
 > only step that spends tokens.
 
 ---
@@ -149,7 +149,7 @@ Leave data/pipeline.md unchanged — this only reads it and writes data/shortlis
 Open `data/shortlist.md`, then run a real evaluation only on the "Worth a look" rows:
 
 ```text
-/career-ops pipeline
+/hwadu pipeline
 ```
 
 That keeps the expensive step — token-spending evaluation — pointed only at postings

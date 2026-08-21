@@ -1,6 +1,6 @@
 # Tryb: pipeline -- Inbox URL-i (Second Brain)
 
-Przetwarza URL-e ofert nagromadzone w `data/pipeline.md`. Kandydat dodaje URL-e, kiedy chce, a potem uruchamia `/career-ops pipeline`, by przetworzyć je wszystkie naraz.
+Przetwarza URL-e ofert nagromadzone w `data/pipeline.md`. Kandydat dodaje URL-e, kiedy chce, a potem uruchamia `/hwadu pipeline`, by przetworzyć je wszystkie naraz.
 
 ## Workflow
 

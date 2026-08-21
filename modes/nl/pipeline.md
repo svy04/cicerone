@@ -1,6 +1,6 @@
 # Modus: pipeline - URL-inbox (tweede brein)
 
-Processen bieden URL's aan die zijn verzameld in `data/pipeline.md`. De kandidaat voegt URL's toe wanneer hij maar wil en voert vervolgens `/career-ops pipeline` uit om ze allemaal in één keer te verwerken.
+Processen bieden URL's aan die zijn verzameld in `data/pipeline.md`. De kandidaat voegt URL's toe wanneer hij maar wil en voert vervolgens `/hwadu pipeline` uit om ze allemaal in één keer te verwerken.
 
 ## Werkstroom
 

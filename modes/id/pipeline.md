@@ -1,6 +1,6 @@
 # Mode: pipeline -- Inbox URL (Second Brain)
 
-Memproses URL lowongan yang menumpuk di `data/pipeline.md`. Kandidat menambahkan URL kapan pun ia mau lalu menjalankan `/career-ops pipeline` untuk memproses semuanya sekaligus.
+Memproses URL lowongan yang menumpuk di `data/pipeline.md`. Kandidat menambahkan URL kapan pun ia mau lalu menjalankan `/hwadu pipeline` untuk memproses semuanya sekaligus.
 
 ## Alur kerja
 

@@ -150,9 +150,13 @@
 - 회사의 보상 평판
 - 이 직무의 시장 수요
 
-### 회사 유형을 먼저 분류합니다
+### Company type classification (required) — 회사 유형을 먼저 분류합니다
 
-`_shared.md`의 회사 유형표를 씁니다. 유형을 정하고 보상 신뢰도를 함께 적습니다. 판단이 어려우면 `불명`으로 두고 신뢰도를 `낮음`으로 둡니다.
+`_shared.md`의 회사 유형표를 씁니다. 유형을 정하고 보상 신뢰도를 함께 적습니다.
+
+브랜드와 실제 고용 주체가 다르면 계약 상대방(actual contract / hiring entity)을 기준으로 분류하고 브랜드 관계는 따로 적습니다. 판단이 어려우면 `불명`으로 두고 신뢰도를 가장 보수적인 등급으로 둡니다 (default compensation reliability to the conservative canonical tier: `Low`).
+
+### Compensation reliability (required) — 보상 신뢰도
 
 ### 공고에 급여가 적혀 있으면
 
@@ -179,7 +183,7 @@
 - **회사 유형**: {유형} — {근거 한 마디}
 - **보상 신뢰도**: {등급} — 공고에 급여 미기재
 
-### 반드시 물어야 할 것
+### 반드시 물어야 할 것 (Required HR verification questions when a salary figure exists)
 
 처우 협의 단계에서 확인할 질문을 서너 개 만듭니다. 아래에서 이 공고에 해당하는 것을 고릅니다.
 
@@ -222,6 +226,8 @@
 ### 시세를 적을 때
 
 숫자에는 **출처와 그 한계를 함께** 씁니다. 예를 들어 국민연금 역산 데이터를 쓸 때는 고연봉 구간이 낮게 나온다는 사실을 같이 적습니다. 데이터가 없으면 없다고 적고 지어내지 않습니다.
+
+**제시된 금액을 실제로 손에 쥐는 돈처럼 말하지 않습니다** (Do not present advertised compensation as real take-home pay). 출처가 그렇게 해석할 근거를 주지 않는 한, 제시액은 제시액일 뿐입니다. 실수령 추정이 필요하면 `node salary-korea.mjs` 를 씁니다.
 
 ---
 

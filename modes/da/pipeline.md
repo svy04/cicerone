@@ -1,6 +1,6 @@
 # Mode: pipeline -- URL-indbakke (Second Brain)
 
-Behandler URL'er til opslag, der er samlet i `data/pipeline.md`. Kandidaten tilføjer URL'er, når han vil, og kører derefter `/career-ops pipeline` for at behandle dem alle på én gang.
+Behandler URL'er til opslag, der er samlet i `data/pipeline.md`. Kandidaten tilføjer URL'er, når han vil, og kører derefter `/hwadu pipeline` for at behandle dem alle på én gang.
 
 ## Workflow
 

@@ -1,5 +1,36 @@
 # Changelog
 
+## 화두 (hwadu) 0.1.0 — 2026-08-21
+
+[santifer/career-ops](https://github.com/santifer/career-ops) 1.28.0 에서 갈라져 나와 한국 취업 시장 기준으로 규격을 바꿨습니다. 무엇이 어떻게 바뀌었는지는 [docs/korea-fork.md](docs/korea-fork.md)에 있고, 시장 사실의 출처는 [docs/market-evidence.md](docs/market-evidence.md)에 있습니다.
+
+### 바꾼 것
+
+* **평가 두뇌** — 채용 트랙 판정(공채·수시)을 0단계로 세웠습니다. 트랙에 따라 직급 전략·연봉 협상·서류·전형 대비가 전부 갈립니다
+* **연봉** — 미국식 총보상 분해 대신 "계약 연봉에 무엇이 포함됐는가"를 캐묻습니다. 퇴직금, 고정 초과근로수당, 목표 성과급
+* **시세 출처** — 미국 급여 사이트를 국내 출처로 교체하고 각 출처의 편향을 함께 내게 했습니다
+* **이력서** — 한 장 규칙을 뺐습니다. 공고 키워드를 심는 기능도 뺐습니다. 한국에서 그것이 자동 심사를 통과시킨다는 근거를 찾지 못했습니다
+* **회사 유형** — 대기업 계열사·중견·시스템 통합 외주·외국계 지사 등 한국 분류로 교체했습니다
+
+### 새로 만든 것
+
+* **자기소개서 모드** — 문항을 풀어 주고 재료를 찾아 주고 글자 수를 잡아 줍니다. **대신 쓰지 않습니다**
+* **경력기술서 모드** — 원본에 대응물이 없습니다. 한국 경력 채용의 본문입니다
+* **필기 전형 모드** — 인적성검사와 코딩테스트. 지원 추적에 `Written` 상태를 신설했습니다
+* **급여 분해기** (`salary-korea.mjs`) — 제시액 분해와 실수령액 추정. 시험 22건
+* **채용절차법 검사** — 공고가 제4조의3 금지 항목을 요구하면 알립니다
+* **한국 공고 수집** — 사람인 공식 API와 국내 채용 관리 시스템. 약관이 자동 수집을 금지한 플랫폼은 연결하지 않습니다
+
+### 뺀 것
+
+* 비자 후원 신호, 미국·캐나다 관할 법률 신호(인력업체 면허·인공지능 심사 고지 조례·급여 공개법·최저임금 환산·이민 신분) — 해외 지원용 `modes/global/` 에 그대로 보존했습니다
+* 15개 언어 README 번역판 — 정본이 한국어이고 영어판을 함께 둡니다
+
+### 그대로 쓰는 것
+
+지원 현황 추적, 서류 생성 배관, 자동 갱신기, 대시보드, 시험 묶음. 시장과 무관한 부분이고 원본의 자산입니다.
+
+
 ## [1.28.0](https://github.com/santifer/career-ops/compare/career-ops-v1.27.0...career-ops-v1.28.0) (2026-08-20)
 
 
@@ -433,7 +464,7 @@
 * **liveness:** treat the SPA "has been filled" phrasing as expired ([#2212](https://github.com/santifer/career-ops/issues/2212)) ([112298c](https://github.com/santifer/career-ops/commit/112298c84181884613646c40bc4e90251c86696a)), closes [#2211](https://github.com/santifer/career-ops/issues/2211)
 * **match-star:** tokenize tag matches so short tokens do not substring-collide ([#2153](https://github.com/santifer/career-ops/issues/2153)) ([360bb8c](https://github.com/santifer/career-ops/commit/360bb8cbe3700100e2c080020c36e473f5e0a6a7))
 * **normalize-statuses:** use header-mapped columns instead of fixed indices ([cf0bf4f](https://github.com/santifer/career-ops/commit/cf0bf4f0ad9a85106dc107ee0bb9b6ac89ef343a))
-* **opencode:** add missing /career-ops command router ([#2204](https://github.com/santifer/career-ops/issues/2204)) ([74bd6f2](https://github.com/santifer/career-ops/commit/74bd6f2085c350e1d53eeba0e6143df65d537279)), closes [#2191](https://github.com/santifer/career-ops/issues/2191)
+* **opencode:** add missing /hwadu command router ([#2204](https://github.com/santifer/career-ops/issues/2204)) ([74bd6f2](https://github.com/santifer/career-ops/commit/74bd6f2085c350e1d53eeba0e6143df65d537279)), closes [#2191](https://github.com/santifer/career-ops/issues/2191)
 * **patterns:** recognize the canonical Hired status in analyze-patterns ([#2145](https://github.com/santifer/career-ops/issues/2145)) ([283b2a0](https://github.com/santifer/career-ops/commit/283b2a0cee5fbb76f286d4983648dbf37a01b763))
 * **pdf:** apply the CV section-order check to non-English CVs ([#2088](https://github.com/santifer/career-ops/issues/2088)) ([9a82618](https://github.com/santifer/career-ops/commit/9a8261871df0c8cbdc1dc18eee9312e45d24a3e5))
 * **pipeline:** lock appendToPipeline() against concurrent read-modify-write ([#2189](https://github.com/santifer/career-ops/issues/2189)) ([3c04b43](https://github.com/santifer/career-ops/commit/3c04b43c9dde809e1bda5a8d6d667c4124cf58ce)), closes [#2188](https://github.com/santifer/career-ops/issues/2188)
@@ -694,7 +725,7 @@
 ### Features
 
 * add the opt-in experimental web UI surface (web/) — isolated versioning, CI and packaging ([432c3c5](https://github.com/santifer/career-ops/commit/432c3c523a13bf0a5053b5d1f3c28c17ef1296eb))
-* **add:** /career-ops add — fetch a project/paper/role into cv.md and article-digest.md ([#1476](https://github.com/santifer/career-ops/issues/1476)) ([933c353](https://github.com/santifer/career-ops/commit/933c3536959f29534769fcb92af37c3a60551475))
+* **add:** /hwadu add — fetch a project/paper/role into cv.md and article-digest.md ([#1476](https://github.com/santifer/career-ops/issues/1476)) ([933c353](https://github.com/santifer/career-ops/commit/933c3536959f29534769fcb92af37c3a60551475))
 * **agent-inbox:** queue requests for the next session ([#1472](https://github.com/santifer/career-ops/issues/1472)) ([182554d](https://github.com/santifer/career-ops/commit/182554d1401f0be91b8474df9918dfaf5491c684))
 * **apply:** pre-scan forms for knock-out questions before drafting ([#1463](https://github.com/santifer/career-ops/issues/1463)) ([05a85b8](https://github.com/santifer/career-ops/commit/05a85b8bb1b32991a6bed16c19080e47f19a414b))
 * **contacto:** short-greeting variant for chat-style outreach ([#1477](https://github.com/santifer/career-ops/issues/1477)) ([8cf19a7](https://github.com/santifer/career-ops/commit/8cf19a76ad381eeebfb7d35abd9d282006c24214))
@@ -753,7 +784,7 @@
 * **providers:** workday honors ctx.maxPages so the liveness probe stops cleanly ([#1553](https://github.com/santifer/career-ops/issues/1553)) ([39216f0](https://github.com/santifer/career-ops/commit/39216f0661b861d78c5d6700d864a0b9b83e6478))
 * **scan:** load .env credentials via optional dotenv import ([#1507](https://github.com/santifer/career-ops/issues/1507)) ([5066b28](https://github.com/santifer/career-ops/commit/5066b284400cbc51b246eeff64c42af9f34e5c43))
 * **update:** make updater timeout budgets configurable ([#1564](https://github.com/santifer/career-ops/issues/1564)) ([525c9c0](https://github.com/santifer/career-ops/commit/525c9c0cbc8b6ab5b23a0e612537c75cab83b114))
-* **update:** preserve local CLAUDE.md additions during /career-ops update ([#1446](https://github.com/santifer/career-ops/issues/1446)) ([e5f5d25](https://github.com/santifer/career-ops/commit/e5f5d2517ef598350065af1d2475e08bb28c02da))
+* **update:** preserve local CLAUDE.md additions during /hwadu update ([#1446](https://github.com/santifer/career-ops/issues/1446)) ([e5f5d25](https://github.com/santifer/career-ops/commit/e5f5d2517ef598350065af1d2475e08bb28c02da))
 * **updater:** add .claude/settings.json to USER_PATHS ([#1471](https://github.com/santifer/career-ops/issues/1471)) ([aa8000d](https://github.com/santifer/career-ops/commit/aa8000d84c397145196f8f494beefe86777e1090)), closes [#1408](https://github.com/santifer/career-ops/issues/1408)
 * **web:** bump FOLLOW-UPS DUE tap-targets to 44px on mobile ([#1568](https://github.com/santifer/career-ops/issues/1568)) ([f5e8362](https://github.com/santifer/career-ops/commit/f5e836268c8a16707566becb51675d0b52a670dd))
 * **web:** pin turbopack.root to prevent Windows postcss OOM ([#1530](https://github.com/santifer/career-ops/issues/1530)) ([8560153](https://github.com/santifer/career-ops/commit/8560153ad8aa37a3993418d32f951f25c868c6c4))
@@ -1066,7 +1097,7 @@
 * **gemini-eval:** switch default model to non-deprecated endpoint, surface 429 guidance ([#615](https://github.com/santifer/career-ops/issues/615)) ([dd3e036](https://github.com/santifer/career-ops/commit/dd3e0366d26719af7be234786a16512f46ac9e85)), closes [#614](https://github.com/santifer/career-ops/issues/614)
 * **manifest:** align plugin.json skills field with Claude Code plugin schema ([#612](https://github.com/santifer/career-ops/issues/612)) ([a77d3f6](https://github.com/santifer/career-ops/commit/a77d3f6aa3f5c278665c95c5a12048e4df66d337))
 * **merge-tracker:** preserve short specialty acronyms, require non-baseline overlap ([#634](https://github.com/santifer/career-ops/issues/634)) ([5ed3b3d](https://github.com/santifer/career-ops/commit/5ed3b3d7ea693547153ef734ab5f6016414c3301)), closes [#633](https://github.com/santifer/career-ops/issues/633)
-* **modes:** make /career-ops deep respect user language, not JD language ([#568](https://github.com/santifer/career-ops/issues/568)) ([e5f0508](https://github.com/santifer/career-ops/commit/e5f0508b94299a0e6b46918ecca2f483de0a58c6))
+* **modes:** make /hwadu deep respect user language, not JD language ([#568](https://github.com/santifer/career-ops/issues/568)) ([e5f0508](https://github.com/santifer/career-ops/commit/e5f0508b94299a0e6b46918ecca2f483de0a58c6))
 * **portals:** update Weights & Biases entry to CoreWeave acquisition ([#493](https://github.com/santifer/career-ops/issues/493)) ([1411cdc](https://github.com/santifer/career-ops/commit/1411cdc461de05a6772c854188053bcaeeb4ee32))
 * **release:** sync VERSION file to 1.7.1 ([2ebfcab](https://github.com/santifer/career-ops/commit/2ebfcabdb4cf7973e279e56f8eae001a8dadc5ed))
 * **scan:** validate Greenhouse URL hostname against allowlist to prevent SSRF ([#602](https://github.com/santifer/career-ops/issues/602)) ([988f7bb](https://github.com/santifer/career-ops/commit/988f7bb2a642f91d6cce1e2fc94f08658b72e099))

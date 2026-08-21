@@ -1,7 +1,7 @@
 {
-  "name": "career-ops",
+  "name": "hwadu",
   "version": "1.28.0",
-  "description": "AI-powered job search pipeline — works with any AI coding CLI (Claude Code, Codex, OpenCode, Antigravity, Grok, Qwen, Kimi, Copilot)",
+  "description": "한국 채용 공고를 평가하고 지원 서류를 준비하는 명령줄 도구. 인공지능 코딩 CLI 안에서 돌아갑니다 (Claude Code, Codex, OpenCode, Antigravity, Grok, Qwen, Kimi, Copilot)",
   "private": true,
   "engines": {
     "node": ">=18"

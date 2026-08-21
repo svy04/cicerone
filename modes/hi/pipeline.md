@@ -1,6 +1,6 @@
 # Mode: pipeline -- URL Inbox (Second Brain)
 
-`data/pipeline.md` में accumulated offer URLs process करता है। Candidate जब चाहे URLs add करता है और फिर एक बार में सब process करने के लिए `/career-ops pipeline` run करता है।
+`data/pipeline.md` में accumulated offer URLs process करता है। Candidate जब चाहे URLs add करता है और फिर एक बार में सब process करने के लिए `/hwadu pipeline` run करता है।
 
 ## Workflow
 

@@ -1,16 +1,16 @@
 {
-  "name": "career-ops",
+  "name": "hwadu",
   "metadata": {
-    "description": "AI job search command center — evaluate offers, tailor CVs, scan portals, track applications",
+    "description": "한국 채용 공고를 평가하고 지원 서류를 준비하는 명령줄 도구. 자기소개서는 대신 쓰지 않습니다",
     "version": "1.28.0"
   },
   "owner": {
-    "name": "santifer",
-    "url": "https://santifer.io"
+    "name": "svy04",
+    "url": "https://github.com/svy04"
   },
   "plugins": [
     {
-      "name": "career-ops",
+      "name": "hwadu",
       "source": "./",
       "description": "AI job search pipeline — evaluate offers, tailor CVs, scan portals, track applications",
       "category": "productivity",

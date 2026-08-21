@@ -167,7 +167,7 @@ Job posting を分析し、real, active opening かどうかを示す signals �
 
 ## Cover Letter Draft (auto-generated after Block G)
 
-Report を保存し tracker に記録した後、report file に `## Cover Letter Draft` として cover letter draft を append する。これは starting point であり final letter ではない。ユーザーは `/career-ops cover {slug}` で完成させる。
+Report を保存し tracker に記録した後、report file に `## Cover Letter Draft` として cover letter draft を append する。これは starting point であり final letter ではない。ユーザーは `/hwadu cover {slug}` で完成させる。
 
 **How to generate the draft:**
 
@@ -183,7 +183,7 @@ Report を保存し tracker に記録した後、report file に `## Cover Lette
 ```markdown
 ## Cover Letter Draft
 
-> Draft generated at evaluation time. Complete via `/career-ops cover {slug}` to fill in angles, confirm research, and generate the PDF.
+> Draft generated at evaluation time. Complete via `/hwadu cover {slug}` to fill in angles, confirm research, and generate the PDF.
 > Gaps flagged below -- address them during the cover flow.
 
 ---
@@ -215,7 +215,7 @@ I am happy to discuss further at your convenience.
 {8-10 exact phrases from the JD}
 
 ---
-*Run `/career-ops cover {slug}` to complete angles, confirm company research, and generate the PDF.*
+*Run `/hwadu cover {slug}` to complete angles, confirm company research, and generate the PDF.*
 ```
 
 `_writing.md` の Professional Writing section にある language rules を draft content にすべて適用する。No em dashes、no buzzwords、active voice、concrete claims only。

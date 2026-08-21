@@ -1,6 +1,6 @@
 # Modalità: pipeline -- Inbox degli URL (Second Brain)
 
-Elabora gli URL degli annunci accumulati in `data/pipeline.md`. Il candidato aggiunge gli URL quando vuole, poi esegue `/career-ops pipeline` per elaborarli tutti in una volta.
+Elabora gli URL degli annunci accumulati in `data/pipeline.md`. Il candidato aggiunge gli URL quando vuole, poi esegue `/hwadu pipeline` per elaborarli tutti in una volta.
 
 ## Workflow
 

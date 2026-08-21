@@ -441,7 +441,7 @@ async function fetchJobPage(url) {
 // field names as scan.mjs: `title_filter.positive/negative` + `tracked_companies`),
 // so it never drifts from the main scanner. The runner's no-CLI scan path covers
 // companies that expose a direct JSON `api:`; careers_url-only / Playwright /
-// search-query companies are handled by the full /career-ops scan pipeline.
+// search-query companies are handled by the full /hwadu scan pipeline.
 // `rawOverride` lets tests feed YAML text directly (see test-all.mjs drift guard).
 // ---------------------------------------------------------------------------
 function normKeywords(v) {

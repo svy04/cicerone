@@ -1,6 +1,6 @@
 # 模式: pipeline — 待處理 URL 收件匣（第二大腦）
 
-用於批次處理記錄在 `data/pipeline.md` 中的職缺 URL。求職者可以隨時把看到的職缺連結丟進待處理清單，之後執行 `/career-ops pipeline` 一次自動評估所有機會。
+用於批次處理記錄在 `data/pipeline.md` 中的職缺 URL。求職者可以隨時把看到的職缺連結丟進待處理清單，之後執行 `/hwadu pipeline` 一次自動評估所有機會。
 
 ## 即時工作流程
 
@@ -14,7 +14,7 @@
 
    **自動產生 PDF 的分流控制（可設定）：**
    系統會讀取個人設定 `config/profile.yml` 中的 `auto_pdf_score_threshold`（自動產生 PDF 的評分門檻）。若該設定不存在，預設門檻為 `3.0`。
-   若本次職缺的評分低於門檻，系統會**跳過**履歷 PDF 的產生步驟（照常撰寫評估報告，並在報告開頭標明 `**PDF:** not generated — run /career-ops pdf {company-slug} to create on demand`，同時在 tracker 的 PDF 欄登記為 ❌）。
+   若本次職缺的評分低於門檻，系統會**跳過**履歷 PDF 的產生步驟（照常撰寫評估報告，並在報告開頭標明 `**PDF:** not generated — run /hwadu pdf {company-slug} to create on demand`，同時在 tracker 的 PDF 欄登記為 ❌）。
    若評分等於或高於門檻，則照常自動產生量身打造的履歷 PDF。
 
    *註：這個機制可以大幅節省批次掃描時的 Playwright 渲染排版開銷（每次渲染需要 30–60 秒）。求職者之後可以針對心儀的職缺，單獨執行指令產生 PDF。*

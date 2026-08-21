@@ -1,6 +1,6 @@
 # Mod: pipeline — İlan Gelen Kutusu
 
-`data/pipeline.md` dosyasına biriktirilen iş ilanı URL'lerini işler. İstediğin zaman URL ekle, hazır olduğunda `/career-ops pipeline` komutunu çalıştır.
+`data/pipeline.md` dosyasına biriktirilen iş ilanı URL'lerini işler. İstediğin zaman URL ekle, hazır olduğunda `/hwadu pipeline` komutunu çalıştır.
 
 ## İş Akışı
 

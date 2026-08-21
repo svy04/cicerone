@@ -104,7 +104,7 @@ Catatan:
 Jika kandidat mengonfirmasi lamaran sudah dikirim:
 1. Perbarui status di `applications.md` dari "Evaluated" menjadi "Applied"
 2. Perbarui Blok G report dengan jawaban final
-3. Sarankan langkah berikutnya: `/career-ops contacto` untuk outreach LinkedIn ke hiring manager
+3. Sarankan langkah berikutnya: `/hwadu contacto` untuk outreach LinkedIn ke hiring manager
 
 ## Penanganan scroll
 

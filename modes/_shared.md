@@ -5,7 +5,7 @@
      내 설정은 modes/_profile.md 에 적습니다. 그 파일은 갱신되지 않습니다.
 
      이 파일이 담는 것: 평가 규격, 점수 체계, 한국 채용 시장의 사실.
-     시장 사실의 출처는 docs/시장근거.md 에 정리돼 있습니다.
+     시장 사실의 출처는 docs/market-evidence.md 에 정리돼 있습니다.
      ============================================================ -->
 
 ## Sources of Truth — 사실의 출처 (이 목록 밖에서 후보자 정보를 가져오지 않습니다)
@@ -113,6 +113,10 @@ RULE: Read _custom.md (if it exists) AFTER _profile.md and honor its house rules
 | 공공기관·공기업 | 높음 | 보수가 공개됨. 다만 초임이 민간 대기업보다 낮은 경우가 많음 |
 | 소규모 사업장 | 낮음 | 포괄임금 표현, 급여 구간 없음, 인사 절차가 비공식적 |
 | 헤드헌팅·파견 공고 | 낮음~중간 | 제3자 게시. 제시된 범위가 고객사 예산일 수 있음 |
+
+공고에 급여 숫자가 없으면 **회사 유형과 신뢰도 두 줄로 줄입니다** (collapse compensation analysis to two concise lines: company type and reliability tier). 숫자가 있으면 **제시 범위, 확실한 기본급 추정, 조건부 항목, 안정적으로 기대할 현금, 현금이 아닌 것**으로 나눠 봅니다 (advertised range, likely guaranteed base, variable / conditional cash components, expected stable cash, and non-cash benefits).
+
+**Never present advertised compensation as real take-home pay** — 제시된 금액을 실제로 손에 쥐는 돈처럼 말하지 않습니다. 출처가 그렇게 해석할 근거를 주지 않는 한 제시액은 제시액일 뿐입니다.
 
 브랜드와 실제 고용 주체가 다르면 **계약 상대방을 기준으로 분류**(actual contract / hiring entity)하고 브랜드 관계는 따로 적습니다. 판단이 어려우면 `불명`으로 두고 신뢰도를 가장 보수적인 `낮음`으로 둡니다 (default compensation reliability to the conservative canonical tier: `Low`).
 

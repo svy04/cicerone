@@ -9,7 +9,7 @@ Track follow-up cadence for active applications. Flag overdue follow-ups, extrac
 **Not in scope here:** a same-day follow-up after a recruiter/interviewer
 confirmed a specific call time and then didn't call. That's not an
 elapsed-time cadence case — see `confirmed_time_noshow` in `modes/email.md`
-(`/career-ops email noshow`) instead.
+(`/hwadu email noshow`) instead.
 
 ## Inputs
 
@@ -37,7 +37,7 @@ Parse the JSON output. It contains:
 | `cadenceConfig` | Cadence rules (applied: 7 days, responded: 3 days, interview: 1 day) |
 
 If no actionable entries, tell the user:
-> "No active applications to follow up on. Apply to some roles first with `/career-ops` and come back when they're aging."
+> "No active applications to follow up on. Apply to some roles first with `/hwadu` and come back when they're aging."
 
 **Calibration cross-reference:** `node funnel-velocity.mjs --summary` reports which in-flight applications sit beyond the typical first-response window (its `waiting` block) — those rows are natural follow-up candidates; feed them into this cadence view rather than treating the wait itself as a verdict (silence past the window is common, not a rejection). When the user reports a status change here ("they replied", "rejected"), route it through `node set-status.mjs <report#> <state>` and pass `--on YYYY-MM-DD` when they name the real event day.
 
@@ -129,7 +129,7 @@ Generate a 3-4 sentence email:
 
 Reuse the contacto framework: 3 sentences, 300 character max.
 - Hook specific to company → proof point → soft ask
-- Suggest the user run `/career-ops contacto {company}` to find the right person first
+- Suggest the user run `/hwadu contacto {company}` to find the right person first
 
 ### Second Follow-up (followupCount == 1)
 
@@ -143,7 +143,7 @@ Shorter than first (2-3 sentences). Take a **new angle**:
 Do NOT generate another follow-up. Instead suggest:
 > "This application has had {N} follow-ups with no response. Consider:
 > - Updating status to `Discarded` if the role seems filled
-> - Trying a different contact via `/career-ops contacto`
+> - Trying a different contact via `/hwadu contacto`
 > - Keeping in `Applied` status but deprioritizing"
 
 ### Company history context (optional)
@@ -157,7 +157,7 @@ For each draft, show:
 ```
 ## Follow-up: {Company} — {Role} (#{num})
 
-**To:** {email or "No contact found — run `/career-ops contacto` first"}
+**To:** {email or "No contact found — run `/hwadu contacto` first"}
 **Subject:** {subject line}
 **Days since application:** {N}
 **Follow-ups sent:** {N}

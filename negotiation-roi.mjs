@@ -661,7 +661,7 @@ function main() {
 
   if (!existsSync(STORY_BANK_PATH)) {
     console.error(`Error: ${STORY_BANK_PATH} not found.`);
-    console.error('Run /career-ops interview-prep on a role first to populate your story bank.');
+    console.error('Run /hwadu interview-prep on a role first to populate your story bank.');
     process.exit(1);
   }
   if (!existsSync(CV_PATH)) {

@@ -111,11 +111,11 @@ careers_url) and the unresolved list with reasons. Call out:
   is on Ashby came back unresolved, its slug is likely mixed-case — re-run with
   an explicit `slug:` in the input file (derived slugs are lowercased).
 - **Genuinely unknown**: for a JS-only portal with no ATS API, paste a specific
-  JD into `data/pipeline.md` and run `/career-ops pipeline`.
+  JD into `data/pipeline.md` and run `/hwadu pipeline`.
 
 ## Step 3 — Handoff
 
-After writing, tell the user to run `/career-ops scan` (or a regional preset
+After writing, tell the user to run `/hwadu scan` (or a regional preset
 like `eu-fintech`) to pull matching roles from the newly tracked boards.
 
 ## Rules

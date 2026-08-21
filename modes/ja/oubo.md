@@ -136,7 +136,7 @@ Notes:
 候補者が application を submitted したと確認した場合：
 1. 正規 CLI で status を "Applied" に update: `node set-status.mjs <report#> Applied`（`applications.md` のテーブルを手動編集しない）
 2. Report の Section G を final responses で update
-3. Next step として LinkedIn outreach 用の `/career-ops contacto` を提案
+3. Next step として LinkedIn outreach 用の `/hwadu contacto` を提案
 
 ## Scroll handling
 

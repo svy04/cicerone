@@ -1,6 +1,6 @@
 # Modo: pipeline -- Bandeja de URLs (Second Brain)
 
-Procesa las URLs de ofertas acumuladas en `data/pipeline.md`. El candidato añade URLs cuando quiere y luego lanza `/career-ops pipeline` para procesarlas todas de una vez.
+Procesa las URLs de ofertas acumuladas en `data/pipeline.md`. El candidato añade URLs cuando quiere y luego lanza `/hwadu pipeline` para procesarlas todas de una vez.
 
 ## Workflow
 
