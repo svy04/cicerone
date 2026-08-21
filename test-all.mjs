@@ -2215,7 +2215,8 @@ const outputLanguageClaudeDoc = readTextLF('CLAUDE.md');
 const careerOpsSkill = readTextLF('.agents/skills/career-ops/SKILL.md');
 const batchPrompt = readTextLF('batch/batch-prompt.md');
 
-if (/language:\s*\n(?:\s*#.*\n)*\s*output:\s*["']?en["']?/.test(profileExample)) {
+// 한국판 전환(2026-08-21): 기본 출력 언어가 en 이 아니라 ko 다. 이 저장소의 정본 시장이 한국이다.
+if (/language:\s*\n(?:\s*#.*\n)*\s*output:\s*["']?(?:ko|en)["']?/.test(profileExample)) {
   pass('profile.example.yml documents language.output default');
 } else {
   fail('profile.example.yml is missing language.output default');
@@ -2582,11 +2583,14 @@ if (shared.includes('_profile.md')) {
   // those are set locally and _writing.md says nothing about them.
   const coverSrc = readFile('modes/cover.md');
   const emailSrc = readFile('modes/email.md');
+  // 한국판 전환(2026-08-21): 한국 자기소개서는 회사가 문항과 글자 수를 정해 준다.
+  // 영어 커버레터의 350-420 단어 계약을 그대로 요구할 수 없어 한국 규격으로 바꿨다.
+  // 지켜야 하는 성질(분량 기준·문단 형식·자가 점검·어조 일관성)은 그대로다.
   const contractsIntact =
-    /350-420 words/.test(coverSrc) &&
-    /Bullet format/.test(coverSrc) &&
-    /Self-check/.test(coverSrc) &&
-    /Tone consistency/.test(coverSrc) &&
+    /글자 수/.test(coverSrc) &&
+    /문단 형식/.test(coverSrc) &&
+    /자가 점검/.test(coverSrc) &&
+    /어조 일관성/.test(coverSrc) &&
     /Attachment checklist/i.test(emailSrc) &&
     /Do not write files unless the user explicitly asks/.test(emailSrc);
   if (contractsIntact) {
@@ -2854,6 +2858,11 @@ if (
 }
 
 const ofertaMode = readFile('modes/oferta.md');
+// 한국판 전환(2026-08-21): 미국·영국·캐나다 관할의 법률 신호 검사는 한국 정본이 아니라
+// 해외 지원용으로 보존한 modes/global/oferta.md 를 본다. 검사를 지우지 않고 대상을 옮긴 것이다 —
+// 비자 후원, 인력업체 면허, 뉴욕시 인공지능 심사 고지, 미국 주별 급여 공개법, 최저임금 환산은
+// 한국 구직자에게는 잡음이지만 해외 지원에는 그대로 필요하다.
+const ofertaGlobalMode = readFile('modes/global/oferta.md');
 const autoPipelineMode = readFile('modes/auto-pipeline.md');
 if (
   ofertaMode.includes('## Liveness gate (URL inputs)') &&
@@ -2896,10 +2905,10 @@ if (
 }
 
 if (
-  ofertaMode.includes('### Work-authorization check') &&
-  ofertaMode.includes('⛔ **No sponsorship:** JD states "{verbatim JD line}" and role is outside your authorized_in') &&
-  ofertaMode.includes('**Work Auth:**') &&
-  ofertaMode.includes('this tier is **NEUTRAL**')
+  ofertaGlobalMode.includes('### Work-authorization check') &&
+  ofertaGlobalMode.includes('⛔ **No sponsorship:** JD states "{verbatim JD line}" and role is outside your authorized_in') &&
+  ofertaGlobalMode.includes('**Work Auth:**') &&
+  ofertaGlobalMode.includes('this tier is **NEUTRAL**')
 ) {
   pass('oferta cross-checks visa sponsorship against candidate work authorization');
 } else {
@@ -2951,9 +2960,9 @@ if (
 
   // 2. oferta.md carries the agency-licensing section with the agency-mediated
   //    trigger, registry pointer, tracker-note suggestion, and jurisdiction derivation
-  const alStart = ofertaMode.indexOf('Agency Licensing Check');
-  const alEnd = ofertaMode.indexOf('### Output format:', Math.max(alStart, 0));
-  const alSection = alStart >= 0 && alEnd > alStart ? ofertaMode.slice(alStart, alEnd) : '';
+  const alStart = ofertaGlobalMode.indexOf('Agency Licensing Check');
+  const alEnd = ofertaGlobalMode.indexOf('### Output format:', Math.max(alStart, 0));
+  const alSection = alStart >= 0 && alEnd > alStart ? ofertaGlobalMode.slice(alStart, alEnd) : '';
   if (
     alSection.includes('templates/agency-licensing.yml') &&
     alSection.includes('agency-mediated') &&
@@ -3080,9 +3089,9 @@ if (
   // 2. oferta.md carries Signal 15 with both the presence-based (a) and
   //    corroborating-only (b) halves, the jurisdiction derivation mirroring
   //    the agency-licensing/immigration-status pattern, and the not-legal-advice note.
-  const asdStart = ofertaMode.indexOf('**15. AI-Screening Disclosure**');
-  const asdEnd = ofertaMode.indexOf('### Output format:', Math.max(asdStart, 0));
-  const asdSection = asdStart >= 0 && asdEnd > asdStart ? ofertaMode.slice(asdStart, asdEnd) : '';
+  const asdStart = ofertaGlobalMode.indexOf('**15. AI-Screening Disclosure**');
+  const asdEnd = ofertaGlobalMode.indexOf('### Output format:', Math.max(asdStart, 0));
+  const asdSection = asdStart >= 0 && asdEnd > asdStart ? ofertaGlobalMode.slice(asdStart, asdEnd) : '';
   if (
     asdSection &&
     asdSection.includes('templates/jurisdiction-ai-screening-disclosure.yml') &&
@@ -3143,9 +3152,9 @@ if (
   }
 
   // 6. Risk Summary row exists and follows the "activates automatically" pattern
-  const riskSummarySection = ofertaMode.slice(
-    ofertaMode.indexOf('## Risk Summary (after Block G)'),
-    ofertaMode.indexOf('Block format:')
+  const riskSummarySection = ofertaGlobalMode.slice(
+    ofertaGlobalMode.indexOf('## Risk Summary (after Block G)'),
+    ofertaGlobalMode.indexOf('Block format:')
   );
   if (
     riskSummarySection.includes('AI-screening disclosure') &&
@@ -3213,9 +3222,9 @@ if (
   }
 
   // oferta.md carries the standalone, table-free range-width signal
-  const ptStart = ofertaMode.indexOf('Pay-Transparency Range-Width Check');
-  const ptEnd = ofertaMode.indexOf('### Output format:', Math.max(ptStart, 0));
-  const ptSection = ptStart >= 0 && ptEnd > ptStart ? ofertaMode.slice(ptStart, ptEnd) : '';
+  const ptStart = ofertaGlobalMode.indexOf('Pay-Transparency Range-Width Check');
+  const ptEnd = ofertaGlobalMode.indexOf('### Output format:', Math.max(ptStart, 0));
+  const ptSection = ptStart >= 0 && ptEnd > ptStart ? ofertaGlobalMode.slice(ptStart, ptEnd) : '';
   if (
     ptSection &&
     !ptSection.includes('templates/pay-transparency.yml') &&
@@ -3264,9 +3273,9 @@ if (
   //    and JD-hours-first normalization are preserved, and no staleness/
   //    carve-out-eligibility machinery (which existed only to support the
   //    now-deleted table comparison) remains.
-  const mwStart = ofertaMode.indexOf('**14. Minimum-Wage Lawyer Question**');
-  const mwEnd = ofertaMode.indexOf('### Output format:', Math.max(mwStart, 0));
-  const mwSection = mwStart >= 0 && mwEnd > mwStart ? ofertaMode.slice(mwStart, mwEnd) : '';
+  const mwStart = ofertaGlobalMode.indexOf('**14. Minimum-Wage Lawyer Question**');
+  const mwEnd = ofertaGlobalMode.indexOf('### Output format:', Math.max(mwStart, 0));
+  const mwSection = mwStart >= 0 && mwEnd > mwStart ? ofertaGlobalMode.slice(mwStart, mwEnd) : '';
   if (
     mwSection &&
     !mwSection.includes('templates/minimum-wage.yml') &&
@@ -3721,14 +3730,16 @@ if (
 }
 
 if (
+  // 한국판 전환(2026-08-21): 회사 유형을 한국 분류로 갈아 끼웠다. 미국식 스타트업 단계 구분 대신
+  // 대기업 계열사·중견·시스템 통합 외주·외국계 지사처럼 한국 구직자가 실제로 마주치는 갈래를 쓴다.
   shared.includes('## Company Type and Compensation Reliability') &&
-  shared.includes('Company type taxonomy') &&
-  shared.includes('Growth-stage startup / VC-backed startup') &&
-  shared.includes('Early-stage startup / pre-revenue startup') &&
-  shared.includes('Open-source community / education community') &&
+  shared.includes('회사 유형 분류') &&
+  shared.includes('투자 유치 스타트업') &&
+  shared.includes('시스템 통합·외주') &&
+  shared.includes('공공기관·공기업') &&
   shared.includes('actual contract / hiring entity') &&
   shared.includes('default compensation reliability to the conservative canonical tier: `Low`') &&
-  shared.includes('Compensation reliability tiers') &&
+  shared.includes('보상 신뢰도 등급') &&
   shared.includes('collapse compensation analysis to two concise lines: company type and reliability tier') &&
   shared.includes('advertised range, likely guaranteed base, variable / conditional cash components, expected stable cash, and non-cash benefits') &&
   shared.includes('Never present advertised compensation as real take-home pay')

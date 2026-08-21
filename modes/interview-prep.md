@@ -54,7 +54,7 @@ When the user asks to prep for an interview at a specific company+role, or when 
 
 ### 처우 협의
 
-면접이 끝나면 처우 협의로 넘어갑니다. `salary-korea.mjs`로 제시액을 분해하고, `oferta.md` 블록 D의 확인 질문 목록을 씁니다.
+면접이 끝나면 처우 협의로 넘어갑니다. `salary-korea.mjs`로 제시액을 분해하고, `oferta.md` Block D의 확인 질문 목록을 씁니다.
 
 
 ## URL entry — prep for a role that was never evaluated

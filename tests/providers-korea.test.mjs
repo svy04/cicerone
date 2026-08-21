@@ -16,10 +16,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import saramin, { normalizeSaraminJob } from './saramin.mjs';
-import greeting, { extractNextData, findOpenings, normalizeOpening } from './greetinghr.mjs';
+import saramin, { normalizeSaraminJob } from '../providers/saramin.mjs';
+import greeting, { extractNextData, findOpenings, normalizeOpening } from '../providers/greetinghr.mjs';
 
-const here = path.dirname(fileURLToPath(import.meta.url));
+const here = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'providers');
 
 let passed = 0;
 let failed = 0;

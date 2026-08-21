@@ -6,6 +6,39 @@ Built and used by [santifer](https://santifer.io) to evaluate 740+ offers, gener
 
 **It works out of the box, but it's designed to be made yours.** You (AI Agent) can edit the user's files: they say "change the archetypes to data engineering roles" and you do it. That's the whole point.
 
+## 이 저장소의 정본 시장은 한국입니다 (CRITICAL)
+
+이 저장소는 [santifer/career-ops](https://github.com/santifer/career-ops)에서 갈라져 나와 한국 취업 시장 기준으로 다시 만들어졌습니다. `modes/` 아래의 지시문은 한국 채용 절차를 전제로 씁니다. 해외·외국계 지원용 영어판은 `modes/global/` 에 보존돼 있습니다.
+
+한국 시장에 대한 모든 주장의 출처는 `docs/시장근거.md` 에 있습니다. 근거를 못 찾은 항목은 그 사실도 적혀 있습니다.
+
+**미국 시장 전제를 되돌리지 마세요.** 아래는 한국에서 근거가 없거나 해당하지 않아 의도적으로 뺀 것입니다.
+
+- **이력서에 공고 키워드를 심어 자동 심사를 통과한다는 전략** — 한국 채용 시스템에서 이것이 통한다는 근거를 찾지 못했습니다. 한국에서 실제로 돌아가는 자동 심사는 자기소개서 표절·인공지능 작성 탐지입니다
+- **비자 후원 신호** — 한국 구직자가 한국 기업에 지원하는 상황에는 해당하지 않습니다. 해외 지원 모드에는 남아 있습니다
+- **미국 주별 급여 공개법, 뉴욕시 인공지능 심사 고지 조례, 인력업체 면허, 최저임금 환산** — 관할이 다릅니다
+- **한 장짜리 이력서** — 한국 통념은 두 장 안팎이고 경력기술서를 포함해 네 장까지입니다
+- **여러 회사의 제안을 경쟁시키는 협상** — 한국에서 효과가 측정된 적이 없습니다
+
+## 한국 시장 규격 (CRITICAL)
+
+- **채용 트랙을 먼저 판정합니다.** 공채와 수시는 전형 순서도 요구 서류도 다릅니다. 이 판정 없이 평가하면 둘 다 어긋납니다
+- **자기소개서를 대신 쓰지 않습니다.** 문항을 풀어 주고, 쓸 재료를 찾아 주고, 구조를 제안하고, 다 쓴 글의 사실을 검증하는 데까지입니다. 한국 기업이 인공지능 작성 여부를 실제로 검사하고 있고, 확인되면 불이익을 준다고 답한 기업이 65.4%입니다(고용노동부 2023년 하반기 조사, 500대 기업 315개소). 탐지를 피하는 방법도 만들지 않습니다
+- **경력기술서는 이력서와 다른 문서입니다.** 경력 지원의 본문입니다
+- **연봉은 분해해서 봅니다.** 퇴직금 포함 여부, 고정 초과근로수당 포함 여부, 성과급 포함 여부를 묻지 않으면 비교가 성립하지 않습니다
+- **연봉 시세는 한국 출처만 씁니다.** 각 출처의 편향을 함께 적습니다
+- **채용절차법 제4조의3이 금지한 항목**(신체적 조건, 출신지역·혼인여부·재산, 가족의 학력·직업·재산)을 공고가 요구하면 후보자에게 알립니다
+
+## 공고 수집의 경계 (CRITICAL)
+
+**약관이 자동 수집을 금지한 플랫폼을 긁는 모듈을 만들지 마세요.** 사용자가 법적 위험을 지게 됩니다.
+
+- 사람인 이용약관 제23조 ③, 원티드 개인회원 약관 제19조 7이 자동화된 수집을 금지합니다. 인크루트 robots.txt 는 전면 금지입니다
+- 잡코리아와 사람인의 공고 수집 분쟁은 대법원에서 확정됐고(2017다224395) 이후 120억 원에 합의했습니다
+- 야놀자와 여기어때 사건은 형사 무죄였지만 민사에서 10억 원 배상이 인정됐습니다
+
+쓸 수 있는 경로는 넷입니다. 사용자가 붙여넣는 주소, 사용자 본인이 발급받은 공식 열쇠(사람인 공개 API·공공데이터포털), 사용자가 지정한 기업의 채용 페이지, 그리고 연결하지 않는 곳. 수집한 공고는 사용자 컴퓨터 밖으로 내보내지 않습니다.
+
 ## Data Contract (CRITICAL)
 
 Two layers — full list in `DATA_CONTRACT.md`:
@@ -340,6 +373,8 @@ Two separate axes:
 - **Strongly discourage low-fit applications.** Below 4.0/5, explicitly recommend against applying; only proceed if the user has a specific reason to override.
 - **Quality over speed.** A well-targeted application to 5 companies beats a generic blast to 50. Guide the user toward fewer, better applications.
 - **Respect recruiters' time.** Only send what's worth reading.
+- **자기소개서를 완성해 제출하게 하지 않습니다.** 도구가 대신 쓴 글을 그대로 내면 후보자가 탐지에 걸립니다. 재료 정리와 구조 제안까지가 도구의 몫이고 문장은 사람이 씁니다
+- **인공지능 작성 탐지를 피하는 기법을 만들지 않습니다.** 시장에 그런 상품이 있다는 사실이 우리가 따라갈 이유가 되지 않습니다
 
 ---
 

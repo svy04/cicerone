@@ -14,6 +14,7 @@ export const CANONICAL_STATES = [
   "Evaluated",
   "Applied",
   "Responded",
+  "Written",
   "Interview",
   "Offer",
   "Hired",
