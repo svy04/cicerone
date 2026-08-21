@@ -20,7 +20,7 @@ All scripts live in the project root as `.mjs` modules. Most are exposed via
 | `npm run sync-check` | `cv-sync-check.mjs` | Validate CV/profile consistency |
 | `npm run patterns` | `analyze-patterns.mjs` | Analyze tracker outcomes and report patterns |
 | `npm run upskill` | `upskill.mjs` | Aggregate skill-gap map from tracked reports (or `--url-text <url\|file>` for a single-JD targeted gap analysis) |
-| `npm run add` | `add-entry.mjs` | Dedup + insert a `/hwadu add` entry into cv.md / article-digest.md |
+| `npm run add` | `add-entry.mjs` | Dedup + insert a `/cicerone add` entry into cv.md / article-digest.md |
 | `npm run update:check` | `update-system.mjs check` | Check for upstream updates |
 | `npm run update` | `update-system.mjs apply` | Apply upstream update |
 | `npm run rollback` | `update-system.mjs rollback` | Rollback last update |

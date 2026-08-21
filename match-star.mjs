@@ -202,7 +202,7 @@ export { parseStories, tokenize, score, STOPWORDS };
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
 if (!existsSync(STORY_BANK_PATH)) {
   console.error(`Error: ${STORY_BANK_PATH} not found.`);
-  console.error('Run /hwadu interview-prep on a role first to populate your story bank.');
+  console.error('Run /cicerone interview-prep on a role first to populate your story bank.');
   process.exit(1);
 }
 
@@ -211,7 +211,7 @@ const stories = parseStories(content);
 
 if (stories.length === 0) {
   console.error('No stories found in story-bank.md yet.');
-  console.error('Run /hwadu interview-prep on a role to add your first stories.');
+  console.error('Run /cicerone interview-prep on a role to add your first stories.');
   process.exit(1);
 }
 

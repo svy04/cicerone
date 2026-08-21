@@ -1,6 +1,6 @@
 # Mode: interview — Interactive Profile & CV Onboarding
 
-When the user runs `/hwadu interview`, execute this interactive profile/CV interview flow.
+When the user runs `/cicerone interview`, execute this interactive profile/CV interview flow.
 
 The purpose of this mode is to conduct a conversational interview to extract rich context, specific project tasks, technologies used, and measurable business impact to build or enhance `cv.md`, `config/profile.yml`, and `modes/_profile.md`.
 

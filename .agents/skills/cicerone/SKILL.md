@@ -1,5 +1,5 @@
 ---
-name: hwadu
+name: cicerone
 description: >-
   한국 채용 공고를 평가하고 지원 서류를 준비하는 도구. 공고 주소나 본문을 붙여넣었을 때,
   공고를 모아 달라고 할 때, 이력서나 경력기술서를 만들 때, 자기소개서 문항을 풀 때,
@@ -18,9 +18,9 @@ career-ops is a multi-CLI job-search command center. The routing below is shared
 
 ## Invocation Notes
 
-- CLIs with slash-command registration can expose this router as `/hwadu`.
-- In Cursor, this skill lives at `.cursor/skills/hwadu/` and is auto-discovered; ask for a mode by name, or paste a JD/URL to trigger auto-pipeline.
-- Interactive Codex sessions use `codex` in the repo root. Slash commands are not guaranteed in Codex, so ask Codex to run the same mode by name if `/hwadu` is unavailable.
+- CLIs with slash-command registration can expose this router as `/cicerone`.
+- In Cursor, this skill lives at `.cursor/skills/cicerone/` and is auto-discovered; ask for a mode by name, or paste a JD/URL to trigger auto-pipeline.
+- Interactive Codex sessions use `codex` in the repo root. Slash commands are not guaranteed in Codex, so ask Codex to run the same mode by name if `/cicerone` is unavailable.
 - Headless Codex workers use `codex exec "prompt"`.
 - The routing semantics below stay the same regardless of whether the entrypoint is a slash command or a natural-language prompt.
 
@@ -103,17 +103,17 @@ Inject this directive after loading the mode instructions and before producing a
 
 ## Discovery Mode (no arguments)
 
-If your CLI supports `/hwadu`, show this menu. In Codex, surface the same options in plain text and map the requested mode the same way.
+If your CLI supports `/cicerone`, show this menu. In Codex, surface the same options in plain text and map the requested mode the same way.
 
 Concrete equivalents for Codex prompt-driven sessions:
 
 ```text
-/hwadu {JD}           ↔ "Evaluate this JD with career-ops auto-pipeline: {JD or URL}"
-/hwadu scan           ↔ "Run the career-ops scan mode and summarize new matches."
-/hwadu pipeline       ↔ "Run the career-ops pipeline mode for data/pipeline.md."
-/hwadu pdf            ↔ "Run the career-ops pdf mode for the latest evaluated role."
-/hwadu email          ↔ "Run the career-ops email mode for the latest evaluated role."
-/hwadu tracker        ↔ "Run the career-ops tracker mode and summarize the current statuses."
+/cicerone {JD}           ↔ "Evaluate this JD with career-ops auto-pipeline: {JD or URL}"
+/cicerone scan           ↔ "Run the career-ops scan mode and summarize new matches."
+/cicerone pipeline       ↔ "Run the career-ops pipeline mode for data/pipeline.md."
+/cicerone pdf            ↔ "Run the career-ops pdf mode for the latest evaluated role."
+/cicerone email          ↔ "Run the career-ops email mode for the latest evaluated role."
+/cicerone tracker        ↔ "Run the career-ops tracker mode and summarize the current statuses."
 ```
 
 Show this menu:
@@ -122,43 +122,43 @@ Show this menu:
 career-ops -- Command Center
 
 Available commands:
-  /hwadu {JD}      → AUTO-PIPELINE: evaluate + report + PDF + tracker (paste text or URL)
-  /hwadu pipeline  → Process pending URLs from inbox (data/pipeline.md)
-  /hwadu oferta    → Evaluation only A-F (no auto PDF)
-  /hwadu ofertas   → Compare and rank multiple offers
-  /hwadu contacto  → LinkedIn power move: find contacts + draft message
-  /hwadu deep      → Deep research prompt about company
-  /hwadu interview-prep → Generate company-specific interview prep doc
-  /hwadu interview    → Interactive profile/CV onboarding interview
-  /hwadu eu-swe    → Calibrate a European SWE application before CV/apply/interview
-  /hwadu eu-fintech → Scan 21 EU fintech portals for Product Manager roles (zero-token)
-  /hwadu interview/plan → Time-blocked prep plan for an upcoming interview
-  /hwadu interview/practice → Practice interview, one question at a time with feedback
-  /hwadu interview/debrief → Post-interview debrief: close gaps, predict next round
-  /hwadu pdf       → PDF only, ATS-optimized CV
-  /hwadu latex     → Export CV as LaTeX/Overleaf .tex
-  /hwadu latex-tex → Tailor your own resume.tex in place (opt-in; cv.md stays default)
-  /hwadu cover     → Cover letter: standalone JD paste or /hwadu cover {slug}
-  /hwadu email     → Formal application email draft (draft-only; never sends, submits, or clicks)
-  /hwadu add       → Add a project/paper/role to your CV (fetch + preview + confirm)
-  /hwadu expand    → Auto-discover and add missing competencies from profile links
-  /hwadu training  → Evaluate course/cert against North Star
-  /hwadu project   → Evaluate portfolio project idea
-  /hwadu tracker   → Application status overview
-  /hwadu agent-inbox → Queue/drain requests for the next session (data/agent-inbox.md)
-  /hwadu apply     → Live application assistant (reads form + generates answers)
-  /hwadu scan      → Scan portals and discover new offers
-  /hwadu discover  → Resolve a company list to scannable ATS boards + append to portals.yml (zero-token)
-  /hwadu batch     → Batch processing with parallel workers
-  /hwadu patterns  → Analyze rejection patterns and improve targeting
-  /hwadu offer-prep → Read a received offer/contract with the candidate: clause walk + lawyer questions (not legal advice)
-  /hwadu titles    → Suggest adjacent job titles from your CV to broaden the search
-  /hwadu upskill   → Aggregate skill-gap analysis from your evaluated reports
-  /hwadu followup  → Follow-up cadence tracker: flag overdue, generate drafts
-  /hwadu outcome   → Record application outcome & archive artifacts
-  /hwadu update    → Update career-ops system files with diff preview + compat check
+  /cicerone {JD}      → AUTO-PIPELINE: evaluate + report + PDF + tracker (paste text or URL)
+  /cicerone pipeline  → Process pending URLs from inbox (data/pipeline.md)
+  /cicerone oferta    → Evaluation only A-F (no auto PDF)
+  /cicerone ofertas   → Compare and rank multiple offers
+  /cicerone contacto  → LinkedIn power move: find contacts + draft message
+  /cicerone deep      → Deep research prompt about company
+  /cicerone interview-prep → Generate company-specific interview prep doc
+  /cicerone interview    → Interactive profile/CV onboarding interview
+  /cicerone eu-swe    → Calibrate a European SWE application before CV/apply/interview
+  /cicerone eu-fintech → Scan 21 EU fintech portals for Product Manager roles (zero-token)
+  /cicerone interview/plan → Time-blocked prep plan for an upcoming interview
+  /cicerone interview/practice → Practice interview, one question at a time with feedback
+  /cicerone interview/debrief → Post-interview debrief: close gaps, predict next round
+  /cicerone pdf       → PDF only, ATS-optimized CV
+  /cicerone latex     → Export CV as LaTeX/Overleaf .tex
+  /cicerone latex-tex → Tailor your own resume.tex in place (opt-in; cv.md stays default)
+  /cicerone cover     → Cover letter: standalone JD paste or /cicerone cover {slug}
+  /cicerone email     → Formal application email draft (draft-only; never sends, submits, or clicks)
+  /cicerone add       → Add a project/paper/role to your CV (fetch + preview + confirm)
+  /cicerone expand    → Auto-discover and add missing competencies from profile links
+  /cicerone training  → Evaluate course/cert against North Star
+  /cicerone project   → Evaluate portfolio project idea
+  /cicerone tracker   → Application status overview
+  /cicerone agent-inbox → Queue/drain requests for the next session (data/agent-inbox.md)
+  /cicerone apply     → Live application assistant (reads form + generates answers)
+  /cicerone scan      → Scan portals and discover new offers
+  /cicerone discover  → Resolve a company list to scannable ATS boards + append to portals.yml (zero-token)
+  /cicerone batch     → Batch processing with parallel workers
+  /cicerone patterns  → Analyze rejection patterns and improve targeting
+  /cicerone offer-prep → Read a received offer/contract with the candidate: clause walk + lawyer questions (not legal advice)
+  /cicerone titles    → Suggest adjacent job titles from your CV to broaden the search
+  /cicerone upskill   → Aggregate skill-gap analysis from your evaluated reports
+  /cicerone followup  → Follow-up cadence tracker: flag overdue, generate drafts
+  /cicerone outcome   → Record application outcome & archive artifacts
+  /cicerone update    → Update career-ops system files with diff preview + compat check
 
-Inbox: add URLs to data/pipeline.md → /hwadu pipeline
+Inbox: add URLs to data/pipeline.md → /cicerone pipeline
 Or paste a JD directly to run the full pipeline.
 ```
 

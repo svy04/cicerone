@@ -1,4 +1,4 @@
-# 화두 (hwadu)
+# cicerone
 
 한국 채용 공고를 평가하고 지원 서류를 준비하는 명령줄 도구입니다. 클로드 코드나 코덱스 같은 인공지능 명령줄 도구 안에서 돌아가고, 파일은 전부 내 컴퓨터에 남습니다.
 
@@ -37,8 +37,8 @@ Node.js 22 이상이 필요합니다. 인공지능 명령줄 도구를 쓰고 �
 **1. 받습니다.**
 
 ```bash
-git clone https://github.com/svy04/hwadu.git
-cd hwadu
+git clone https://github.com/svy04/cicerone.git
+cd cicerone
 npm install
 ```
 
@@ -50,7 +50,7 @@ npm install
 claude          # 또는 codex, opencode 등 쓰는 것
 ```
 
-**여는 위치가 중요합니다.** 방금 클론한 `hwadu` 폴더 안에서 열어야 `/hwadu` 명령이 잡힙니다. 다른 폴더에서 열면 이 저장소의 지시문을 못 읽습니다.
+**여는 위치가 중요합니다.** 방금 클론한 `cicerone` 폴더 안에서 열어야 `/cicerone` 명령이 잡힙니다. 다른 폴더에서 열면 이 저장소의 지시문을 못 읽습니다.
 
 **3. 준비가 됐는지 봅니다.**
 
@@ -124,10 +124,10 @@ Java, Spring, Kotlin, MySQL, Kafka
 
 ## 공고 평가하기
 
-`hwadu` 폴더에서 연 인공지능 명령줄 도구에, 공고 주소를 이렇게 붙여넣습니다.
+`cicerone` 폴더에서 연 인공지능 명령줄 도구에, 공고 주소를 이렇게 붙여넣습니다.
 
 ```
-/hwadu https://kakaopay.career.greetinghr.com/ko/o/206749
+/cicerone https://kakaopay.career.greetinghr.com/ko/o/206749
 ```
 
 **어느 사이트 공고든 주소를 붙여넣는 것은 언제나 됩니다.** 사람인이든 잡코리아든 원티드든 상관없습니다. 사람이 브라우저로 여는 것과 같은 일이기 때문입니다. 아래 「공고 모으기」의 제약은 **자동으로 대량 수집할 때** 이야기입니다.
@@ -217,7 +217,7 @@ node scan.mjs
 클로드 코드가 아니라 코덱스(Codex)를 쓴다면 슬래시 명령이 그대로 통하지 않을 수 있습니다(slash commands are not guaranteed there). 그럴 때는 평문으로 시킵니다 — 명령 이름을 문장 안에 넣은 prompt 를 그대로 주면 됩니다.
 
 ```bash
-codex exec "hwadu auto-pipeline 으로 이 공고를 평가해 줘: https://company.com/jobs/123"
+codex exec "cicerone auto-pipeline 으로 이 공고를 평가해 줘: https://company.com/jobs/123"
 ```
 
 코덱스에서 설정하는 방법과 주의점은 [docs/CODEX.md](docs/CODEX.md)에 있습니다.
@@ -227,7 +227,7 @@ codex exec "hwadu auto-pipeline 으로 이 공고를 평가해 줘: https://comp
 수시 지원이면 이력서와 경력기술서를 만듭니다.
 
 ```
-/hwadu pdf 카카오페이
+/cicerone pdf 카카오페이
 ```
 
 **회사 이름 자리에는 평가할 때 쓴 이름을 그대로 넣습니다.** `reports/` 에 생긴 파일 이름을 보면 됩니다(`001-카카오페이-2026-08-21.md` 라면 `카카오페이`). 보고서 번호로 불러도 됩니다.
@@ -242,7 +242,7 @@ output/cv-홍길동-카카오페이.html                 ← 고칠 수 있는 �
 output/career-description-홍길동-카카오페이.pdf  ← 경력기술서 (스위치가 켜져 있을 때)
 ```
 
-경력기술서는 `documents.career_description: true` 일 때 함께 만듭니다. 따로 만들려면 `/hwadu career-description 카카오페이` 를 씁니다.
+경력기술서는 `documents.career_description: true` 일 때 함께 만듭니다. 따로 만들려면 `/cicerone career-description 카카오페이` 를 씁니다.
 
 HTML을 손으로 고쳤다면 `node generate-pdf.mjs output/cv-홍길동-카카오페이.html` 로 다시 뽑습니다.
 
@@ -253,7 +253,7 @@ PDF를 만들 때 브라우저 엔진을 씁니다. `npm install` 이 알아서 
 공채 지원이면 자기소개서 문항을 정리합니다.
 
 ```
-/hwadu cover 삼성전자
+/cicerone cover 삼성전자
 ```
 
 문항이 무엇을 묻는지 풀어 주고, 이력에서 그 문항에 쓸 경험을 찾아 짝지어 주고, 어떤 순서로 몇 자씩 쓸지 제안합니다. **거기까지입니다.** 초안을 써 오면 이력과 어긋나는 사실을 찾아 주고 글자 수를 세어 줍니다.
@@ -277,13 +277,13 @@ PDF를 만들 때 브라우저 엔진을 씁니다. `npm install` 이 알아서 
 필기 전형이 있으면 남은 날짜를 역산해 계획을 만듭니다.
 
 ```
-/hwadu written-test 삼성전자
+/cicerone written-test 삼성전자
 ```
 
 면접은 트랙에 따라 갈립니다. 공채는 자기소개서 문장마다 나올 꼬리질문을 만들고, 수시는 이력서에 적은 프로젝트마다 나올 심층 질문을 만듭니다.
 
 ```
-/hwadu interview-prep 카카오페이
+/cicerone interview-prep 카카오페이
 ```
 
 ## 내 정보는 어디까지 가나
@@ -306,13 +306,13 @@ PDF를 만들 때 브라우저 엔진을 씁니다. `npm install` 이 알아서 
 
 외국계나 해외 기업에 지원한다면 `modes/global/`에 영어판 규격이 그대로 있습니다. 비자 후원 검사, 미국 주별 급여 공개법, 인력업체 면허 신호처럼 그쪽에서 필요한 것들이 남아 있습니다.
 
-## 왜 화두인가
+## 왜 cicerone 인가
 
-화두는 스승이 답을 주지 않고 질문 하나를 건네는 방식입니다. 답은 받는 사람이 스스로 뚫습니다.
+치체로네(cicerone)는 유적 앞에서 그것이 무엇인지 풀어 주는 안내인입니다. 웅변가 키케로에서 온 말이고, 안내인은 대신 결정하지 않습니다. 무엇을 보고 있는지 알려 줄 뿐입니다.
 
-이 도구가 자기소개서 문항을 대하는 방식이 그렇습니다. 회사가 던진 문항을 풀어 주고, 그 문항에 쓸 경험을 찾아 주고, 어떤 순서로 몇 자씩 쓸지 잡아 줍니다. 문장은 쓰는 사람이 씁니다.
+이 도구가 하는 일이 그렇습니다. 「연봉 5,200만원」이 실제로 무엇으로 이루어져 있는지 뜯어 보여 주고, 이 공고가 공채인지 수시인지 가려 주고, 회사가 던진 자기소개서 문항이 무엇을 묻고 있는지 풀어 줍니다.
 
-대신 써 주는 도구는 이미 많습니다. 이 도구는 그 반대편에 서 있습니다.
+지원할지는 당신이 정하고, 문장도 당신이 씁니다.
 
 ## 어디서 왔나
 

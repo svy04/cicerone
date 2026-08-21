@@ -28,7 +28,7 @@ Expected transcript filename convention (from #956):
 Check: does `interview-prep/sessions/` contain at least **1** file?
 
 If not:
-> "No session transcripts found yet. Run `/hwadu interview` on a role after your next interview to generate a debrief, then come back to check for red flags."
+> "No session transcripts found yet. Run `/cicerone interview` on a role after your next interview to generate a debrief, then come back to check for red flags."
 
 Exit gracefully.
 

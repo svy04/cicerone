@@ -43,7 +43,7 @@ Resolve the role to a report. Locate the tailored CV artifact per Input 4. Run `
 
 If the tailored CV is missing, stop here:
 
-> [Render in {language.output}: say that no tailored CV was found for {company}; that they should run `/hwadu pdf` first; and that auditing the untailored `cv.md` instead would produce verdicts on a CV they are not sending. Keep the command literal.]
+> [Render in {language.output}: say that no tailored CV was found for {company}; that they should run `/cicerone pdf` first; and that auditing the untailored `cv.md` instead would produce verdicts on a CV they are not sending. Keep the command literal.]
 
 If a report exists with usable role context but no JD text is reachable, continue against the report's requirement summary and state the degradation in the output. If the report has no usable role context, stop and ask for the JD text or the posting URL. Partial-but-honest beats perfect-or-nothing.
 
@@ -79,7 +79,7 @@ Cap at Tier B and flag recency doubt when the profile looks stale (the person ma
 
 ## Step 3 — Brief and dispatch one subagent
 
-Dispatch a single subagent per the convention in `.agents/skills/hwadu/SKILL.md`. **Never nest subagents.**
+Dispatch a single subagent per the convention in `.agents/skills/cicerone/SKILL.md`. **Never nest subagents.**
 
 The brief contains:
 

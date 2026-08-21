@@ -1,5 +1,5 @@
 # Portal Scanner Configuration
-# Used by /hwadu scan to discover new offers automatically.
+# Used by /cicerone scan to discover new offers automatically.
 #
 # Strategy (4 levels):
 #   0. Local parser → per-company `parser:` script for SSR/static career pages (zero-token)
@@ -1984,7 +1984,7 @@ tracked_companies:
   # so `scan.mjs` will filter them out automatically (it requires a
   # detectable ATS). They are listed here as discovery aids — paste
   # the URL of any specific role into `data/pipeline.md` and run
-  # `/hwadu pipeline`, which uses Playwright/WebFetch instead.
+  # `/cicerone pipeline`, which uses Playwright/WebFetch instead.
   # Only Getir (jobs.lever.co/getir) is currently scannable.
   #
   # Key Turkish market notes:

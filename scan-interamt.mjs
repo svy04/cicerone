@@ -357,7 +357,7 @@ async function main() {
     }
   }
 
-  console.log('\n→ Run /hwadu pipeline to evaluate new offers.');
+  console.log('\n→ Run /cicerone pipeline to evaluate new offers.');
 }
 
 main().catch(err => {

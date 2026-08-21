@@ -1,4 +1,4 @@
-# 화두 (hwadu) — 한국 취업 파이프라인
+# cicerone — 한국 취업 파이프라인
 
 ## Origin
 
@@ -126,7 +126,7 @@ AI-powered, CLI-agnostic job search automation: pipeline tracking, offer evaluat
 
 ### Codex invocation
 
-- **Interactive:** run `codex` in the repo root; if `/hwadu` is unavailable, ask Codex to run the mode directly.
+- **Interactive:** run `codex` in the repo root; if `/cicerone` is unavailable, ask Codex to run the mode directly.
 - **Headless:** `codex exec "prompt"` for one-shot workers.
 - **Examples:** `Run career-ops scan mode`, `Run career-ops pipeline mode for data/pipeline.md`, `Run career-ops pdf mode`, `Run career-ops tracker mode`, `Evaluate this JD with career-ops auto-pipeline: https://company.com/jobs/123`
 
@@ -266,8 +266,8 @@ Store insights in `config/profile.yml` (narrative), `modes/_profile.md`, or `art
 Once all files exist, confirm:
 > "You're all set! You can now:
 > - Paste a job URL to evaluate it
-> - Run the scan entrypoint for your CLI to search portals: `/hwadu scan`, `/hwadu-scan`, or ask Codex to run `scan`
-> - Open the command menu for your CLI: `/hwadu`, the CLI-specific alias, or ask Codex to show the available career-ops modes
+> - Run the scan entrypoint for your CLI to search portals: `/cicerone scan`, `/cicerone-scan`, or ask Codex to run `scan`
+> - Open the command menu for your CLI: `/cicerone`, the CLI-specific alias, or ask Codex to show the available career-ops modes
 >
 > Everything is customizable — just ask me to change anything.
 >
@@ -276,7 +276,7 @@ Once all files exist, confirm:
 Then suggest automation:
 > "Want me to scan for new offers automatically? I can set up a recurring scan every few days so you don't miss anything. Just say 'scan every 3 days' and I'll configure it."
 
-If the user accepts, use the `/loop` or `/schedule` skill (if available) to set up a recurring scan entrypoint for their CLI (`/hwadu scan`, `/hwadu-scan`, or the equivalent Codex prompt). If those aren't available, point them to [docs/AUTOMATION.md](docs/AUTOMATION.md) for copy-paste cron / launchd / Windows Task Scheduler recipes plus a zero-token triage-to-shortlist prompt, or remind them to run the scan mode periodically.
+If the user accepts, use the `/loop` or `/schedule` skill (if available) to set up a recurring scan entrypoint for their CLI (`/cicerone scan`, `/cicerone-scan`, or the equivalent Codex prompt). If those aren't available, point them to [docs/AUTOMATION.md](docs/AUTOMATION.md) for copy-paste cron / launchd / Windows Task Scheduler recipes plus a zero-token triage-to-shortlist prompt, or remind them to run the scan mode periodically.
 
 ### Personalization
 

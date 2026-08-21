@@ -15,7 +15,7 @@ Paste the registry entry (one object), pinned to the exact reviewed commit:
 {
   "name": "career-ops-plugin-<name>",
   "id": "<name>",
-  "repo": "https://github.com/<you>/hwadu-plugin-<name>",
+  "repo": "https://github.com/<you>/cicerone-plugin-<name>",
   "author": "<you>",
   "hooks": ["provider"],
   "description": "Mission-framed one-liner.",

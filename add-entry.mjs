@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * add-entry.mjs — Deterministic dedup + insertion for `/hwadu add`.
+ * add-entry.mjs — Deterministic dedup + insertion for `/cicerone add`.
  *
  * The `add` mode (agent) does the fetching, extraction, ATS-bullet writing,
  * preview, and confirm-before-write gate. This helper does ONE thing: take a

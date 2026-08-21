@@ -6,7 +6,7 @@
  * batch-runner.sh records every evaluated offer in batch/batch-state.tsv, but
  * it never writes back to data/pipeline.md. Offers processed via batch mode
  * therefore stay in the "Pendientes" section forever — the next scan and the
- * next `/hwadu pipeline` run both re-surface them, and they get evaluated
+ * next `/cicerone pipeline` run both re-surface them, and they get evaluated
  * again (duplicate reports, duplicate tracker rows).
  *
  * WHAT THIS DOES

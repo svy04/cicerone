@@ -17,10 +17,10 @@ cd career-ops
 codex
 ```
 
-Codex may not expose a native `/hwadu` slash command. When it does not, ask for the same workflow in plain language:
+Codex may not expose a native `/cicerone` slash command. When it does not, ask for the same workflow in plain language:
 
 ```text
-Evaluate this JD with hwadu auto-pipeline: https://company.com/jobs/123
+Evaluate this JD with cicerone auto-pipeline: https://company.com/jobs/123
 Run the career-ops scan mode and summarize new matches.
 Run the career-ops pipeline mode for data/pipeline.md.
 Run the career-ops pdf mode for the latest evaluated role.
@@ -33,7 +33,7 @@ Run the career-ops tracker mode and summarize the current statuses.
 For single commands or batch workers, use `codex exec`:
 
 ```bash
-codex exec "Evaluate this JD with hwadu auto-pipeline: https://company.com/jobs/123"
+codex exec "Evaluate this JD with cicerone auto-pipeline: https://company.com/jobs/123"
 codex exec "Run career-ops scan mode in this repo and summarize new matches."
 codex exec "Run career-ops pipeline mode for data/pipeline.md."
 codex exec "Run career-ops pdf mode for the latest evaluated role."
@@ -43,6 +43,6 @@ codex exec "Run career-ops tracker mode and summarize the current statuses."
 
 ## Notes
 
-- If your Codex environment exposes slash commands, the shared `/hwadu` router semantics still apply.
+- If your Codex environment exposes slash commands, the shared `/cicerone` router semantics still apply.
 - If it does not, use the same mode names through prompts or `codex exec`.
 - Browser-heavy flows such as `scan`, `pipeline`, and `apply` still depend on Playwright browser tools being available in the active agent setup.

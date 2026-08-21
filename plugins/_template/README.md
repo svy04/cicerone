@@ -13,7 +13,7 @@ TODO: one paragraph.
 node plugins.mjs add {{NAME}}
 
 # Before listing (install directly from your repo at a pinned commit):
-node plugins.mjs add <your-github-user>/hwadu-plugin-{{NAME}} --sha <40-hex-commit>
+node plugins.mjs add <your-github-user>/cicerone-plugin-{{NAME}} --sha <40-hex-commit>
 ```
 
 Then enable + consent:

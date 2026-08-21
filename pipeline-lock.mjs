@@ -4,7 +4,7 @@
 // mutate the string, writeFileSync. It's exported and called from three
 // places — scan.mjs itself, scan-ats-full.mjs, and plugins.mjs (pipeline
 // mode) — so any two of them running concurrently (a scheduled scan
-// overlapping a manual `/hwadu pipeline` run, or two plugin jobs) can
+// overlapping a manual `/cicerone pipeline` run, or two plugin jobs) can
 // silently drop one side's offers: whichever write lands second overwrites
 // the first's in-memory read, with no error and no trace anything was lost.
 //

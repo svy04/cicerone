@@ -1,4 +1,4 @@
-# hwadu (화두)
+# cicerone
 
 A command-line tool for evaluating Korean job postings and preparing application documents. It runs inside an AI coding CLI (Claude Code, Codex, and others) and keeps every file on your own machine.
 
@@ -38,8 +38,8 @@ If you are applying abroad, the upstream English specification is preserved unde
 ## Install
 
 ```bash
-git clone https://github.com/svy04/hwadu.git
-cd hwadu
+git clone https://github.com/svy04/cicerone.git
+cd cicerone
 npm install
 ```
 
@@ -57,7 +57,7 @@ Fill in `config/profile.yml`: whether you are a new graduate or an experienced h
 Paste a URL into your AI CLI:
 
 ```
-/hwadu https://kakaopay.career.greetinghr.com/ko/o/206749
+/cicerone https://kakaopay.career.greetinghr.com/ko/o/206749
 ```
 
 It checks the posting is still open, decides which hiring track it belongs to, then produces blocks A through G: résumé fit, compensation with its sources, organizational signals, and whether this is a real opening.
@@ -106,11 +106,13 @@ It does not help evade the detection: scrambling the prose to fool a checker is 
 
 **Take-home pay is an estimate.** It varies with dependants and deductions, monthly withholding follows a separate table, and the final figure is settled at year-end. It does not replace a contract.
 
-## Why "hwadu"
+## Why "cicerone"
 
-A 화두 is the question a teacher hands a student instead of an answer. The student has to break through it themselves.
+A cicerone is the guide who stands in front of an antiquity and tells you what you are looking at. The word comes from Cicero, and the job is explanation, not decision.
 
-That is how this tool treats an employer's essay prompts. It unpacks what the prompt is asking, finds which of your experiences answer it, and budgets the structure. The sentences are yours.
+That is what this tool does. It takes ₩52,000,000 apart and shows what the figure is actually made of. It decides which of Korea's two hiring tracks a posting belongs to. It unpacks what an employer's essay prompt is asking and which of your experiences answer it.
+
+Whether to apply is your call, and the sentences are yours.
 
 ## Lineage
 

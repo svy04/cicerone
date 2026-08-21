@@ -1,4 +1,4 @@
-# 화두 (hwadu) on the Free Tier (Antigravity CLI)
+# cicerone on the Free Tier (Antigravity CLI)
 
 career-ops works with **Antigravity CLI's free tier** — no API key or paid
 subscription required. This guide covers setup, limits, and trade-offs.

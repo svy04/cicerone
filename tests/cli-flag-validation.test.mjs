@@ -115,7 +115,7 @@ test('archive-posting rejects --report followed by --help', () => {
   const r = runScript('archive-posting.mjs', '--report', '--help');
   assert.equal(r.status, 1);
   assert.match(r.all, /--report requires a value/);
-  assert.doesNotMatch(r.all, /hwadu — Job Posting Archiver/);
+  assert.doesNotMatch(r.all, /cicerone — Job Posting Archiver/);
 });
 
 // The guard against a validator that passes by rejecting everything: the real

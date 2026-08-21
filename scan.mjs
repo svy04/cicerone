@@ -1910,10 +1910,10 @@ export function loadDedupSnapshot(policy = {}, canonicalize = defaultCompanyNorm
 }
 
 // Standard skeleton created on fresh install — matches the format documented
-// in modes/pipeline.md and expected by /hwadu pipeline.
+// in modes/pipeline.md and expected by /cicerone pipeline.
 const PIPELINE_SKELETON = `# Pipeline — Pending URLs
 
-Paste job URLs below as \`- [ ] {url}\` then run \`/hwadu pipeline\`.
+Paste job URLs below as \`- [ ] {url}\` then run \`/cicerone pipeline\`.
 
 ## Pending
 
@@ -3024,7 +3024,7 @@ async function main() {
   // The run completed (or was a dry run) — disarm the failure row.
   registerRunFailureSnapshot(null);
 
-  console.log(`\n→ Run /hwadu pipeline to evaluate new offers.`);
+  console.log(`\n→ Run /cicerone pipeline to evaluate new offers.`);
   console.log('→ Share results and get help: https://discord.gg/8pRpHETxa4');
 
   // One-time-ever manifesto note: first successful REAL run only. The state

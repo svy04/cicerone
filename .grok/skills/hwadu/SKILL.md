@@ -1,1 +1,0 @@
-../../../.agents/skills/hwadu/SKILL.md

@@ -1,40 +1,40 @@
 // Shared CLI skill entrypoint bootstrap — used by npx init and update-system.
-// Ensures every supported CLI gets .*/skills/hwadu/SKILL.md even when the
+// Ensures every supported CLI gets .*/skills/cicerone/SKILL.md even when the
 // cloned release predates a CLI (e.g. Grok on v1.13.0). Materializes pointer
 // files to canonical content on filesystems without symlink support.
 import { readFileSync, writeFileSync, existsSync, mkdirSync, lstatSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 
-export const CANONICAL_SKILL_PATH = '.agents/skills/hwadu/SKILL.md';
+export const CANONICAL_SKILL_PATH = '.agents/skills/cicerone/SKILL.md';
 
 export const SKILL_ENTRYPOINTS = [
   {
-    path: '.claude/skills/hwadu/SKILL.md',
-    pointer: '../../../.agents/skills/hwadu/SKILL.md',
+    path: '.claude/skills/cicerone/SKILL.md',
+    pointer: '../../../.agents/skills/cicerone/SKILL.md',
   },
   {
-    path: '.cursor/skills/hwadu/SKILL.md',
-    pointer: '../../../.agents/skills/hwadu/SKILL.md',
+    path: '.cursor/skills/cicerone/SKILL.md',
+    pointer: '../../../.agents/skills/cicerone/SKILL.md',
   },
   {
-    path: '.opencode/skills/hwadu/SKILL.md',
-    pointer: '../../../.agents/skills/hwadu/SKILL.md',
+    path: '.opencode/skills/cicerone/SKILL.md',
+    pointer: '../../../.agents/skills/cicerone/SKILL.md',
   },
   {
-    path: '.qwen/skills/hwadu/SKILL.md',
-    pointer: '../../../.agents/skills/hwadu/SKILL.md',
+    path: '.qwen/skills/cicerone/SKILL.md',
+    pointer: '../../../.agents/skills/cicerone/SKILL.md',
   },
   {
-    path: '.antigravitycli/skills/hwadu/SKILL.md',
-    pointer: '../../../.agents/skills/hwadu/SKILL.md',
+    path: '.antigravitycli/skills/cicerone/SKILL.md',
+    pointer: '../../../.agents/skills/cicerone/SKILL.md',
   },
   {
-    path: '.grok/skills/hwadu/SKILL.md',
-    pointer: '../../../.agents/skills/hwadu/SKILL.md',
+    path: '.grok/skills/cicerone/SKILL.md',
+    pointer: '../../../.agents/skills/cicerone/SKILL.md',
   },
   {
-    path: '.kimi/skills/hwadu/SKILL.md',
-    pointer: '../../../.agents/skills/hwadu/SKILL.md',
+    path: '.kimi/skills/cicerone/SKILL.md',
+    pointer: '../../../.agents/skills/cicerone/SKILL.md',
   },
 ];
 

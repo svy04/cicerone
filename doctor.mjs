@@ -474,7 +474,7 @@ async function checkPortalSlugs(root) {
 
 const PIPELINE_SKELETON = `# Pipeline — Pending URLs
 
-Paste job URLs below as \`- [ ] {url}\` then run \`/hwadu pipeline\`.
+Paste job URLs below as \`- [ ] {url}\` then run \`/cicerone pipeline\`.
 
 ## Pending
 
@@ -525,7 +525,7 @@ function checkPlugins(root) {
 }
 
 async function main() {
-  console.log('\n화두 (hwadu) doctor');
+  console.log('\ncicerone doctor');
   console.log('================\n');
 
   const { cli: activeCli, source: cliSource, warning: cliWarning } = resolveActiveCli();
