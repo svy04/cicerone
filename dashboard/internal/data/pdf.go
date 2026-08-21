@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/santifer/career-ops/dashboard/internal/model"
+	"github.com/svy04/cicerone/dashboard/internal/model"
 )
 
 // PDFManifestEntry is one row of data/pdf-index.tsv, written by

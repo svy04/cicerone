@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/santifer/career-ops/dashboard/internal/model"
+	"github.com/svy04/cicerone/dashboard/internal/model"
 )
 
 func writeFixture(t *testing.T, root, rel string, content string) {

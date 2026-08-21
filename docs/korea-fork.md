@@ -1,6 +1,6 @@
 # 한국판 전환 — 원본에서 무엇이 바뀌었나
 
-이 저장소는 [santifer/career-ops](https://github.com/santifer/career-ops)에서 갈라져 나왔습니다. 원본은 미국 취업 시장을 전제로 설계됐고, 이 저장소는 그 전제를 한국 시장 기준으로 바꿨습니다.
+이 저장소는 [svy04/cicerone](https://github.com/svy04/cicerone)에서 갈라져 나왔습니다. 원본은 미국 취업 시장을 전제로 설계됐고, 이 저장소는 그 전제를 한국 시장 기준으로 바꿨습니다.
 
 원본을 알고 오신 분을 위해 무엇이 살아 있고 무엇이 바뀌었는지 적습니다. 모든 시장 사실의 출처는 `docs/market-evidence.md`에 있습니다.
 

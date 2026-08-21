@@ -1,6 +1,6 @@
 # 이름에 관하여
 
-이 저장소는 [santifer/career-ops](https://github.com/santifer/career-ops)의 포크입니다. 두 이름의 관계를 밝힙니다.
+이 저장소는 [svy04/cicerone](https://github.com/svy04/cicerone)의 포크입니다. 두 이름의 관계를 밝힙니다.
 
 ## 요약
 
@@ -18,7 +18,7 @@
 
 이 저장소는 그대로 따랐습니다. 제품 이름은 "cicerone"이고, 원본은 출처로만 언급합니다.
 
-원본 정책 전문은 [원본 저장소의 TRADEMARK.md](https://github.com/santifer/career-ops/blob/main/TRADEMARK.md)에 있습니다.
+원본 정책 전문은 [원본 저장소의 TRADEMARK.md](https://github.com/svy04/cicerone/blob/main/TRADEMARK.md)에 있습니다.
 
 ## 이 저장소의 이름
 

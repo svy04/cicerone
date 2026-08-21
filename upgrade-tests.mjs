@@ -26,7 +26,7 @@ import { fileURLToPath, pathToFileURL } from 'url';
 import { seedFixture, loadExpectations } from './seed-fixture.mjs';
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
-const CANONICAL = 'https://github.com/santifer/career-ops.git';
+const CANONICAL = 'https://github.com/svy04/cicerone.git';
 const TAG_RE = /^career-ops-v(\d+)\.(\d+)\.(\d+)$/;
 
 function git(cwd, ...args) {

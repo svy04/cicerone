@@ -11,10 +11,10 @@ import (
 	"github.com/charmbracelet/lipgloss/table"
 	"github.com/charmbracelet/x/ansi"
 
-	"github.com/santifer/career-ops/dashboard/internal/data"
-	"github.com/santifer/career-ops/dashboard/internal/i18n"
-	"github.com/santifer/career-ops/dashboard/internal/model"
-	"github.com/santifer/career-ops/dashboard/internal/theme"
+	"github.com/svy04/cicerone/dashboard/internal/data"
+	"github.com/svy04/cicerone/dashboard/internal/i18n"
+	"github.com/svy04/cicerone/dashboard/internal/model"
+	"github.com/svy04/cicerone/dashboard/internal/theme"
 )
 
 // ViewerClosedMsg is emitted when the viewer is dismissed.

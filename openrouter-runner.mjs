@@ -225,7 +225,7 @@ async function callOpenRouter(systemPrompt, userMessage) {
         headers: {
           'Authorization': `Bearer ${key}`,
           'Content-Type':  'application/json',
-          'HTTP-Referer':  'https://github.com/santifer/career-ops',
+          'HTTP-Referer':  'https://github.com/svy04/cicerone',
           'X-Title':       'career-ops',
         },
         body,
@@ -286,7 +286,7 @@ async function callOpenRouter(systemPrompt, userMessage) {
           headers: {
             'Authorization': `Bearer ${key}`,
             'Content-Type':  'application/json',
-            'HTTP-Referer':  'https://github.com/santifer/career-ops',
+            'HTTP-Referer':  'https://github.com/svy04/cicerone',
             'X-Title':       'career-ops',
           },
           body,

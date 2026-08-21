@@ -1,7 +1,7 @@
 import { ChevronDown, ExternalLink } from "lucide-react";
 
 // Transparency = our differentiator ("why it's a 4.0 for YOU"). The wording is
-// the CANONICAL public text from career-ops.org/methodology + /docs — rendered
+// the canonical scoring text kept in this repository under docs/ — rendered
 // verbatim, NOT a web reinterpretation of the rubric (whose weights live in the
 // core, modes/_shared.md). Native <details> → no client JS.
 
@@ -61,7 +61,7 @@ export function ScoreMethodology() {
           </ul>
         </div>
         <a
-          href="https://career-ops.org/methodology"
+          href="https://github.com/svy04/cicerone/blob/main/modes/_shared.md"
           target="_blank"
           rel="noreferrer"
           aria-label="Full methodology (opens in a new tab)"

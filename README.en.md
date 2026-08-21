@@ -37,6 +37,8 @@ If you are applying abroad, the upstream English specification is preserved unde
 
 ## Install
 
+Node.js 18 or newer. Only `tracker.mjs`, which indexes the tracker into SQLite, needs 22.5 or newer — `node doctor.mjs` flags that one item.
+
 ```bash
 git clone https://github.com/svy04/cicerone.git
 cd cicerone
@@ -60,7 +62,9 @@ Paste a URL into your AI CLI:
 /cicerone https://kakaopay.career.greetinghr.com/ko/o/206749
 ```
 
-It checks the posting is still open, decides which hiring track it belongs to, then produces blocks A through G: résumé fit, compensation with its sources, organizational signals, and whether this is a real opening.
+On Codex the `/cicerone` slash command may not be registered. Ask for the same thing in plain language instead — `codex exec "cicerone auto-pipeline: https://company.com/jobs/123"`. Setup and caveats are in [docs/CODEX.md](docs/CODEX.md).
+
+It checks the posting is still open, decides which hiring track it belongs to, then produces blocks A through G: the role summary, résumé fit, level and strategy, compensation and demand, a document plan, a stage-by-stage prep plan, and whether the opening is real.
 
 ## Where postings come from
 
@@ -74,11 +78,11 @@ Paste a URL and it reads that one. To collect several at once, `portals.yml` lis
 | Remember Career | Sitemap for IDs, then one posting at a time | The only source whose request count scales with postings — about 30 seconds for 25 |
 | Companies on Greeting | The company's own careers page | Only the companies you list |
 | Wanted | Public API | The one source that ships switched off — see below before turning it on |
-| Worknet / 고용24 | Public API | Needs a key you register for yourself. Public-sector and smaller-employer postings live here, and more of them publish a salary figure |
+| Worknet / 고용24 | Public API | Needs a key you register for yourself. Public-sector, municipal, and smaller-employer postings live here |
 
 Four rules govern every request: identify the tool in the User-Agent, read robots.txt before fetching, keep the source URL, redistribute nothing. The second is not a promise in prose — `providers/_robots.mjs` fetches and parses the file before the first request, and a disallowed path stops there.
 
-Those rules are where the Seoul Central District Court drew the line in the JobKorea–Saramin collection dispute (2015가합517982): what it faulted was a competing job site republishing another's postings while hiding its identity and rotating IPs. Incruit and LinkedIn disallow everything in robots.txt, so neither has a module.
+The first three are where the Seoul Central District Court drew the line in the JobKorea–Saramin collection dispute (2015가합517982): identifying yourself, keeping the source, and reading robots.txt. The fourth is the conduct the case was about — a competing job site republishing another's postings as its own. Incruit and LinkedIn disallow everything in robots.txt, so neither has a module.
 
 **Wanted ships switched off.** Measured 2026-08-21: the endpoint carrying the postings answers a request that identifies itself — no browser impersonation needed. But `robots.txt` returns 403, so the file cannot be read, and an archived snapshot from January disallows that endpoint. Whether today's file still says so cannot be checked.
 
@@ -98,7 +102,15 @@ So the tool marks what to rewrite, and recommends you put it in your own words b
 
 It does not help evade the detection: scrambling the prose to fool a checker is worse when it fails. It also writes nothing your résumé and career record do not support — an invented project collapses the moment an interviewer asks about it.
 
-## What to know
+## Where your data goes
+
+**Every file it produces stays on your machine.** There is no server and no account, and nothing it collects is uploaded.
+
+**The evaluation and the drafting are done by a model.** Your résumé and the posting text travel through the AI CLI you are already running to that CLI's provider — Anthropic for Claude Code, OpenAI for Codex. The tool does not open that path; it rides the one your CLI already uses.
+
+Your contact details and salary floor live in the config file, so they are read during an evaluation too. Leave out what you would rather not include — a name and an email are enough to run.
+
+## Three things to be straight about
 
 **Only one Korean ATS has a dedicated provider: Greeting.** Ninehire and JOBDA expose no posting list readable without a login, so postings there have to be pasted by URL.
 
@@ -108,17 +120,21 @@ It does not help evade the detection: scrambling the prose to fool a checker is 
 
 ## Why "cicerone"
 
-A cicerone is the guide who stands in front of an antiquity and tells you what you are looking at. The word comes from Cicero, and the job is explanation, not decision.
+A cicerone is the guide who stands in front of an antiquity and tells you what you are looking at. The word comes from Cicero.
 
 That is what this tool does. It takes ₩52,000,000 apart and shows what the figure is actually made of. It decides which of Korea's two hiring tracks a posting belongs to. It unpacks what an employer's essay prompt is asking and which of your experiences answer it.
 
 Whether to apply is your call, and the sentences are yours.
 
-## Lineage
+## Thanks
 
-Forked from [santifer/career-ops](https://github.com/santifer/career-ops), which was built for the US market. This repository replaced that specification with the Korean one; [docs/korea-fork.md](docs/korea-fork.md) records exactly what changed.
+This tool grew out of [santifer/career-ops](https://github.com/santifer/career-ops). The original was built for the US job market; this repository replaced that specification with the Korean one.
 
-The application tracker, document pipeline, updater, and 4,900-plus checks are upstream's and stay as they are.
+The application tracker, the document pipeline, the self-updater, and 4,900-plus checks are upstream's and stay as they are. [docs/korea-fork.md](docs/korea-fork.md) records exactly what changed.
+
+The foundation a Korea-specific layer needed was already there. Every commit since the first release in April 2026 is still in this repository's history.
+
+Thanks to Santiago Fernández de Valderrama for publishing it under MIT. Because of that, Korean job seekers get this without anyone starting from scratch.
 
 ## License
 

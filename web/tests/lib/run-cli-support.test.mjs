@@ -457,7 +457,7 @@ test("the fallback does not fail a run because a word appeared", () => {
     "warning: no author found",       // "auth" inside "author"
     "fetching author metadata",
     "Errors: 0",
-    "Logged in as santifer",
+    "Logged in as example-user",
     "npm notice New minor version",
   ]) {
     assert.equal(isFatalGenericStderr(line), false, `benign line treated as fatal: ${line}`);

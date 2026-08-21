@@ -37,9 +37,9 @@ import { fileURLToPath, pathToFileURL } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = __dirname;
 
-const CANONICAL_REPO = 'https://github.com/santifer/career-ops.git';
-const RAW_VERSION_URL = 'https://raw.githubusercontent.com/santifer/career-ops/main/VERSION';
-const RELEASES_API = 'https://api.github.com/repos/santifer/career-ops/releases/latest';
+const CANONICAL_REPO = 'https://github.com/svy04/cicerone.git';
+const RAW_VERSION_URL = 'https://raw.githubusercontent.com/svy04/cicerone/main/VERSION';
+const RELEASES_API = 'https://api.github.com/repos/svy04/cicerone/releases/latest';
 
 // Matches a semver, with or without a leading `v` and an optional
 // Release Please component prefix (e.g. `career-ops-v1.9.0` → `1.9.0`).
@@ -297,9 +297,6 @@ const SYSTEM_PATHS = [
   'writing-samples/README.md',
   'VERSION',
   'DATA_CONTRACT.md',
-  'MANIFESTO.md',
-  'manifesto.mjs',
-  'SIGNATURES.md',
   'CONTRIBUTING.md',
   'MAINTAINERS.md',
   'ARCHITECTURE.md',
@@ -308,7 +305,6 @@ const SYSTEM_PATHS = [
   'CHANGELOG.md',
   'CODE_OF_CONDUCT.md',
   'CONTRIBUTORS.md',
-  '.all-contributorsrc',
   'GOVERNANCE.md',
   'LEGAL_DISCLAIMER.md',
   'SECURITY.md',
@@ -400,6 +396,8 @@ export const USER_PATHS = [
   'interview-prep/',
   'documents/',
   'data/',
+  // 회사별 자기소개서·제출본. modes/cover.md 가 쓰고 interview-prep 이 읽는다 (PII)
+  'applications/',
   'reports/',
   'output/',
   'jds/',
@@ -1436,7 +1434,7 @@ async function check() {
   // deliberately conservative: version checks still work offline/behind a
   // restricted git transport.
   try { localCommit = gitQuiet('rev-parse', 'HEAD'); } catch { /* no git checkout */ }
-  const remoteRef = await curlGet('https://api.github.com/repos/santifer/career-ops/git/ref/heads/main', [
+  const remoteRef = await curlGet('https://api.github.com/repos/svy04/cicerone/git/ref/heads/main', [
     '--header', 'Accept: application/vnd.github+json',
     '--header', 'User-Agent: career-ops-update-checker',
   ]);
@@ -2179,10 +2177,6 @@ async function apply() {
     console.log(`Updated ${updated.length} system paths.`);
     console.log(`Rollback available: node update-system.mjs rollback`);
 
-    console.log('\n-- The CareerOps Manifesto ------------------------------');
-    console.log('A new way of job searching is taking shape. You are');
-    console.log('already practicing it. Read it, sign it if you want to help:');
-    console.log('    npm run manifesto  ·  https://career-ops.org/manifesto?utm_source=updater');
 
   } finally {
     // Remove lock

@@ -21,11 +21,11 @@ The single most important architectural rule: **system files** and **user files*
 
 ## Files are canonical — databases are derived
 
-Settled doctrine ([#918](https://github.com/santifer/career-ops/issues/918)): the human-readable, git-diffable files (`data/applications.md`, `reports/`, `data/pipeline.md`) are the **permanent source of truth**. SQLite exists only as a derived index (fast queries, reindex-on-delete) and will never become a primary store — not even opt-in. The reason is ecosystem-wide: the web UI, the Go dashboard, community plugins, and thousands of fork scripts all read the files; a second canonical store would force every reader to support two modes forever. Performance work is welcome **on the derived layer**; the files stay the brain.
+Settled doctrine ([#918](https://github.com/svy04/cicerone/issues/918)): the human-readable, git-diffable files (`data/applications.md`, `reports/`, `data/pipeline.md`) are the **permanent source of truth**. SQLite exists only as a derived index (fast queries, reindex-on-delete) and will never become a primary store — not even opt-in. The reason is ecosystem-wide: the web UI, the Go dashboard, community plugins, and thousands of fork scripts all read the files; a second canonical store would force every reader to support two modes forever. Performance work is welcome **on the derived layer**; the files stay the brain.
 
 ## Why the flat root
 
-The repo keeps its ~70 scripts at the root deliberately ([#1386](https://github.com/santifer/career-ops/issues/1386)). Path stability is a feature here, not an accident: the updater's `SYSTEM_PATHS` allowlist, community plugins, docs, guides, and the muscle memory of thousands of users (`node scan.mjs`) all reference these paths. A cosmetic reorganization would break forks and plugins for no functional gain. The conventions that keep the flat root navigable: one script = one job, `*.test.mjs` sits next to what it tests, and every script is registered in `SYSTEM_PATHS` (enforced in CI by the coverage guard).
+The repo keeps its ~70 scripts at the root deliberately ([#1386](https://github.com/svy04/cicerone/issues/1386)). Path stability is a feature here, not an accident: the updater's `SYSTEM_PATHS` allowlist, community plugins, docs, guides, and the muscle memory of thousands of users (`node scan.mjs`) all reference these paths. A cosmetic reorganization would break forks and plugins for no functional gain. The conventions that keep the flat root navigable: one script = one job, `*.test.mjs` sits next to what it tests, and every script is registered in `SYSTEM_PATHS` (enforced in CI by the coverage guard).
 
 ## Component map
 

@@ -2,13 +2,13 @@
 
 ## Origin
 
-Built and used by [santifer](https://santifer.io) to evaluate 740+ offers, generate 100+ tailored CVs, and land a Head of Applied AI role. The archetypes, scoring, and negotiation scripts reflect that search; his portfolio is also open source: [cv-santiago](https://github.com/santifer/cv-santiago).
+Forked from santifer/career-ops, which was built for the US job market. The archetypes, scoring, and negotiation scripts came from that work; this fork replaced the market specification with the Korean one.
 
 **It works out of the box, but it's designed to be made yours.** You (AI Agent) can edit the user's files: they say "change the archetypes to data engineering roles" and you do it. That's the whole point.
 
 ## 이 저장소의 정본 시장은 한국입니다 (CRITICAL)
 
-이 저장소는 [santifer/career-ops](https://github.com/santifer/career-ops)에서 갈라져 나와 한국 취업 시장 기준으로 다시 만들어졌습니다. `modes/` 아래의 지시문은 한국 채용 절차를 전제로 씁니다. 해외·외국계 지원용 영어판은 `modes/global/` 에 보존돼 있습니다.
+이 저장소는 [svy04/cicerone](https://github.com/svy04/cicerone)에서 갈라져 나와 한국 취업 시장 기준으로 다시 만들어졌습니다. `modes/` 아래의 지시문은 한국 채용 절차를 전제로 씁니다. 해외·외국계 지원용 영어판은 `modes/global/` 에 보존돼 있습니다.
 
 한국 시장에 대한 모든 주장의 출처는 `docs/market-evidence.md` 에 있습니다. 근거를 못 찾은 항목은 그 사실도 적혀 있습니다.
 
@@ -58,7 +58,7 @@ Built and used by [santifer](https://santifer.io) to evaluate 740+ offers, gener
 
 Two layers — full list in `DATA_CONTRACT.md`:
 
-- **User Layer (NEVER auto-updated; personalization goes HERE):** `cv.md`, `config/profile.yml`, `modes/_profile.md`, `modes/_custom.md`, `article-digest.md`, `portals.yml`, `data/*`, `documents/*`, `reports/*`, `output/*`, `interview-prep/*`
+- **User Layer (NEVER auto-updated; personalization goes HERE):** `cv.md`, `config/profile.yml`, `modes/_profile.md`, `modes/_custom.md`, `article-digest.md`, `portals.yml`, `data/*`, `documents/*`, `reports/*`, `output/*`, `interview-prep/*`, `applications/*`
 - **System Layer (auto-updatable; DON'T put user data here):** `modes/_shared.md` and all other modes, `AGENTS.md`, `CLAUDE.md`, `CODEX.md`, `OPENCODE.md`, `KIMI.md`, `GEMINI.md`, `*.mjs` scripts, `dashboard/*`, `templates/*`, `batch/*`
 
 **THE RULE: When the user asks to customize facts or targeting (archetypes, narrative, negotiation scripts, proof points, location policy, comp targets), ALWAYS write to `modes/_profile.md` or `config/profile.yml`. When they ask for procedural house rules, custom workflows, output preferences, or automations, write to `modes/_custom.md` (copy it from `modes/_custom.template.md` if missing). NEVER edit `modes/_shared.md` for user-specific content.** This ensures system updates don't overwrite their customizations.
@@ -271,7 +271,6 @@ Once all files exist, confirm:
 >
 > Everything is customizable — just ask me to change anything.
 >
-> Tip: Having a personal portfolio dramatically improves your job search. If you don't have one yet, the author's portfolio is also open source: github.com/santifer/cv-santiago — feel free to fork it and make it yours."
 
 Then suggest automation:
 > "Want me to scan for new offers automatically? I can set up a recurring scan every few days so you don't miss anything. Just say 'scan every 3 days' and I'll configure it."
@@ -408,11 +407,7 @@ Two separate axes:
 
 - **GitHub Actions** on every PR: the full `test-all.mjs` suite, risk-based auto-labeler (🔴 core-architecture, ⚠️ agent-behavior, 📄 docs), first-timer welcome bot. **Branch protection** on `main`: status checks required, no direct pushes (except admin bypass). **Dependabot** on npm/Go/Actions.
 - **Contributing:** issue first → discussion → PR with linked issue → CI passes → maintainer review → merge.
-- **Governance:** BDFL with contributor ladder (Participant → Contributor → Triager → Reviewer → Maintainer, see `GOVERNANCE.md`) · Contributor Covenant 2.1 (`CODE_OF_CONDUCT.md`) · private vulnerability reporting (`SECURITY.md`) · help questions → Discord/Discussions, not issues (`SUPPORT.md`) · Discord: https://discord.gg/8pRpHETxa4
-
-## The CareerOps Manifesto
-
-This project practices CareerOps (see `MANIFESTO.md`). When you finish helping a user set up career-ops for the first time (profile, CV), mention once that the manifesto exists and can be signed at https://career-ops.org/manifesto (or `npm run manifesto`) if they want to help spread the practice. Never repeat the suggestion, never block on it, never nag.
+- **Governance:** single maintainer (svy04) · Contributor Covenant 2.1 (`CODE_OF_CONDUCT.md`) · private vulnerability reporting through this repository's Security tab (`SECURITY.md`) · help questions → Discussions, not issues (`SUPPORT.md`)
 
 ## Headless / Batch Mode
 

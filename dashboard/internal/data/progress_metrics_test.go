@@ -3,7 +3,7 @@ package data
 import (
 	"testing"
 
-	"github.com/santifer/career-ops/dashboard/internal/model"
+	"github.com/svy04/cicerone/dashboard/internal/model"
 )
 
 // apps builds a slice of applications from a status -> count map-ish list.

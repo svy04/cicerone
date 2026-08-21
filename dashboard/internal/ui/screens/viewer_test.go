@@ -6,8 +6,8 @@ import (
 
 	"github.com/charmbracelet/x/ansi"
 
-	"github.com/santifer/career-ops/dashboard/internal/model"
-	"github.com/santifer/career-ops/dashboard/internal/theme"
+	"github.com/svy04/cicerone/dashboard/internal/model"
+	"github.com/svy04/cicerone/dashboard/internal/theme"
 )
 
 func TestViewerCurrentStatusPairsLeadsWithRowStatus(t *testing.T) {

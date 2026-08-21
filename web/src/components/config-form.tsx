@@ -96,7 +96,7 @@ export function ConfigForm() {
     <div className="mx-auto max-w-2xl px-6 py-10">
       <h1 className="font-display text-2xl tracking-tight text-landing">Config</h1>
       <p className="mt-1 text-sm text-muted">
-        Run career-ops on your own AI, right on your computer. Your CV and data never leave your machine.
+        Run cicerone on your own AI, right on your computer. Your CV and data never leave your machine.
       </p>
 
       {/* Engine mode */}
@@ -133,7 +133,7 @@ export function ConfigForm() {
         {mode === "cli" && (
           <div>
             <p className="mb-1 text-sm text-muted">
-              career-ops uses an AI tool you already have — signed in, your own usage, nothing to paste.
+              cicerone uses an AI tool you already have — signed in, your own usage, nothing to paste.
             </p>
             <p className="mb-3 text-xs text-faint">Works with Claude Code, Codex, OpenCode and more — free ones work great.</p>
             {clis === null ? (
@@ -143,7 +143,7 @@ export function ConfigForm() {
             ) : installed.length === 0 ? (
               <div className="rounded-xl border border-dashed border-border bg-surface/30 p-4 text-sm text-muted">
                 No AI tool yet? Free options like <span className="text-foreground">OpenCode</span> with Qwen or GLM work great.{" "}
-                <a href="https://career-ops.org/docs/free-ai-engine" target="_blank" rel="noreferrer" className="inline-flex items-center gap-0.5 text-brand hover:underline">
+                <span>
                   Get one free <ExternalLink className="size-3" />
                 </a>
               </div>

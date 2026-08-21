@@ -1835,6 +1835,14 @@ const leakPatterns = [
   'hi@santifer.io', '688921377', '/Users/santifer/',
 ];
 
+// 한국판 전환(2026-08-22): 위 목록은 원저자의 식별자만 찾는다. 이 포크를 쓰는
+// 사람의 개인정보는 값이 무엇일지 알 수 없으므로 형태로 잡는다. 값을 소스에
+// 박으면 그 값 자체가 공개되므로 형태 검사만 둔다.
+const leakShapes = [
+  { name: '휴대전화 번호', re: /01[016789][-. ]?\d{3,4}[-. ]?\d{4}/ },
+  { name: '주민등록번호', re: /\d{6}[-–][1-4]\d{6}/ },
+];
+
 const scanExtensions = ['md', 'yml', 'html', 'mjs', 'sh', 'go', 'json'];
 const allowedFiles = [
   // 한국판 전환(2026-08-21): 정본은 한국어 README.md 이고 영어판이 README.en.md 다.
@@ -1843,16 +1851,16 @@ const allowedFiles = [
   'README.md', 'README.en.md',
   // Standard project files
   'LICENSE', 'CITATION.cff', 'CONTRIBUTING.md', 'CHANGELOG.md', 'TRADEMARK.md',
-  'package.json', '.github/FUNDING.yml', 'CLAUDE.md', 'AGENTS.md', 'go.mod', 'test-all.mjs',
+  'package.json', 'CLAUDE.md', 'AGENTS.md', 'go.mod', 'test-all.mjs',
   '.claude-plugin/marketplace.json', '.claude-plugin/plugin.json', '.github/plugin/plugin.json',
   // Community / governance files (added in v1.3.0, all legitimately reference the maintainer)
   'CODE_OF_CONDUCT.md', 'GOVERNANCE.md', 'SECURITY.md', 'SUPPORT.md',
-  // Manifesto: the author signs it publicly; the ledger carries signers' names by design
-  'MANIFESTO.md', 'SIGNATURES.md', '.github/PULL_REQUEST_TEMPLATE/sign-manifesto.md',
   '.github/SECURITY.md',
-  // Dashboard credit string
+  // 원본 코드 주석에 남은 결정 기록(누가 무엇을 정했는지) — 정당한 크레딧이라 둔다
   'dashboard/internal/ui/screens/pipeline.go',
   'dashboard/internal/ui/screens/progress.go',
+  'dashboard/internal/ui/screens/stats.go',
+  'scaffolder/README.md', 'scaffolder/package.json',
 ];
 
 // Build pathspec for git grep — only scan tracked files matching these
@@ -1881,8 +1889,28 @@ for (const pattern of leakPatterns) {
     }
   }
 }
+// 형태 검사 — 이 포크를 쓰는 사람의 번호가 커밋에 섞였는지 본다. 값을 모르므로
+// 정규식으로 잡고, 예시로 쓰이는 000 번호는 통과시킨다.
+for (const shape of leakShapes) {
+  const result = run(
+    'git',
+    ['grep', '-nP', shape.re.source, '--', ...grepPathspecs],
+    { stdio: ['pipe', 'pipe', 'ignore'] }
+  );
+  if (!result) continue;
+  for (const line of result.split('\n')) {
+    if (!line.trim()) continue;
+    const file = line.split(':')[0];
+    if (file === 'test-all.mjs') continue;
+    // 문서 예시로 쓰는 자리표시자(010-0000-0000 · 000000-0000000)는 진짜 값이 아니다
+    if (/0{4}-?0{4}|0{6}-[1-4]0{6}/.test(line)) continue;
+    warn(`Possible ${shape.name} in ${file}: ${line.slice(0, 120)}`);
+    leakFound = true;
+  }
+}
+
 if (!leakFound) {
-  pass('No personal data leaks outside allowed files');
+  pass('No personal data leaks outside allowed files (upstream identifiers + Korean PII shapes)');
 }
 
 // ── 7. ABSOLUTE PATH CHECK ──────────────────────────────────────

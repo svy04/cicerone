@@ -19,7 +19,7 @@
  *      node detect-reposts.mjs --self-test
  *      node detect-reposts.mjs --help
  *
- * Issue #1205 — github.com/santifer/career-ops
+ * Issue #1205 — github.com/svy04/cicerone
  */
 
 import { readFileSync, existsSync } from 'fs';

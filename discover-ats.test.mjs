@@ -15,7 +15,7 @@
  *
  * Run: node discover-ats.test.mjs
  *
- * Issue #1864 — github.com/santifer/career-ops
+ * Issue #1864 — github.com/svy04/cicerone
  */
 
 import {

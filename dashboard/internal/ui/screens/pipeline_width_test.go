@@ -5,8 +5,8 @@ import (
 
 	"github.com/charmbracelet/lipgloss"
 
-	"github.com/santifer/career-ops/dashboard/internal/model"
-	"github.com/santifer/career-ops/dashboard/internal/theme"
+	"github.com/svy04/cicerone/dashboard/internal/model"
+	"github.com/svy04/cicerone/dashboard/internal/theme"
 )
 
 // A rendered pipeline row must measure exactly the width it was given, in every

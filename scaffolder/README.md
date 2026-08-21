@@ -1,9 +1,13 @@
+> **Not published to npm.** This fork installs by `git clone` — see [docs/SETUP.md](../docs/SETUP.md).
+> The package metadata below is inherited from the upstream project and kept because
+> `bin/skill-entrypoints.mjs` in this folder is live code the updater imports.
+
 # career-ops
 
-One-command installer for [**career-ops**](https://github.com/santifer/career-ops) — the AI-powered job search pipeline built on Claude Code.
+One-command installer for [**career-ops**](https://github.com/svy04/cicerone) — the AI-powered job search pipeline built on Claude Code.
 
 ```bash
-npx @santifer/career-ops init
+npx @svy04/cicerone init
 ```
 
 This sets up a ready-to-use workspace:
@@ -18,10 +22,10 @@ The installer bootstraps CLI skill entrypoints after clone, so new CLIs (e.g. Gr
 ## Usage
 
 ```bash
-npx @santifer/career-ops init [folder]   # default folder: ./career-ops
+npx @svy04/cicerone init [folder]   # default folder: ./career-ops
 ```
 
-Prefer the manual route? `git clone` still works exactly as before — see the [setup guide](https://github.com/santifer/career-ops/blob/main/docs/SETUP.md).
+Prefer the manual route? `git clone` still works exactly as before — see the [setup guide](https://github.com/svy04/cicerone/blob/main/docs/SETUP.md).
 
 ## Requirements
 
@@ -30,4 +34,4 @@ Prefer the manual route? `git clone` still works exactly as before — see the [
 
 ## License
 
-MIT © [Santiago Fernández de Valderrama](https://santifer.io)
+MIT © Santiago Fernández de Valderrama

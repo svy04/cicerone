@@ -2,6 +2,12 @@
 cv.md
 article-digest.md
 local/
+# One folder per application, holding what the candidate wrote for that employer:
+# real name, real employer, real work history. modes/cover.md writes the Korean
+# 자기소개서 here and modes/interview-prep.md reads it back. Blanket rule so a new
+# per-application file is covered without anyone remembering to edit this file.
+applications/*
+!applications/.gitkeep
 # Everything under data/ is generated or personal at runtime — only .gitkeep
 # placeholders are tracked (verify with `git ls-files data/`). A blanket rule
 # means a new generated file (e.g. a future log/cache addition) is covered

@@ -11,10 +11,10 @@ import (
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
 
-	"github.com/santifer/career-ops/dashboard/internal/data"
-	"github.com/santifer/career-ops/dashboard/internal/i18n"
-	"github.com/santifer/career-ops/dashboard/internal/model"
-	"github.com/santifer/career-ops/dashboard/internal/theme"
+	"github.com/svy04/cicerone/dashboard/internal/data"
+	"github.com/svy04/cicerone/dashboard/internal/i18n"
+	"github.com/svy04/cicerone/dashboard/internal/model"
+	"github.com/svy04/cicerone/dashboard/internal/theme"
 )
 
 // PipelineClosedMsg is emitted when the pipeline screen is dismissed.
@@ -112,7 +112,7 @@ type reportSummary struct {
 	comp      string
 }
 
-const storyTemplateURL = "https://github.com/santifer/career-ops/issues/new?template=i-got-hired.yml"
+const storyTemplateURL = "https://github.com/svy04/cicerone/issues/new?template=i-got-hired.yml"
 
 // Sort modes
 const (
@@ -611,7 +611,7 @@ func (m PipelineModel) handleKey(msg tea.KeyMsg) (PipelineModel, tea.Cmd) {
 
 	case "m":
 		return m, func() tea.Msg {
-			return PipelineOpenURLMsg{URL: "https://career-ops.org/manifesto?utm_source=dashboard-shortcut"}
+			return nil
 		}
 
 	case "d":
@@ -1987,9 +1987,8 @@ func (m PipelineModel) renderHelp() string {
 	// The manifesto segment is an OSC 8 hyperlink (utm_source=dashboard);
 	// terminals without support show the same text, just not clickable. The
 	// gap math uses the plain text so the escapes never skew the layout.
-	const brandPlain = "built on the CareerOps Manifesto · career-ops by santifer.io"
-	manifestoLink := "\x1b]8;;https://career-ops.org/manifesto?utm_source=dashboard\x1b\\built on the CareerOps Manifesto\x1b]8;;\x1b\\"
-	brand := lipgloss.NewStyle().Foreground(m.theme.Overlay).Render(manifestoLink + " · career-ops by santifer.io")
+	const brandPlain = "cicerone"
+	brand := lipgloss.NewStyle().Foreground(m.theme.Overlay).Render("cicerone")
 
 	keys := keyStyle.Render("↑↓/jk") + descStyle.Render(i18n.Current.HelpNav) +
 		keyStyle.Render("←→/hl") + descStyle.Render(i18n.Current.HelpTabs) +

@@ -4,7 +4,7 @@
 
 **Do NOT open a public issue for security vulnerabilities.**
 
-Instead, please email **hi@santifer.io** with:
+Instead, open a private report from this repository's **Security** tab (Security → Report a vulnerability). Include:
 
 1. Description of the vulnerability
 2. Steps to reproduce

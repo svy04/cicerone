@@ -1,6 +1,6 @@
 import { recentLogs } from "./logbuf";
 
-const REPO = "santifer/career-ops";
+const REPO = "svy04/cicerone";
 
 /** Strip PII / secrets that could ride in error text, paths or logs BEFORE anything
  *  leaves the machine. Defence-in-depth — the user also reviews the full payload
