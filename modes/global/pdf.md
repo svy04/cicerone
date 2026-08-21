@@ -1,16 +1,4 @@
-# 모드: pdf — 이력서 PDF 생성 (한국 규격)
-
-<!-- 이 파일의 절차 단계는 실행 스크립트의 인자와 1:1로 대응하므로 원문을 유지합니다.
-     시장에 따라 달라지는 규칙만 한국 기준으로 교체했습니다. -->
-
-## 한국 규격 (다른 모든 지시보다 우선)
-
-- **분량은 한 장이 아닙니다.** 이력서는 두 장 안팎, 경력기술서를 포함해 네 장까지가 통상입니다. `documents.resume_pages` 를 따릅니다
-- **용지는 A4 고정**입니다
-- **공고의 단어를 이력서에 억지로 넣지 않습니다.** 한국 채용 시스템이 키워드로 서류를 자동으로 거른다는 근거를 찾지 못했습니다. 바꾸는 목적은 자동 심사 통과가 아니라 사람이 읽고 이해하기 쉽게 만드는 것입니다
-- **사진은 후보자가 정합니다.** `candidate.photo` 가 비어 있으면 사진 없는 서식을 씁니다. 사진을 넣으라고도 빼라고도 권하지 않습니다
-- **경력 지원이면 경력기술서를 따로 만듭니다.** `modes/career-description.md` 를 씁니다
-- 신체 조건·출신지역·혼인 여부·재산·가족의 학력과 직업은 이력서에 넣지 않습니다. 채용절차법 제4조의3이 금지한 항목입니다
+# Mode: pdf — ATS-Optimized PDF Generation
 
 Optional pass:
 - **`--hm-audit`:** `/career-ops pdf --hm-audit` adds the hiring-manager audit at Step 20 — an adversarial read of the tailored CV by a separate, research-grounded reviewer before it becomes a PDF (`modes/pdf/hm-audit.md`). Off by default: it costs a subagent dispatch plus web research. Turn it on per run with the flag, or for every run in your own `modes/_custom.md`.
@@ -25,7 +13,7 @@ Run `npm run jd:similarity -- {bundle-root}/jd/current.md {bundle-root}/jd/previ
 
 1. Read `cv.md` as the source of truth
 2. Ask the user for the JD if it is not in context (text or URL)
-3. 공고에서 요구 역량 15~20개를 뽑습니다. **이력서에 그 단어를 심기 위해서가 아니라**, 후보자의 경력 중 무엇을 앞세울지 고르기 위해서입니다
+3. Extract 15-20 keywords from the JD
 4. Run the zero-LLM skill-gap check before drafting anything: write the JD to a scratch file (e.g. `jds/{slug}.md`) if it isn't already one, then `node jd-skill-gap.mjs jds/{slug}.md --summary`. This classifies the JD's explicit requirements against `cv.md` into three buckets — never surface `result.gap` items as if the candidate has them:
    - `existing` — already a named skill in cv.md's Skills section, safe to lead with
    - `supportedByResume` — not a named skill yet, but cv.md's prose already demonstrates it; legitimate candidates for the Skills section in the user's own words (Step 13's competency grid draws from here first)
@@ -38,15 +26,17 @@ Run `npm run jd:similarity -- {bundle-root}/jd/current.md {bundle-root}/jd/previ
 
    > ⚠️ **Skill-gap check inconclusive:** [Render in {language.output}: state that the automated skill-gap check returned no classified skills for this JD and so cannot be read as "no gaps"; name which of the three shapes occurred from the reason code (requirements section never found, or found but no candidates extracted, or the JD file was empty); for an empty file, say the JD may not have been saved correctly and should be checked; otherwise say that you will read the JD directly to identify required skills before drafting. Keep the CLI's own English diagnostic out of the user-facing message.]
 5. Use `language.output` for the CV language. The JD language and `language.modes_dir` supply market vocabulary and evaluation context, but never override the configured output language.
-6. 용지는 `a4` 로 고정합니다. 해외 공고에 지원하는 경우에만 그 나라 관행을 따릅니다
+6. Detect company location → paper format:
+   - US/Canada → `letter`
+   - Rest of the world → `a4`
 7. Detect role archetype → adapt framing
 8. Before tailoring, optionally compare the new JD with the latest tailored CV or JD. Resolve the application/report first with `node find.mjs {report-or-tracker-number}`. Use the resolved report/JD snapshot as `{new-jd.txt}` and the referenced prior CV or prior JD as `{previous-jd-or-cv.txt}`; if either source cannot be located, do not silently reuse a CV. Run `npm run jd:similarity -- {new-jd.txt} {previous-jd-or-cv.txt}` and display the `decision` and `score`. Reuse is allowed only when the recommendation is `reuse` or the user explicitly overrides it; `reuse-with-edits` still requires the listed edits, and `regenerate` requires the normal tailoring flow.
 9. Build an internal recruiter-side risk map from the JD using `modes/heuristics/recruiter-side.md`: likely doubts, matching evidence, and which document section should address each doubt
-10. 첫머리 요약을 다시 씁니다. `narrative.move_reason` 을 써서 지금까지 해 온 일과 이 자리를 잇습니다. 공고의 단어를 옮겨 붙이는 것이 아니라, 후보자의 경력 중 이 자리와 이어지는 부분을 앞으로 꺼냅니다
+10. Rewrite Professional Summary by injecting JD keywords + exit narrative bridge ("Built and sold a business. Now applying systems thinking to [JD domain].")
 11. Select top 3-4 most relevant projects for the job. If `cv.md` carries an Awards / Honors section, populate `awards[]` with the entries that support this role — for an early-career candidate a contest medal or dean's list often outranks a thin project. Omit the key when there is nothing to list and the section disappears entirely; never invent an award to fill it
 12. Reorder experience bullets by JD relevance and by the risk map: strongest matching evidence first
 13. Build competency grid from JD requirements (6-8 keyword phrases), prioritizing `existing` and `supportedByResume` skills from Step 4 — never a `gap` skill
-14. 이미 있는 성과의 표현을 이 공고가 쓰는 말에 맞게 다듬습니다. **없는 것을 만들지 않습니다.** 후보자가 하지 않은 일을 한 것처럼 쓰지 않습니다
+14. Inject keywords naturally into existing achievements (NEVER invent)
 15. Apply the six-second clarity gate from `modes/heuristics/recruiter-side.md`: top third must make target role, strongest fit, and proof obvious
 16. Read `name` from `config/profile.yml` → normalize to kebab-case lowercase (e.g. "John Doe" → "john-doe") → `{candidate}`
 17. Build the render payload (see the **JSON Input Schema** below) from the tailored content — emit compact structured JSON, **not** full HTML markup — and write it to `/tmp/cv-{candidate}-{company}.json`
