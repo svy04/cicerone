@@ -126,7 +126,7 @@ These files contain system logic, scripts, templates, and instructions that impr
 | `modes/id/*` | Indonesian language modes |
 | `modes/it/*` | Italian language modes |
 | `modes/ja/*` | Japanese language modes |
-| `modes/ko/*` | Korean language modes |
+| `modes/global/*` | 해외·외국계 지원용 영어 모드 (원본 규격 보존) |
 | `modes/nl/*` | Dutch language modes |
 | `modes/pl/*` | Polish language modes |
 | `modes/pt/*` | Portuguese language modes |
