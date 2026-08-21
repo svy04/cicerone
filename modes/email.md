@@ -426,6 +426,16 @@ Best,
 - Keep the subject line in the same language as the body unless the user asks
   otherwise.
 
+### 한국어 메일일 때
+
+- **문체는 하십시오체**를 씁니다. 공식 지원 메일에서 해요체는 가벼워 보입니다
+- **제목은 `[지원] {직무} - {이름}` 형태**가 무난합니다. 채용 담당자가 여러 메일을 훑을 때 무엇인지 바로 보입니다. 공고에 제목 형식이 지정돼 있으면 그것을 따릅니다
+- **첫 문장에 목적을 밝힙니다.** "안녕하세요"로 시작해 세 문장을 돌다 본론이 나오면 읽는 사람이 지칩니다
+- **첨부 파일 이름에 본인 이름을 넣습니다.** `홍길동_이력서.pdf`, `홍길동_경력기술서.pdf`. 받는 쪽 폴더에서 섞이지 않습니다
+- **분량은 화면 하나**를 넘기지 않습니다. 길면 첨부로 보냅니다
+- 존칭은 `{성}{직함}님`으로 씁니다. 직함을 모르면 `채용 담당자님`
+- 회신을 재촉하는 문장을 넣지 않습니다
+
 ---
 
 ## Contact Block
@@ -491,6 +501,7 @@ additions.
 - Keep the proof easy to scan.
 - Do not include salary unless the user asks.
 - Do not include private references, ID numbers, or unsupported claims.
+- **주민등록번호·생년월일·가족 정보를 메일에 적지 않습니다.** 회사가 요구하더라도 채용 단계에서는 넣지 않고, 요구 자체가 부당할 수 있다는 점을 후보자에게 알립니다(채용절차법 제4조의3).
 
 ---
 

@@ -62,10 +62,13 @@ Do not continue to Step 6 until this preflight is resolved.
 Read the entire page/form to scan for knock-out questions BEFORE generating full responses. These are questions designed to automatically disqualify candidates who do not meet critical criteria.
 
 1. Common knock-out question areas to target:
-   - **Minimum years of experience** (e.g., "Do you have at least 5 years of professional software engineering experience?")
-   - **Degree requirements** (e.g., "Do you have a Bachelor's degree in Computer Science or a related field?")
-   - **Work authorization/Visa sponsorship** (e.g., "Will you now or in the future require visa sponsorship to work in the United States?")
-   - **Salary floors/expectations** (e.g., "What is your target salary / expectation?")
+   - **Minimum years of experience** (예: "관련 경력 3년 이상이십니까?")
+   - **Degree requirements** (예: "4년제 대학 졸업 이상이십니까?")
+   - **Salary floors/expectations** (예: "희망 연봉을 적어 주세요")
+   - **필수 자격증** (예: "정보처리기사 보유 여부")
+   - **병역** (예: "병역을 마치셨습니까?" — 해당자에 한해 묻는 항목이고, 법이 금지한 항목은 아닙니다)
+   - **즉시 출근 가능 여부** (한국 수시채용에서 흔합니다. 인수인계 기간이 있으면 그대로 적습니다)
+   - **Work authorization/Visa sponsorship** — 해외·외국계 지원에만 해당합니다
 2. Check these questions against the candidate's `config/profile.yml` or `cv.md` parameters.
 3. If a knock-out question is detected where the candidate's profile represents a potential mismatch (e.g., candidate needs sponsorship and the form automatically filters out sponsorship-needy applicants, or candidate's salary expectations mismatch the visible JD/form floors):
    - Highlight the specific knock-out question to the candidate immediately.
@@ -74,7 +77,32 @@ Read the entire page/form to scan for knock-out questions BEFORE generating full
    - Stop and wait for the candidate's confirmation before drafting any further answers.
 4. If no knock-out questions are found, or the candidate resolves the warning, proceed to Step 6.
 
+## Step 5ko — 채용절차법 검사 (한국 지원)
+
+지원서 양식이 「채용절차의 공정화에 관한 법률」 제4조의3이 금지한 항목을 묻는지 봅니다. 이 조항은 상시 30명 이상 사업장에 적용되고, **후보자가 동의해도 수집할 수 없습니다.**
+
+금지 항목 셋:
+
+1. 본인의 용모·키·체중 등 신체적 조건
+2. 본인의 출신지역·혼인여부·재산
+3. 직계 존비속과 형제자매의 학력·직업·재산
+
+요구가 있으면 답을 만들기 전에 멈추고 후보자에게 알립니다. 요구 문구를 그대로 인용합니다.
+
+> ⚠️ **채용절차법 위반 소지:** 이 지원서가 "{원문 인용}"를 묻습니다. 제4조의3 금지 항목이라 회사가 요구할 수 없고, 동의해도 마찬가지입니다. 위반 시 500만원 이하 과태료 대상입니다.
+>
+> 어떻게 하시겠습니까. ①빈칸으로 두고 지원 ②그대로 적고 지원 ③지원하지 않음. 빈칸으로 두는 것은 후보자의 권리이지만, 필수 항목으로 걸려 제출이 안 될 수도 있습니다.
+
+**대신 답을 지어내지 않습니다.** 무엇을 적을지는 후보자가 정합니다.
+
+**금지 항목이 아닌 것**: 사진, 생년월일, 성별, 현재 거주지, 출신 학교. 이것들은 표시하지 않습니다. 정부는 본인 확인을 위해 증명사진을 붙일 수 있다고 설명합니다.
+
+**신고할 곳이 궁금하다고 하면** 고용노동부 고객상담센터(1350)나 관할 지방고용노동관서를 안내합니다. 대신 신고해 주지 않습니다.
+
 ## Step 5d — Immigration-status screening check (#2033)
+
+> **적용 범위:** 이 검사와 다음 Step 5c 는 미국·캐나다 관할의 법을 전제로 만들어졌습니다. `config/profile.yml` 의 `location.country` 가 그 관할이 아니면 표에 해당 행이 없어 조용히 건너뜁니다. 한국 지원에서는 위 Step 5ko 가 그 자리를 대신합니다.
+
 
 Application forms are where status screening most often hides — usually one dropdown away from the lawful sponsorship question. While scanning the form (this can run in the same pass as Step 5b):
 
@@ -165,6 +193,11 @@ Never invent answers for legal, demographic, work-authorization, visa/sponsorshi
 
 
 ## Step 7 — Generate responses
+
+> **한국 지원서의 문항형 자기소개서는 여기서 만들지 않습니다.** 회사가 정한 문항과 글자 수가 있으면 `modes/cover.md` 로 보냅니다. 그 모드는 문항을 풀어 주고 재료를 찾아 주는 데까지만 하고 문장은 후보자가 씁니다. 한국 기업이 인공지능 작성 여부를 실제로 검사하고 있기 때문입니다(근거: `docs/market-evidence.md` 3절).
+>
+> 이 단계에서 만드는 것은 "어떻게 알게 되셨습니까", "즉시 출근 가능하십니까" 같은 짧은 답변입니다.
+
 
 For each question, generate the response following:
 

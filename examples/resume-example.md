@@ -1,6 +1,10 @@
 # Resume — Alex Chen
 
-<!-- 
+<!--
+  한국판 주의 (2026-08-21): 이 파일은 **해외·외국계 지원용 영문 이력서 예시**입니다.
+  한국 기업에 낼 이력서 예시는 examples/cv-example.md 를 보세요.
+  한국에서는 "이력서" 하나이고 CV/resume 구분이 없습니다.
+
   This is the resume variant of cv-example.md. 
   In the US tech industry, "resume" (1–2 pages, targeted) is the standard term,
   while "CV" typically refers to the longer academic variant.

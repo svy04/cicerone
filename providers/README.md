@@ -11,6 +11,14 @@ endpoints directly, with no LLM calls and no login. The user-facing catalog of
 supported sources lives in
 [docs/SUPPORTED_JOB_BOARDS.md](../docs/SUPPORTED_JOB_BOARDS.md).
 
+## 한국 소스 (이 포크에서 추가)
+
+이 저장소는 한국 시장이 정본이라 국내 공고 소스를 따로 둡니다. `saramin.mjs` 와 `greetinghr.mjs` 입니다.
+
+**새로 만들 때 지켜야 하는 것**: 이용약관이 자동 수집을 금지한 플랫폼을 대상으로 하는 모듈을 만들지 마세요. 사용자가 법적 위험을 지게 됩니다. 근거와 판례는 `docs/market-evidence.md` 5절에 있고, `tests/providers-korea.test.mjs` 가 그런 모듈이 생기면 실패합니다.
+
+공식 API 를 쓰는 모듈은 **열쇠를 사용자가 직접 발급받게** 하고, 열쇠가 없을 때 어디서 신청하는지 안내하며 멈춥니다. 도구가 대신 신청하지 않습니다.
+
 ## Module contract
 
 The authoritative contract is the JSDoc type catalog in

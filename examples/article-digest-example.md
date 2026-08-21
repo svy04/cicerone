@@ -1,40 +1,100 @@
-# Article Digest -- Proof Points
+# 경력 상세 — 근거가 되는 결과물
 
-Compact proof points from portfolio projects. Read by career-ops at evaluation time.
+`cv.md` 에 한 줄로 적은 성과의 자세한 내용입니다. 평가할 때, 자기소개서 재료를 찾을 때, 면접 답변을 준비할 때 읽힙니다.
 
----
+**왜 따로 두나**: 이력서는 두 장 안팎으로 줄여야 해서 맥락이 잘려 나갑니다. 여기에는 잘린 것을 남깁니다. 무엇이 문제였는지, 어떤 선택지가 있었는지, 왜 그 방법을 골랐는지, 결과가 어땠는지.
 
-## FraudShield -- Real-Time Fraud Detection
-
-**Hero metrics:** 99.7% precision, 50ms p99 latency, $2M/year fraud prevented
-
-**Architecture:** Kafka Streams ingestion → real-time feature computation (200+ features, sliding windows) → ensemble model (XGBoost + neural network) → decision engine with configurable thresholds → human review queue for edge cases
-
-**Key decisions:**
-- Chose streaming over batch to catch fraud in real-time (batch had 4-hour delay)
-- Ensemble approach: XGBoost for speed + neural net for complex patterns
-- Built custom feature store for real-time features (Redis-backed, 5ms reads)
-
-**Proof points:**
-- Reduced false positives 60% vs previous rule-based system
-- Handles 10K transactions/second peak load
-- 500+ GitHub stars, adopted by 3 fintech startups
-- Conference talk: "Real-Time ML at Scale" (MLConf 2023)
+**수치는 이 파일이 `cv.md` 보다 우선합니다.** 이력서를 줄이다 보면 숫자가 반올림되거나 낡기 때문입니다.
 
 ---
 
-## LLM Eval Toolkit -- Evaluation Framework
+## 결제 정산 시스템 재설계
 
-**Hero metrics:** 15 built-in metrics, CI/CD integration, used by 200+ developers
+**기간:** 2024년 3월 - 2024년 9월 (7개월)
+**소속·역할:** 결제 플랫폼팀 · 설계와 구현 담당 (팀 6명 중 이 건은 본인 주도)
 
-**Architecture:** Pluggable metric system → test suite runner → regression detection → GitHub Actions integration → Slack alerts on regressions
+### 무엇이 문제였나
 
-**Key decisions:**
-- Metrics as code: each metric is a Python function with clear interface
-- Deterministic testing: seeded prompts + temperature 0 for reproducible evals
-- Cost tracking: each eval run logs token usage and estimated cost
+정산이 매일 새벽 배치로 돌았는데, 거래 한 건씩 순차 처리하는 구조였습니다. 거래량이 늘면서 배치가 새벽에 안 끝나기 시작했고, 못 끝낸 건이 다음 날로 밀렸습니다. **정산 지연이 월 300건까지 쌓였습니다.** 가맹점 문의가 늘고 재무팀이 수기로 맞추는 일이 생겼습니다.
 
-**Proof points:**
-- Caught 3 production regressions before deployment in first month
-- Reduced eval cycle from "vibes check" to structured 15-minute CI run
-- Open source, 200+ weekly active users on PyPI
+### 무엇을 골랐나
+
+세 가지를 놓고 봤습니다.
+
+1. 배치 서버를 늘린다 — 가장 빠르지만 근본 원인(순차 처리)이 남습니다
+2. 배치를 병렬화한다 — 정산 순서 보장이 깨질 위험이 있었습니다
+3. 이벤트 기반으로 바꾼다 — 오래 걸리지만 지연이 구조적으로 사라집니다
+
+**3번을 골랐습니다.** 거래량이 계속 늘 것이 분명했고, 1번과 2번은 6개월 뒤 같은 문제로 돌아올 것으로 봤습니다.
+
+### 무엇을 했나
+
+- 결제 완료 이벤트를 카프카로 흘리고, 정산 계산을 소비자에서 즉시 처리하도록 바꿨습니다
+- 정산 순서가 중요한 구간(취소·환불)은 파티션 키를 거래 주체로 잡아 순서를 보장했습니다
+- 무중단 전환을 위해 두 달간 기존 배치와 새 경로를 함께 돌리며 결과를 대조했습니다. 어긋난 건이 0이 된 뒤 배치를 껐습니다
+
+### 결과
+
+| 지표 | 이전 | 이후 |
+|---|---|---|
+| 월 정산 지연 건수 | 300건 | 5건 |
+| 정산 완료까지 걸리는 시간 | 최대 26시간 | 평균 4분 |
+| 재무팀 수기 대조 | 월 2일 | 없음 |
+
+### 되돌아보면
+
+**두 달 병행 운영이 길다고 생각했는데, 그 기간에 잡은 어긋난 건이 12건이었습니다.** 바로 전환했으면 그것이 그대로 사고가 됐을 것입니다. 다음에도 같은 방식으로 하겠습니다.
+
+아쉬운 점은 파티션 키 설계를 처음에 거래 ID로 잡았다가 취소 순서가 꼬여 한 번 되돌린 것입니다. 순서 보장이 필요한 구간을 먼저 정리하고 시작했어야 했습니다.
+
+---
+
+## 결제 트래픽 증가 대응
+
+**기간:** 2023년 5월 - 2023년 12월
+**소속·역할:** 결제 플랫폼팀 · 성능 개선 담당
+
+### 무엇이 문제였나
+
+일 거래가 200만 건에서 500만 건으로 늘어나는 동안 응답 시간 상위 1%가 800밀리초까지 올라갔습니다. 결제 화면에서 이탈이 늘었다는 지표가 나왔습니다.
+
+### 무엇을 했나
+
+- 부하 시험으로 병목을 찾았습니다. 재고 확인이 결제 흐름 안에서 동기로 돌고 있었습니다
+- 재고 확인을 비동기로 분리하고, 확정 시점에 다시 검증하는 구조로 바꿨습니다
+- 자주 쓰는 조회를 레디스에 캐시하고 무효화 규칙을 정했습니다
+
+### 결과
+
+- 응답 시간 상위 1%: 800밀리초 → 180밀리초
+- 일 거래 500만 건에서도 유지 (2024년 12월 기준)
+
+### 되돌아보면
+
+캐시를 먼저 넣고 싶은 유혹이 있었는데, 부하 시험으로 병목을 먼저 찾은 것이 맞았습니다. 캐시만 넣었다면 재고 확인 병목은 그대로 남았을 것입니다.
+
+---
+
+## 장애 대응 체계 정착
+
+**기간:** 2022년 - 현재 (지속)
+**소속·역할:** 팀 관례로 제안하고 운영
+
+### 무엇이 문제였나
+
+장애가 나면 대응은 했는데 기록이 남지 않았습니다. 같은 원인의 장애가 반년 뒤 다시 났고, 그때 대응했던 사람이 없으면 처음부터 다시 파야 했습니다.
+
+### 무엇을 했나
+
+- 장애 대응 절차를 문서로 만들었습니다. 누가 무엇을 하는지, 언제 누구에게 알리는지
+- 장애가 끝나면 사후 분석을 쓰는 것을 관례로 만들었습니다. **사람을 탓하지 않고 구조를 보는 형식**으로 틀을 잡았습니다
+- 사후 분석에서 나온 조치를 다음 스프린트에 반드시 넣도록 했습니다
+
+### 결과
+
+- 같은 원인의 장애 재발: 2022년 4건 → 2024년 0건
+- 사후 분석 작성률: 장애 건수 대비 100% (2023년 이후)
+
+### 되돌아보면
+
+**형식을 가볍게 만든 것이 정착의 이유였습니다.** 처음에 만든 양식이 A4 두 장이었는데 아무도 안 썼습니다. 반 장으로 줄이니 쓰기 시작했습니다.

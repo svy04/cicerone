@@ -72,10 +72,8 @@ const requiredSystemPaths = [
   'modes/interview-prep.md',
   'modes/patterns.md',
   'modes/update.md',
-  'modes/ar/',
-  'modes/hi/',
-  'modes/tr/',
-  'modes/ua/',
+  // 한국판 전환(2026-08-21): 다국어 모드 17개를 뺐다. 해외 지원은 modes/global/ 이 맡는다.
+  'modes/global/',
   'batch/README.md',
   'examples/',
   'config/profile.example.yml',

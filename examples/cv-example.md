@@ -1,50 +1,58 @@
-# CV -- Alex Chen
+# 홍길동
 
-**Location:** Austin, TX
-**Email:** alex@example.com
-**LinkedIn:** linkedin.com/in/alexchen
-**Portfolio:** alexchen.dev
-**GitHub:** github.com/alexchen
+**직무:** 백엔드 개발자 · 5년
+**연락처:** 010-0000-0000 · gildong@example.com
+**거주지:** 서울 강남구
+**GitHub:** github.com/gildong
 
-## Professional Summary
+<!-- 사진·생년월일·성별은 넣어도 되고 빼도 됩니다. 법이 금지한 항목이 아닙니다.
+     반대로 신체 조건·출신지역·혼인 여부·가족의 학력과 직업은 회사가 요구할 수 없습니다
+     (채용절차의 공정화에 관한 법률 제4조의3). -->
 
-Full-stack AI engineer with 6 years building production ML systems. Led the ML platform at a Series B fintech (2020-2024), scaling from 2 models to 15+ in production. Built real-time fraud detection (99.7% precision, $2M/year saved), recommendation engine (18% uplift), and an internal MLOps platform serving 4 engineering teams.
+## 요약
 
-## Work Experience
+결제 시스템을 만들어 온 백엔드 개발자입니다. 정산 지연 건수를 월 300건에서 5건으로 줄였고, 일 500만 건 규모의 결제 트래픽을 다뤘습니다. 장애가 났을 때 원인을 끝까지 파고들어 다시 나지 않게 만드는 일을 좋아합니다.
 
-### TechFin Corp -- Austin, TX
+## 경력
 
-**Senior ML Engineer / ML Platform Lead**
-2020-2024
+### 어느회사 · 백엔드 개발자
+**2021년 3월 - 재직 중** · 서울 강남구
 
-- Led ML platform team (3 engineers), built internal MLOps tooling: model registry, A/B testing framework, feature store
-- Designed real-time fraud detection pipeline: Kafka → feature computation → model inference → decision engine. 99.7% precision at 50ms p99
-- Built recommendation engine for lending products: collaborative filtering + LLM reranking. 18% conversion uplift
-- Reduced model deployment time from 2 weeks to 4 hours with CI/CD pipeline (GitHub Actions + SageMaker)
-- Established model monitoring: drift detection, performance dashboards (Grafana), automated retraining triggers
+결제 플랫폼팀에서 정산과 결제 처리를 맡았습니다. 팀은 개발자 6명입니다.
 
-### DataStartup Inc -- Remote
+- **결제 정산 시스템 재설계** — 단건 배치로 돌던 정산을 이벤트 기반으로 바꿔 지연 건수를 월 300건에서 5건으로 줄였습니다. 설계와 구현을 맡았고, 두 달에 걸쳐 무중단으로 전환했습니다
+- **결제 트래픽 증가 대응** — 일 200만 건에서 500만 건으로 늘어나는 동안 응답 시간 상위 1%를 200밀리초 아래로 유지했습니다. 병목이던 재고 확인 로직을 비동기로 분리한 것이 컸습니다
+- **장애 대응 체계 정착** — 대응 절차를 문서로 만들고 사후 분석을 팀 관례로 세웠습니다. 같은 원인의 장애가 반복되는 일이 없어졌습니다
+- **주니어 두 명 온보딩** — 코드 리뷰와 페어 프로그래밍으로 첫 배포까지의 기간을 평균 3주에서 1주로 줄였습니다
 
-**ML Engineer**
-2018-2020
+### 이전회사 · 주니어 개발자
+**2019년 6월 - 2021년 2월** · 경기 성남시
 
-- Built NLP pipeline for document classification (BERT fine-tuning, 94% accuracy on legal docs)
-- Implemented search ranking with learning-to-rank models
-- Set up experiment tracking with MLflow and model versioning
+사내 업무 도구를 만들고 운영했습니다.
 
-## Projects
+- 관리 도구의 조회 화면 응답을 3초에서 400밀리초로 줄였습니다. 조회 쿼리와 인덱스를 다시 짰습니다
+- 신입 교육 자료를 만들어 온보딩 기간을 2주에서 1주로 줄였습니다
 
-- **FraudShield** (Open Source) -- Real-time fraud detection framework. Kafka Streams + feature store + model serving. 500+ GitHub stars
-- **LLM Eval Toolkit** (Open Source) -- Evaluation framework for LLM applications. Supports custom metrics, regression testing, CI integration
+## 프로젝트
 
-## Education
+- **정산 검증 도구** (사내) — 정산 결과를 회계 원장과 대조해 어긋난 건을 찾아내는 도구입니다. 매달 이틀씩 걸리던 수작업 대조를 없앴습니다
+- **kafka-retry** (오픈소스) — 카프카 소비 실패를 지수 백오프로 재시도하는 라이브러리입니다. github.com/gildong/kafka-retry
 
-- MS Computer Science, UT Austin (2018)
-- BS Computer Science, UC Berkeley (2016)
+## 기술
 
-## Skills
+- **언어:** Java, Kotlin, Python
+- **프레임워크:** Spring Boot, JPA, Spring Batch
+- **인프라:** Kafka, Redis, MySQL, Kubernetes, AWS
+- **기타:** Grafana, Prometheus, GitHub Actions
 
-- **ML/AI:** PyTorch, TensorFlow, scikit-learn, Hugging Face, LangChain
-- **MLOps:** SageMaker, MLflow, Kubeflow, Airflow, Feature Store
-- **Infra:** Kubernetes, Kafka, Redis, PostgreSQL, AWS
-- **Languages:** Python, Go, TypeScript, SQL
+## 학력
+
+- 어느대학교 컴퓨터공학 학사 (2019년 2월 졸업)
+
+## 자격·어학
+
+- 정보처리기사 (2018)
+- 토익 900 (2025년 3월)
+
+<!-- 병역 사항은 대기업 공채 지원서에 칸이 있는 경우가 많습니다.
+     자유 양식 이력서에는 넣지 않아도 됩니다. -->

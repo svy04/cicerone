@@ -117,23 +117,7 @@ These files contain system logic, scripts, templates, and instructions that impr
 | `modes/agent-inbox.md` | Agent inbox (queued requests) instructions |
 | `modes/reply-watch.md` | Employer reply classification instructions |
 | `modes/update.md` | System update instructions |
-| `modes/ar/*` | Arabic language modes |
-| `modes/da/*` | Danish language modes |
-| `modes/de/*` | German language modes |
-| `modes/es/*` | Spanish language modes |
-| `modes/fr/*` | French language modes |
-| `modes/hi/*` | Hindi language modes |
-| `modes/id/*` | Indonesian language modes |
-| `modes/it/*` | Italian language modes |
-| `modes/ja/*` | Japanese language modes |
 | `modes/global/*` | 해외·외국계 지원용 영어 모드 (원본 규격 보존) |
-| `modes/nl/*` | Dutch language modes |
-| `modes/pl/*` | Polish language modes |
-| `modes/pt/*` | Portuguese language modes |
-| `modes/ru/*` | Russian language modes |
-| `modes/tr/*` | Turkish language modes |
-| `modes/ua/*` | Ukrainian language modes |
-| `modes/zh/*` | Chinese language modes |
 | `modes/heuristics/*` | Shared candidate-facing application heuristics |
 | `CLAUDE.md` | Agent instructions (Claude Code) |
 | `OPENCODE.md` | Agent instructions (OpenCode) |

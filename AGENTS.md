@@ -278,14 +278,14 @@ This system is designed to be customized by YOU (AI Agent). When the user asks, 
 
 Default modes are in `modes/` (English). Market-specific mode sets (each includes `_shared.md`, an evaluation mode, an apply mode, and `pipeline.md`):
 
-| Market | Dir | Evaluation / Apply | Local vocabulary (examples) |
-|--------|-----|--------------------|------------------------------|
-| German (DACH) | `modes/de/` | `angebot` / `bewerben` | 13. Monatsgehalt, Probezeit, Kündigungsfrist, AGG, Tarifvertrag |
-| French (FR/BE/CH/LU) | `modes/fr/` | `offre` / `postuler` | CDI/CDD, SYNTEC, RTT, 13e mois, titres-restaurant, CSE |
-| Arabic (Middle East) | `modes/ar/` | `fursah` / `takdeem` | مكافأة نهاية الخدمة, التأمينات الاجتماعية, فترة التجربة |
-| Japanese (Japan) | `modes/ja/` | `kyujin` / `oubo` | 正社員, 賞与, みなし残業, 年俸制, 36協定 |
-| Turkish (Turkey) | `modes/tr/` | `is-ilani` / `basvuru` | SGK, kıdem tazminatı, brüt/net maaş, BES |
-| Hindi (India) | `modes/hi/` | `naukri` / `aavedan` | CTC vs. in-hand, PF/EPF, Notice period/buyout, ESOPs |
+이 저장소의 정본은 한국 시장이고 `modes/` 아래 파일이 그것입니다. 원본이 관리하던 언어별 모드 17종은 뺐습니다 — 규격이 바뀔 때마다 17벌을 따라 고쳐야 하고, 그 파일들은 미국 규격 위의 번역이라 한국 정본과 어긋납니다.
+
+| 어디에 지원하나 | 어느 모드 | 무엇이 다른가 |
+|---|---|---|
+| 한국 기업 | `modes/` (정본) | 공채·수시 트랙 분기, 문항형 자기소개서, 경력기술서, 필기 전형, 채용절차법, 한국 연봉 구조 |
+| 외국계·해외 기업 | `modes/global/` | 원본 영어 규격 보존. 비자 후원, 미국 주별 급여 공개법, 인력업체 면허 신호 |
+
+다른 언어가 필요하면 원본 저장소에서 해당 모드를 가져와 `modes/` 아래에 두면 됩니다. 다만 그 파일들은 미국 시장 규격을 전제로 하므로 한국 정본과 섞어 쓰지 마세요.
 
 ### Output Language vs Market Modes
 
@@ -293,14 +293,14 @@ Default modes are in `modes/` (English). Market-specific mode sets (each include
 
 ```yaml
 language:
-  output: en
-  modes_dir: modes/de
+  output: ko
+  modes_dir: modes/global   # 해외·외국계 지원일 때만
 ```
 
 Two separate axes:
 
-- `language.output` controls **human-facing output**: reports, tracker notes, PDFs, cover letters, outreach, interview prep, form answers, any user-visible prose. Default: `en` when absent.
-- `language.modes_dir` controls **market vocabulary and local evaluation rules** (e.g. `modes/de` supplies DACH concepts like 13. Monatsgehalt).
+- `language.output` controls **human-facing output**: reports, tracker notes, PDFs, cover letters, outreach, interview prep, form answers, any user-visible prose. **이 저장소의 기본값은 `ko`** 입니다.
+- `language.modes_dir` controls **market vocabulary and local evaluation rules**. 비워 두면 `modes/`(한국 정본)를 씁니다. 해외·외국계에 지원할 때만 `modes/global` 로 바꿉니다.
 
 **Composition rule:** `language.output` is authoritative for prose; `modes_dir` only supplies market context. English output with DACH vocabulary, French output with Japan-market vocabulary — any combination is valid.
 
@@ -308,7 +308,7 @@ Two separate axes:
 
 > Write all human-facing output in `{language.output}` regardless of the language of these instructions or the job description. Keep market-specific terms from `language.modes_dir` when they are relevant, but explain them in the output language when needed.
 
-**When to use a market mode set** (same rule for every market in the table above): the user is targeting job postings in that language or market, lives in that market, or explicitly asks for it. Any of these selects it:
+**When to use `modes/global`**: the user is applying to a foreign or foreign-owned employer, or explicitly asks for the English specification. Any of these selects it:
 1. User says "use {market} modes" → read from that dir instead of `modes/`
 2. User sets `language.modes_dir: modes/de` (or their market's dir) in `config/profile.yml` → always use that dir
 3. You detect a JD written in that language → *suggest* switching

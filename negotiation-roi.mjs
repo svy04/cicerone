@@ -5,7 +5,14 @@
  * `salary-gap.mjs` tells a candidate where an offer sits relative to market
  * (a comparison). This script gives them something to *say* instead: a draft
  * talking point anchored in a quantified, VERIFIED achievement from
- * `interview-prep/story-bank.md`, translated into an estimated dollar value.
+ * `interview-prep/story-bank.md`, translated into an estimated annual value.
+ *
+ * 한국판 주의 (2026-08-21): "내가 연간 얼마의 가치를 만들었으니 그만큼 달라"는 논거가
+ * 한국에서 통한다는 근거를 찾지 못했다. 실무 서술은 오히려 사내 급여 구간과 기존 직원
+ * 형평이 상한을 만든다고 반복해서 말한다(docs/market-evidence.md 4절). 이 도구가 만드는
+ * 것은 "쓸 수 있는 말"이지 "통하는 말"이 아니다 — 쓰기 전에 그 사실을 알린다.
+ * 신입 공채에는 쓰지 않는다. 초임이 표로 정해진 경우가 많아 협상 여지가 거의 없다.
+ * 금액 단위는 원이다. `--wage` 에 시급을 원 단위로 넣는다.
  *
  * v1 safety gate (the whole point of this file — read before touching the
  * verification logic):
@@ -270,7 +277,7 @@ export function computeCalculation(claim, storyText, opts) {
       occurrencesPerYear: freqResolved.occurrencesPerYear,
       frequencySource: freqResolved.source,
       annualValue,
-      formula: `${hoursSaved}h × $${wageResolved.hourlyWage}/hr × ${freqResolved.occurrencesPerYear}/year = $${annualValue.toLocaleString()}/year`,
+      formula: `${hoursSaved}시간 × 시급 ${wageResolved.hourlyWage.toLocaleString('ko-KR')} × 연 ${freqResolved.occurrencesPerYear}회 = 연 ${annualValue.toLocaleString('ko-KR')}`,
     },
     reason: null,
   };

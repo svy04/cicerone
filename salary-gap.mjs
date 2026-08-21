@@ -2,6 +2,12 @@
 /**
  * salary-gap.mjs — Desired vs Advertised vs Actual compensation analyzer
  *
+ * 한국판 주의 (2026-08-21): 여기 기록하는 금액은 "제시받은 숫자"이지 "실제로 받는 돈"이
+ * 아니다. 한국에서 연봉은 법률 용어가 아니라 관행어라서, 같은 5,000만 원이라도 퇴직금이
+ * 포함됐는지, 고정 초과근로수당이 몇 시간분인지, 목표 성과급을 미리 넣었는지에 따라
+ * 실제 금액이 크게 달라진다. 비교하기 전에 `node salary-korea.mjs offer <금액>` 으로
+ * 분해해서 확실한 금액을 먼저 뽑는다. currency 칸에는 `KRW` 를 적는다.
+ *
  * Salary facts are append-only observations, never mutated:
  *   { tracker#, date, type: desired|advertised|actual|stated, amount, currency, source, note, round, interviewer }
  *

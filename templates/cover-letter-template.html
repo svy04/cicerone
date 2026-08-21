@@ -132,6 +132,34 @@
     line-height: 1.3;
     margin-bottom: 3pt;
   }
+
+  /* === 한국어 (lang="ko") ===
+     번들 글꼴(Space Grotesk / DM Sans)에는 한글 글리프가 없습니다. 이 규칙이 없으면
+     한국어 이력서가 리눅스나 컨테이너처럼 한글 글꼴이 없는 환경에서 두부(□)로 나옵니다.
+     라틴 글꼴을 앞에 두어 영문·숫자는 그대로 두고, 한글은 브라우저가 글리프 단위로
+     뒤쪽 스택에서 찾아 씁니다. lang="ja" 선례와 같은 방식입니다.
+     Pretendard 를 맨 앞에 둔 이유: 한국 웹에서 가장 널리 쓰이고 정부 디자인 시스템의
+     기본 서체이며, 없으면 그냥 다음 후보로 넘어갑니다. */
+  html[lang="ko"] body,
+  html[lang="ko"] .header h1,
+  html[lang="ko"] .section-title,
+  html[lang="ko"] .job-company,
+  html[lang="ko"] .project-title,
+  html[lang="ko"] .competency-tag,
+  html[lang="ko"] .skill-category {
+    font-family: 'Liberation Sans', 'Helvetica Neue', Arial,
+      'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans CJK KR',
+      'Noto Sans KR', 'Nanum Gothic', sans-serif;
+  }
+
+  /* 줄바꿈 규칙은 cv-template.html 의 한국어 블록과 같게 둡니다.
+     line-break: strict 가 한글·문장부호 처리를 맡고, word-break 는 건드리지 않습니다. */
+  html[lang="ko"] body {
+    line-break: strict;
+    word-break: normal;
+    overflow-wrap: break-word;
+  }
+
 </style>
 </head>
 <body>
