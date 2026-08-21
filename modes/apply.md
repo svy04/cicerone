@@ -194,7 +194,7 @@ Never invent answers for legal, demographic, work-authorization, visa/sponsorshi
 
 ## Step 7 — Generate responses
 
-> **한국 지원서의 문항형 자기소개서는 여기서 만들지 않습니다.** 회사가 정한 문항과 글자 수가 있으면 `modes/cover.md` 로 보냅니다. 그 모드는 문항을 풀어 주고 재료를 찾아 주는 데까지만 하고 문장은 후보자가 씁니다. 한국 기업이 인공지능 작성 여부를 실제로 검사하고 있기 때문입니다(근거: `docs/market-evidence.md` 3절).
+> **한국 지원서의 문항형 자기소개서는 `modes/cover.md` 로 보냅니다.** 회사가 정한 문항과 글자 수가 있으면 그 모드가 문항별 초안을 만들고, 고쳐 쓰면 좋은 자리를 표시합니다.
 >
 > 이 단계에서 만드는 것은 "어떻게 알게 되셨습니까", "즉시 출근 가능하십니까" 같은 짧은 답변입니다.
 

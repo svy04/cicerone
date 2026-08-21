@@ -65,7 +65,7 @@ If the final score is >= 4.5, generate a draft of responses for the application 
 
 1. **Extract form questions**: Use Playwright to navigate to the form and take a snapshot. If they cannot be extracted, use the generic questions.
 2. **Generate responses** following the tone (see below).
-   - **한국 공채의 문항형 자기소개서는 여기서 만들지 않습니다.** 지원서에 회사가 정한 문항과 글자 수가 있으면 `modes/cover.md` 로 보냅니다. 그 모드는 문항을 풀어 주고 재료를 찾아 주는 데까지만 하고 문장은 후보자가 씁니다. 이 단계에서 만드는 것은 "어떻게 알게 됐는가" 같은 짧은 답변뿐입니다.
+   - **한국 공채의 문항형 자기소개서는 `modes/cover.md` 로 보냅니다.** 회사가 정한 문항과 글자 수가 있으면 그 모드가 문항별 초안을 만듭니다. 이 단계에서 만드는 것은 "어떻게 알게 됐는가" 같은 짧은 답변입니다.
 3. **Save in the report** as section `## H) Draft Application Answers`.
 
 ### Generic questions (use if they cannot be extracted from the form)

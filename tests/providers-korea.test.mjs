@@ -168,22 +168,33 @@ await testAsync('그리팅: 회사를 지정하지 않으면 멈춘다', async (
 });
 
 // ── 경계 ─────────────────────────────────────────────────────
-test('약관이 자동 수집을 금지한 플랫폼용 모듈이 없다', () => {
-  const banned = ['wanted', 'jobkorea', 'incruit', 'jobplanet', 'rocketpunch', 'jumpit'];
+// robots.txt 가 모든 봇에게 전면 금지를 건 곳은 대상으로 삼지 않는다.
+// 이건 겁이 아니라 판결이 정상 크롤링과 가른 기준이다 — 서울중앙지법 2015가합517982 1심은
+// "robots.txt 를 보지 않은 채 HTML 을 긁은 것"을 정상 크롤링과 다르다고 봤다.
+// 실측(2026-08-21): 인크루트 `User-agent: * → Disallow: /`, 링크드인은 파일 머리에 무단 자동화 금지.
+test('robots.txt 가 전면 금지한 곳을 대상으로 하는 모듈이 없다', () => {
+  const disallowedByRobots = ['incruit', 'linkedin'];
   const files = fs.readdirSync(here).filter(f => f.endsWith('.mjs'));
   const hits = [];
-  for (const b of banned) {
+  for (const b of disallowedByRobots) {
     for (const f of files) {
       if (f.toLowerCase().includes(b)) hits.push(f);
     }
   }
-  assert.deepEqual(hits, [], '자동 수집이 금지된 곳을 대상으로 하는 모듈이 있다: ' + hits.join(', '));
+  assert.deepEqual(hits, [], 'robots.txt 가 전면 금지한 곳을 대상으로 하는 모듈이 있다: ' + hits.join(', '));
 });
 
-test('한국 수집 모듈이 이유를 문서에 적어 두었다', () => {
-  for (const f of ['saramin.mjs', 'greetinghr.mjs']) {
+test('수집 모듈이 정체를 밝히고 요청 간격을 둔다', () => {
+  // 판결이 정상 크롤링의 요건으로 본 것: 정체를 밝힌다 · robots 를 본다 ·
+  // 원문 주소를 남긴다 · 재배포하지 않는다. 앞의 둘을 코드에서 확인한다.
+  const korean = fs.readdirSync(here)
+    .filter(f => f.endsWith('.mjs') && !f.startsWith('_'))
+    .filter(f => /saramin|greetinghr|jobkorea|jumpit|remember|wanted/.test(f));
+  assert.ok(korean.length > 0, '한국 수집 모듈이 하나도 없다');
+  for (const f of korean) {
     const src = fs.readFileSync(path.join(here, f), 'utf8');
-    assert.ok(/약관|robots|판례|대법원/.test(src), f + ' 에 법적 근거 설명이 없다');
+    assert.ok(/robots|판례|대법원|약관/.test(src), f + ' 에 수집 근거·경계 설명이 없다');
+    assert.ok(/sleep|간격|delay|throttle/i.test(src), f + ' 에 요청 간격 처리가 없다');
   }
 });
 

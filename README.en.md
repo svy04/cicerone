@@ -5,7 +5,7 @@ A command-line tool for evaluating Korean job postings and preparing application
 [한국어](README.md) | [English](README.en.md)
 
 - **Splits open recruitment from rolling hiring.** Korea runs two tracks with different stages and different documents, so the evaluation decides which one you are in before anything else
-- **Does not ghostwrite your 자기소개서.** It reads the employer's prompts, finds which of your experiences answer them, and budgets the character count. You write the sentences
+- **Drafts your 자기소개서 prompt by prompt.** It reads the employer's questions, assigns which of your experiences answer each one, writes to the character limit, and marks the places worth rewriting in your own words
 - **Decomposes a stated salary.** Whether severance is folded in, how many hours of fixed overtime it covers, whether a target bonus was counted up front
 - **Builds a 경력기술서 separately.** It is the main document for experienced hires and a different thing from a résumé
 - **Treats the written stage as a real gate.** Aptitude tests and coding tests sit between documents and interviews
@@ -68,15 +68,17 @@ It checks the posting is still open, decides which hiring track it belongs to, t
 
 Three paths are available instead: URLs you paste, Saramin's public API using a key you registered for yourself, and the career pages of companies you list in `portals.yml`.
 
-## Why it does not write your 자기소개서
+## What to know before you send a 자기소개서
 
-Korean employers actively screen for AI-written application essays.
+The tool drafts it. One fact belongs alongside that: **some Korean employers screen for AI-written application essays.**
 
 - Of 14 large-group affiliates and public corporations running 2025 H2 open recruitment, 9 of the 10 that had adopted AI were checking plagiarism scores at the document stage (Yonhap, 2025-09-29)
 - Asked what they do when AI authorship is confirmed: 42.2% deduct points, 23.2% reject (Ministry of Employment and Labour, 2023 H2 hiring survey, 315 of Korea's top 500 companies by revenue)
 - The National Pension Service wrote it directly into a 2025 posting: "AI (ChatGPT etc.) use and plagiarism will be thoroughly verified"
 
-The tool also refuses to help evade that detection. That such products exist is not a reason to build one.
+So the tool marks what to rewrite, and recommends you put it in your own words before sending — an even voice is what stands out, and you have to defend those sentences in the interview. The notice appears once, not on every run.
+
+It does not help evade the detection: scrambling the prose to fool a checker is worse when it fails. It also writes nothing your résumé and career record do not support — an invented project collapses the moment an interviewer asks about it.
 
 ## What to know
 

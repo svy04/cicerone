@@ -1,7 +1,7 @@
 {
   "name": "hwadu",
   "version": "1.28.0",
-  "description": "한국 채용 공고를 평가하고 지원 서류를 준비하는 명령줄 도구. 자기소개서는 대신 쓰지 않습니다",
+  "description": "한국 채용 공고를 평가하고 이력서·경력기술서·자기소개서를 준비하는 명령줄 도구",
   "author": {
     "name": "svy04",
     "url": "https://github.com/svy04"
