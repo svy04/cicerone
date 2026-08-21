@@ -73,10 +73,10 @@ Paste a URL and it reads that one. To collect several at once, `portals.yml` lis
 | Jumpit | Developer-only listing | Tech stack and experience range arrive with the list |
 | Remember Career | Sitemap for IDs, then one posting at a time | The only source whose request count scales with postings — about 30 seconds for 25 |
 | Companies on Greeting | The company's own careers page | Only the companies you list |
-| Worknet / 고용24 | Public API | Needs a key you register for yourself. Public-sector and smaller-employer postings live here, and more of them publish a salary figure |
 | Wanted | Public API | The one source that ships switched off — see below before turning it on |
+| Worknet / 고용24 | Public API | Needs a key you register for yourself. Public-sector and smaller-employer postings live here, and more of them publish a salary figure |
 
-Four rules govern every request: identify the tool in the User-Agent, read robots.txt before fetching, keep the source URL, redistribute nothing. The second is enforced in code — `providers/_robots.mjs` fetches and parses the file, and a disallowed path stops there.
+Four rules govern every request: identify the tool in the User-Agent, read robots.txt before fetching, keep the source URL, redistribute nothing. The second is not a promise in prose — `providers/_robots.mjs` fetches and parses the file before the first request, and a disallowed path stops there.
 
 Those rules are where the Seoul Central District Court drew the line in the JobKorea–Saramin collection dispute (2015가합517982): what it faulted was a competing job site republishing another's postings while hiding its identity and rotating IPs. Incruit and LinkedIn disallow everything in robots.txt, so neither has a module.
 
