@@ -46,9 +46,11 @@ Built and used by [santifer](https://santifer.io) to evaluate 740+ offers, gener
 
 **대상에서 뺀 곳**: 인크루트(`User-agent: * → Disallow: /`)와 링크드인(robots.txt 머리에 무단 자동화 금지 명시). 이 둘은 모든 봇에게 전면 금지를 걸었으므로 2번 규칙에 걸립니다.
 
-**원티드를 뺀 이유는 다릅니다**: 금지가 아니라 읽을 문이 없습니다. 도구 이름을 밝힌 요청은 robots.txt 를 포함해 모든 경로가 CloudFront 403 입니다(2026-08-21 실측). 2번 규칙을 지키려면 그 파일을 받아야 하는데 그 파일부터 못 받습니다. 브라우저 문자열을 쓰면 열리지만 1번 규칙을 버리는 일이라 하지 않았습니다. **이 판단을 뒤집으려면 두 규칙을 어떻게 할 것인지부터 정하세요** — 모듈만 조용히 추가하지 마세요.
+**원티드는 기본값이 꺼짐입니다**: 뺀 것이 아닙니다. 실측(2026-08-21) 공고 API 는 우리 사용자 에이전트에 200 을 돌려줍니다 — 1번 규칙은 지킬 수 있습니다. 걸리는 것은 2번입니다. `robots.txt` 가 403 이라 파일을 받을 수 없고, 보관된 스냅샷(2026-01-08)에는 그 API 경로가 금지로 적혀 있으며, 오늘 파일이 그와 같은지는 확인할 방법이 없습니다. 그래서 도구가 스스로 켜지 않고 `use_api: true` 를 적은 사용자만 읽습니다.
 
-**읽는 곳 (2026-08-21 기준)**: 사람인(공식 API `saramin` + 검색 결과 `saramin-web`), 잡코리아(`jobkorea`, 목록 탭만 — robots 가 `/Search/?stext=` 를 막음), 점핏(`jumpit`), 리멤버 커리어(`remember`, 사이트맵 + 공고 상세 — robots 가 `/job_postings/` 를 막음), 그리팅(`greetinghr`), 고용24(`worknet`, 사용자 인증키). 자세한 것은 `docs/SUPPORTED_JOB_BOARDS.md`.
+**이 플래그는 읽을 수 있는 robots.txt 를 덮지 않습니다.** `providers/wanted.mjs` 는 `loadRobots` 의 `fetched` 를 봅니다 — 파일을 받았으면 그것이 정본이고, 금지면 플래그가 켜져 있어도 멈춥니다. 플래그가 가리는 것은 "확인할 수 없는 상태" 하나뿐입니다. **이 구조를 바꾸지 마세요** — 플래그를 일반적인 robots 무시 스위치로 만들면 도구 전체의 2번 규칙 주장이 거짓이 됩니다.
+
+**읽는 곳 (2026-08-21 기준)**: 사람인(공식 API `saramin` + 검색 결과 `saramin-web`), 잡코리아(`jobkorea`, 목록 탭만 — robots 가 `/Search/?stext=` 를 막음), 점핏(`jumpit`), 리멤버 커리어(`remember`, 사이트맵 + 공고 상세 — robots 가 `/job_postings/` 를 막음), 그리팅(`greetinghr`), 고용24(`worknet`, 사용자 인증키), 원티드(`wanted`, 기본값 꺼짐). 자세한 것은 `docs/SUPPORTED_JOB_BOARDS.md`.
 
 **공식 API 도 씁니다**: 사람인 공개 API 와 공공데이터포털은 사용자가 본인 명의로 발급받은 열쇠로 접근합니다. 도구가 대신 신청하지 않습니다.
 

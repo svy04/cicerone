@@ -74,12 +74,15 @@ Paste a URL and it reads that one. To collect several at once, `portals.yml` lis
 | Remember Career | Sitemap for IDs, then one posting at a time | The only source whose request count scales with postings — about 30 seconds for 25 |
 | Companies on Greeting | The company's own careers page | Only the companies you list |
 | Worknet / 고용24 | Public API | Needs a key you register for yourself. Public-sector and smaller-employer postings live here, and more of them publish a salary figure |
+| Wanted | Public API | The one source that ships switched off — see below before turning it on |
 
 Four rules govern every request: identify the tool in the User-Agent, read robots.txt before fetching, keep the source URL, redistribute nothing. The second is enforced in code — `providers/_robots.mjs` fetches and parses the file, and a disallowed path stops there.
 
 Those rules are where the Seoul Central District Court drew the line in the JobKorea–Saramin collection dispute (2015가합517982): what it faulted was a competing job site republishing another's postings while hiding its identity and rotating IPs. Incruit and LinkedIn disallow everything in robots.txt, so neither has a module.
 
-Wanted is absent for a different reason. A request that identifies itself is cut off at the CDN with a 403 on every path, robots.txt included (measured 2026-08-21) — the file needed to honour rule two cannot be fetched at all. A browser-like User-Agent gets through, which costs rule one. Paste a Wanted URL and it evaluates one posting at a time.
+**Wanted ships switched off.** Measured 2026-08-21: the endpoint carrying the postings answers a request that identifies itself — no browser impersonation needed. But `robots.txt` returns 403, so the file cannot be read, and an archived snapshot from January disallows that endpoint. Whether today's file still says so cannot be checked.
+
+So the tool does not decide for you. It states what is known and leaves the switch to you: `use_api: true` on the Wanted entry in `portals.yml`. If `robots.txt` later becomes readable and disallows the path, the module stops even with the switch on — what the switch covers is the unverifiable state, nothing more.
 
 Saramin's official API is also available: register for a key yourself at [oapi.saramin.co.kr/join](https://oapi.saramin.co.kr/join) and set `SARAMIN_ACCESS_KEY`. It is capped at 500 calls a day and its terms forbid reselling the data. Without a key the search-page reader covers the same board.
 

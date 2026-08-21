@@ -25,6 +25,7 @@ import jobkorea, { parseJobKoreaList, filterByKeywords } from '../providers/jobk
 import jumpit, { normalizeJumpitPosition, findJumpitPositions } from '../providers/jumpit.mjs';
 import remember, { parseSitemapIds, extractPostingData, normalizePosting } from '../providers/remember.mjs';
 import worknet, { parseWorknetXml, readErrorMessage } from '../providers/worknet.mjs';
+import wanted, { normalizeWantedJob, findWantedJobs } from '../providers/wanted.mjs';
 import { parseRobots, isAllowed, clearRobotsCache } from '../providers/_robots.mjs';
 
 const here = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'providers');
@@ -783,6 +784,136 @@ await testAsync('고용24: 필드 이름이 바뀌면 조용히 빈손으로 끝
   }
 });
 
+// ── 원티드 ───────────────────────────────────────────────────
+// 표본은 2026-08-21 실제 응답에서 가져온 것입니다.
+// 이 모듈만 기본값이 꺼짐입니다 — robots.txt 가 403 이라 확인할 수 없기 때문입니다.
+
+const WANTED_BODY = {
+  links: { prev: null, next: '/api/v4/jobs?country=kr&offset=2' },
+  data: [
+    {
+      status: 'active',
+      id: 382106,
+      position: '교육 운영 매니저(5년이상)(팀장급)',
+      company: { id: 30177, name: '에이블런' },
+      address: { location: '서울', district: '마포구', full_location: '서울 마포구 성암로 330' },
+      annual_from: 5,
+      annual_to: 10,
+      due_time: null,
+    },
+    {
+      status: 'active',
+      id: 382107,
+      position: '신입 백엔드 개발자',
+      company: { name: '어느회사' },
+      address: { location: '경기', district: '성남시 분당구' },
+      annual_from: 0,
+      annual_to: 0,
+      due_time: null,
+    },
+    {
+      status: 'closed',
+      id: 382108,
+      position: '닫힌 공고',
+      company: { name: '어느회사' },
+      address: { location: '서울' },
+      annual_from: 1,
+      annual_to: 3,
+      due_time: null,
+    },
+  ],
+};
+
+test('원티드: 응답을 스캐너가 쓰는 모양으로 옮긴다', () => {
+  const job = normalizeWantedJob(WANTED_BODY.data[0]);
+  assert.equal(job.title, '교육 운영 매니저(5년이상)(팀장급)');
+  assert.equal(job.company, '에이블런');
+  assert.equal(job.location, '서울 마포구');
+  assert.equal(job.url, 'https://www.wanted.co.kr/wd/382106');
+  assert.equal(job.description, '경력 5~10년');
+});
+
+test('원티드: annual_from 은 연봉이 아니라 연차다', () => {
+  // 이름이 연봉처럼 생겨서 한 번 잘못 읽으면 「연봉 5만원」이 나온다.
+  const job = normalizeWantedJob(WANTED_BODY.data[1]);
+  assert.equal(job.description, '신입');
+  assert.ok(!/원|만원|연봉/.test(job.description), '연봉으로 읽었다: ' + job.description);
+});
+
+test('원티드: 제목이나 번호가 없으면 버린다', () => {
+  assert.equal(normalizeWantedJob({ id: 1 }), null);
+  assert.equal(normalizeWantedJob({ position: '제목만' }), null);
+  assert.equal(normalizeWantedJob(null), null);
+});
+
+test('원티드: 모양이 다른 응답에 조용히 실패하지 않는다', () => {
+  assert.deepEqual(findWantedJobs({}), []);
+  assert.deepEqual(findWantedJobs({ data: '아니오' }), []);
+  assert.deepEqual(findWantedJobs(null), []);
+});
+
+await testAsync('원티드: 기본값은 꺼짐이고 무엇을 모르는지 말한다', async () => {
+  clearRobotsCache();
+  let calledApi = false;
+  const ctx = {
+    fetchText: async () => { throw new Error('HTTP 403 Forbidden'); },   // robots.txt 가 403
+    fetchJson: async () => { calledApi = true; return WANTED_BODY; },
+  };
+  try {
+    await wanted.fetch({ provider: 'wanted' }, ctx);
+    throw new Error('꺼짐인데 진행됐다');
+  } catch (err) {
+    assert.ok(/기본값이 꺼짐/.test(err.message), '안내가 없다: ' + err.message);
+    assert.ok(/use_api: true/.test(err.message), '켜는 방법이 없다');
+    assert.ok(/대신 정하지 않습니다/.test(err.message), '판단 주체가 불분명하다');
+  }
+  assert.equal(calledApi, false, '꺼짐인데 API 를 불렀다');
+  clearRobotsCache();
+});
+
+await testAsync('원티드: 켜면 읽고 닫힌 공고를 걸러 낸다', async () => {
+  clearRobotsCache();
+  const ctx = {
+    fetchText: async () => { throw new Error('HTTP 403 Forbidden'); },
+    fetchJson: async () => JSON.parse(JSON.stringify({ ...WANTED_BODY, links: { next: null } })),
+  };
+  const jobs = await wanted.fetch({ provider: 'wanted', use_api: true }, ctx);
+  assert.equal(jobs.length, 2, '닫힌 공고가 남았다');
+  assert.ok(!jobs.some(j => j.title === '닫힌 공고'));
+  assert.ok(!jobs.some(j => 'status' in j || 'dueAt' in j), '계약에 없는 필드가 나갔다');
+  clearRobotsCache();
+});
+
+await testAsync('원티드: 읽을 수 있는 robots 가 막으면 플래그가 켜져 있어도 멈춘다', async () => {
+  // 플래그가 가리는 것은 「확인할 수 없는 상태」 하나뿐이다.
+  // 파일을 받을 수 있게 되면 그것이 정본이고, 플래그가 덮지 않는다.
+  clearRobotsCache();
+  let calledApi = false;
+  const ctx = {
+    fetchText: async () => 'User-agent: *\nAllow: /\nDisallow: /api/\n',
+    fetchJson: async () => { calledApi = true; return WANTED_BODY; },
+  };
+  try {
+    await wanted.fetch({ provider: 'wanted', use_api: true }, ctx);
+    throw new Error('막힌 경로인데 진행됐다');
+  } catch (err) {
+    assert.ok(/robots\.txt 가 이 경로를 막고/.test(err.message), 'robots 사유가 아니다: ' + err.message);
+  }
+  assert.equal(calledApi, false, 'robots 가 막았는데 API 를 불렀다');
+  clearRobotsCache();
+});
+
+await testAsync('원티드: 읽을 수 있는 robots 가 허용하면 플래그 없이도 읽는다', async () => {
+  clearRobotsCache();
+  const ctx = {
+    fetchText: async () => 'User-agent: *\nAllow: /\n',
+    fetchJson: async () => JSON.parse(JSON.stringify({ ...WANTED_BODY, links: { next: null } })),
+  };
+  const jobs = await wanted.fetch({ provider: 'wanted' }, ctx);
+  assert.equal(jobs.length, 2, '허용인데 안 읽었다');
+  clearRobotsCache();
+});
+
 // ── robots.txt 판정 ──────────────────────────────────────────
 // 실측한 robots.txt 원문(2026-08-21)으로 검증한다. 이 판정이 수집 규칙 둘째
 // ("robots.txt 를 본다")를 코드로 집행하는 자리다.
@@ -868,6 +999,18 @@ test('robots.txt 가 전면 금지한 곳을 대상으로 하는 모듈이 없�
     }
   }
   assert.deepEqual(hits, [], 'robots.txt 가 전면 금지한 곳을 대상으로 하는 모듈이 있다: ' + hits.join(', '));
+});
+
+test('robots 를 통째로 무시하는 스위치가 없다', () => {
+  // 원티드의 `use_api` 는 「robots.txt 를 받을 수 없는 상태」 하나만 가린다.
+  // 이것이 일반적인 robots 무시 스위치로 번지면 도구 전체의 둘째 규칙 주장이 거짓이 된다.
+  const files = fs.readdirSync(here).filter(f => f.endsWith('.mjs'));
+  const hits = [];
+  for (const f of files) {
+    const src = fs.readFileSync(path.join(here, f), 'utf8').replace(/^\s*\/\/.*$/gm, '');
+    if (/ignore_robots|skip_robots|bypass_robots|robots_off|noRobots/i.test(src)) hits.push(f);
+  }
+  assert.deepEqual(hits, [], 'robots 무시 스위치가 있다: ' + hits.join(', '));
 });
 
 test('수집 모듈이 정체를 밝히고 요청 간격을 둔다', () => {
