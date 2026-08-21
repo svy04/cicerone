@@ -81,6 +81,8 @@ const SYSTEM_PATHS = [
   'modes/cover.md',
   'modes/career-description.md',
   'modes/written-test.md',
+  'docs/시장근거.md',
+  'templates/portals.korea.example.yml',
   'modes/global/_shared.md',
   'modes/global/oferta.md',
   'modes/global/apply.md',

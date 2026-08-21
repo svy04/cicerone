@@ -39,7 +39,9 @@ On a hit, **stop before Step 1** and surface the candidate's own recorded decisi
 
 ## Step 1 — A-G Evaluation
 
-Execute the same as the `oferta` mode (read `modes/oferta.md` for all A-F blocks + Block G Posting Legitimacy). Read `modes/_custom.md` → Evaluation Rules, if it exists, and apply its override here. Default (if absent or silent): standard A-G evaluation.
+Execute the same as the `oferta` mode (read `modes/oferta.md` for all A-F blocks + Block G Posting Legitimacy).
+
+**한국 규격 (2026-08-21):** `oferta` 의 0단계 채용 트랙 판정을 그대로 물려받습니다. 공채인지 수시인지에 따라 블록 C·D·E·F 의 내용이 완전히 달라지므로, 이 판정을 건너뛰고 평가하지 않습니다. Read `modes/_custom.md` → Evaluation Rules, if it exists, and apply its override here. Default (if absent or silent): standard A-G evaluation.
 
 **Agency-mediated postings (#1596):** if the JD smells like a recruiter/agency listing ("our client", agency domain, no employer named), ask the user which agency it came through BEFORE writing the tracker row. Record the end employer as `?` (never "Confidential"), the agency in the Via field / `via=` TSV tag, and a distinguishing descriptor in Notes — see `modes/oferta.md` and `modes/tracker.md` for the full convention and reveal workflow.
 
@@ -63,6 +65,7 @@ If the final score is >= 4.5, generate a draft of responses for the application 
 
 1. **Extract form questions**: Use Playwright to navigate to the form and take a snapshot. If they cannot be extracted, use the generic questions.
 2. **Generate responses** following the tone (see below).
+   - **한국 공채의 문항형 자기소개서는 여기서 만들지 않습니다.** 지원서에 회사가 정한 문항과 글자 수가 있으면 `modes/cover.md` 로 보냅니다. 그 모드는 문항을 풀어 주고 재료를 찾아 주는 데까지만 하고 문장은 후보자가 씁니다. 이 단계에서 만드는 것은 "어떻게 알게 됐는가" 같은 짧은 답변뿐입니다.
 3. **Save in the report** as section `## H) Draft Application Answers`.
 
 ### Generic questions (use if they cannot be extracted from the form)

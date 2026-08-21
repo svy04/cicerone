@@ -25,10 +25,18 @@ test("the shipped config/profile.example.yml yields its roles", () => {
   const kws = profileTargetKeywords(doc);
   assert.ok(kws.length >= 2, `expected the template's roles, got ${JSON.stringify(kws)}`);
   for (const k of kws) assert.equal(typeof k, "string");
-  // primary[] must be represented — the field the inline version read as a string.
-  for (const p of doc.target_roles.primary) assert.ok(kws.includes(p), `missing primary role: ${p}`);
-  // …and archetypes must contribute their NAME, not the object.
-  for (const a of doc.target_roles.archetypes) assert.ok(kws.includes(a.name), `missing archetype: ${a.name}`);
+  // Whichever layout the shipped template uses, its roles must all come through.
+  // Upstream ships `target_roles: { primary[], archetypes[].name }`; the Korean
+  // fork ships `target: { roles[] }` because the block also carries career_stage
+  // and the hiring track. Both are asserted so neither can silently empty.
+  if (doc.target_roles) {
+    for (const p of doc.target_roles.primary ?? []) assert.ok(kws.includes(p), `missing primary role: ${p}`);
+    for (const a of doc.target_roles.archetypes ?? []) assert.ok(kws.includes(a.name), `missing archetype: ${a.name}`);
+  }
+  if (doc.target?.roles) {
+    for (const r of doc.target.roles) assert.ok(kws.includes(r), `missing target role: ${r}`);
+  }
+  assert.ok(doc.target_roles || doc.target?.roles, "the template declares no target roles at all");
 });
 
 test("primary is a LIST, not a string — the regression", () => {

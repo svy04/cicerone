@@ -8,7 +8,7 @@
      시장 사실의 출처는 docs/시장근거.md 에 정리돼 있습니다.
      ============================================================ -->
 
-## 사실의 출처 (이 목록 밖에서 후보자 정보를 가져오지 않습니다)
+## Sources of Truth — 사실의 출처 (이 목록 밖에서 후보자 정보를 가져오지 않습니다)
 
 아래 파일만이 이력서·자기소개서·지원서 답변의 재료입니다. 대화 기억이나 상위 폴더의 다른 저장소는 재료가 아닙니다. 전체 규칙은 `AGENTS.md`·`CLAUDE.md`·`CODEX.md` 의 "Source-of-Truth Boundary" 절에 있습니다.
 
@@ -54,7 +54,7 @@ RULE: Read _custom.md (if it exists) AFTER _profile.md and honor its house rules
 
 ---
 
-## 점수 체계
+## Scoring System — 점수 체계
 
 평가는 A부터 H까지의 블록으로 이루어지고, 전체 점수는 1점에서 5점 사이입니다.
 
@@ -88,7 +88,7 @@ RULE: Read _custom.md (if it exists) AFTER _profile.md and honor its house rules
 
 ---
 
-## 직무 유형
+## Archetype Detection — 직무 유형
 
 직무 유형은 **후보자가 정의합니다.** `modes/_profile.md`에 자기 직군의 유형을 적고, 공고를 그 유형 중 하나로 분류합니다. 이 파일에는 기본값을 두지 않습니다. 한 사람의 커리어를 다른 사람에게 씌우면 평가가 전부 어긋나기 때문입니다.
 
@@ -157,7 +157,7 @@ RULE: Read _custom.md (if it exists) AFTER _profile.md and honor its house rules
 
 ---
 
-## 공고 진위 판정
+## Posting Legitimacy — 공고 진위 판정
 
 실제로 사람을 뽑는 자리인지 판정합니다. 이 판정은 1~5점에 반영하지 않고 따로 적습니다.
 
@@ -222,7 +222,7 @@ RULE: Read _custom.md (if it exists) AFTER _profile.md and honor its house rules
 
 ---
 
-## 전역 규칙
+## Global Rules — 전역 규칙
 
 ### 하지 않을 것
 

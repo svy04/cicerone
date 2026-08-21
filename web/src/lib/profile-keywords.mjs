@@ -1,6 +1,6 @@
 /**
  * profile-keywords.mjs — read search keywords out of `config/profile.yml`'s
- * `target_roles` block.
+ *  block, or the Korean fork's .
  *
  * The core already does this in `providers/_profile-keywords.mjs`
  * (`profileTargetKeywords`), and this is a deliberate mirror of it, not a
@@ -27,8 +27,9 @@
  */
 
 /**
- * Extract candidate search keywords from a parsed profile.yml's `target_roles`
- * block: `primary[]` plus `archetypes[].name`. Order is preserved and matches
+ * Extract candidate search keywords from a parsed profile.yml. Reads both
+ * `target_roles: { primary[], archetypes[].name }` and `target: { roles[] }`.
+ * Order is preserved and matches
  * the core helper's. Never throws — a missing or malformed block yields [].
  *
  * Returns raw strings; de-duplication and trimming are the caller's, so the
@@ -38,10 +39,23 @@
  * @returns {string[]}
  */
 export function profileTargetKeywords(profile) {
-  const roles = profile && typeof profile === "object" ? profile.target_roles : null;
-  if (!roles || typeof roles !== "object") return [];
-  return [
-    ...(Array.isArray(roles.primary) ? roles.primary : []),
-    ...(Array.isArray(roles.archetypes) ? roles.archetypes.map((a) => a && a.name) : []),
-  ].filter((k) => typeof k === "string");
+  if (!profile || typeof profile !== "object") return [];
+
+  const out = [];
+
+  const roles = profile.target_roles;
+  if (roles && typeof roles === "object") {
+    if (Array.isArray(roles.primary)) out.push(...roles.primary);
+    if (Array.isArray(roles.archetypes)) out.push(...roles.archetypes.map((a) => a && a.name));
+  }
+
+  // Korean fork layout: the role list moved under `target`, which also carries
+  // career_stage and the hiring track. Both shapes are read so a profile
+  // written against either one keeps working (mirrors the core helper).
+  const target = profile.target;
+  if (target && typeof target === "object" && Array.isArray(target.roles)) {
+    out.push(...target.roles);
+  }
+
+  return out.filter((k) => typeof k === "string");
 }

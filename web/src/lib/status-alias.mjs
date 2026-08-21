@@ -18,6 +18,68 @@
 
 /** @type {Record<string, string>} */
 export const STATUS_ALIAS = {
+
+  // ── 한국어 별칭 (templates/states.yml 에서 그대로 옮김) ──
+  // Evaluated
+  "평가완료": "EVALUATED",
+  "평가": "EVALUATED",
+  "보류": "EVALUATED",
+  "검토중": "EVALUATED",
+  // Applied
+  "지원": "APPLIED",
+  "지원완료": "APPLIED",
+  "접수": "APPLIED",
+  "제출": "APPLIED",
+  // Responded
+  "서류합격": "RESPONDED",
+  "서류통과": "RESPONDED",
+  "회신": "RESPONDED",
+  "연락받음": "RESPONDED",
+  // Written
+  gsat: "WRITTEN",
+  skct: "WRITTEN",
+  "필기": "WRITTEN",
+  "필기전형": "WRITTEN",
+  "인적성": "WRITTEN",
+  "인적성검사": "WRITTEN",
+  "코딩테스트": "WRITTEN",
+  "코테": "WRITTEN",
+  "과제전형": "WRITTEN",
+  "온라인테스트": "WRITTEN",
+  // Interview
+  "면접": "INTERVIEW",
+  "면접중": "INTERVIEW",
+  "1차면접": "INTERVIEW",
+  "2차면접": "INTERVIEW",
+  "실무면접": "INTERVIEW",
+  "임원면접": "INTERVIEW",
+  "최종면접": "INTERVIEW",
+  "컬처핏": "INTERVIEW",
+  // Offer
+  "최종합격": "OFFER",
+  "합격": "OFFER",
+  "오퍼": "OFFER",
+  "처우협의": "OFFER",
+  "처우협의중": "OFFER",
+  // Rejected
+  "불합격": "REJECTED",
+  "탈락": "REJECTED",
+  "서류탈락": "REJECTED",
+  "최종탈락": "REJECTED",
+  // Discarded
+  "지원취소": "DISCARDED",
+  "마감": "DISCARDED",
+  "포기": "DISCARDED",
+  "철회": "DISCARDED",
+  // SKIP
+  "미지원": "SKIP",
+  "해당없음": "SKIP",
+  "관심없음": "SKIP",
+  // Hired
+  "입사확정": "HIRED",
+  "입사": "HIRED",
+  "수락": "HIRED",
+
   // Evaluated — states.yml `evaluated`
   evaluada: "EVALUATED",
   condicional: "EVALUATED",

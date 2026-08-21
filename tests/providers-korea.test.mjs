@@ -16,36 +16,29 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { pass, fail } from './helpers.mjs';
+
 import saramin, { normalizeSaraminJob } from '../providers/saramin.mjs';
 import greeting, { extractNextData, findOpenings, normalizeOpening } from '../providers/greetinghr.mjs';
 
 const here = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'providers');
 
-let passed = 0;
-let failed = 0;
-
 function test(name, fn) {
   try {
     const r = fn();
     if (r && typeof r.then === 'function') throw new Error('동기 검사만 씁니다');
-    passed++;
-    console.log('  PASS  ' + name);
+    pass(name);
   } catch (err) {
-    failed++;
-    console.log('  FAIL  ' + name);
-    console.log('        ' + err.message);
+    fail(name + ' — ' + err.message);
   }
 }
 
 async function testAsync(name, fn) {
   try {
     await fn();
-    passed++;
-    console.log('  PASS  ' + name);
+    pass(name);
   } catch (err) {
-    failed++;
-    console.log('  FAIL  ' + name);
-    console.log('        ' + err.message);
+    fail(name + ' — ' + err.message);
   }
 }
 
@@ -194,5 +187,5 @@ test('한국 수집 모듈이 이유를 문서에 적어 두었다', () => {
   }
 });
 
-console.log('\n' + passed + ' 통과, ' + failed + ' 실패\n');
-process.exit(failed === 0 ? 0 : 1);
+// 이 파일은 test-all.mjs 가 찾아 실행합니다. 관례상 process.exit 을 부르지 않고
+// helpers.mjs 의 카운터에 결과를 남깁니다.

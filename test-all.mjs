@@ -16546,7 +16546,10 @@ console.log('\n68. Immigration-status requirement overreach (#2033)');
   // 2. Mode section structure: oferta signal (jurisdiction derivation,
   //    exceptions honesty, ITAR note) + apply step (status-vs-authorization
   //    rule, never-auto-answer guarantees).
-  const ofertaNow = readFile('modes/oferta.md');
+  // 한국판 전환(2026-08-21): 이민 신분 요구 과잉과 관할별 금지 항목 신호는 미국·캐나다 법을 전제한다.
+  // 한국은 채용절차법 제4조의3 이 그 자리를 대신하고, 한국 정본에는 그 검사가 따로 있다.
+  // 원본 검사는 지우지 않고 해외 지원용 모드를 보게 한다.
+  const ofertaNow = readFile('modes/global/oferta.md');
   const applyNow = readFile('modes/apply.md');
   const sigStart = ofertaNow.indexOf('**11. Immigration-Status Requirement Overreach**');
   const sigEnd = ofertaNow.indexOf('### Output format:', Math.max(sigStart, 0));
@@ -16619,6 +16622,8 @@ console.log('\n68. Immigration-status requirement overreach (#2033)');
 
 console.log('\n69. Jurisdiction-prohibited content signal (#2018)');
 
+// 한국판 전환(2026-08-21): 관할별 금지 항목(미국 캘리포니아·캐나다 온타리오)은 한국에 해당하지 않는다.
+// 한국 정본에는 채용절차법 제4조의3 검사가 대신 있다. 원본 검사는 해외 지원용 모드를 본다.
 // --- jurisdiction-prohibited content signal (#2018): table + oferta Block G + apply Step 5c ---
 {
   try {
@@ -16647,11 +16652,11 @@ console.log('\n69. Jurisdiction-prohibited content signal (#2018)');
   }
 
   if (
-    ofertaMode.includes('**12. Jurisdiction-Prohibited Content**') &&
-    ofertaMode.includes('templates/jurisdiction-prohibited-content.yml') &&
-    ofertaMode.includes('⚠️ **Jurisdiction-prohibited content signal:**') &&
-    ofertaMode.includes('not legal advice') &&
-    ofertaMode.includes('never naive keyword matching')
+    ofertaGlobalMode.includes('**12. Jurisdiction-Prohibited Content**') &&
+    ofertaGlobalMode.includes('templates/jurisdiction-prohibited-content.yml') &&
+    ofertaGlobalMode.includes('⚠️ **Jurisdiction-prohibited content signal:**') &&
+    ofertaGlobalMode.includes('not legal advice') &&
+    ofertaGlobalMode.includes('never naive keyword matching')
   ) {
     pass('oferta Block G signal 10 reads the jurisdiction table with agent-judged matching and a not-legal-advice note (#2018)');
   } else {
@@ -16673,9 +16678,9 @@ console.log('\n69. Jurisdiction-prohibited content signal (#2018)');
   // Phrasing discipline (#2018): the new mode text states verifiable facts about
   // the posting/form only. Outside the explicit "never assert ..." guidance
   // sentence, the new sections must not contain employer-lawbreaking language.
-  const signal9 = ofertaMode.slice(
-    ofertaMode.indexOf('**12. Jurisdiction-Prohibited Content**'),
-    ofertaMode.indexOf('**13. Pay-Transparency Range-Width Check**')
+  const signal9 = ofertaGlobalMode.slice(
+    ofertaGlobalMode.indexOf('**12. Jurisdiction-Prohibited Content**'),
+    ofertaGlobalMode.indexOf('**13. Pay-Transparency Range-Width Check**')
   );
   const step5c = applyMode.slice(
     applyMode.indexOf('## Step 5c — Jurisdiction-prohibited content check'),

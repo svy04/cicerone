@@ -35,18 +35,35 @@ function cleanKeywords(value) {
 }
 
 /**
- * Extracts candidate search keywords from a parsed profile.yml's
- * `target_roles` block: `primary[]` plus `archetypes[].name`.
+ * Extracts candidate search keywords from a parsed profile.yml.
+ *
+ * Two shapes are read, because the Korean fork reorganised the block:
+ *   · upstream — `target_roles: { primary[], archetypes[].name }`
+ *   · korea    — `target: { roles[] }`, which also carries career_stage and
+ *                the hiring track, so the role list moved one level up
+ * Both are accepted so a profile written against either layout keeps working
+ * and no caller has to know which one it got.
+ *
  * @param {any} profile
  * @returns {string[]}
  */
 export function profileTargetKeywords(profile) {
-  const roles = profile && profile.target_roles;
-  if (!roles || typeof roles !== 'object') return [];
-  return cleanKeywords([
-    ...(Array.isArray(roles.primary) ? roles.primary : []),
-    ...(Array.isArray(roles.archetypes) ? roles.archetypes.map(a => a && a.name) : []),
-  ]);
+  if (!profile || typeof profile !== 'object') return [];
+
+  const collected = [];
+
+  const roles = profile.target_roles;
+  if (roles && typeof roles === 'object') {
+    if (Array.isArray(roles.primary)) collected.push(...roles.primary);
+    if (Array.isArray(roles.archetypes)) collected.push(...roles.archetypes.map(a => a && a.name));
+  }
+
+  const target = profile.target;
+  if (target && typeof target === 'object' && Array.isArray(target.roles)) {
+    collected.push(...target.roles);
+  }
+
+  return cleanKeywords(collected);
 }
 
 /**
