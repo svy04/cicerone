@@ -64,9 +64,23 @@ It checks the posting is still open, decides which hiring track it belongs to, t
 
 ## Where postings come from
 
-**This tool does not scrape job portals.** Saramin's terms of service art. 23-3 and Wanted's art. 19-7 forbid automated collection; Incruit's robots.txt disallows everything. The JobKorea–Saramin dispute over posting collection was settled at the Supreme Court of Korea (2017다224395) and followed by a ₩12bn settlement.
+Paste a URL and it reads that one. To collect several at once, `portals.yml` lists the sources.
 
-Three paths are available instead: URLs you paste, Saramin's public API using a key you registered for yourself, and the career pages of companies you list in `portals.yml`.
+| Source | How it reads | Worth knowing |
+| --- | --- | --- |
+| Saramin | Public search results page | Needs a keyword or a region — it will not sweep the whole board |
+| JobKorea | Duty / region / industry list tabs | robots.txt disallows keyword search, so keywords are applied to the fetched list on your own machine |
+| Jumpit | Developer-only listing | Tech stack and experience range arrive with the list |
+| Remember Career | Sitemap for IDs, then one posting at a time | The only source whose request count scales with postings — about 30 seconds for 25 |
+| Companies on Greeting | The company's own careers page | Only the companies you list |
+
+Four rules govern every request: identify the tool in the User-Agent, read robots.txt before fetching, keep the source URL, redistribute nothing. The second is enforced in code — `providers/_robots.mjs` fetches and parses the file, and a disallowed path stops there.
+
+Those rules are where the Seoul Central District Court drew the line in the JobKorea–Saramin collection dispute (2015가합517982): what it faulted was a competing job site republishing another's postings while hiding its identity and rotating IPs. Incruit and LinkedIn disallow everything in robots.txt, so neither has a module.
+
+Wanted is absent for a different reason. A request that identifies itself is cut off at the CDN with a 403 on every path, robots.txt included (measured 2026-08-21) — the file needed to honour rule two cannot be fetched at all. A browser-like User-Agent gets through, which costs rule one. Paste a Wanted URL and it evaluates one posting at a time.
+
+Saramin's official API is also available: register for a key yourself at [oapi.saramin.co.kr/join](https://oapi.saramin.co.kr/join) and set `SARAMIN_ACCESS_KEY`. It is capped at 500 calls a day and its terms forbid reselling the data. Without a key the search-page reader covers the same board.
 
 ## What to know before you send a 자기소개서
 
