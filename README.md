@@ -32,7 +32,7 @@ $ node salary-korea.mjs offer 52000000 --퇴직금포함 --고정OT 20
 
 ## 시작하기
 
-Node.js 22 이상이 필요합니다. 인공지능 명령줄 도구를 쓰고 있다면 이미 깔려 있습니다.
+Node.js 22 이상이 필요합니다. 인공지능 명령줄 도구를 쓰고 있다면 대개 이미 깔려 있습니다. `node -v` 로 확인하고, 없거나 낮으면 [nodejs.org](https://nodejs.org)에서 받습니다.
 
 **1. 받습니다.**
 
@@ -80,7 +80,7 @@ target:
   track: "수시"        # 공채 | 수시 | both
 ```
 
-**이름과 연락처를 먼저 고치세요.** 안 고치면 만들어지는 이력서에 예시 이름이 그대로 나갑니다.
+**이름은 두 곳에 있습니다. 둘 다 고치세요.** `config/profile.yml` 의 `candidate` 와 `cv.md` 첫 줄입니다. 한쪽만 고치면 만들어진 이력서에 예시 이름이 섞여 나갑니다.
 
 ```yaml
 candidate:
@@ -144,7 +144,7 @@ Java, Spring, Kotlin, MySQL, Kafka
 | F | 전형 대비 계획 (트랙에 따라 다름) |
 | G | 실제로 사람을 뽑는 공고인지 |
 
-결과는 이렇게 남습니다.
+평가 내용은 화면에도 보이고 파일로도 남습니다.
 
 ```
 reports/001-카카오페이-2026-08-21.md   ← 평가 전문
@@ -220,11 +220,14 @@ codex exec "hwadu auto-pipeline 으로 이 공고를 평가해 줘: https://comp
 결과는 이렇게 남습니다.
 
 ```
-output/cv-홍길동-카카오페이.pdf        ← 이력서
-output/cv-홍길동-카카오페이.html       ← 고칠 수 있는 원본
+output/cv-홍길동-카카오페이.pdf                  ← 이력서
+output/cv-홍길동-카카오페이.html                 ← 고칠 수 있는 원본
+output/career-description-홍길동-카카오페이.pdf  ← 경력기술서 (스위치가 켜져 있을 때)
 ```
 
 경력기술서는 `documents.career_description: true` 일 때 함께 만듭니다. 따로 만들려면 `/hwadu career-description 카카오페이` 를 씁니다.
+
+HTML을 손으로 고쳤다면 `node generate-pdf.mjs output/cv-홍길동-카카오페이.html` 로 다시 뽑습니다.
 
 PDF를 만들 때 브라우저 엔진을 씁니다. `npm install` 이 알아서 깔지만, 실패하면 `npx playwright install chromium` 을 한 번 실행하세요.
 
@@ -294,7 +297,7 @@ PDF를 만들 때 브라우저 엔진을 씁니다. `npm install` 이 알아서 
 
 [santifer/career-ops](https://github.com/santifer/career-ops)에서 갈라져 나왔습니다. 원본은 미국 취업 시장을 전제로 만들어졌고, 이 저장소는 그 전제를 한국 기준으로 바꿨습니다. 무엇이 어떻게 바뀌었는지는 [docs/korea-fork.md](docs/korea-fork.md)에 적었습니다.
 
-지원 현황 추적, 서류 생성 배관, 자동 갱신기, 시험 묶음 4,900여 건은 원본 것을 그대로 씁니다.
+지원 현황 추적, 서류를 만드는 내부 처리, 스스로 갱신하는 기능, 시험 4,900여 건은 원본 것을 그대로 씁니다.
 
 ## 라이선스
 
