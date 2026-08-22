@@ -78,11 +78,12 @@ Paste a URL and it reads that one. To collect several at once, `portals.yml` lis
 | Remember Career | Sitemap for IDs, then one posting at a time | The only source whose request count scales with postings — about 30 seconds for 25 |
 | Companies on Greeting | The company's own careers page | Only the companies you list |
 | Wanted | Public API | The one source that ships switched off — see below before turning it on |
-| Worknet / 고용24 | Public API | Needs a key you register for yourself. Public-sector, municipal, and smaller-employer postings live here |
 
 Four rules govern every request: identify the tool in the User-Agent, read robots.txt before fetching, keep the source URL, redistribute nothing. The second is not a promise in prose — `providers/_robots.mjs` fetches and parses the file before the first request, and a disallowed path stops there.
 
 The first three are where the Seoul Central District Court drew the line in the JobKorea–Saramin collection dispute (2015가합517982): identifying yourself, keeping the source, and reading robots.txt. The fourth is the conduct the case was about — a competing job site republishing another's postings as its own. Incruit and LinkedIn disallow everything in robots.txt, so neither has a module.
+
+**Worknet is gone.** The Worknet open API shut down and folded into Work24's, which is **open to corporate accounts only** (measured 2026-08-22). An individual job seeker cannot register for a key, so it is not a door this tool can use.
 
 **Wanted ships switched off.** Measured 2026-08-21: the endpoint carrying the postings answers a request that identifies itself — no browser impersonation needed. But `robots.txt` returns 403, so the file cannot be read, and an archived snapshot from January disallows that endpoint. Whether today's file still says so cannot be checked.
 

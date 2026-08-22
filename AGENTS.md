@@ -50,7 +50,9 @@ Forked from santifer/career-ops, which was built for the US job market. The arch
 
 **이 플래그는 읽을 수 있는 robots.txt 를 덮지 않습니다.** `providers/wanted.mjs` 는 `loadRobots` 의 `fetched` 를 봅니다 — 파일을 받았으면 그것이 정본이고, 금지면 플래그가 켜져 있어도 멈춥니다. 플래그가 가리는 것은 "확인할 수 없는 상태" 하나뿐입니다. **이 구조를 바꾸지 마세요** — 플래그를 일반적인 robots 무시 스위치로 만들면 도구 전체의 2번 규칙 주장이 거짓이 됩니다.
 
-**읽는 곳 (2026-08-21 기준)**: 사람인(공식 API `saramin` + 검색 결과 `saramin-web`), 잡코리아(`jobkorea`, 목록 탭만 — robots 가 `/Search/?stext=` 를 막음), 점핏(`jumpit`), 리멤버 커리어(`remember`, 사이트맵 + 공고 상세 — robots 가 `/job_postings/` 를 막음), 그리팅(`greetinghr`), 고용24(`worknet`, 사용자 인증키), 원티드(`wanted`, 기본값 꺼짐). 자세한 것은 `docs/SUPPORTED_JOB_BOARDS.md`.
+**읽는 곳 (2026-08-22 기준)**: 사람인(공식 API `saramin` + 검색 결과 `saramin-web`), 잡코리아(`jobkorea`, 목록 탭만 — robots 가 `/Search/?stext=` 를 막음), 점핏(`jumpit`), 리멤버 커리어(`remember`, 사이트맵 + 공고 상세 — robots 가 `/job_postings/` 를 막음), 그리팅(`greetinghr`), 원티드(`wanted`, 기본값 꺼짐). 자세한 것은 `docs/SUPPORTED_JOB_BOARDS.md`.
+
+**고용24(옛 워크넷)는 뺐습니다**: 워크넷 오픈API가 종료되고 고용24로 통합됐는데 그쪽은 기업회원 전용입니다(2026-08-22 실측). 개인 구직자가 인증키를 못 받으므로 모듈을 두지 않습니다. **다시 넣으려면 개인이 인증키를 받을 수 있게 됐는지부터 확인하세요.**
 
 **공식 API 도 씁니다**: 사람인 공개 API 와 공공데이터포털은 사용자가 본인 명의로 발급받은 열쇠로 접근합니다. 도구가 대신 신청하지 않습니다.
 

@@ -160,14 +160,7 @@ scan:
   #    (열쇠가 없으면 provider: saramin-web 이 같은 곳을 검색 페이지로 읽습니다)
   # saramin_access_key: ""
   #
-  # 2) 고용24(옛 워크넷) 오픈API 인증키.
-  #    신청: https://openapi.work.go.kr
-  #    공공기관·지자체 채용과 중소기업 공고가 민간 포털보다 많고,
-  #    임금이 숫자로 공개되는 비율이 높습니다.
-  #    환경변수 WORKNET_API_KEY 로 넣습니다.
-  # worknet_api_key: ""
-  #
-  # 3) 관심 기업의 채용 페이지. portals.yml 에 목록을 적습니다.
+  # 2) 관심 기업의 채용 페이지. portals.yml 에 목록을 적습니다.
   #    지정한 회사만 읽고, robots.txt 를 따르고, 요청 간격을 지킵니다.
   #
   # 공고 본문을 읽는 방식. mcp 가 기본이고, cli 는 토큰을 아낍니다.
