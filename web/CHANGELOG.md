@@ -1,5 +1,67 @@
 # Changelog
 
+## [0.8.0](https://github.com/svy04/cicerone/compare/web-v0.7.1...web-v0.8.0) (2026-08-22)
+
+
+### Features
+
+* **web:** Follow-up Tracker page with logging, history, and cadence settings ([#1422](https://github.com/svy04/cicerone/issues/1422)) ([6554de6](https://github.com/svy04/cicerone/commit/6554de6dcd28b95556e95ae220aebc719cc7a2a0))
+* **web:** give the Apply page a way back and a way to record that you applied ([#2735](https://github.com/svy04/cicerone/issues/2735)) ([05cc972](https://github.com/svy04/cicerone/commit/05cc972c2d45471ba45a8457c83f488915fc4fa6))
+* **web:** restrict the local dashboard API to same-origin and loopback ([b3974e6](https://github.com/svy04/cicerone/commit/b3974e6104d83c2714fd0d071898a7c7b9f68726))
+
+
+### Bug Fixes
+
+* **dashboard:** localize the hired status label and buffer split stream openers ([#2295](https://github.com/svy04/cicerone/issues/2295)) ([8f5d10d](https://github.com/svy04/cicerone/commit/8f5d10d6aa97438a4ac3908814456df5a8cf4083))
+* **deps:** make js-yaml imports work on both 4.x and 5.x ([#2656](https://github.com/svy04/cicerone/issues/2656)) ([6466b18](https://github.com/svy04/cicerone/commit/6466b18382aa2cb9390f5d2425a63ae36bcea085))
+* **deps:** patch both HIGH advisories in web (js-yaml 4.3.1, nanoid 3.3.18) ([a094ec9](https://github.com/svy04/cicerone/commit/a094ec9ddbe8f21e8db6dba87f548532af2a820e))
+* **deps:** raise the js-yaml floor to ^4.3.1 and guard it ([#2767](https://github.com/svy04/cicerone/issues/2767)) ([5b18a96](https://github.com/svy04/cicerone/commit/5b18a960da803477a475a1856138561f83edc035))
+* **deps:** update npm dependencies (+ Dockerfile playwright pins, web lockfile sync) ([f154f59](https://github.com/svy04/cicerone/commit/f154f5938fed43a37ab5e57efee1c45d664cdc3f))
+* **deps:** update web npm dependencies (next 16.3.1, shaders 0.0.80) ([cf793f6](https://github.com/svy04/cicerone/commit/cf793f6bdfffd78b3c2613b202b9905c290bec0e))
+* **keys:** stop the dotted-I fix from collapsing Polish, Lithuanian and Maltese ([5df43e7](https://github.com/svy04/cicerone/commit/5df43e7133745ad814421f2dd4c5afce2e75c0e1))
+* **keys:** stop the Turkish dotted capital from splitting one employer in two ([462d276](https://github.com/svy04/cicerone/commit/462d27653eda17c3305dfe74f2ecdc5b21fb79e6))
+* **korea:** finish the anchor pass; mirror Korean states into the dashboard ([18af4ca](https://github.com/svy04/cicerone/commit/18af4ca60d369a814b222c6e502ffb10ab7c8846))
+* **korea:** restore machine anchors, repoint US-jurisdiction checks at modes/global ([6952ddd](https://github.com/svy04/cicerone/commit/6952ddd325f7b5efbdca400c159c77ee89f50a36))
+* **scan:** take the shared lock for scan-history.tsv appends ([#2639](https://github.com/svy04/cicerone/issues/2639)) ([8e264c4](https://github.com/svy04/cicerone/commit/8e264c4b24a04fc6f0799b2e5c9a0479ed4e16e0))
+* **web:** add Grok Build CLI to the web runtime picker ([#2688](https://github.com/svy04/cicerone/issues/2688)) ([af0d818](https://github.com/svy04/cicerone/commit/af0d8183937a43397a127e75967b906fece86364))
+* **web:** analytics tells an offer-holder they have 0 interviews (and nudges them to try harder) ([#2410](https://github.com/svy04/cicerone/issues/2410)) ([8f2b415](https://github.com/svy04/cicerone/commit/8f2b41505997c0f15d86ee617304701239328a12))
+* **web:** anchor the fallback stderr classifier so a word can't fail a run ([#2882](https://github.com/svy04/cicerone/issues/2882)) ([be62e3e](https://github.com/svy04/cicerone/commit/be62e3ef28fcbcc18f1cddec3269c8da00be645c))
+* **web:** block_hard survives the Explore round-trip — type, URL params, seed and serializer ([#3102](https://github.com/svy04/cicerone/issues/3102)) ([89d6b1b](https://github.com/svy04/cicerone/commit/89d6b1b708454cca863bcf11464c87b76400b14e))
+* **web:** carry the posted: segment so web evaluations reach the POSTED column ([#2899](https://github.com/svy04/cicerone/issues/2899)) ([6eece73](https://github.com/svy04/cicerone/commit/6eece731b36ea91286e984289518839d9ab5c342))
+* **web:** derive company matching keys from the core, not an ASCII-only copy ([#2667](https://github.com/svy04/cicerone/issues/2667)) ([9b6582c](https://github.com/svy04/cicerone/commit/9b6582c01c381e6ab22ed674be7f7ef9f13d48df))
+* **web:** detect OpenCode in its default install directory ([#1794](https://github.com/svy04/cicerone/issues/1794)) ([c10b887](https://github.com/svy04/cicerone/commit/c10b88764a793e4176688f60aa066e96eff1c3a4))
+* **web:** emit the posting URL in the tracker-additions TSV so web runs join the dedup ([#2833](https://github.com/svy04/cicerone/issues/2833)) ([3c68721](https://github.com/svy04/cicerone/commit/3c68721fc28b98fc127ff9f5a36ac71188215750))
+* **web:** enforce that no runtime grants itself blanket write permission ([#2875](https://github.com/svy04/cicerone/issues/2875)) ([9ba6ebf](https://github.com/svy04/cicerone/commit/9ba6ebf2f94dbd2772af9b32572af25429b303fc))
+* **web:** finish Unicode company keys for explore + registry ([#2668](https://github.com/svy04/cicerone/issues/2668)) ([c294242](https://github.com/svy04/cicerone/commit/c294242dbb6a78a03bac738f397c568c02316971))
+* **web:** fold Turkish dotted capitals in status keys, and stop hand-copying the state list ([#2786](https://github.com/svy04/cicerone/issues/2786)) ([e1a0961](https://github.com/svy04/cicerone/commit/e1a09616818d2dd84b249a7805078bbfeefae669))
+* **web:** give the methodology link a real tap target and a new-tab cue ([#3023](https://github.com/svy04/cicerone/issues/3023)) ([344a116](https://github.com/svy04/cicerone/commit/344a116de15fd98c1e1d48aae9bf08bbdc4f067e))
+* **web:** keep child stderr out of the status response on the crash path ([#3022](https://github.com/svy04/cicerone/issues/3022)) ([883ebec](https://github.com/svy04/cicerone/commit/883ebec33c1c775bb295c4b4eecca31fc53066da))
+* **web:** keep Codex JSONL + exit code authoritative for web scoring ([#2102](https://github.com/svy04/cicerone/issues/2102)) ([2d43601](https://github.com/svy04/cicerone/commit/2d436019b60484e97576dd36e9ce324d2585cd6a))
+* **web:** keep the query string in the Explore dedup key so distinct postings don't collapse ([#3082](https://github.com/svy04/cicerone/issues/3082)) ([275e213](https://github.com/svy04/cicerone/commit/275e2137fb804a762caed8bed34194c5920b71c4))
+* **web:** keep the run stream alive during silent agent phases ([#3026](https://github.com/svy04/cicerone/issues/3026)) ([aaeb114](https://github.com/svy04/cicerone/commit/aaeb114238283ce3cc44b7b3e2168ed2d22c56a8))
+* **web:** label-aware pipeline.md reader — posted:/trust:/note: never misread as columns ([6c75d9a](https://github.com/svy04/cicerone/commit/6c75d9aa03c919803ffe6939b2ba6f1cf7238db6))
+* **web:** let the pipeline table scroll horizontally instead of clipping on narrow screens ([#2363](https://github.com/svy04/cicerone/issues/2363)) ([632031c](https://github.com/svy04/cicerone/commit/632031c9cb8ae95311a36310bb6cd2713497136c))
+* **web:** make the tracker reader agree with parseTrackerRow on row shape ([#2565](https://github.com/svy04/cicerone/issues/2565)) ([4fea438](https://github.com/svy04/cicerone/commit/4fea43835e940be62011f12afab4f35cb265c4ac))
+* **web:** persist the only installed CLI so jobs can start ([#2966](https://github.com/svy04/cicerone/issues/2966)) ([e80bf7e](https://github.com/svy04/cicerone/commit/e80bf7e60ce95e92dcd7501f97fda092b60b8f95))
+* **web:** prevent Codex run jobs from waiting on stdin ([#1973](https://github.com/svy04/cicerone/issues/1973)) ([9a139a2](https://github.com/svy04/cicerone/commit/9a139a2aac44ae5e8da8e372a587a322ba99f149))
+* **web:** re-read states.yml when it changes instead of caching it for the process lifetime ([#2590](https://github.com/svy04/cicerone/issues/2590)) ([2a2e09e](https://github.com/svy04/cicerone/commit/2a2e09e61275e18a2331c1fee39bec3225f9f01c))
+* **web:** read target_roles with the shape it is actually written in ([#2750](https://github.com/svy04/cicerone/issues/2750)) ([5f5c06d](https://github.com/svy04/cicerone/commit/5f5c06d4b257b4ef55dfedc2f1d1c0eb26bc9789))
+* **web:** render PDFs from the backend instead of the spawned agent ([#2182](https://github.com/svy04/cicerone/issues/2182)) ([fef3ff2](https://github.com/svy04/cicerone/commit/fef3ff2e228cc14e55df4ced958e4b0aa630ec65))
+* **web:** resolve 27 unmapped states.yml aliases and fix the Turkish status fold ([#2918](https://github.com/svy04/cicerone/issues/2918)) ([360ce49](https://github.com/svy04/cicerone/commit/360ce490c2e8d610a76767261679ed6b02880c9c))
+* **web:** resolve company logos by name, not one guessed domain ([#2942](https://github.com/svy04/cicerone/issues/2942)) ([6096fc9](https://github.com/svy04/cicerone/commit/6096fc9497f3d8bd920d2eaa83c13c30fa989f3d))
+* **web:** route Today's "See all N" link to the fresh-matches view ([#1790](https://github.com/svy04/cicerone/issues/1790)) ([5fcc727](https://github.com/svy04/cicerone/commit/5fcc72773b711be59f8212536df27ea6fd79f88d))
+* **web:** safe Codex AI-search exec with mtime-keyed capability cache ([#2361](https://github.com/svy04/cicerone/issues/2361)) ([699f506](https://github.com/svy04/cicerone/commit/699f506f62427cdb5a93bef8247eb6c1fd6418ef))
+* **web:** show the retry card, not the update-checkout panel, for runtime scan errors ([#1904](https://github.com/svy04/cicerone/issues/1904)) ([29c0d69](https://github.com/svy04/cicerone/commit/29c0d69cb0e2c2c3507e2712eaf04f1633244722))
+* **web:** skip {n}-RESERVED.md sentinels when looking up reports ([#1967](https://github.com/svy04/cicerone/issues/1967)) ([5f4842e](https://github.com/svy04/cicerone/commit/5f4842e513fe45092395254ba51bc220676e598a))
+* **web:** stamp pipeline first_seen with the local day, not UTC ([#3081](https://github.com/svy04/cicerone/issues/3081)) ([809e93b](https://github.com/svy04/cicerone/commit/809e93b419094dcc77c8f3d3f1a1c31c578a547a))
+* **web:** stop first-run from claiming no setup ([#2965](https://github.com/svy04/cicerone/issues/2965)) ([f028012](https://github.com/svy04/cicerone/commit/f0280129e63a063a88b00598cc09747cd70bc19e))
+* **web:** stop the 16-chip cap from truncating the user's own portals.yml ([#2749](https://github.com/svy04/cicerone/issues/2749)) ([a5af949](https://github.com/svy04/cicerone/commit/a5af94900b981105f2560ee271e22a00479093a9))
+* **web:** strip the author letter from any lettered block, not just A-G ([#2420](https://github.com/svy04/cicerone/issues/2420)) ([630709a](https://github.com/svy04/cicerone/commit/630709a3cad0297b7305752cfdf6ed5b0469b4d8))
+* **web:** take the core followups lock so web writes cannot race the seeder ([#3034](https://github.com/svy04/cicerone/issues/3034)) ([3b761b0](https://github.com/svy04/cicerone/commit/3b761b09b2979eedf4eadbd9d3c24b9d61462f04))
+* **web:** take the core tracker lock in POST /api/status ([#2903](https://github.com/svy04/cicerone/issues/2903)) ([d9c4fd0](https://github.com/svy04/cicerone/commit/d9c4fd0a0fa191717f1f68663b5eaa11c0351ea6))
+* **web:** take Write/Edit away from the dashboard's pdf mode ([#2508](https://github.com/svy04/cicerone/issues/2508)) ([1301ed4](https://github.com/svy04/cicerone/commit/1301ed4ccc4b1ead8b7eca024135ad4d1d63932c))
+* **web:** Today primary action opens the report ([#2967](https://github.com/svy04/cicerone/issues/2967)) ([74781e6](https://github.com/svy04/cicerone/commit/74781e6d66784bff97e15c507db7383a7fa2ab59))
+
 ## [0.7.1](https://github.com/santifer/career-ops/compare/web-v0.7.0...web-v0.7.1) (2026-08-20)
 
 

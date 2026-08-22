@@ -2,7 +2,7 @@
   "name": "cicerone",
   "metadata": {
     "description": "한국 채용 공고를 평가하고 이력서·경력기술서·자기소개서를 준비하는 명령줄 도구",
-    "version": "1.28.0"
+    "version": "1.29.0"
   },
   "owner": {
     "name": "svy04",
@@ -14,7 +14,7 @@
       "source": "./",
       "description": "AI job search pipeline — evaluate offers, tailor CVs, scan portals, track applications",
       "category": "productivity",
-      "version": "1.28.0"
+      "version": "1.29.0"
     }
   ]
 }
