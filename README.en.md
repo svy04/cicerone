@@ -1,4 +1,4 @@
-# cicerone
+<img src="docs/banner.en.png" alt="cicerone — Whether to apply is your call. What you are looking at, this takes apart." width="100%">
 
 A command-line tool for evaluating Korean job postings and preparing application documents. It runs inside an AI coding CLI (Claude Code, Codex, and others) and keeps every file on your own machine.
 
@@ -13,20 +13,7 @@ A command-line tool for evaluating Korean job postings and preparing application
 - **Sorts by what closes soonest.** Open recruitment clusters in March and September; a missed window costs six months
 - **Keeps every application in one file** instead of scattered across job sites
 
-```
-$ node salary-korea.mjs offer 52000000 --퇴직금포함 --고정OT 20
-
-제시받은 연봉    52,000,000원
-확실한 금액      48,000,000원
-
-분해
-  · 퇴직금이 포함된 제시액입니다. 통상 방식대로 나누면 실제 급여는 약 48,000,000원이고
-    나머지가 퇴직금 적립분입니다.
-  · 고정 초과근로 20시간분이 급여에 들어 있습니다.
-
-아직 확인 못 한 것 — 처우 협의에서 물어보세요
-  ? 성과급이 제시액에 포함됐는지 별도인지 확인하지 않았습니다
-```
+![Salary breakdown — ₩52,000,000 quoted, ₩48,000,000 once severance and fixed overtime are taken out](docs/shots/salary.png)
 
 ---
 
@@ -69,6 +56,8 @@ It checks the posting is still open, decides which hiring track it belongs to, t
 
 ## Where postings come from
 
+![Collecting postings — 20 backend roles from Saramin, one page, after reading robots.txt](docs/shots/collect.png)
+
 Paste a URL and it reads that one. To collect several at once, `portals.yml` lists the sources.
 
 | Source | How it reads | Worth knowing |
@@ -110,14 +99,7 @@ It does not help evade the detection: scrambling the prose to fool a checker is 
 
 Open-recruitment windows are short and cluster in March and September. Miss one and the next is six months away.
 
-```
-$ node deadlines.mjs --within 7
-
-마감이 가까운 순서
-
-❗#  2  토스                   서버 개발자                 2026-09-16  내일 마감
-· #  1  카카오페이             백엔드 개발자               2026-09-20  5일 남음
-```
+![Deadline list — Toss closes tomorrow, Kakaopay in five days](docs/shots/deadlines.png)
 
 Evaluating a posting records its deadline alongside the application. Writing one by hand means a `due: 2026-09-20` segment in the Notes cell.
 

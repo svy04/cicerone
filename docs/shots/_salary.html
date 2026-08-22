@@ -1,0 +1,39 @@
+<!doctype html><meta charset="utf-8"><style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#12131A;font:15px/1.62 Consolas,D2Coding,'Malgun Gothic',monospace;
+       -webkit-font-smoothing:antialiased}
+  .win{width:840px;padding:0 0 28px}
+  .bar{background:#1B1D26;padding:12px 20px;font-size:12px;color:#666B7A;
+       display:flex;gap:8px;align-items:center}
+  .dot{width:9px;height:9px;border-radius:50%;background:#2C2F3B}
+  .cmd{margin-left:12px;color:#9BA0AE}
+  .body{padding:20px 24px 0}
+  .l{white-space:pre;color:#9BA0AE}
+  .t1{color:#E8E9ED}
+  .t3{color:#666B7A}
+  .ac{color:#FF4D8D;font-weight:600}
+  .wa{color:#FFB454}
+  .pr{color:#5AD1A0}
+  </style><div class="win">
+  <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+  <span class="cmd">cicerone — 연봉 분해</span></div>
+  <div class="body"><div class="l pr">$ node salary-korea.mjs offer 52000000 --퇴직금포함 --고정OT 20</div>
+<div class="l ">&nbsp;</div>
+<div class="l t1">제시받은 연봉    52,000,000원</div>
+<div class="l ac">확실한 금액      48,000,000원</div>
+<div class="l ">&nbsp;</div>
+<div class="l t1">분해</div>
+<div class="l ">  · 퇴직금이 포함된 제시액입니다. 나머지가 퇴직금 적립분입니다.</div>
+<div class="l ">  · 고정 초과근로 20시간분이 들어 있습니다. 그 시간까지는</div>
+<div class="l ">    야근해도 추가 수당이 없습니다.</div>
+<div class="l ">&nbsp;</div>
+<div class="l t1">아직 확인 못 한 것 — 처우 협의에서 물어보세요</div>
+<div class="l ">  ? 성과급이 제시액에 포함됐는지 별도인지 확인하지 않았습니다.</div>
+<div class="l ">&nbsp;</div>
+<div class="l t1">공제</div>
+<div class="l ">  국민연금  2,280,000원     건강보험    1,725,600원</div>
+<div class="l ">  장기요양    226,740원     고용보험      432,000원</div>
+<div class="l ">  소득세    2,532,849원     지방소득세    253,284원</div>
+<div class="l t1">  합계      7,450,473원 (15.5%)      실수령 월  3,379,127원</div>
+<div class="l ">&nbsp;</div>
+<div class="l t3">※ 소득세는 부양가족과 세액공제에 따라 달라지는 개략 추정입니다.</div></div></div>
