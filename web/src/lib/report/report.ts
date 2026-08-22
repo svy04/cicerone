@@ -71,7 +71,7 @@ export async function collect(): Promise<Diag> {
   }
   let cli = "";
   try {
-    cli = JSON.parse(localStorage.getItem("career-ops:config") || "{}").cliId || "";
+    cli = JSON.parse(localStorage.getItem("cicerone:config") || "{}").cliId || "";
   } catch {
     /* none */
   }

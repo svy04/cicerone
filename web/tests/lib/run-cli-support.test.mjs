@@ -402,7 +402,7 @@ test("completedReportNames filters out RESERVED sentinels", () => {
 
 test("completedReportNames uses the shared predicate, so an unnumbered file is a real report", () => {
   // Given: only a NUMBERED sentinel comes from the reservation path. This is the
-  // case where the two former copies of this convention disagreed — career-ops.ts
+  // case where the two former copies of this convention disagreed — cicerone.ts
   // called it a real report, run-cli-support.mjs did not. One definition now.
   const names = completedReportNames(["notes-RESERVED.md", "030-RESERVED.md"]);
   assert.deepEqual([...names], ["notes-RESERVED.md"]);

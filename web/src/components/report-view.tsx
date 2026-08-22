@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowLeft, FileText, ExternalLink, ChevronDown } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import type { Application } from "@/lib/career-ops";
+import type { Application } from "@/lib/cicerone";
 import { Badge } from "@/components/ui/badge";
 import { scoreTone, scoreNum, legitimacyTone, parseReport } from "@/lib/format";
 import { cleanHeading, splitSections } from "@/lib/report-sections.mjs";

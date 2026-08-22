@@ -13,7 +13,7 @@ Paste the registry entry (one object), pinned to the exact reviewed commit:
 
 ```json
 {
-  "name": "career-ops-plugin-<name>",
+  "name": "cicerone-plugin-<name>",
   "id": "<name>",
   "repo": "https://github.com/<you>/cicerone-plugin-<name>",
   "author": "<you>",
@@ -30,7 +30,7 @@ Paste the registry entry (one object), pinned to the exact reviewed commit:
 
 ### Maintainer review checklist
 
-- [ ] Naming `career-ops-plugin-<name>`; `id` == name minus the prefix
+- [ ] Naming `cicerone-plugin-<name>`; `id` == name minus the prefix
 - [ ] Minimum files present (manifest.json, index.mjs, README.md, LICENSE)
 - [ ] Manifest valid: apiVersion 1, `humanInTheLoop: true`, hooks ⊆ {provider, ingest, search, notify, export} — **no apply/submit**
 - [ ] MIT-compatible LICENSE; no personal data in the repo

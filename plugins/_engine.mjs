@@ -1,6 +1,6 @@
 // @ts-check
 /**
- * plugins/_engine.mjs — the career-ops plugin engine.
+ * plugins/_engine.mjs — the cicerone plugin engine.
  *
  * Generalizes the proven providers/ auto-loader (scan.mjs `loadProviders`) into
  * a sibling `plugins/` layer for integrations that need a KEY or talk to an

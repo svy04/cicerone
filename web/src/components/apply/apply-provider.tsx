@@ -48,7 +48,7 @@ function closeSession(id: string) {
   void fetch("/api/apply/close", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ sessionId: id }), keepalive: true }).catch(() => {});
 }
 
-const CONFIG_KEY = "career-ops:config";
+const CONFIG_KEY = "cicerone:config";
 function cliId(): string | null {
   try {
     return JSON.parse(localStorage.getItem(CONFIG_KEY) || "{}").cliId || null;
@@ -320,7 +320,7 @@ export function ApplyProvider({ children }: { children: React.ReactNode }) {
           return [...prev, ...(d.issues as ApplyIssue[]).filter((i) => !seen.has(i.message))];
         });
       }
-      if (d.navigated) setError("Heads up: the form's page changed during fill — review it carefully before submitting (career-ops never submits for you).");
+      if (d.navigated) setError("Heads up: the form's page changed during fill — review it carefully before submitting (cicerone never submits for you).");
       setStatus("done");
       // ESCALATION ("si no va, full agente"): if deterministic fill clearly
       // didn't land (most fields failed / mismatched), let the agent fill it.

@@ -120,7 +120,7 @@ export async function convertImageToPdf(inputPath, outputPath) {
 </style>
 </head>
 <body>
-<img id="career-ops-img" src="data:${mimeType};base64,${base64}">
+<img id="cicerone-img" src="data:${mimeType};base64,${base64}">
 </body>
 </html>`;
 
@@ -133,7 +133,7 @@ export async function convertImageToPdf(inputPath, outputPath) {
 
     try {
       await page.waitForFunction(() => {
-        const img = document.getElementById('career-ops-img');
+        const img = document.getElementById('cicerone-img');
         return !!img && img.complete && img.naturalWidth > 0 && img.naturalHeight > 0;
       }, { timeout: 10000 });
     } catch (err) {
@@ -141,7 +141,7 @@ export async function convertImageToPdf(inputPath, outputPath) {
     }
 
     const { width, height } = await page.evaluate(() => {
-      const img = document.getElementById('career-ops-img');
+      const img = document.getElementById('cicerone-img');
       return { width: img.naturalWidth, height: img.naturalHeight };
     });
 

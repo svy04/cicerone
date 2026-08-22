@@ -3,7 +3,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { resolveCli } from "@/lib/clis";
-import { careerOpsRoot, readMemory } from "@/lib/career-ops";
+import { careerOpsRoot, readMemory } from "@/lib/cicerone";
 import { assembleDedupContext } from "@/lib/core/discover";
 
 // AI search orchestrates modes/discover.md by running the USER'S configured CLI
@@ -118,7 +118,7 @@ function supportsSafeCodexExec(binPath: string): Promise<boolean> {
 
 const OUTPUT_CONTRACT = `
 
---- OUTPUT CONTRACT (the career-ops WEB is parsing your stream) ---
+--- OUTPUT CONTRACT (the cicerone WEB is parsing your stream) ---
 Follow modes/discover.md exactly. You are running headless for the web:
 - You are a PROPOSER — never write a file (Write/Edit/Bash are disabled).
 - Emit each candidate as ONE line, never inside a code fence:
@@ -151,7 +151,7 @@ export async function POST(req: Request) {
   try {
     mode = fs.readFileSync(path.join(careerOpsRoot(), "modes", "discover.md"), "utf8");
   } catch {
-    return Response.json({ code: "MODE_MISSING", error: "AI search needs a newer career-ops — update to enable it." }, { status: 400 });
+    return Response.json({ code: "MODE_MISSING", error: "AI search needs a newer cicerone — update to enable it." }, { status: 400 });
   }
 
   const { lines } = assembleDedupContext();
@@ -183,7 +183,7 @@ export async function POST(req: Request) {
   if (isCodex) {
     try {
       childCwd = fs.mkdtempSync(
-        path.join(os.tmpdir(), "career-ops-codex-"),
+        path.join(os.tmpdir(), "cicerone-codex-"),
       );
     } catch {
       return Response.json(

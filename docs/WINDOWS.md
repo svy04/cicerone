@@ -1,6 +1,6 @@
-# Running career-ops on Windows
+# Running cicerone on Windows
 
-career-ops runs on Windows without a VM or WSL. Most of it is plain Node and never notices the platform. The sharp edges are all in the same place: the parts that shell out to `bash` — `batch/batch-runner.sh` and the test-suite fixtures that drive it.
+cicerone runs on Windows without a VM or WSL. Most of it is plain Node and never notices the platform. The sharp edges are all in the same place: the parts that shell out to `bash` — `batch/batch-runner.sh` and the test-suite fixtures that drive it.
 
 If something is failing and the error mentions `node: command not found`, an empty argument list, or `syntax error near unexpected token`, one of the first three sections below is why.
 
@@ -14,7 +14,7 @@ If something is failing and the error mentions `node: command not found`, an emp
 
 ## 1. `bash` on your PATH is probably not Git Bash
 
-This is the single most expensive Windows gotcha, because it fails in a way that looks like a bug in career-ops.
+This is the single most expensive Windows gotcha, because it fails in a way that looks like a bug in cicerone.
 
 On a default Windows install, `bash` on `PATH` resolves to `C:\WINDOWS\System32\bash.exe` — that is the **WSL launcher**, not Git Bash. It exists even if you have never knowingly used WSL.
 
@@ -34,7 +34,7 @@ and exit code `127`. Because the runner's output is captured, that can surface a
 
 **Fix:** install Git for Windows and make sure the tooling finds *its* bash. The test suite does this for you (see §2); if you are driving `batch/batch-runner.sh` yourself, invoke Git Bash by its full path rather than relying on `bash` resolving correctly.
 
-You do not need to uninstall or disable WSL. You only need the shell career-ops uses to be Git Bash.
+You do not need to uninstall or disable WSL. You only need the shell cicerone uses to be Git Bash.
 
 ## 2. Where Git Bash lives depends on how you installed Git
 

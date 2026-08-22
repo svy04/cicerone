@@ -73,13 +73,13 @@ withPdfIndexEnv('/elsewhere/custom-index.tsv', () => {
 
 // THE REGRESSION (#2471). Given a tracker redirected into an isolated
 // workspace, When resolving the manifest with no override, Then it must be that
-// workspace's own manifest — never the career-ops install directory's, which is
+// workspace's own manifest — never the cicerone install directory's, which is
 // how an isolated run came to read real user data.
 //
 // Asserted as exact equality rather than a prefix match: a prefix would also
 // accept a wrong filename or a nested path inside the workspace.
 withPdfIndexEnv(undefined, () => {
-  const isolatedWorkspace = join('/tmp', 'career-ops-fixture');
+  const isolatedWorkspace = join('/tmp', 'cicerone-fixture');
   const resolved = resolvePdfIndexPath(join(isolatedWorkspace, 'data', 'applications.md'));
   const expected = join(isolatedWorkspace, 'data', 'pdf-index.tsv');
   if (resolved === expected) {

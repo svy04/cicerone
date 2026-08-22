@@ -3,7 +3,7 @@ import os from "node:os";
 import path from "node:path";
 import { randomUUID } from "node:crypto";
 import * as yaml from "js-yaml";
-import { careerOpsRoot } from "@/lib/career-ops";
+import { careerOpsRoot } from "@/lib/cicerone";
 import { DEFAULT_FILTERS, cleanChips, type ExploreFilters } from "@/lib/explore";
 import { profileTargetKeywords } from "@/lib/profile-keywords.mjs";
 
@@ -35,14 +35,14 @@ import { serializePortals } from "./portals-serialize.mjs";
 
 /** Write the ephemeral filter file to a temp path; caller cleans it up. */
 export function writeTempPortals(f: FilterLists): string {
-  const file = path.join(os.tmpdir(), `career-ops-explore-${randomUUID()}.yml`);
+  const file = path.join(os.tmpdir(), `cicerone-explore-${randomUUID()}.yml`);
   fs.writeFileSync(file, serializePortals(f), "utf8");
   return file;
 }
 
 export function cleanupTempPortals(file: string): void {
   try {
-    if (file.startsWith(os.tmpdir()) && file.includes("career-ops-explore-")) fs.unlinkSync(file);
+    if (file.startsWith(os.tmpdir()) && file.includes("cicerone-explore-")) fs.unlinkSync(file);
   } catch {
     /* best-effort */
   }

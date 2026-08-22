@@ -135,7 +135,7 @@ test('archive-posting still accepts its real flags in both forms', () => {
 // --- rejection-latency: the false all-clear, and the `=` form (#2401) -------
 
 function withFixture(fn) {
-  const dir = mkdtempSync(join(tmpdir(), 'career-ops-flagval-'));
+  const dir = mkdtempSync(join(tmpdir(), 'cicerone-flagval-'));
   try {
     mkdirSync(join(dir, 'data'), { recursive: true });
     const tracker = join(dir, 'data', 'applications.md');

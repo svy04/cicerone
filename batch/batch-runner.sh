@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# career-ops batch runner — standalone orchestrator for claude -p workers
+# cicerone batch runner — standalone orchestrator for claude -p workers
 # Reads batch-input.tsv, delegates each offer to a claude -p worker,
 # tracks state in batch-state.tsv for resumability.
 #
@@ -54,7 +54,7 @@ is_decimal_number() {
 
 usage() {
   cat <<'USAGE'
-career-ops batch runner — process job offers in batch via claude -p workers
+cicerone batch runner — process job offers in batch via claude -p workers
 Uses spend_tier from config/profile.yml unless --model overrides it.
 
 Usage: batch-runner.sh [OPTIONS]
@@ -783,7 +783,7 @@ process_offer() {
       curl --silent --location --max-time 20 --connect-timeout 5 \
         --fail --max-redirs 10 --compressed \
         --proto '=http,https' --proto-redir 'https,http' --max-filesize 5000000 \
-        --user-agent "Mozilla/5.0 (compatible; career-ops/batch)" \
+        --user-agent "Mozilla/5.0 (compatible; cicerone/batch)" \
         --header "Accept: text/html,application/xhtml+xml,*/*;q=0.8" \
         --output "$jd_file" \
         -- "$url" 2>/dev/null || true
@@ -1261,7 +1261,7 @@ main() {
     exit 0
   fi
 
-  echo "=== career-ops batch runner ==="
+  echo "=== cicerone batch runner ==="
   if (( LIMIT > 0 )); then
     echo "Parallel: $PARALLEL | Max retries: $MAX_RETRIES | Limit: $LIMIT"
   else

@@ -263,7 +263,7 @@ const expectedCard = [
   'EMAIL;TYPE=INTERNET:jane@acme.io',
   'URL:https://linkedin.com/in/janedoe',
   'NOTE:recruiter — tracker #012 — met at screen\\; email\\, ok',
-  'CATEGORIES:career-ops',
+  'CATEGORIES:cicerone',
   `REV:${REV}`,
   'END:VCARD',
 ].join('\r\n');
@@ -347,7 +347,7 @@ ok('--help --bogus names the bad flag in stderr', helpBogusR.stderr.includes('--
 ok('--help --bogus writes nothing to stdout', helpBogusR.stdout === '');
 
 // contacts.mjs resolves its paths from import.meta.url and is zero-dep, so a
-// copy of the script into a temp dir is a fully isolated career-ops root:
+// copy of the script into a temp dir is a fully isolated cicerone root:
 // data/contacts.tsv and output/ under the temp dir, no dependence on whatever
 // the caller's real workspace contains — a contributor with a real phonebook
 // gets the same results as CI.

@@ -4,7 +4,7 @@
   "packages": {
     ".": {
       "release-type": "simple",
-      "package-name": "career-ops",
+      "package-name": "cicerone",
       "extra-files": [
         {
           "type": "json",
@@ -44,7 +44,7 @@
     },
     "web": {
       "release-type": "node",
-      "package-name": "career-ops-web",
+      "package-name": "cicerone-web",
       "component": "web",
       "include-component-in-tag": true
     }

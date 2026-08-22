@@ -11,7 +11,7 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
 const SCRIPT = join(ROOT, 'funnel-velocity.mjs');
-const SANDBOX = mkdtempSync(join(tmpdir(), 'career-ops-funnel-flags-'));
+const SANDBOX = mkdtempSync(join(tmpdir(), 'cicerone-funnel-flags-'));
 const NO_TRACKER = join(SANDBOX, 'applications.md');
 const NO_BENCHMARKS = join(SANDBOX, 'benchmarks.yml');
 

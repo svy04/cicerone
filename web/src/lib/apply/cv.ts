@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { careerOpsRoot } from "@/lib/career-ops";
+import { careerOpsRoot } from "@/lib/cicerone";
 
 /**
  * Locate the tailored CV PDF the real `pdf` mode wrote to output/ for a given

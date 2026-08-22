@@ -1,6 +1,6 @@
 // @ts-check
 /**
- * seeds/vc-portfolios.mjs — VC portfolio seed fetchers for career-ops.
+ * seeds/vc-portfolios.mjs — VC portfolio seed fetchers for cicerone.
  *
  * Pulls public VC portfolio company lists (Y Combinator, Andreessen Horowitz)
  * and emits company entries compatible with the existing ATS scan/discovery

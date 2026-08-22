@@ -8,7 +8,7 @@ here, so review is the real control.
 ## Two tiers
 
 - **Listed** — one `plugins-registry/<id>.json` file; the code stays in the
-  author's `career-ops-plugin-<name>` repo; users `add` it. The default, low
+  author's `cicerone-plugin-<name>` repo; users `add` it. The default, low
   burden.
 - **Bundled** — promoted into `plugins/` (shipped, auto-updated). Reserve for
   broadly-useful, low/zero-key, well-tested plugins (how `apify`/`gmail`/`notion`
@@ -24,7 +24,7 @@ stop.
 
 ## Your judgment calls (the checklist)
 
-- **Naming + identity:** repo is `career-ops-plugin-<name>`, `id` == name minus
+- **Naming + identity:** repo is `cicerone-plugin-<name>`, `id` == name minus
   prefix, `sha` pinned to the commit you actually read.
 - **Read the diff** (for an update, the old→new diff): does it do only what it
   says? Watch for time-bombs, env-gated branches, obfuscation.
@@ -36,7 +36,7 @@ stop.
 - **Data direction:** reads PUBLIC data or the user's OWN account only. No
   centralized infrastructure, no auto-submit, no blind-apply.
 - **Wording (public-forever):** description / README / skill carry no commercial
-  / hosted-service / monetization language. career-ops is free and local-first;
+  / hosted-service / monetization language. cicerone is free and local-first;
   "approved" means "we reviewed this commit", nothing more.
 - **Skill (if any):** domain-scoped — it teaches how to drive the plugin, and
   does NOT instruct the agent to edit core files, change scoring, reveal secrets,
@@ -60,7 +60,7 @@ approve.
 
 Anything that scrapes a platform behind a login or whose terms forbid automated
 access (authenticated LinkedIn, session-gated boards) is **not** bundled and
-**not** registry-listed. It can still be a `career-ops-plugin-<name>` repo users
+**not** registry-listed. It can still be a `cicerone-plugin-<name>` repo users
 install explicitly into `plugins.local/` with the full "you're trusting this
 author" prompt — the project doesn't host that liability in-tree.
 
@@ -68,7 +68,7 @@ author" prompt — the project doesn't host that liability in-tree.
 
 A bundled plugin (`plugins/apify`, `plugins/gmail`, `plugins/notion`) is a
 **reference seed**: a reviewed, minimal, stable example. We do **not** accept
-feature PRs against it — close-redirect them to "publish `career-ops-plugin-<id>`
+feature PRs against it — close-redirect them to "publish `cicerone-plugin-<id>`
 and we'll register it as the maintained successor." Bundled plugins only take
 PRs for **security or release-compat fixes** (keeping the seed working across
 core releases).

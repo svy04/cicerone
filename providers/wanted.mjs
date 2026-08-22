@@ -4,7 +4,7 @@
 // 원티드 공고 목록 — 신입·경력 개발 직군이 많은 국내 채용 플랫폼입니다.
 //
 // ── 지키는 넷 ────────────────────────────────────────────────
-//   1. 정체를 밝힌다 — ctx 가 붙이는 career-ops 사용자 에이전트로 200 이 옵니다.
+//   1. 정체를 밝힌다 — ctx 가 붙이는 cicerone 사용자 에이전트로 200 이 옵니다.
 //      브라우저 문자열을 흉내 내지 않습니다
 //   2. robots.txt 를 본다 — 아래 「기본값이 꺼짐인 이유」 참고
 //   3. 원문 주소를 남긴다 — `www.wanted.co.kr/wd/{id}` 로 되돌립니다
@@ -115,7 +115,7 @@ export default {
    * @returns {Promise<Array<object>>}
    */
   async fetch(entry, ctx) {
-    const robots = await loadRobots(ORIGIN + API_PATH, ctx, 'career-ops');
+    const robots = await loadRobots(ORIGIN + API_PATH, ctx, 'cicerone');
 
     if (robots.fetched) {
       // 파일을 받았다면 그것이 정본입니다. 플래그로 덮지 않습니다.

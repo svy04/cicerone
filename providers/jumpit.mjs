@@ -4,7 +4,7 @@
 // 점핏 공고 목록 — 개발 직군 전용 채용 사이트입니다.
 //
 // ── 지키는 넷 ────────────────────────────────────────────────
-//   1. 정체를 밝힌다 — ctx 가 붙이는 career-ops 사용자 에이전트로 200 이 옵니다.
+//   1. 정체를 밝힌다 — ctx 가 붙이는 cicerone 사용자 에이전트로 200 이 옵니다.
 //      브라우저 문자열을 흉내 내지 않습니다
 //   2. robots.txt 를 본다 — 아래 「두 호스트」 참고
 //   3. 원문 주소를 남긴다 — `jumpit.saramin.co.kr/position/{id}` 로 되돌립니다
@@ -123,7 +123,7 @@ export default {
    */
   async fetch(entry, ctx) {
     // 사람이 보는 화면이 허용인지부터 묻습니다 — 위 「두 호스트」 참고
-    const { crawlDelay } = await assertAllowed(SITE + LIST_PATH, ctx, 'career-ops');
+    const { crawlDelay } = await assertAllowed(SITE + LIST_PATH, ctx, 'cicerone');
     const pace = Math.max(PACE_MS, (crawlDelay || 0) * 1000);
 
     const size = Math.min(Math.max(Number(entry?.size) || DEFAULT_SIZE, 1), MAX_SIZE);

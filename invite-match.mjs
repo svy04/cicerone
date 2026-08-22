@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * invite-match.mjs — Interview-Invite / Rejection → Tracker Matcher for career-ops
+ * invite-match.mjs — Interview-Invite / Rejection → Tracker Matcher for cicerone
  *
  * Recruiter calendar/ATS invite emails frequently name only the company
  * (generic subject lines like "Schedule Your Phone Screen") with no job
@@ -808,7 +808,7 @@ export function selectApplyTarget(result, idArg) {
 // --- Summary mode ---
 function printSummary(result) {
   console.log(`\n${'='.repeat(70)}`);
-  console.log('  Interview Invite / Rejection Matcher — career-ops');
+  console.log('  Interview Invite / Rejection Matcher — cicerone');
   console.log(`${'='.repeat(70)}\n`);
 
   console.log(`  Classification:     ${result.classification}`);

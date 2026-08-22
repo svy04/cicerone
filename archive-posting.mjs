@@ -42,7 +42,7 @@ const VALUE_FLAGS = ['--company', '--role', '--report'];
 
 const HELP_TEXT = `
 ╔══════════════════════════════════════════════════════════════════╗
-║           career-ops — Job Posting Archiver                     ║
+║           cicerone — Job Posting Archiver                     ║
 ╚══════════════════════════════════════════════════════════════════╝
 
   Save a live job posting as PDF before it disappears.

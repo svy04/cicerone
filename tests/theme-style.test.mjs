@@ -29,7 +29,7 @@ try {
   }
 
   // readStyleTokens: from a profile file; missing file → {}
-  const dir = mkdtempSync(join(tmpdir(), 'career-ops-theme-'));
+  const dir = mkdtempSync(join(tmpdir(), 'cicerone-theme-'));
   try {
     const p = join(dir, 'profile.yml');
     writeFileSync(p, 'candidate:\n  full_name: X\nstyle:\n  accent_color: "#ff0000"\n');
@@ -50,7 +50,7 @@ try {
   if (buildThemeStyleBlock({}) === '' && buildThemeStyleBlock(null) === '') pass('buildThemeStyleBlock returns "" for no tokens');
   else fail('buildThemeStyleBlock should return "" for no tokens');
   const block = buildThemeStyleBlock({ '--accent-color': '#2563eb', '--font-size': '10pt' });
-  if (block.includes('id="career-ops-dynamic-theme"') && block.includes(':root {') && block.includes('--accent-color: #2563eb;') && block.includes('--font-size: 10pt;')) {
+  if (block.includes('id="cicerone-dynamic-theme"') && block.includes(':root {') && block.includes('--accent-color: #2563eb;') && block.includes('--font-size: 10pt;')) {
     pass('buildThemeStyleBlock emits a :root block with the declarations');
   } else {
     fail(`buildThemeStyleBlock => ${block}`);
@@ -68,13 +68,13 @@ try {
   if (injectThemeStyle(html, {}) === html) pass('injectThemeStyle is a no-op with no tokens (byte-identical)');
   else fail('injectThemeStyle should be a no-op with no tokens');
   const injected = injectThemeStyle(html, { '--accent-color': '#2563eb' });
-  if (injected.includes('career-ops-dynamic-theme') && injected.indexOf('career-ops-dynamic-theme') < injected.indexOf('</head>') && injected.indexOf('career-ops-dynamic-theme') > injected.indexOf('<style>')) {
+  if (injected.includes('cicerone-dynamic-theme') && injected.indexOf('cicerone-dynamic-theme') < injected.indexOf('</head>') && injected.indexOf('cicerone-dynamic-theme') > injected.indexOf('<style>')) {
     pass('injectThemeStyle inserts the theme block before </head>, after the template style');
   } else {
     fail(`injectThemeStyle head => ${injected}`);
   }
   const noHead = injectThemeStyle('<div>x</div>', { '--accent-color': '#2563eb' });
-  if (noHead.startsWith('<style id="career-ops-dynamic-theme"')) pass('injectThemeStyle prepends the block when there is no </head>');
+  if (noHead.startsWith('<style id="cicerone-dynamic-theme"')) pass('injectThemeStyle prepends the block when there is no </head>');
   else fail(`injectThemeStyle no-head => ${noHead}`);
 
   // Template guard: shipped templates read the vars with :root defaults, no circular refs
@@ -99,8 +99,8 @@ try {
     const tplSrc = readFileSync(join(ROOT, 'templates/cv-template.html'), 'utf-8');
     const withOverride = injectPrintPageCss(injectThemeStyle(tplSrc, { '--page-margin': '0.5in' }), 'a4');
     const rootDefaultIdx = withOverride.indexOf('--page-margin: 0.6in');   // template's own :root default
-    const overrideIdx = withOverride.indexOf('career-ops-dynamic-theme'); // the profile's style.margin override
-    const pageSetupIdx = withOverride.indexOf('career-ops-page-setup');   // injectPrintPageCss's @page rule
+    const overrideIdx = withOverride.indexOf('cicerone-dynamic-theme'); // the profile's style.margin override
+    const pageSetupIdx = withOverride.indexOf('cicerone-page-setup');   // injectPrintPageCss's @page rule
     const pageSetupUsesVar = /@page \{ size: A4; margin: var\(--page-margin, 0\.6in\); \}/.test(withOverride);
     if (rootDefaultIdx !== -1 && rootDefaultIdx < overrideIdx && overrideIdx < pageSetupIdx && pageSetupUsesVar) {
       pass('injectPrintPageCss reads --page-margin instead of hardcoding it, so style.margin wins the cascade (#1837 review)');

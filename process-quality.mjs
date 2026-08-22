@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * process-quality.mjs — Recruiting-Process Friction Aggregator for career-ops
+ * process-quality.mjs — Recruiting-Process Friction Aggregator for cicerone
  *
  * Parses data/active-interviews.md, extracts inline `[process-friction]` tags
  * from the Notes column, and aggregates them per company into a friction
@@ -239,7 +239,7 @@ function loadActiveInterviews(path = ACTIVE_INTERVIEWS_PATH) {
 // --- Summary mode ---
 function printSummary(signals) {
   console.log(`\n${'='.repeat(78)}`);
-  console.log('  Process Quality Signal — career-ops');
+  console.log('  Process Quality Signal — cicerone');
   console.log(`  min threshold: ${MIN_THRESHOLD} interview(s) | companies: ${signals.length}`);
   console.log(`${'='.repeat(78)}\n`);
 

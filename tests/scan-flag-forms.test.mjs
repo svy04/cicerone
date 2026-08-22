@@ -27,7 +27,7 @@ import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
-const NO_PORTALS = join(tmpdir(), 'career-ops-no-such-portals.yml');
+const NO_PORTALS = join(tmpdir(), 'cicerone-no-such-portals.yml');
 
 function runScan(...args) {
   const r = spawnSync(process.execPath, [join(ROOT, 'scan.mjs'), ...args], {

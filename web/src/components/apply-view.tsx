@@ -229,7 +229,7 @@ export function ApplyView() {
               <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-emerald-500" />
               <div>
                 <span className="font-medium text-emerald-700 dark:text-emerald-400">The real form is now in front, pre-filled.</span>{" "}
-                <span className="text-muted">Review it and click Submit yourself — career-ops never submits for you.</span>
+                <span className="text-muted">Review it and click Submit yourself — cicerone never submits for you.</span>
               </div>
             </div>
           )}
@@ -244,7 +244,7 @@ export function ApplyView() {
 
 // ── Leaving the page: back out, or record that you applied ─────────────────
 // You submit the real form yourself on the employer's site, so the moment you
-// apply happens outside career-ops — this is where you tell the tracker about
+// apply happens outside cicerone — this is where you tell the tracker about
 // it. The write goes through /api/status, the same route the tracker's own
 // status control uses, so there is only ever one writer to the table.
 function ApplyExitBar() {

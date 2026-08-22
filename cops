@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# cops — thin wrapper: run any career-ops command inside the docker container.
+# cops — thin wrapper: run any cicerone command inside the docker container.
 #
 # Examples:
 #   ./cops doctor
@@ -17,7 +17,7 @@ set -euo pipefail
 
 cd "$(dirname "$0")"
 
-SERVICE="career-ops"
+SERVICE="cicerone"
 
 ensure_up() {
   if ! docker compose ps --services --filter "status=running" | grep -qx "$SERVICE"; then

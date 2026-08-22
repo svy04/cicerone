@@ -1,7 +1,7 @@
 import { NextRequest } from "next/server";
 import fs from "node:fs";
 import path from "node:path";
-import { careerOpsRoot } from "@/lib/career-ops";
+import { careerOpsRoot } from "@/lib/cicerone";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

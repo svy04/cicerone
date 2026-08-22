@@ -1,6 +1,6 @@
 # Examples
 
-Reference files that demonstrate career-ops data formats and conventions. None of these are used at runtime -- they exist so you can see the expected structure before creating your own files.
+Reference files that demonstrate cicerone data formats and conventions. None of these are used at runtime -- they exist so you can see the expected structure before creating your own files.
 
 ## Files
 
@@ -15,7 +15,7 @@ Reference files that demonstrate career-ops data formats and conventions. None o
 
 ## Usage
 
-These files are read-only references. To set up your own career-ops instance:
+These files are read-only references. To set up your own cicerone instance:
 
 1. Run `npm run doctor` to check prerequisites.
 2. Use `cv-example.md` (or `resume-example.md` for US/industry contexts) as a structural guide when writing your `cv.md`.

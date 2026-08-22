@@ -16,7 +16,7 @@ import { acquirePortalHealthLock, LockTimeoutError } from '../portal-health-lock
 
 console.log('\napplyScriptDirGuard() — safe cleanup of a possibly-regressed script-dir write');
 
-const dir = mkdtempSync(join(tmpdir(), 'career-ops-guard-'));
+const dir = mkdtempSync(join(tmpdir(), 'cicerone-guard-'));
 const marker = 'Portal Health CWD Fixture TEST-MARKER';
 const HEADER = 'timestamp\tcompany\tstatus\n';
 

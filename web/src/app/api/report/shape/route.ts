@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { careerOpsRoot, doctorState, readApplications, readInbox, trackerCanDelete } from "@/lib/career-ops";
+import { careerOpsRoot, doctorState, readApplications, readInbox, trackerCanDelete } from "@/lib/cicerone";
 import { scannerSupportsJson } from "@/lib/core/scan";
 
 export const runtime = "nodejs";

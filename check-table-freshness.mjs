@@ -313,7 +313,7 @@ function loadConfigMaxAge() {
 function printSummary(result, todayStr, maxAgeMonths) {
   const { tablesScanned, rowsChecked, findings, warnings } = result;
   console.log(`\n${'='.repeat(78)}`);
-  console.log('  Table Freshness — career-ops');
+  console.log('  Table Freshness — cicerone');
   console.log(`  today: ${todayStr} | review threshold: ${maxAgeMonths} months | tables: ${tablesScanned} | rows: ${rowsChecked}`);
   console.log(`${'='.repeat(78)}\n`);
 

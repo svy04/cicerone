@@ -116,7 +116,7 @@ test("resolveReturnPath: refuses to navigate off the app", () => {
     // When resolving where back goes
     const target = resolveReturnPath(from);
 
-    // Then the navigation stays inside career-ops
+    // Then the navigation stays inside cicerone
     assert.equal(target, DEFAULT_RETURN_PATH, `expected ${from} to be refused`);
   }
 });

@@ -3,7 +3,7 @@
 ## Purpose
 
 Take a list of companies and resolve each to a scannable ATS board by probing
-the public JSON APIs career-ops already supports — Greenhouse, Ashby, Lever, and
+the public JSON APIs cicerone already supports — Greenhouse, Ashby, Lever, and
 Workday — via the existing `providers/` layer. Zero LLM tokens, zero auth. A
 company "resolves" when a vendor's board exists AND currently lists ≥1 job.
 Confirmed entries are appended to `portals.yml` `tracked_companies` (deduped,

@@ -58,7 +58,7 @@ function makeSandbox() {
   const dir = mkdtempSync(join(tmpdir(), 'co-seed-'));
   const tracker = join(dir, 'applications.md');
   const followups = join(dir, 'follow-ups.md');
-  const lock = join(dir, `career-ops-followups-test-${Math.random().toString(36).slice(2)}.lock`);
+  const lock = join(dir, `cicerone-followups-test-${Math.random().toString(36).slice(2)}.lock`);
   return { dir, tracker, followups, lock };
 }
 

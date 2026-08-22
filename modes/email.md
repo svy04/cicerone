@@ -159,7 +159,7 @@ If a report has a score:
 - `>= 4.5`: confident, priority application.
 - `4.0-4.4`: good match, worth applying.
 - `< 4.0`: restrained; do not oversell. If below 4.0, warn the user before
-  drafting that career-ops normally recommends against applying.
+  drafting that cicerone normally recommends against applying.
 
 ---
 

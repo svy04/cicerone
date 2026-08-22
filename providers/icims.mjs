@@ -22,7 +22,7 @@ const ICIMS_MAX_PAGES = 30;
 const INTER_PAGE_DELAY_MS = 250;
 
 // iCIMS serves 200 directly to a browser-like UA (verified live); the default
-// career-ops UA risks WAF interstitials, same as workday/glints.
+// cicerone UA risks WAF interstitials, same as workday/glints.
 const HEADERS = {
   'user-agent': BROWSER_LIKE_USER_AGENT,
   'accept-language': 'en-US,en;q=0.9',

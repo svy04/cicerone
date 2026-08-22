@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * doctor.mjs — Setup validation for career-ops
+ * doctor.mjs — Setup validation for cicerone
  * Checks all prerequisites and prints a pass/fail checklist.
  */
 
@@ -37,7 +37,7 @@ const USAGE = `Usage:
   node doctor.mjs                    # run the setup diagnostic
   node doctor.mjs --json             # machine-readable onboarding state
   node doctor.mjs --strict           # also probe portals.yml ATS slugs (network)
-  node doctor.mjs --target <path>    # diagnose another career-ops checkout
+  node doctor.mjs --target <path>    # diagnose another cicerone checkout
   node doctor.mjs --cli <name>       # check a specific CLI's integration
   node doctor.mjs --help             # show this message
 

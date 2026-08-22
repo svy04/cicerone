@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 
-// The career-ops-docs home signature: an animated grain-gradient glow. Deferred
+// The cicerone-docs home signature: an animated grain-gradient glow. Deferred
 // to browser idle, skipped on reduced-motion, ssr:false → zero LCP cost. Renders
 // grain in the corners (transparent center) so the dot-grid shows through.
 const GrainGradient = dynamic(

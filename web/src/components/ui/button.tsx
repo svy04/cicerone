@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/cn";
 
-// Mirrors the career-ops-docs ui/button (cva) on app tokens. Docs CTAs are
+// Mirrors the cicerone-docs ui/button (cva) on app tokens. Docs CTAs are
 // rounded-full pills; we down-tune controls to rounded-md for dashboard
 // density and reserve the one rounded-full pill for the Today hero CTA
 // (expressed inline, not a variant — avoids pill overuse).

@@ -1,5 +1,5 @@
 import path from "node:path";
-import { careerOpsRoot } from "@/lib/career-ops";
+import { careerOpsRoot } from "@/lib/cicerone";
 import { withFollowupsLock, FollowupsBusyError } from "@/lib/core/followups-lock";
 
 export { FollowupsBusyError };

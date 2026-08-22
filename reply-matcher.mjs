@@ -196,7 +196,7 @@ const SHARED_DOMAINS = [
 // paths or filenames ("output/cv-2026-06-23.pdf").
 const DOMAIN_SHAPE = /^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)*\.[a-z]{2,}$/;
 
-// Extensions of the artifacts career-ops writes into tracker notes. Several parse
+// Extensions of the artifacts cicerone writes into tracker notes. Several parse
 // as a valid TLD, so shape alone cannot tell a filename from a hostname: "cv.md"
 // would otherwise read as a Moldovan domain. Deliberately excludes extensions that
 // are common employer TLDs (io, co, ai, sh, me, dev, app).

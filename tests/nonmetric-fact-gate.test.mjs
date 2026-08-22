@@ -6,7 +6,7 @@ import { tmpdir } from 'os';
 
 console.log('\nNon-metric fact gate');
 
-const tmp = mkdtempSync(join(tmpdir(), 'career-ops-nonmetric-facts-'));
+const tmp = mkdtempSync(join(tmpdir(), 'cicerone-nonmetric-facts-'));
 try {
   const source = join(tmp, 'cv.md');
   const config = join(tmp, 'cv-facts.json');

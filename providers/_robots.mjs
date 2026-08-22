@@ -147,7 +147,7 @@ export function isAllowed(robots, pathname) {
  * @param {string} [agent] 사용자 에이전트 이름
  * @returns {Promise<{rules: Array<any>, crawlDelay: number|null, fetched: boolean}>}
  */
-export async function loadRobots(url, ctx, agent = 'career-ops') {
+export async function loadRobots(url, ctx, agent = 'cicerone') {
   let origin;
   try {
     origin = new URL(url).origin;
@@ -180,7 +180,7 @@ export async function loadRobots(url, ctx, agent = 'career-ops') {
  * @param {string} [agent] 사용자 에이전트 이름
  * @returns {Promise<{crawlDelay: number|null}>}
  */
-export async function assertAllowed(url, ctx, agent = 'career-ops') {
+export async function assertAllowed(url, ctx, agent = 'cicerone') {
   const robots = await loadRobots(url, ctx, agent);
   const u = new URL(url);
   const path = u.pathname + (u.search || '');

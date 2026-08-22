@@ -39,7 +39,7 @@ export const HEADER_ALIASES = (() => {
   } catch (e) {
     throw new Error(
       `tracker-parse.mjs: cannot load tracker-aliases.json (${e.message}). ` +
-      'The file ships with career-ops next to tracker-parse.mjs — restore it ' +
+      'The file ships with cicerone next to tracker-parse.mjs — restore it ' +
       'from the repo or re-run: node update-system.mjs apply',
     );
   }
@@ -409,7 +409,7 @@ export function normalizeTextKey(value, separator = '') {
     // exposed. Decomposing first (NFD → strip → NFC) looks equivalent and is
     // not: it collapsed Żubr/Zubr, Ėmė/Eme and Ġenerali/Generali, which is
     // Polish, Lithuanian and Maltese losing the distinction (caught in main
-    // by career-ops-ui, 12-ago). The protection is structural, not a list.
+    // by cicerone-ui, 12-ago). The protection is structural, not a list.
     .replace(/̇/gu, '')
     .replace(/[^\p{L}\p{M}\p{N}]+/gu, separator)
     .trim();

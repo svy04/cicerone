@@ -1,7 +1,7 @@
 {
-  "name": "career-ops-plugin-docx",
+  "name": "cicerone-plugin-docx",
   "id": "docx",
-  "repo": "https://github.com/rubicon/career-ops-plugin-docx",
+  "repo": "https://github.com/rubicon/cicerone-plugin-docx",
   "author": "rubicon",
   "hooks": [
     "export"

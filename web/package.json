@@ -1,8 +1,8 @@
 {
-  "name": "@career-ops/web",
+  "name": "@cicerone/web",
   "version": "0.7.1",
   "private": true,
-  "description": "Official web experience for career-ops — local-first.",
+  "description": "Official web experience for cicerone — local-first.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

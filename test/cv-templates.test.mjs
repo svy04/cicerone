@@ -35,13 +35,13 @@ function fixtureDir() {
   writeFileSync(join(dir, 'cv-template.html'), '{{NAME}}{{EXPERIENCE}}{{EDUCATION}}');
   writeFileSync(
     join(dir, 'cv-template.executive-authority.html'),
-    '<!-- career-ops-template\nname: Executive Authority\nversion: 1.0.0\n-->\n{{NAME}}{{EXPERIENCE}}{{EDUCATION}}'
+    '<!-- cicerone-template\nname: Executive Authority\nversion: 1.0.0\n-->\n{{NAME}}{{EXPERIENCE}}{{EDUCATION}}'
   );
   writeFileSync(join(dir, 'cv-template.tex'), '{{NAME}}');
   writeFileSync(join(dir, 'cover-letter-template.html'), '{{NAME}}{{ROLE_TITLE}}{{OPENING}}');
   writeFileSync(
     join(dir, 'cover-letter-template.formal.html'),
-    '<!-- career-ops-template\nname: Formal\nversion: 1.0.0\n-->\n{{NAME}}{{ROLE_TITLE}}{{OPENING}}'
+    '<!-- cicerone-template\nname: Formal\nversion: 1.0.0\n-->\n{{NAME}}{{ROLE_TITLE}}{{OPENING}}'
   );
   writeFileSync(join(dir, 'unrelated.html'), 'nope');
   return dir;

@@ -1,4 +1,4 @@
-# Reviewing career-ops PRs — the one-pager
+# Reviewing cicerone PRs — the one-pager
 
 For reviewers on the [contributor ladder](../MAINTAINERS.md). Merges still go through a maintainer; your review is what makes them fast and safe.
 

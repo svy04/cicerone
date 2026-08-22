@@ -1,6 +1,6 @@
 # cicerone on the Free Tier (Antigravity CLI)
 
-career-ops works with **Antigravity CLI's free tier** — no API key or paid
+cicerone works with **Antigravity CLI's free tier** — no API key or paid
 subscription required. This guide covers setup, limits, and trade-offs.
 
 ## Quick Start
@@ -31,7 +31,7 @@ subscription required. This guide covers setup, limits, and trade-offs.
    keyring, then falls back to Google Sign-In (browser locally /
    URL + code over SSH).
 
-3. Run career-ops as usual:
+3. Run cicerone as usual:
 
    ```bash
    agy          # interactive — paste a URL, evaluate, scan, etc.
@@ -50,7 +50,7 @@ limits (subject to change):
 | Output tokens       | ~100 K                 |
 
 Limits reset at midnight Pacific Time. If you hit a cap the CLI returns
-a rate-limit error; career-ops will pause and suggest retrying tomorrow.
+a rate-limit error; cicerone will pause and suggest retrying tomorrow.
 
 ## Batch Mode Behavior
 

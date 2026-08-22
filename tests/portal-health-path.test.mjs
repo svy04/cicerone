@@ -28,7 +28,7 @@ import { applyScriptDirGuard } from './portal-health-guard.mjs';
 console.log('\nscan.mjs — portal-health.tsv resolves against cwd, not script dir');
 
 const scanUrl = JSON.stringify(pathToFileURL(join(ROOT, 'scan.mjs')).href);
-const sandboxCwd = mkdtempSync(join(tmpdir(), 'career-ops-portal-health-'));
+const sandboxCwd = mkdtempSync(join(tmpdir(), 'cicerone-portal-health-'));
 
 // The script's own directory is ROOT in this checkout -- the same directory
 // the pre-fix bug always resolved to regardless of the cwd it was given.

@@ -15,7 +15,7 @@ const batchStateFile = process.env.CAREER_OPS_BATCH_STATE
   : join(__dirname, 'batch', 'batch-state.tsv');
 const reportsDir = join(__dirname, 'reports');
 
-const USAGE = `career-ops batch tailor — bulk generate tailored CVs for high-scoring batch jobs
+const USAGE = `cicerone batch tailor — bulk generate tailored CVs for high-scoring batch jobs
 
 Usage:
   node batch-tailor.mjs [--min-score N]

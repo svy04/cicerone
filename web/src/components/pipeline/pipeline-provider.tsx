@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
-import type { Application, InboxJob } from "@/lib/career-ops";
+import type { Application, InboxJob } from "@/lib/cicerone";
 
 // A thin client mirror of the pipeline so BOTH the pages and the assistant
 // console (a different subtree) can read inbox/applications. Hydrated once from

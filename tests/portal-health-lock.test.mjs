@@ -17,7 +17,7 @@ import { acquirePortalHealthLock, LockTimeoutError } from '../portal-health-lock
 
 console.log('\nportal-health-lock.mjs — ownership-verified locking');
 
-const root = mkdtempSync(join(tmpdir(), 'career-ops-ph-lock-'));
+const root = mkdtempSync(join(tmpdir(), 'cicerone-ph-lock-'));
 
 try {
   // 1. A live holder blocks a second acquirer, which times out.
@@ -48,7 +48,7 @@ try {
 
   // 2. Fresh install: the parent data/ directory may not exist yet.
   {
-    const fresh = mkdtempSync(join(tmpdir(), 'career-ops-ph-fresh-'));
+    const fresh = mkdtempSync(join(tmpdir(), 'cicerone-ph-fresh-'));
     const p = join(fresh, 'data', 'portal-health.tsv');
     try {
       const lock = await acquirePortalHealthLock(p, { timeoutMs: 200, retryMs: 20 });

@@ -1,4 +1,4 @@
-# career-ops plugins
+# cicerone plugins
 
 The plugin layer is the **opt-in home for integrations that need a key or talk
 to an external service** — things the zero-keys, local-first core deliberately
@@ -6,7 +6,7 @@ doesn't carry. It generalizes the proven `providers/` pattern: drop a directory
 in here, declare a manifest, and it's discovered automatically.
 
 > **Not the Claude Code plugin.** This is unrelated to `.claude-plugin/` (the
-> Claude Code marketplace metadata). These plugins extend career-ops itself.
+> Claude Code marketplace metadata). These plugins extend cicerone itself.
 
 ## Default: off
 
@@ -20,7 +20,7 @@ changes. Two gates must both be satisfied:
 
 ## Anatomy of a plugin
 
-A plugin is a directory under `plugins/` (bundled, shipped with career-ops) or
+A plugin is a directory under `plugins/` (bundled, shipped with cicerone) or
 `plugins.local/` (your own, gitignored, never auto-updated):
 
 ```
@@ -87,7 +87,7 @@ shadowed by it. Bundled plugins always win an id collision.
 
 ## Trust model (read this)
 
-career-ops is plain ESM with no build step, so the engine **cannot truly
+cicerone is plain ESM with no build step, so the engine **cannot truly
 sandbox** a plugin's imports. `allowedHosts`, the scoped `ctx.env`, and the
 no-auto-submit hook taxonomy constrain an **honest** plugin and make every loaded
 plugin visible (`doctor` / `plugins.mjs list`) — but they are not a hard
@@ -109,7 +109,7 @@ These don't belong in the plugin layer — they're a different direction:
   opt-in service**, discussed in
   [Where career-ops is going (#904)](https://github.com/svy04/cicerone/discussions/904) —
   not the open-core.
-- **Auto-submitting / blind-applying** to jobs. career-ops is a decision-support
+- **Auto-submitting / blind-applying** to jobs. cicerone is a decision-support
   tool, not a spam bot — it drafts applications for **you** to review and submit.
   No hook can submit, and `humanInTheLoop: true` is mandatory. This holds
   everywhere, in core and plugins alike.

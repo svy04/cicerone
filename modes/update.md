@@ -6,7 +6,7 @@ When the user runs `/cicerone update`, execute this interactive update flow.
 
 Run `node update-system.mjs check` and parse the JSON output.
 
-- If `up-to-date`: Tell the user "career-ops is up to date (v{version})." and stop.
+- If `up-to-date`: Tell the user "cicerone is up to date (v{version})." and stop.
 - If `offline`: Tell the user "Cannot reach GitHub to check for updates. Try again later." and stop.
 - If `dismissed`: Tell the user "Update check was previously dismissed. Clearing the dismissal and re-checking now." Remove `.update-dismissed`, then re-run `node update-system.mjs check` and branch on the new status.
 - If `update-available`: Continue to Step 2.

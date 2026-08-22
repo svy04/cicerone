@@ -7,7 +7,7 @@
  * score. If discarded entry had more advanced status, preserves that status.
  * Merges notes.
  *
- * Run: node career-ops/dedup-tracker.mjs [--dry-run]
+ * Run: node cicerone/dedup-tracker.mjs [--dry-run]
  */
 
 import { readFileSync, copyFileSync, existsSync, mkdirSync } from 'fs';

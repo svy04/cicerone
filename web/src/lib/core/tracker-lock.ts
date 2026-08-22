@@ -1,6 +1,6 @@
 import path from "node:path";
 import { pathToFileURL } from "node:url";
-import { careerOpsRoot } from "@/lib/career-ops";
+import { careerOpsRoot } from "@/lib/cicerone";
 
 /**
  * ACL for the core's tracker lock (`tracker-utils.mjs`).

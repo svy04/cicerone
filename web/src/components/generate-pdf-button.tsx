@@ -6,7 +6,7 @@ import { FileDown, Loader2, FileText, RotateCcw } from "lucide-react";
 import { useJobs } from "@/components/jobs/job-store";
 import { CostBadge } from "@/components/cost/cost-badge";
 
-// Fires the real career-ops `pdf` mode (worker kind "pdf") to generate an
+// Fires the real cicerone `pdf` mode (worker kind "pdf") to generate an
 // ATS-optimized CV tailored to THIS offer → output/cv-… + marks the tracker.
 // Once a tailored CV exists (tracker PDF ✅, or a pdf worker just finished), it
 // becomes a "View tailored CV" link (served by /api/cv-pdf) + a regenerate icon.

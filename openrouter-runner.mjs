@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * career-ops OpenRouter Runner
+ * cicerone OpenRouter Runner
  * No Claude Code CLI required — uses OpenRouter free models with automatic fallback.
  *
  * Usage:
@@ -226,7 +226,7 @@ async function callOpenRouter(systemPrompt, userMessage) {
           'Authorization': `Bearer ${key}`,
           'Content-Type':  'application/json',
           'HTTP-Referer':  'https://github.com/svy04/cicerone',
-          'X-Title':       'career-ops',
+          'X-Title':       'cicerone',
         },
         body,
         signal: ctrl.signal,
@@ -287,7 +287,7 @@ async function callOpenRouter(systemPrompt, userMessage) {
             'Authorization': `Bearer ${key}`,
             'Content-Type':  'application/json',
             'HTTP-Referer':  'https://github.com/svy04/cicerone',
-            'X-Title':       'career-ops',
+            'X-Title':       'cicerone',
           },
           body,
           signal: controller.signal,
@@ -829,7 +829,7 @@ if (invokedDirectly) switch (command) {
 
   default:
     console.log(`
-career-ops OpenRouter Runner
+cicerone OpenRouter Runner
 Auto-fetches free models from OpenRouter API and rotates through them with fallback.
 
 COMMANDS:

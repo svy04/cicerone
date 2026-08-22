@@ -1,7 +1,7 @@
 import path from "node:path";
 
 // Plain .mjs (same pattern as tracker-table.mjs/pdf-paths.mjs) so both the
-// TypeScript side (career-ops.ts) and the Node-run test suites can import it.
+// TypeScript side (cicerone.ts) and the Node-run test suites can import it.
 // A .ts home would have been unreachable from `node --test`, which is why this
 // convention had drifted into two copies before landing here.
 
@@ -13,7 +13,7 @@ import path from "node:path";
  * written the report; it is deleted once the real report lands (or GC'd after
  * 4h if abandoned). Two consumers must agree on what that looks like:
  *
- * - `findReportFile` (career-ops.ts) — "RESERVED" sorts before nearly every real
+ * - `findReportFile` (cicerone.ts) — "RESERVED" sorts before nearly every real
  *   slug, so a surviving sentinel could be returned INSTEAD of the real report,
  *   making the report body and the Apply/PDF-ready checks disappear.
  * - `completedReportNames` (run-cli-support.mjs) — a sentinel must not count as

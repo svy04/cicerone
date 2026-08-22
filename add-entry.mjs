@@ -193,7 +193,7 @@ export function applyAdd(payload, { cvText = null, articleText = null } = {}) {
     if (!normalizeKey(dedupKey)) throw new Error('payload.articleDigest requires a non-empty dedupKey (used for dedup/idempotency)');
     // article-digest.md is optional; create it from a header when missing.
     const current = articleText === null
-      ? '# Article Digest -- Proof Points\n\nCompact proof points from portfolio projects. Read by career-ops at evaluation time.\n'
+      ? '# Article Digest -- Proof Points\n\nCompact proof points from portfolio projects. Read by cicerone at evaluation time.\n'
       : articleText;
     if (articleDigestHasEntry(current, dedupKey)) {
       result.articleDigest = { status: 'duplicate' };

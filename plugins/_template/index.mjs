@@ -1,5 +1,5 @@
 // @ts-check
-// {{NAME}} — a career-ops plugin.
+// {{NAME}} — a cicerone plugin.
 // Guide: https://github.com/svy04/cicerone/blob/main/docs/PLUGINS.md
 //
 // Rules the engine enforces for you:

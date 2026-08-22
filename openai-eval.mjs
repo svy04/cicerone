@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * openai-eval.mjs — OpenAI-compatible Job Offer Evaluator for career-ops
+ * openai-eval.mjs — OpenAI-compatible Job Offer Evaluator for cicerone
  *
  * Evaluate job offers with ANY OpenAI-compatible chat endpoint instead of Claude.
  * Works with OpenAI, OpenRouter, Together, Groq, DeepSeek, Zhipu GLM, MiniMax,
@@ -67,7 +67,7 @@ const args = process.argv.slice(2);
 if (args.length === 0 || args[0] === '--help' || args[0] === '-h') {
   console.log(`
 ╔══════════════════════════════════════════════════════════════════╗
-║       career-ops — OpenAI-compatible Evaluator (any endpoint)     ║
+║       cicerone — OpenAI-compatible Evaluator (any endpoint)     ║
 ╚══════════════════════════════════════════════════════════════════╝
 
   Evaluate a job offer with any OpenAI-compatible chat API instead of Claude.
@@ -246,7 +246,7 @@ if (budgetReport.compressed) {
   console.log(`📊  Token budget: ${budgetReport.totalTokens} tokens (within ${budgetReport.budget} limit)`);
 }
 
-const systemPrompt = `You are career-ops, an AI-powered job search assistant.
+const systemPrompt = `You are cicerone, an AI-powered job search assistant.
 You evaluate job offers against the user's CV using a structured A-G scoring system.
 
 Your evaluation methodology is defined below. Follow it exactly.

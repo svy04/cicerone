@@ -1,7 +1,7 @@
 {
-  "name": "career-ops-plugin-markdown",
+  "name": "cicerone-plugin-markdown",
   "id": "markdown",
-  "repo": "https://github.com/rubicon/career-ops-plugin-markdown",
+  "repo": "https://github.com/rubicon/cicerone-plugin-markdown",
   "author": "rubicon",
   "hooks": [
     "export"

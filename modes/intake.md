@@ -9,7 +9,7 @@ reference letters — instead of asking them to fill everything in by hand
 (#1723).
 
 Pattern credit: [MadsLorentzen/ai-job-search](https://github.com/MadsLorentzen/ai-job-search)'s
-`documents/` intake + idempotent `/setup` merge, adapted to career-ops'
+`documents/` intake + idempotent `/setup` merge, adapted to cicerone'
 user-layer contract.
 
 Division of labor: `intake.mjs` does everything deterministic (enumerate

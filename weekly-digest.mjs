@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * weekly-digest.mjs — Weekly Interview Digest for career-ops
+ * weekly-digest.mjs — Weekly Interview Digest for cicerone
  *
  * `interview/debrief` and `interview/practice` already write structured
  * session transcripts to `interview-prep/sessions/{company-slug}-{role-slug}-

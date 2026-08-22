@@ -11,7 +11,7 @@
  * If duplicate with higher score → update in-place, update report link
  * Validates status against states.yml (rejects non-canonical, logs warning)
  *
- * Run: node career-ops/merge-tracker.mjs [--dry-run] [--verify]
+ * Run: node cicerone/merge-tracker.mjs [--dry-run] [--verify]
  */
 
 import { readFileSync, readdirSync, mkdirSync, renameSync, existsSync } from 'fs';
@@ -463,7 +463,7 @@ let COLMAP = LEGACY_COLMAP;
 
 // Total cell count of the tracker's ACTUAL header row, set once the table is
 // read. Writes are driven by this width rather than by a hardcoded column list
-// so a tracker carrying columns career-ops has no field for (Apply Link,
+// so a tracker carrying columns cicerone has no field for (Apply Link,
 // Follow-up, or anything else a user adds) still round-trips: the row keeps the
 // header's shape and the unknown cells are filled with the tracker's own "no
 // data" marker instead of being dropped. Null until detected; falls back to the
@@ -471,8 +471,8 @@ let COLMAP = LEGACY_COLMAP;
 let HEADER_WIDTH = null;
 
 // Build a tracker row string matching the detected layout. Every field
-// career-ops knows about is placed at ITS OWN detected index, and any column
-// the header declares but career-ops has no value for becomes '—'.
+// cicerone knows about is placed at ITS OWN detected index, and any column
+// the header declares but cicerone has no value for becomes '—'.
 //
 // The previous implementation appended a fixed tail (score, status, pdf,
 // report, notes, [url]) after the optional Via/Location columns. That silently
@@ -487,12 +487,12 @@ function buildRow(o) {
   // the one right of the trailing pipe. Data cells live in between.
   const cells = new Array(Math.max(0, width - 2)).fill('—');
   // Rebuilding an EXISTING row (PDF sync, re-evaluation update, URL backfill):
-  // start from the row's current cells so values in columns career-ops has no
+  // start from the row's current cells so values in columns cicerone has no
   // field for — a hand-entered Apply Link, a Follow-up date — survive the
   // rebuild. parseAppLine only carries the mapped fields, so without this the
   // '—' fill above would overwrite those user-owned cells on every update.
   // Copied verbatim (empty cells included); the put() calls below then
-  // overwrite only the fields career-ops owns. New rows pass no `raw` and keep
+  // overwrite only the fields cicerone owns. New rows pass no `raw` and keep
   // the plain '—' fill.
   if (o.raw) {
     const prev = String(o.raw).split('|').map(s => s.trim());
@@ -819,7 +819,7 @@ if (COLMAP.url != null) console.log('🧭 Detected URL column (deterministic ded
 if (HEADER_WIDTH != null && HEADER_WIDTH - 2 > Object.keys(COLMAP).length) {
   console.log(
     `🧭 Header has ${HEADER_WIDTH - 2} columns; ${HEADER_WIDTH - 2 - Object.keys(COLMAP).length} ` +
-    'not mapped to a career-ops field — those cells are written as "—".',
+    'not mapped to a cicerone field — those cells are written as "—".',
   );
 }
 const existingApps = [];

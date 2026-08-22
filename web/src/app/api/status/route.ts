@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { execFile } from "node:child_process";
 import fs from "node:fs";
-import { careerOpsRoot, rootScript } from "@/lib/career-ops";
+import { careerOpsRoot, rootScript } from "@/lib/cicerone";
 import { canonicalizeStatus } from "@/lib/core/states";
 import { parseCliJson, trackerRowArg, clientErrorMessage } from "@/lib/status-cli.mjs";
 
@@ -147,7 +147,7 @@ export async function POST(req: Request) {
   if (!fs.existsSync(script)) {
     return NextResponse.json(
       {
-        error: "status updates need the career-ops scripts; this root has data only",
+        error: "status updates need the cicerone scripts; this root has data only",
         code: "core-script-missing",
       },
       { status: 503 },

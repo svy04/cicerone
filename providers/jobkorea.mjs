@@ -4,7 +4,7 @@
 // 잡코리아 공고 목록 — 직무·지역·기업형태 탭을 읽습니다.
 //
 // ── 지키는 넷 ────────────────────────────────────────────────
-//   1. 정체를 밝힌다 — ctx 가 붙이는 career-ops 사용자 에이전트를 씁니다
+//   1. 정체를 밝힌다 — ctx 가 붙이는 cicerone 사용자 에이전트를 씁니다
 //   2. robots.txt 를 본다 — 요청 전에 `assertAllowed` 가 판정합니다
 //   3. 원문 주소를 남긴다 — 공고마다 잡코리아 원문 주소를 보존합니다
 //   4. 재배포하지 않는다 — 결과는 사용자 컴퓨터의 파일로만 갑니다
@@ -164,7 +164,7 @@ export default {
     }
 
     // robots 관문 — 막힌 경로면 여기서 멈춥니다
-    const { crawlDelay } = await assertAllowed(base.toString(), ctx, 'career-ops');
+    const { crawlDelay } = await assertAllowed(base.toString(), ctx, 'cicerone');
     const pace = Math.max(PACE_MS, (crawlDelay || 0) * 1000);
 
     const maxPages = Math.max(1, Math.min(Number(entry?.max_pages) || DEFAULT_MAX_PAGES, 10));

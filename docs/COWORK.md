@@ -1,24 +1,24 @@
-# Running career-ops in Claude Cowork
+# Running cicerone in Claude Cowork
 
-career-ops was built for AI coding CLIs, but it also runs inside [Claude Cowork](https://www.anthropic.com/news/cowork) — Anthropic's desktop "work with your files" surface — with no changes to the system. If a terminal is a barrier for you, this is the friendlier door.
+cicerone was built for AI coding CLIs, but it also runs inside [Claude Cowork](https://www.anthropic.com/news/cowork) — Anthropic's desktop "work with your files" surface — with no changes to the system. If a terminal is a barrier for you, this is the friendlier door.
 
 **First-party verified (July 2026):** the full cycle — onboarding from a PDF CV, portal config, a complete A–G evaluation of a live Greenhouse posting, and canonical tracker registration via `merge-tracker.mjs` — ran end to end inside Cowork. Bonus: Cowork renders the onboarding steps as native clickable options and a progress checklist.
 
 ## How it works
 
-Cowork mounts your career-ops folder and the agent reads the same instruction files the CLIs read (`CLAUDE.md` → `AGENTS.md`, `modes/`). There are no slash commands: you just talk — "evaluate this job posting", "scan my portals", "update my tracker" — and Claude runs the matching mode. You watch every file change in the sidebar, which reinforces the system's core rule: **you review everything before anything goes out.**
+Cowork mounts your cicerone folder and the agent reads the same instruction files the CLIs read (`CLAUDE.md` → `AGENTS.md`, `modes/`). There are no slash commands: you just talk — "evaluate this job posting", "scan my portals", "update my tracker" — and Claude runs the matching mode. You watch every file change in the sidebar, which reinforces the system's core rule: **you review everything before anything goes out.**
 
 ## Quick start
 
-1. In a terminal (one time), clone career-ops **and install its dependencies** — Cowork's local shell has no npm network access, so do this before opening the folder:
+1. In a terminal (one time), clone cicerone **and install its dependencies** — Cowork's local shell has no npm network access, so do this before opening the folder:
    ```bash
    git clone https://github.com/svy04/cicerone.git ~/cicerone
    cd ~/cicerone && npm install
    ```
 2. Install [Claude Cowork](https://claude.com/download) and, in **Colaborar/Collaborate** mode, add the `~/cicerone` folder.
 3. Say (anchored, so Cowork's own generic setup doesn't hijack the phrase "set me up"):
-   > *"This folder contains career-ops. Read AGENTS.md, run its startup check (`node doctor.mjs --json`) and walk me through career-ops onboarding based on its output."*
-4. Hand over your CV any way you like — paste the text, or just point the agent at an existing **PDF**: it reads the file itself and converts it to `cv.md` (the parsing is your agent's ability, not a career-ops script).
+   > *"This folder contains cicerone. Read AGENTS.md, run its startup check (`node doctor.mjs --json`) and walk me through cicerone onboarding based on its output."*
+4. Hand over your CV any way you like — paste the text, or just point the agent at an existing **PDF**: it reads the file itself and converts it to `cv.md` (the parsing is your agent's ability, not a cicerone script).
 5. Evaluate your first posting: paste a job URL or the JD text into the chat. From there, everything in the [README](../README.md) applies — same modes, same files, same data contract.
 
 ## What runs where

@@ -5,7 +5,7 @@ import { Compass, ChevronDown, RotateCcw, AlertTriangle, Sparkles, Settings } fr
 import Link from "next/link";
 import { cn } from "@/lib/cn";
 import { instrumentSerif } from "@/lib/fonts";
-import type { Application, InboxJob } from "@/lib/career-ops";
+import type { Application, InboxJob } from "@/lib/cicerone";
 import { normalizeTextKey } from "@/lib/core/normalize-text-key.mjs";
 import { paramsToFilters, paramsToAi, type ExploreFilters } from "@/lib/explore";
 import { FilterBuilder } from "./filter-builder";
@@ -51,7 +51,7 @@ export function ExplorerView({
 
   useEffect(() => {
     try {
-      const id = JSON.parse(localStorage.getItem("career-ops:config") || "{}").cliId || null;
+      const id = JSON.parse(localStorage.getItem("cicerone:config") || "{}").cliId || null;
       setCli({ id, name: id ? CLI_NAMES[id] || id : undefined });
     } catch {
       setCli({ id: null });
@@ -135,7 +135,7 @@ export function ExplorerView({
 
       {!rootExists && (
         <div className="mb-5 rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-700 dark:text-amber-300">
-          Your career-ops home isn’t set up yet — discovery needs a checkout with a profile to seed from.
+          Your cicerone home isn’t set up yet — discovery needs a checkout with a profile to seed from.
         </div>
       )}
 
@@ -356,8 +356,8 @@ function FailedCard({ msg, scannerMissing, onRetry }: { msg: string; scannerMiss
         </div>
         <h2 className={`${instrumentSerif.className} mt-4 text-2xl text-foreground`}>Discovery needs the full toolkit</h2>
         <p className="mx-auto mt-1.5 max-w-md text-sm text-muted">
-          Your career-ops home looks data-only or is on an older version. The free scanner ships with a complete checkout —
-          update career-ops, or paste a job URL on the pipeline to evaluate it directly.
+          Your cicerone home looks data-only or is on an older version. The free scanner ships with a complete checkout —
+          update cicerone, or paste a job URL on the pipeline to evaluate it directly.
         </p>
         <div className="mt-4 flex flex-wrap justify-center gap-2">
           <Link href="/pipeline" className="inline-flex items-center gap-1.5 rounded-lg bg-brand px-3.5 py-2 text-sm font-semibold text-brand-foreground transition hover:brightness-110">

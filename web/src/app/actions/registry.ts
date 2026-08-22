@@ -8,7 +8,7 @@
 // side-effects. Resolution of "all the Anthropic ones" happens here, off the
 // client pipeline snapshot — the model never sees or invents URLs.
 
-import type { Application, InboxJob } from "@/lib/career-ops";
+import type { Application, InboxJob } from "@/lib/cicerone";
 import type { Job } from "@/components/jobs/job-store";
 import { normalizeTextKey } from "@/lib/core/normalize-text-key.mjs";
 

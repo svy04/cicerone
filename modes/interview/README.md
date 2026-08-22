@@ -18,7 +18,7 @@ A set of reusable skills for end-to-end interview preparation.
 
 ## File Conventions
 
-These skills assume the following files exist (career-ops defaults):
+These skills assume the following files exist (cicerone defaults):
 
 | File | Purpose |
 |---|---|

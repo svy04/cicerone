@@ -83,7 +83,7 @@ User-facing content (CV, cover letters, application emails, form answers, recrui
 
 **Confirmation UX invariant (binding on any workflow that surfaces a `derived-unverified` finding to the user):** never lead with the unverified number as if confirm/deny were the only options — that invites a guess, and a confirmed guess is worse than an honest unknown because it launders the guess into a "verified" fact. Present the claim plainly and offer four distinct outcomes: (a) confirm it's accurate as stated, (b) provide the correct figure, (c) mark it narrative-only / not a quantified claim, (d) "I don't know" → sets `user-cannot-confirm` on that entry, durably. A `user-cannot-confirm` marker must never decay back into being treated as verified through repeated citation or a later re-scan — every consumer (CV generation, cover letters, interview prep) treats it as narrative texture only, never as a quantified claim in interview-facing output. Building this interactive flow is separate future work; the invariant applies regardless of which mode eventually implements it.
 
-Everything else is **out of scope for content generation**: auto-memory (see below), any directory outside the career-ops project (parent/sibling repos, other codebases on the machine), knowledge from other Claude Code projects on the same machine, and cross-session inferences not written into an in-scope file.
+Everything else is **out of scope for content generation**: auto-memory (see below), any directory outside the cicerone project (parent/sibling repos, other codebases on the machine), knowledge from other Claude Code projects on the same machine, and cross-session inferences not written into an in-scope file.
 
 **One narrow exception — `intake`.** Documents the user drops in `documents/` may be read *during the `intake` mode only*, and only to propose **source-annotated** additions to the in-scope files above. They are never a source for generated user-facing content directly, the no-fabrication rule applies unchanged (a proposal must restate what the document says), and nothing is written without the user's explicit confirmation. Once confirmed, the claim lives in `config/profile.yml` / `cv.md` / `modes/_profile.md` and is in scope because it is *there*, not because it was in `documents/`.
 
@@ -118,11 +118,11 @@ node update-system.mjs check
 ```
 
 If `{"status": "update-available", "local": ..., "remote": ..., "changelog": ...}` → tell the user:
-> "career-ops update available (v{local} → v{remote}). Your data (CV, profile, tracker, reports) will NOT be touched. Want me to update?"
+> "cicerone update available (v{local} → v{remote}). Your data (CV, profile, tracker, reports) will NOT be touched. Want me to update?"
 
-If yes → `node update-system.mjs apply`. If no → `node update-system.mjs dismiss`. Every other status (`up-to-date`, `dismissed`, `offline`, `no-remote-version`) → say nothing. The user can force a check anytime ("check for updates" / "update career-ops"); rollback: `node update-system.mjs rollback`.
+If yes → `node update-system.mjs apply`. If no → `node update-system.mjs dismiss`. Every other status (`up-to-date`, `dismissed`, `offline`, `no-remote-version`) → say nothing. The user can force a check anytime ("check for updates" / "update cicerone"); rollback: `node update-system.mjs rollback`.
 
-## What is career-ops
+## What is cicerone
 
 AI-powered, CLI-agnostic job search automation: pipeline tracking, offer evaluation, CV generation, portal scanning, batch processing. Runs on any AI coding CLI following the [open agent skill standard](https://agentskills.io) (Claude Code, Cursor, Codex, OpenCode, Qwen, Copilot, Kimi, Antigravity CLI, Grok Build CLI). Legacy Gemini API evaluation remains via `gemini-eval.mjs`.
 
@@ -130,7 +130,7 @@ AI-powered, CLI-agnostic job search automation: pipeline tracking, offer evaluat
 
 - **Interactive:** run `codex` in the repo root; if `/cicerone` is unavailable, ask Codex to run the mode directly.
 - **Headless:** `codex exec "prompt"` for one-shot workers.
-- **Examples:** `Run career-ops scan mode`, `Run career-ops pipeline mode for data/pipeline.md`, `Run career-ops pdf mode`, `Run career-ops tracker mode`, `Evaluate this JD with career-ops auto-pipeline: https://company.com/jobs/123`
+- **Examples:** `Run cicerone scan mode`, `Run cicerone pipeline mode for data/pipeline.md`, `Run cicerone pdf mode`, `Run cicerone tracker mode`, `Evaluate this JD with cicerone auto-pipeline: https://company.com/jobs/123`
 
 ### Main Files
 
@@ -202,7 +202,7 @@ Output: `{"onboardingNeeded": <bool>, "missing": [...], "warnings": [...], "auto
 #### Step 0: Free Tier Check
 
 Only if the user mentions cost, pricing, budget, or free alternatives:
-> "career-ops works fully on Antigravity CLI's free tier — no API key or paid subscription needed. See [FREE_TIER.md](docs/FREE_TIER.md) for setup, daily limits, and batch tips."
+> "cicerone works fully on Antigravity CLI's free tier — no API key or paid subscription needed. See [FREE_TIER.md](docs/FREE_TIER.md) for setup, daily limits, and batch tips."
 
 If the user is already on a paid plan (Claude Max, Google AI, etc.) or does not mention cost, skip this step silently.
 
@@ -269,7 +269,7 @@ Once all files exist, confirm:
 > "You're all set! You can now:
 > - Paste a job URL to evaluate it
 > - Run the scan entrypoint for your CLI to search portals: `/cicerone scan`, `/cicerone-scan`, or ask Codex to run `scan`
-> - Open the command menu for your CLI: `/cicerone`, the CLI-specific alias, or ask Codex to show the available career-ops modes
+> - Open the command menu for your CLI: `/cicerone`, the CLI-specific alias, or ask Codex to show the available cicerone modes
 >
 > Everything is customizable — just ask me to change anything.
 >

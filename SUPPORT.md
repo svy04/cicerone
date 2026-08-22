@@ -1,6 +1,6 @@
 # Getting Help
 
-career-ops is an open source project maintained in limited time. Here's how to get help efficiently.
+cicerone is an open source project maintained in limited time. Here's how to get help efficiently.
 
 ## Where to ask
 

@@ -1,7 +1,7 @@
 // tests/states-alias-coverage.test.mjs — templates/states.yml must know every
 // alias the rest of the engine already accepts.
 //
-// states.yml calls itself "Source of truth for career-ops (writer) and dashboard
+// states.yml calls itself "Source of truth for cicerone (writer) and dashboard
 // (reader). Both systems MUST use these exact states." But normalize-statuses.mjs
 // carried alias mappings states.yml had never heard of (condicional, hold,
 // evaluar, verificar -> Evaluated; geo blocker -> SKIP), and the two lists drifted

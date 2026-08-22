@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { readMemory, rememberFact } from "@/lib/career-ops";
+import { readMemory, rememberFact } from "@/lib/cicerone";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

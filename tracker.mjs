@@ -124,7 +124,7 @@ export function openDb(DatabaseSync) {
 
 function loadStates() {
   if (!existsSync(STATES_PATH)) {
-    console.error(`Error: ${STATES_PATH} not found — cannot validate statuses. Run from the career-ops root.`);
+    console.error(`Error: ${STATES_PATH} not found — cannot validate statuses. Run from the cicerone root.`);
     process.exit(1);
   }
   const doc = yaml.load(readFileSync(STATES_PATH, 'utf-8'));

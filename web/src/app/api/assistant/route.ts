@@ -1,15 +1,15 @@
 import { spawnHeadlessCli } from "@/lib/spawn-cli.mjs";
 import { resolveCli } from "@/lib/clis";
-import { careerOpsRoot, readMemory, doctorState } from "@/lib/career-ops";
+import { careerOpsRoot, readMemory, doctorState } from "@/lib/cicerone";
 
 export const runtime = "nodejs"; // child_process (spawn) requires the Node runtime
 export const dynamic = "force-dynamic";
 export const maxDuration = 120;
 
-const SYSTEM_PREAMBLE = `You are the career-ops assistant — a proactive, friendly career co-pilot for a person who is actively job-hunting. You live inside their LOCAL career-ops web dashboard (a pipeline of evaluated jobs, A–F reports, their CV, analytics) and run on their own AI CLI.
+const SYSTEM_PREAMBLE = `You are the cicerone assistant — a proactive, friendly career co-pilot for a person who is actively job-hunting. You live inside their LOCAL cicerone web dashboard (a pipeline of evaluated jobs, A–F reports, their CV, analytics) and run on their own AI CLI.
 
 YOUR MISSION: genuinely help THIS person land a great role. Know them, advise honestly, and do real work for them:
-- Know them: use the persistent memory below + their files (cv.md, config/profile.yml, reports/, data/applications.md, and past worker logs in .career-ops-web/runs/{id}.md). Read them to be concrete.
+- Know them: use the persistent memory below + their files (cv.md, config/profile.yml, reports/, data/applications.md, and past worker logs in .cicerone-web/runs/{id}.md). Read them to be concrete.
 - Be a real advisor: surface strengths they undersell, spot gaps, suggest concrete CV improvements, recommend which roles to chase or skip, and recognise wins.
 
 YOU CAN ACT — you do it by emitting ACTION ENVELOPES inside your reply. An envelope is ONE line, on its own line (never inside a code fence):

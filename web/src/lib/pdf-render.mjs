@@ -4,7 +4,7 @@
  * Plain .mjs (same pattern as pdf-paths.mjs / clean-chips.mjs) so this can be
  * unit-tested with `node --test`, no TypeScript build step. `spawnFn`,
  * `execPath`, and `root` are injected rather than importing node:child_process
- * or career-ops.ts directly, keeping this module free of TypeScript
+ * or cicerone.ts directly, keeping this module free of TypeScript
  * dependencies and letting tests substitute a fake child process.
  *
  * Runs generate-pdf.mjs and mark-pdf-ready.mjs as plain Node child processes
@@ -139,7 +139,7 @@ export function markTrackerReady({ spawnFn, execPath, root, reportNum }) {
  * the BACKEND writes here and generate-pdf.mjs may leave its own intermediates, so
  * matching the run's prefix stays the right sweep. Logs rather than silently
  * swallowing failures, so a systemic permissions problem doesn't grow
- * `.career-ops-web/pdf-tmp/` forever with no trace anywhere.
+ * `.cicerone-web/pdf-tmp/` forever with no trace anywhere.
  * @param {string} scratchDir
  * @param {string} prefix
  * @returns {void}

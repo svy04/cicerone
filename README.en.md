@@ -89,7 +89,9 @@ The first three are where the Seoul Central District Court drew the line in the 
 
 So the tool does not decide for you. It states what is known and leaves the switch to you: `use_api: true` on the Wanted entry in `portals.yml`. If `robots.txt` later becomes readable and disallows the path, the module stops even with the switch on — what the switch covers is the unverifiable state, nothing more.
 
-Saramin's official API is also available: register for a key yourself at [oapi.saramin.co.kr/join](https://oapi.saramin.co.kr/join) and set `SARAMIN_ACCESS_KEY`. It is capped at 500 calls a day and its terms forbid reselling the data. Without a key the search-page reader covers the same board.
+Saramin's official API is also available: register for a key at [oapi.saramin.co.kr/join](https://oapi.saramin.co.kr/join) and set `SARAMIN_ACCESS_KEY`. It is capped at 500 calls a day and its terms forbid reselling the data.
+
+Know what the form asks for before you start (checked 2026-08-22): email verification, your name, **a company or school name**, a department or major, a phone number, **the URL where the API will be used**, and **a stated purpose of at least 50 characters**. Keys are approved, not issued on the spot. The search-page reader covers the same board without a key, so you can try it first and apply later.
 
 ## What to know before you send a 자기소개서
 

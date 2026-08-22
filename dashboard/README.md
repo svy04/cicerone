@@ -1,6 +1,6 @@
 # dashboard/
 
-Standalone Go TUI for browsing the career-ops pipeline.
+Standalone Go TUI for browsing the cicerone pipeline.
 
 ## Purpose
 
@@ -22,7 +22,7 @@ npm run build:dashboard    # build the standalone binary
 an extension-less binary on Windows; the wrapper picks the platform-correct
 output name (`career-dashboard.exe` on Windows, `career-dashboard` elsewhere).
 
-The binary accepts `--path <dir>` pointing at a career-ops directory
+The binary accepts `--path <dir>` pointing at a cicerone directory
 (default `.`). The data loader tries both `{path}/applications.md` and
 `{path}/data/applications.md` for layout compatibility.
 

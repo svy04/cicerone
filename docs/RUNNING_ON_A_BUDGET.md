@@ -16,7 +16,7 @@ By choosing a CLI that supports custom model configurations and routing it to a 
 
 ## 2. Pick Your Spend Tier
 
-Before diving into CLI configuration, know that career-ops has a built-in knob for controlling evaluation cost: the `spend_tier` setting in [`config/profile.yml`](../config/profile.example.yml). It controls which model tier your CLI uses to evaluate offers — no provider setup required.
+Before diving into CLI configuration, know that cicerone has a built-in knob for controlling evaluation cost: the `spend_tier` setting in [`config/profile.yml`](../config/profile.example.yml). It controls which model tier your CLI uses to evaluate offers — no provider setup required.
 
 | Tier | Behaviour |
 |------|-----------|
@@ -72,7 +72,7 @@ Then export the value it prints as `CLAUDE_CODE_OAUTH_TOKEN` in the environment 
 ### Two things worth expecting
 
 - **Plan limits are windows, not balances.** On a subscription you get rolling usage windows rather than a credit balance, so a heavy scan can pause you until the window resets. `spend_tier: economy` and the pre-screen gate above exist precisely to make high-volume days cheaper.
-- **Details change.** Auth precedence and command names come from the CLI, not from career-ops. If something here does not match what you see, the vendor's own docs are the source of truth: [Claude Code authentication](https://code.claude.com/docs/en/authentication) and [managing costs](https://code.claude.com/docs/en/costs).
+- **Details change.** Auth precedence and command names come from the CLI, not from cicerone. If something here does not match what you see, the vendor's own docs are the source of truth: [Claude Code authentication](https://code.claude.com/docs/en/authentication) and [managing costs](https://code.claude.com/docs/en/costs).
 
 ---
 

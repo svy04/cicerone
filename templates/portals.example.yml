@@ -2140,53 +2140,53 @@ tracked_companies:
 job_boards:
 
   # ── SolidJobs (Polish market) ──────────────────────────────────────
-  # Public API — no auth needed. Division in URL path, campaign=career-ops for tracking.
+  # Public API — no auth needed. Division in URL path, campaign=cicerone for tracking.
   # Available divisions: it, engineering, marketing, sales, hr, logistics, finances, other
 
   - name: SolidJobs IT
-    careers_url: https://solid.jobs/public-api/offers/it?campaign=career-ops
+    careers_url: https://solid.jobs/public-api/offers/it?campaign=cicerone
     provider: solidjobs
     enabled: true
     notes: "Polish IT job board — IT division"
 
   - name: SolidJobs Engineering
-    careers_url: https://solid.jobs/public-api/offers/engineering?campaign=career-ops
+    careers_url: https://solid.jobs/public-api/offers/engineering?campaign=cicerone
     provider: solidjobs
     enabled: false
     notes: "Polish job board — Engineering & Production division"
 
   - name: SolidJobs Marketing
-    careers_url: https://solid.jobs/public-api/offers/marketing?campaign=career-ops
+    careers_url: https://solid.jobs/public-api/offers/marketing?campaign=cicerone
     provider: solidjobs
     enabled: false
     notes: "Polish job board — Marketing division"
 
   - name: SolidJobs Sales
-    careers_url: https://solid.jobs/public-api/offers/sales?campaign=career-ops
+    careers_url: https://solid.jobs/public-api/offers/sales?campaign=cicerone
     provider: solidjobs
     enabled: false
     notes: "Polish job board — Sales division"
 
   - name: SolidJobs HR
-    careers_url: https://solid.jobs/public-api/offers/hr?campaign=career-ops
+    careers_url: https://solid.jobs/public-api/offers/hr?campaign=cicerone
     provider: solidjobs
     enabled: false
     notes: "Polish job board — HR division"
 
   - name: SolidJobs Logistics
-    careers_url: https://solid.jobs/public-api/offers/logistics?campaign=career-ops
+    careers_url: https://solid.jobs/public-api/offers/logistics?campaign=cicerone
     provider: solidjobs
     enabled: false
     notes: "Polish job board — Logistics division"
 
   - name: SolidJobs Finances
-    careers_url: https://solid.jobs/public-api/offers/finances?campaign=career-ops
+    careers_url: https://solid.jobs/public-api/offers/finances?campaign=cicerone
     provider: solidjobs
     enabled: false
     notes: "Polish job board — Finances division"
 
   - name: SolidJobs Other
-    careers_url: https://solid.jobs/public-api/offers/other?campaign=career-ops
+    careers_url: https://solid.jobs/public-api/offers/other?campaign=cicerone
     provider: solidjobs
     enabled: false
     notes: "Polish job board — Other specialists division"

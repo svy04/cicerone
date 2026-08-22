@@ -34,7 +34,7 @@ const ROOT = dirname(fileURLToPath(import.meta.url));
 const MAX_SENTINEL_AGE_MS = 4 * 60 * 60 * 1000;
 const MAX_RETRIES = 50;
 const MAX_COUNT = 50;
-const RESERVATION_TOKEN = Symbol('career-ops-report-reservation-token');
+const RESERVATION_TOKEN = Symbol('cicerone-report-reservation-token');
 
 /** Format a report ID with a minimum width of three digits. */
 export function formatReportNumber(num) {

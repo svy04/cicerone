@@ -15,7 +15,7 @@ type Phase = "input" | "parsing" | "review" | "saving" | "error";
 
 function cliId(): string | null {
   try {
-    return JSON.parse(localStorage.getItem("career-ops:config") || "{}").cliId || null;
+    return JSON.parse(localStorage.getItem("cicerone:config") || "{}").cliId || null;
   } catch {
     return null;
   }

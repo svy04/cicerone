@@ -1,12 +1,12 @@
 import fs from "node:fs";
 import path from "node:path";
 import * as yaml from "js-yaml";
-import { careerOpsRoot } from "@/lib/career-ops";
+import { careerOpsRoot } from "@/lib/cicerone";
 import { CANONICAL_STATES } from "@/lib/format";
 
 /**
  * ACL for templates/states.yml — the SINGLE SOURCE OF TRUTH for canonical
- * application states (career-ops writer + dashboard reader both read it). Per the
+ * application states (cicerone writer + dashboard reader both read it). Per the
  * web↔core contract we READ it live and never hardcode the list.
  *
  * The hand-maintained FALLBACK that used to live here is gone. It promised to be

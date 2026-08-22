@@ -229,7 +229,7 @@ export function contactToVcard(contact, { callerId = false, rev = null } = {}) {
   if (c.email) lines.push(`EMAIL;TYPE=INTERNET:${escapeVcard(c.email)}`);
   if (c.linkedin) lines.push(`URL:${escapeVcard(c.linkedin)}`);
   if (noteParts.length) lines.push(`NOTE:${escapeVcard(noteParts.join(' — '))}`);
-  lines.push('CATEGORIES:career-ops');
+  lines.push('CATEGORIES:cicerone');
   lines.push(`REV:${rev ?? new Date().toISOString()}`);
   lines.push('END:VCARD');
   return lines.map(foldLine).join('\r\n');

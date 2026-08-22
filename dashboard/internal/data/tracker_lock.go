@@ -16,7 +16,7 @@ import (
 	"time"
 )
 
-const trackerLockPrefix = "career-ops-merge-tracker-"
+const trackerLockPrefix = "cicerone-merge-tracker-"
 
 type trackerLockOptions struct {
 	timeout time.Duration

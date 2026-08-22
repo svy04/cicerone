@@ -121,7 +121,7 @@ function loadContext() {
   const profileContent = readFile(PATHS.profile, '_profile.md');
   const profileYml     = readFile(PATHS.profileYml, 'profile.yml');
 
-  systemPromptTemplate = `You are career-ops, an AI-powered job search assistant.
+  systemPromptTemplate = `You are cicerone, an AI-powered job search assistant.
 You evaluate job offers against the user's CV using a structured A-G scoring system.
 
 ═══════════════════════════════════════════════════════

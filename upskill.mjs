@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * upskill.mjs — Aggregate skill-gap analyzer for career-ops (#1520, phase 1)
+ * upskill.mjs — Aggregate skill-gap analyzer for cicerone (#1520, phase 1)
  *
  * Reads the tracker + every linked evaluation report, extracts skill tokens
  * from each report's gaps (Machine Summary hard_stops/soft_gaps + Gap table),

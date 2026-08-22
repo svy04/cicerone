@@ -38,7 +38,7 @@ jobs:
             if (prior.total_count > 1) return;
 
             const body = isPr
-              ? `Welcome to career-ops, @${user}! Thanks for your first PR.\n\n`
+              ? `Welcome to cicerone, @${user}! Thanks for your first PR.\n\n`
                 + `A few things to know:\n`
                 + `- Tests run automatically, but on a first contribution they wait for a maintainer to approve the run: if it looks stuck, that queue is on us, not on you\n`
                 + `- Link a related issue if this is a feature (bug fixes, providers, docs and translations need no issue)\n`

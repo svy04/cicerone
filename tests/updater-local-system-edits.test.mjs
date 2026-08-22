@@ -43,7 +43,7 @@ function makeRepo() {
   g('commit', '-qm', 'base');
   g('branch', 'upstream');
   // `root` lets the detector check whether a path still exists on disk; without
-  // it every case below would resolve against the real career-ops checkout.
+  // it every case below would resolve against the real cicerone checkout.
   return { dir, g, ctx: { git: g, root: dir } };
 }
 

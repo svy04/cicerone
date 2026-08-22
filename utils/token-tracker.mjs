@@ -1,5 +1,5 @@
 /**
- * utils/token-tracker.mjs — Token tracking and cost estimation for career-ops
+ * utils/token-tracker.mjs — Token tracking and cost estimation for cicerone
  */
 
 export const RATES = {

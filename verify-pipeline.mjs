@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * verify-pipeline.mjs — Health check for career-ops pipeline integrity
+ * verify-pipeline.mjs — Health check for cicerone pipeline integrity
  *
  * Checks:
  * 1. All statuses are canonical (per states.yml)
@@ -17,7 +17,7 @@
  * 12. No # value reused across 2+ tracker rows (error — see #1704)
  * 13. applications.md <-> active-interviews.md status sync (see #1504)
  *
- * Run: node career-ops/verify-pipeline.mjs
+ * Run: node cicerone/verify-pipeline.mjs
  */
 
 import { readFileSync, readdirSync, existsSync, mkdirSync, unlinkSync, statSync } from 'fs';

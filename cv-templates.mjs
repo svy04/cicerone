@@ -68,7 +68,7 @@ export function parseMeta(path) {
   } catch {
     return {};
   }
-  const block = text.match(/<!--\s*career-ops-template\s*([\s\S]*?)-->/);
+  const block = text.match(/<!--\s*cicerone-template\s*([\s\S]*?)-->/);
   if (!block) return {};
   const meta = {};
   for (const line of block[1].split(/\r?\n/)) {

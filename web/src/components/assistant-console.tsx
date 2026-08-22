@@ -28,14 +28,14 @@ type Part =
   | { type: "confirm"; cid: string; summary: string; state: "pending" | "done" | "cancelled" };
 type Msg = { role: "user" | "assistant"; parts: Part[] };
 
-const CONFIG_KEY = "career-ops:config";
-const CHAT_KEY = "career-ops:chat";
+const CONFIG_KEY = "cicerone:config";
+const CHAT_KEY = "cicerone:chat";
 // back-compat shims — the old directives still work, mapped onto the registry
 const NAV_RE = /<<\s*go:\s*(\/[a-z0-9/_-]*)\s*>>/gi;
 const REMEMBER_RE = /<<\s*remember:\s*([^>]+?)\s*>>/gi;
 
 const GREETING =
-  "Hi — I'm your career-ops assistant. I can walk you through onboarding, answer questions about your pipeline, or take you where you need to go. What would you like to do?";
+  "Hi — I'm your cicerone assistant. I can walk you through onboarding, answer questions about your pipeline, or take you where you need to go. What would you like to do?";
 
 // ── envelope parsing: act ONLY on complete <<act:ID {json}>> envelopes ────────
 function codeRanges(s: string): [number, number][] {
@@ -459,7 +459,7 @@ export function AssistantConsole() {
     const pending = pipeline.inbox.filter((j) => !j.done);
     if (!pipeline.applications.length && !pending.length) {
       return [
-        { label: "Help me get set up", send: "Help me get started with career-ops — what do you need from me?" },
+        { label: "Help me get set up", send: "Help me get started with cicerone — what do you need from me?" },
         { label: "Improve my CV", send: "Look at my CV and suggest the highest-impact improvements." },
       ];
     }

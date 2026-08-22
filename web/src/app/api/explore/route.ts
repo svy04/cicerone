@@ -1,7 +1,7 @@
 import { NextRequest } from "next/server";
 import fs from "node:fs";
 import { runDiscovery } from "@/lib/core/scan";
-import { rootScript } from "@/lib/career-ops";
+import { rootScript } from "@/lib/cicerone";
 import { parseExplorePatch, DEFAULT_FILTERS, type DiscoveredOffer, type ScanEvent } from "@/lib/explore";
 import { scannerMissingBody, SCANNER_MISSING_STATUS } from "@/lib/explore-error.mjs";
 

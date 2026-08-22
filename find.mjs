@@ -48,7 +48,7 @@ const cleanStatus = (s) =>
  * The report number and path come from the Report cell's markdown link. The
  * path is normalized to be root-relative: trackers at `data/applications.md`
  * carry `../reports/...` links (relative to the tracker file, see #760), which
- * would be misleading when printed from the career-ops root.
+ * would be misleading when printed from the cicerone root.
  *
  * @param {string} text - Full contents of applications.md.
  * @returns {Array<{trackerNum:number,date:string,company:string,role:string,score:string,status:string,reportNum:string|null,reportPath:string|null}>}

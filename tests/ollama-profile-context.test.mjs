@@ -2,7 +2,7 @@
 //
 // Run the real CLI from an isolated fixture root and capture its request with a
 // mock Ollama server. This proves profile content reaches the model without
-// touching a contributor's local career-ops data.
+// touching a contributor's local cicerone data.
 import { execFile } from 'node:child_process';
 import { createServer } from 'node:http';
 import {

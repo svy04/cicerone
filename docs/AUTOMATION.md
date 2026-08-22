@@ -1,6 +1,6 @@
 # Automation: recurring scans + a zero-token triage
 
-`career-ops` offers to scan for you on a schedule ("just say *scan every 3 days*"),
+`cicerone` offers to scan for you on a schedule ("just say *scan every 3 days*"),
 but the actual scheduling is left to your operating system. This page ships the
 recipe: how to run the scanner unattended, and a cheap, zero-token **triage** pass
 that turns a pile of freshly-scanned URLs into a short "worth a look" list — *before*
@@ -30,7 +30,7 @@ Two independent pieces, smallest first. You can use either on its own.
 `node scan.mjs` is safe to run unattended — it's idempotent (already-seen URLs are
 deduped) and costs nothing. Pick your platform.
 
-Replace `/path/to/career-ops` with your checkout path, and make sure `node` is on
+Replace `/path/to/cicerone` with your checkout path, and make sure `node` is on
 the `PATH` the scheduler uses (schedulers often run with a minimal environment — use
 an absolute path to `node` if in doubt, e.g. `which node`).
 
@@ -42,40 +42,40 @@ day-of-month field resets at each month boundary, so the gap across month-end ca
 be 1–3 days rather than a strict rolling 72 hours:
 
 ```cron
-0 9 */3 * * cd /path/to/career-ops && /usr/local/bin/node scan.mjs >> data/scan.log 2>&1
+0 9 */3 * * cd /path/to/cicerone && /usr/local/bin/node scan.mjs >> data/scan.log 2>&1
 ```
 
 For a simpler, exactly-even cadence, run it **daily** and let the scanner's dedup
 absorb the days you don't need — `0 9 * * *` — or on weekdays only, at 8am:
 
 ```cron
-0 8 * * 1-5 cd /path/to/career-ops && /usr/local/bin/node scan.mjs >> data/scan.log 2>&1
+0 8 * * 1-5 cd /path/to/cicerone && /usr/local/bin/node scan.mjs >> data/scan.log 2>&1
 ```
 
 ### macOS — launchd (survives sleep better than cron)
 
-Save as `~/Library/LaunchAgents/io.career-ops.scan.plist`, then
-`launchctl load ~/Library/LaunchAgents/io.career-ops.scan.plist`:
+Save as `~/Library/LaunchAgents/io.cicerone.scan.plist`, then
+`launchctl load ~/Library/LaunchAgents/io.cicerone.scan.plist`:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-  <key>Label</key>            <string>io.career-ops.scan</string>
+  <key>Label</key>            <string>io.cicerone.scan</string>
   <key>ProgramArguments</key>
   <array>
     <string>/usr/local/bin/node</string>
     <string>scan.mjs</string>
   </array>
-  <key>WorkingDirectory</key> <string>/path/to/career-ops</string>
+  <key>WorkingDirectory</key> <string>/path/to/cicerone</string>
   <key>StartCalendarInterval</key>
   <dict>
     <key>Hour</key>    <integer>9</integer>
     <key>Minute</key>  <integer>0</integer>
   </dict>
-  <key>StandardOutPath</key>   <string>/path/to/career-ops/data/scan.log</string>
-  <key>StandardErrorPath</key> <string>/path/to/career-ops/data/scan.log</string>
+  <key>StandardOutPath</key>   <string>/path/to/cicerone/data/scan.log</string>
+  <key>StandardErrorPath</key> <string>/path/to/cicerone/data/scan.log</string>
 </dict>
 </plist>
 ```
@@ -95,9 +95,9 @@ replace the `StartCalendarInterval` block with an interval in seconds:
 ### Windows — Task Scheduler
 
 ```powershell
-$action  = New-ScheduledTaskAction -Execute "node.exe" -Argument "scan.mjs" -WorkingDirectory "C:\path\to\career-ops"
+$action  = New-ScheduledTaskAction -Execute "node.exe" -Argument "scan.mjs" -WorkingDirectory "C:\path\to\cicerone"
 $trigger = New-ScheduledTaskTrigger -Daily -At 9am
-Register-ScheduledTask -TaskName "career-ops scan" -Action $action -Trigger $trigger -Description "Recurring career-ops job scan"
+Register-ScheduledTask -TaskName "cicerone scan" -Action $action -Trigger $trigger -Description "Recurring cicerone job scan"
 ```
 
 After any of these, new postings land in `data/pipeline.md` under `## Pending` on
@@ -157,7 +157,7 @@ that already cleared a free title/location filter.
 
 ---
 
-## How this fits the rest of career-ops
+## How this fits the rest of cicerone
 
 - **Zero-token by default.** Scheduling and triage cost nothing; only the eval you
   choose to run spends tokens.

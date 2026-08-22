@@ -177,7 +177,7 @@ async function cmdRun(args) {
   }
 
   if (hook === 'notify') {
-    const message = positional.slice(hookArgStart).join(' ') || '(career-ops notification)';
+    const message = positional.slice(hookArgStart).join(' ') || '(cicerone notification)';
     const results = await runHook('notify', { message }, { root: ROOT, dryRun });
     for (const r of results) console.log(r.ok ? `${r.id} notify: sent.` : `${r.id} notify: failed — ${r.error}`);
     return;
@@ -198,7 +198,7 @@ function setEnabled(id, on, settings) {
   const prev = (cfg.plugins[id] && typeof cfg.plugins[id] === 'object') ? cfg.plugins[id] : {};
   cfg.plugins[id] = { ...prev, ...(settings || {}), enabled: on };
   mkdirSync(path.join(ROOT, 'config'), { recursive: true });
-  writeFileSync(file, '# career-ops plugin activation — see config/plugins.example.yml\n' + yaml.dump(cfg), 'utf8');
+  writeFileSync(file, '# cicerone plugin activation — see config/plugins.example.yml\n' + yaml.dump(cfg), 'utf8');
 }
 
 // The capability card a user must consent to before a plugin runs.
@@ -222,9 +222,9 @@ async function cmdAvailable() {
     const tag = succ ? `  🔁 maintained version: ${succ.name} (install to use it instead)` : '';
     console.log(`  ${m.id}  [${m.hooks.join(', ')}]  — ${m.description}${tag}`);
   }
-  console.log('\n✓ Community plugins approved by career-ops:\n');
+  console.log('\n✓ Community plugins approved by cicerone:\n');
   if (reg.plugins.length === 0) {
-    console.log('  (none yet — publish yours as `career-ops-plugin-<name>` and open a registry PR; see docs/PLUGINS.md)');
+    console.log('  (none yet — publish yours as `cicerone-plugin-<name>` and open a registry PR; see docs/PLUGINS.md)');
   } else {
     for (const p of reg.plugins) {
       const seed = p.supersedesBundled === true ? `  🔁 maintained successor of the bundled "${p.id}" reference` : '';
@@ -261,7 +261,7 @@ function cmdEnable(args) {
   const source = classifySource(m, ROOT, entry);
   if (!confirm) {
     console.log(capabilityCard(m, source));
-    if (source === 'unverified') console.log('\n  ⚠️  UNVERIFIED — not reviewed by career-ops; you are trusting this author.');
+    if (source === 'unverified') console.log('\n  ⚠️  UNVERIFIED — not reviewed by cicerone; you are trusting this author.');
     console.log(`\n  This grants the capabilities above. To confirm, run:\n    node plugins.mjs enable ${id} --confirm\n`);
     return;
   }
@@ -304,7 +304,7 @@ function cmdNew(args) {
   console.log(`✓ Scaffolded plugins.local/${name}/`);
   console.log('  Next: edit manifest.json + index.mjs, then either');
   console.log(`    A) develop locally:  node plugins.mjs enable ${name}`);
-  console.log(`    B) publish:          push a github repo named "career-ops-plugin-${name}", then open a registry PR (docs/PLUGINS.md)`);
+  console.log(`    B) publish:          push a github repo named "cicerone-plugin-${name}", then open a registry PR (docs/PLUGINS.md)`);
 }
 
 async function cmdAdd(args) {
@@ -323,7 +323,7 @@ async function cmdAdd(args) {
     try { parseRepoArg(target); } catch (e) { console.error(`✗ ${e.message}`); process.exit(1); }
     if (!sha) { console.error('✗ a repo not in the registry requires --sha <40-hex-commit> (we never clone a moving branch).'); process.exit(1); }
     url = target; useSha = sha; approved = false;
-    console.log("⚠️  Not in the career-ops registry — you are installing this author's code with your privileges.");
+    console.log("⚠️  Not in the cicerone registry — you are installing this author's code with your privileges.");
   }
 
   console.log(`Cloning ${url} @ ${String(useSha).slice(0, 10)} …`);

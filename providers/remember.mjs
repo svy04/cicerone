@@ -4,7 +4,7 @@
 // 리멤버 커리어 공고 — 사이트맵으로 목록을 얻고, 공고 하나씩 읽습니다.
 //
 // ── 지키는 넷 ────────────────────────────────────────────────
-//   1. 정체를 밝힌다 — ctx 가 붙이는 career-ops 사용자 에이전트로 200 이 옵니다.
+//   1. 정체를 밝힌다 — ctx 가 붙이는 cicerone 사용자 에이전트로 200 이 옵니다.
 //      브라우저 문자열을 흉내 내지 않습니다
 //   2. robots.txt 를 본다 — 요청 전에 `assertAllowed` 가 판정합니다
 //   3. 원문 주소를 남긴다 — `career.rememberapp.co.kr/job/posting/{id}` 를 씁니다
@@ -145,7 +145,7 @@ export default {
    * @returns {Promise<Array<object>>}
    */
   async fetch(entry, ctx) {
-    const { crawlDelay } = await assertAllowed(ORIGIN + SITEMAP, ctx, 'career-ops');
+    const { crawlDelay } = await assertAllowed(ORIGIN + SITEMAP, ctx, 'cicerone');
     const pace = Math.max(PACE_MS, (crawlDelay || 0) * 1000);
 
     const limit = Math.min(Math.max(Number(entry?.limit) || DEFAULT_LIMIT, 1), MAX_LIMIT);

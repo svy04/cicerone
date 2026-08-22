@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Undo2 } from "lucide-react";
 import { useJobs } from "@/components/jobs/job-store";
-import type { InboxJob } from "@/lib/career-ops";
+import type { InboxJob } from "@/lib/cicerone";
 import type { AtsSource } from "@/lib/explore";
 import { ATS_SOURCES } from "@/lib/explore";
 import { daysSince, seniorityFromTitle, sourceFromUrl, SENIORITY_ORDER, type Seniority } from "@/lib/inbox";
@@ -12,9 +12,9 @@ import { TriageRow, type RowScore } from "./triage-row";
 import { ShortlistTray, type ShortItem } from "./shortlist-tray";
 import { cn } from "@/lib/cn";
 
-const SHORTLIST_KEY = "career-ops:shortlist";
-const HIDDEN_KEY = "career-ops:hidden";
-const CONFIG_KEY = "career-ops:config";
+const SHORTLIST_KEY = "cicerone:shortlist";
+const HIDDEN_KEY = "cicerone:hidden";
+const CONFIG_KEY = "cicerone:config";
 const BATCH = 20;
 
 // The inbox as a TRIAGE surface: Abundance → Triage → Shortlist → Opt-in Score.

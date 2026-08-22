@@ -1,4 +1,4 @@
-# career-ops web — self-contained ignore (does not touch core root .gitignore)
+# cicerone web — self-contained ignore (does not touch core root .gitignore)
 /node_modules
 /.next*
 /out

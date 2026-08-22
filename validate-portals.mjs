@@ -282,7 +282,7 @@ async function validateFile(filePath) {
 }
 
 async function runSelfTest() {
-  const tmp = mkdtempSync(join(tmpdir(), 'career-ops-validate-portals-self-test-'));
+  const tmp = mkdtempSync(join(tmpdir(), 'cicerone-validate-portals-self-test-'));
   try {
     const file = join(tmp, 'bad.yml');
     writeFileSync(file, `

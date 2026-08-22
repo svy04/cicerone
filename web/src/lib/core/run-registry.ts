@@ -9,7 +9,7 @@
 // correct: we never delete while an evaluation is in flight.
 //
 // WHAT THIS DOES **NOT** PROTECT, and the reason that matters: this is a counter
-// in THIS process's memory. It cannot see the user's CLI, a second `career-ops
+// in THIS process's memory. It cannot see the user's CLI, a second `cicerone
 // web` instance, or anything else on the machine. Cross-process exclusion on
 // data/applications.md is the core's FILE lock (tracker-utils.mjs), reached from
 // web via lib/core/tracker-lock.ts.

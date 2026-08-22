@@ -9,5 +9,5 @@
   "allowedHosts": [],
   "skill": "skill.md",
   "humanInTheLoop": true,
-  "homepage": "https://github.com/your-user/career-ops-plugin-{{NAME}}"
+  "homepage": "https://github.com/your-user/cicerone-plugin-{{NAME}}"
 }

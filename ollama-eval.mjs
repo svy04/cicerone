@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * ollama-eval.mjs — Ollama-powered Job Offer Evaluator for career-ops
+ * ollama-eval.mjs — Ollama-powered Job Offer Evaluator for cicerone
  *
  * Local, free, private alternative to the Claude-based pipeline.
  * Reads evaluation logic from modes/oferta.md + modes/_shared.md,
@@ -63,7 +63,7 @@ const args = process.argv.slice(2);
 if (args.length === 0 || args[0] === '--help' || args[0] === '-h') {
   console.log(`
 ╔══════════════════════════════════════════════════════════════════╗
-║           career-ops — Ollama Evaluator (local / free)          ║
+║           cicerone — Ollama Evaluator (local / free)          ║
 ╚══════════════════════════════════════════════════════════════════╝
 
   Evaluate a job offer using a local Ollama model instead of Claude.
@@ -230,7 +230,7 @@ if (budgetReport.compressed) {
   console.log(`📊  Token budget: ${budgetReport.totalTokens} tokens (within ${budgetReport.budget} limit)`);
 }
 
-const systemPrompt = `You are career-ops, an AI-powered job search assistant.
+const systemPrompt = `You are cicerone, an AI-powered job search assistant.
 You evaluate job offers against the user's CV using a structured A-G scoring system.
 
 Your evaluation methodology is defined below. Follow it exactly.

@@ -1,10 +1,10 @@
 {
   "id": "outlook-interviews",
-  "name": "career-ops-plugin-outlook-interviews",
+  "name": "cicerone-plugin-outlook-interviews",
   "version": "0.1.1",
   "license": "MIT",
-  "description": "Outlook interview ingest — detect interview invitation emails via Microsoft Graph, extract company / role / meeting link, and surface them in the career-ops pipeline.",
-  "repo": "https://github.com/Schlaflied/career-ops-plugin-outlook-interviews",
+  "description": "Outlook interview ingest — detect interview invitation emails via Microsoft Graph, extract company / role / meeting link, and surface them in the cicerone pipeline.",
+  "repo": "https://github.com/Schlaflied/cicerone-plugin-outlook-interviews",
   "sha": "ac70c743a28733eeb9602b3f620689e4d01bc26c",
   "hooks": [
     "ingest"

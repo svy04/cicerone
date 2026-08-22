@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
 
 // Single-line monospace command + copy-to-clipboard — ported from the
-// career-ops-docs home. Truncates on narrow viewports (intent is "copy this").
+// cicerone-docs home. Truncates on narrow viewports (intent is "copy this").
 export function CopyableCommand({
   command,
   className,

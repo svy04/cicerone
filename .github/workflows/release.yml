@@ -23,24 +23,24 @@ jobs:
           manifest-file: .release-please-manifest.json
 
       # GitHub marks whichever release was created LAST as "Latest", and in this
-      # manifest the `web` component is created after `career-ops`. Result: the
+      # manifest the `web` component is created after `cicerone`. Result: the
       # repository's releases page has never once pointed at the main package —
-      # every career-ops release since the web component was added showed
+      # every cicerone release since the web component was added showed
       # `web-vX.Y.Z` as the latest version to anyone landing there. Verified
-      # 28-jul: 0 of 20 career-ops releases carried the flag.
+      # 28-jul: 0 of 20 cicerone releases carried the flag.
       #
       # Re-assert it explicitly so ordering stops deciding. Reads the version
       # from the manifest rather than an action output, so it cannot drift from
       # what was actually released.
-      - name: Keep the career-ops release marked as Latest
+      - name: Keep the cicerone release marked as Latest
         if: ${{ steps.release.outputs.release_created }}
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           ver=$(jq -r '."."' .release-please-manifest.json)
           if [ -z "$ver" ] || [ "$ver" = "null" ]; then
-            echo "::error::could not read the career-ops version from .release-please-manifest.json"
+            echo "::error::could not read the cicerone version from .release-please-manifest.json"
             exit 1
           fi
-          echo "marking career-ops-v${ver} as Latest"
-          gh release edit "career-ops-v${ver}" --repo "$GITHUB_REPOSITORY" --latest
+          echo "marking cicerone-v${ver} as Latest"
+          gh release edit "cicerone-v${ver}" --repo "$GITHUB_REPOSITORY" --latest

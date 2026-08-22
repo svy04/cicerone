@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * tracker-sync-check.mjs — applications.md <-> active-interviews.md status
- * sync checker for career-ops
+ * sync checker for cicerone
  *
  * The project's own rule ("any interview status change must touch both
  * data/applications.md and data/active-interviews.md") is enforced only by
@@ -40,7 +40,7 @@
  * does not write to applications.md — it reports the mismatch and the
  * suggested fix. Auto-write is a reasonable fast-follow once the reporting
  * mode has been used and trusted; unattended status writes on a script's very
- * first run is unnecessary risk (career-ops's `merge-tracker.mjs` gate on
+ * first run is unnecessary risk (cicerone's `merge-tracker.mjs` gate on
  * tracker additions follows the same caution).
  *
  * Run: node tracker-sync-check.mjs              (JSON to stdout)
@@ -525,7 +525,7 @@ export function checkTrackerSync(opts = {}) {
 // --- Summary mode ---
 function printSummary(result) {
   console.log(`\n${'='.repeat(90)}`);
-  console.log('  Tracker Sync Check — career-ops');
+  console.log('  Tracker Sync Check — cicerone');
   console.log(`  applications.md <-> active-interviews.md | rows checked: ${result.summary.total}`);
   console.log(`${'='.repeat(90)}\n`);
 

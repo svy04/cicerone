@@ -1,4 +1,4 @@
-# career-ops Batch Worker — Complete Evaluation + PDF + Tracker Line
+# cicerone Batch Worker — Complete Evaluation + PDF + Tracker Line
 
 Canonical base language: English.
 

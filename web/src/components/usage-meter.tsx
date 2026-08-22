@@ -6,7 +6,7 @@ import { cn } from "@/lib/cn";
 
 type Usage = { window5h: { tokens: number }; window7d: { tokens: number } };
 
-// Soft budgets (tunable via localStorage `career-ops:usage-budget`). The bar
+// Soft budgets (tunable via localStorage `cicerone:usage-budget`). The bar
 // colour is the "brake" signal — set these to your plan's real limits.
 const DEFAULT_BUDGET = { w5: 140_000_000, w7: 1_000_000_000 };
 
@@ -28,9 +28,9 @@ export function UsageMeter() {
 
   useEffect(() => {
     try {
-      const cfg = localStorage.getItem("career-ops:config");
+      const cfg = localStorage.getItem("cicerone:config");
       setCli(cfg ? JSON.parse(cfg).cliId || null : null);
-      const b = localStorage.getItem("career-ops:usage-budget");
+      const b = localStorage.getItem("cicerone:usage-budget");
       if (b) setBudget({ ...DEFAULT_BUDGET, ...JSON.parse(b) });
     } catch {
       /* ignore */

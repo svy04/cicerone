@@ -1,7 +1,7 @@
 import { spawnHeadlessCli } from "@/lib/spawn-cli.mjs";
 import type { Frame } from "playwright-core";
 import { resolveCli } from "@/lib/clis";
-import { careerOpsRoot } from "@/lib/career-ops";
+import { careerOpsRoot } from "@/lib/cicerone";
 import type { ApplyField } from "./extract";
 
 // ─────────────────────────────────────────────────────────────────────────────

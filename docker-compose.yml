@@ -1,10 +1,10 @@
 services:
-  career-ops:
+  cicerone:
     build:
       context: .
       dockerfile: Dockerfile
-    image: career-ops:local
-    container_name: career-ops
+    image: cicerone:local
+    container_name: cicerone
     working_dir: /app
     # Long-running shell so `docker compose exec` is instant.
     command: ["tail", "-f", "/dev/null"]
@@ -14,7 +14,7 @@ services:
     # (host is ubuntu26.04 where playwright won't install; image is jammy).
     volumes:
       - .:/app
-      - career-ops-node-modules:/app/node_modules
+      - cicerone-node-modules:/app/node_modules
     environment:
       - NODE_ENV=development
       - PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
@@ -30,4 +30,4 @@ services:
     restart: unless-stopped
 
 volumes:
-  career-ops-node-modules:
+  cicerone-node-modules:

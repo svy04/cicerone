@@ -1,4 +1,4 @@
-export const CONFIG_KEY = "career-ops:config";
+export const CONFIG_KEY = "cicerone:config";
 
 export function readSavedCliId(): string | null {
   try {

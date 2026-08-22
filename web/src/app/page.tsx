@@ -1,4 +1,4 @@
-import { pipelineSummary, doctorState } from "@/lib/career-ops";
+import { pipelineSummary, doctorState } from "@/lib/cicerone";
 import { OnboardingBanner } from "@/components/onboarding-banner";
 import { FirstRunHome } from "@/components/home/first-run-home";
 import { TodayDashboard } from "@/components/home/today-dashboard";

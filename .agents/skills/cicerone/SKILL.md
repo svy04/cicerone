@@ -12,9 +12,9 @@ argument-hint: "[scan | discover | deep | pdf | latex | latex-tex | cover | care
 license: MIT
 ---
 
-# career-ops -- Router
+# cicerone -- Router
 
-career-ops is a multi-CLI job-search command center. The routing below is shared across supported agent CLIs even when the invocation surface differs.
+cicerone is a multi-CLI job-search command center. The routing below is shared across supported agent CLIs even when the invocation surface differs.
 
 ## Invocation Notes
 
@@ -27,11 +27,11 @@ career-ops is a multi-CLI job-search command center. The routing below is shared
 Codex prompt examples that map to the same router semantics:
 
 ```text
-Evaluate this JD with career-ops auto-pipeline: https://company.com/jobs/123
-Run the career-ops scan mode and summarize new matches.
-Run the career-ops pipeline mode for data/pipeline.md.
-Run the career-ops pdf mode for the latest evaluated role.
-Run the career-ops tracker mode and summarize the current statuses.
+Evaluate this JD with cicerone auto-pipeline: https://company.com/jobs/123
+Run the cicerone scan mode and summarize new matches.
+Run the cicerone pipeline mode for data/pipeline.md.
+Run the cicerone pdf mode for the latest evaluated role.
+Run the cicerone tracker mode and summarize the current statuses.
 ```
 
 ## Mode Routing
@@ -108,18 +108,18 @@ If your CLI supports `/cicerone`, show this menu. In Codex, surface the same opt
 Concrete equivalents for Codex prompt-driven sessions:
 
 ```text
-/cicerone {JD}           ↔ "Evaluate this JD with career-ops auto-pipeline: {JD or URL}"
-/cicerone scan           ↔ "Run the career-ops scan mode and summarize new matches."
-/cicerone pipeline       ↔ "Run the career-ops pipeline mode for data/pipeline.md."
-/cicerone pdf            ↔ "Run the career-ops pdf mode for the latest evaluated role."
-/cicerone email          ↔ "Run the career-ops email mode for the latest evaluated role."
-/cicerone tracker        ↔ "Run the career-ops tracker mode and summarize the current statuses."
+/cicerone {JD}           ↔ "Evaluate this JD with cicerone auto-pipeline: {JD or URL}"
+/cicerone scan           ↔ "Run the cicerone scan mode and summarize new matches."
+/cicerone pipeline       ↔ "Run the cicerone pipeline mode for data/pipeline.md."
+/cicerone pdf            ↔ "Run the cicerone pdf mode for the latest evaluated role."
+/cicerone email          ↔ "Run the cicerone email mode for the latest evaluated role."
+/cicerone tracker        ↔ "Run the cicerone tracker mode and summarize the current statuses."
 ```
 
 Show this menu:
 
 ```
-career-ops -- Command Center
+cicerone -- Command Center
 
 Available commands:
   /cicerone {JD}      → AUTO-PIPELINE: evaluate + report + PDF + tracker (paste text or URL)
@@ -156,7 +156,7 @@ Available commands:
   /cicerone upskill   → Aggregate skill-gap analysis from your evaluated reports
   /cicerone followup  → Follow-up cadence tracker: flag overdue, generate drafts
   /cicerone outcome   → Record application outcome & archive artifacts
-  /cicerone update    → Update career-ops system files with diff preview + compat check
+  /cicerone update    → Update cicerone system files with diff preview + compat check
 
 Inbox: add URLs to data/pipeline.md → /cicerone pipeline
 Or paste a JD directly to run the full pipeline.
@@ -190,7 +190,7 @@ For `scan`, `apply` (with Playwright), and `pipeline` (3+ URLs): launch as a wor
 Agent(
   subagent_type="general-purpose",
   prompt="[output language directive]\n\n[content of modes/_shared.md]\n\n[content of modes/_profile.md if exists]\n\n[content of modes/_custom.md if exists]\n\n[content of modes/{mode}.md]\n\n[invocation-specific data]",
-  description="career-ops {mode}"
+  description="cicerone {mode}"
 )
 ```
 

@@ -32,7 +32,7 @@ const PROVIDERS = [
   { id: "openrouter", label: "OpenRouter" },
 ] as const;
 
-const STORAGE_KEY = "career-ops:config";
+const STORAGE_KEY = "cicerone:config";
 
 export function ConfigForm() {
   const [mode, setMode] = useState<Mode>("cli");

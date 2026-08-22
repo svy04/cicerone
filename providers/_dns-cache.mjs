@@ -21,7 +21,7 @@
  * would still let a cold parallel burst through. With both, the 29 above
  * becomes 1.
  *
- * Why patch `dns.lookup` rather than configure the HTTP client: career-ops
+ * Why patch `dns.lookup` rather than configure the HTTP client: cicerone
  * depends on no HTTP library — providers call the global `fetch()`. Node
  * exposes no supported way to give `fetch()` a custom resolver without
  * taking on `undici` as a direct dependency to build an `Agent` with a

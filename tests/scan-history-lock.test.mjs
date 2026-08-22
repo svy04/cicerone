@@ -45,7 +45,7 @@ const URL_BASE = 'https://example.test/';
 /** The url column of each row — column 0, exact, never a substring test. */
 const urlColumn = (rows) => rows.map(l => l.split('\t')[0]);
 
-const root = mkdtempSync(join(tmpdir(), 'career-ops-scan-history-'));
+const root = mkdtempSync(join(tmpdir(), 'cicerone-scan-history-'));
 const historyPath = join(root, 'data', 'scan-history.tsv');
 
 // argv is read from the end: node's arg layout after -e differs from a script

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * company-history.mjs — Per-Company Evidence-Card Aggregator for career-ops
+ * company-history.mjs — Per-Company Evidence-Card Aggregator for cicerone
  *
  * READ-ONLY. Never writes a file. Joins the tracker (data/applications.md),
  * follow-ups (data/follow-ups.md), and scan-history (data/scan-history.tsv)
@@ -592,7 +592,7 @@ export function getCompanyCard(result, companyName) {
 //   { schemaVersion: 1, companyKey, region, signalType: 'no-response-friction',
 //     detail: null, severity: 'single'|'pattern'|null,
 //     sourceDetector: 'company-history', sourceHash: 'sha256:...',
-//     observedAt: 'YYYY-MM', emittedBy: 'career-ops vX.Y.Z' }
+//     observedAt: 'YYYY-MM', emittedBy: 'cicerone vX.Y.Z' }
 //
 // `sourceDetector` enum so far: 'interview-redflag' | 'process-friction'
 // (named in the RFC thread) | 'company-history' (this script — the third,
@@ -721,18 +721,18 @@ export function resolvePostingChannel(via) {
   return trimmed === '—' ? 'direct-employer' : 'staffing-agency';
 }
 
-// package.json version -> "career-ops vX.Y.Z". Missing/unparsable package.json
+// package.json version -> "cicerone vX.Y.Z". Missing/unparsable package.json
 // degrades to a version-less emittedBy rather than crashing.
 export function resolveEmittedBy(packagePath = PACKAGE_JSON) {
   try {
     const pkg = JSON.parse(readFileSync(packagePath, 'utf-8'));
     if (pkg && typeof pkg.version === 'string' && pkg.version) {
-      return `career-ops v${pkg.version}`;
+      return `cicerone v${pkg.version}`;
     }
   } catch {
     // fall through
   }
-  return 'career-ops';
+  return 'cicerone';
 }
 
 // Deterministic (not random) so repeated runs against the same underlying
@@ -893,7 +893,7 @@ export function renderSummary(result) {
   const lines = [];
   lines.push('');
   lines.push('='.repeat(78));
-  lines.push('  Company History — career-ops');
+  lines.push('  Company History — cicerone');
   lines.push(`  companies: ${result.companies.length} | silence window: ${result.metadata.silenceWindowDays}d`);
   lines.push('='.repeat(78));
   lines.push('');
@@ -1195,7 +1195,7 @@ async function runSelfTest() {
 
   // --- no-response-friction signal emission (RFC #1506 schema v1, #2787) ---
   {
-    const fixedOpts = { region: 'north-america/canada', emittedBy: 'career-ops vTEST' };
+    const fixedOpts = { region: 'north-america/canada', emittedBy: 'cicerone vTEST' };
 
     // single: exactly one silent fact on the card.
     const singleResult = buildCompanyCards(
@@ -1209,7 +1209,7 @@ async function runSelfTest() {
     check(singleSignals[0]?.signalType === 'no-response-friction', 'emitted record carries signalType no-response-friction');
     check(singleSignals[0]?.companyKey === singleResult.companies[0].key, 'emitted companyKey reuses company-history.mjs\'s own normalized key, not a new format');
     check(singleSignals[0]?.region === 'north-america/canada', 'emitted region matches the resolved region');
-    check(singleSignals[0]?.emittedBy === 'career-ops vTEST', 'emitted emittedBy matches the resolved version string');
+    check(singleSignals[0]?.emittedBy === 'cicerone vTEST', 'emitted emittedBy matches the resolved version string');
     check(/^\d{4}-\d{2}$/.test(singleSignals[0]?.observedAt || ''), 'observedAt is strictly month-only (YYYY-MM, no day)');
     check(typeof singleSignals[0]?.sourceHash === 'string' && singleSignals[0].sourceHash.startsWith('sha256:'), 'sourceHash is present and sha256-prefixed');
     check(singleSignals[0]?.schemaVersion === 1, 'emitted record carries schemaVersion 1 (ratified RFC #1506 shape)');
@@ -1455,7 +1455,7 @@ async function runSelfTest() {
     // caller (buildNoResponseFrictionSignals, tested below) is responsible
     // for turning that into "skip emission + warn", not a placeholder value.
     check(resolveRegion(join(CAREER_OPS, '__does-not-exist__.yml')) === null, 'resolveRegion degrades to null (not the string "unknown") when profile.yml is absent');
-    check(resolveEmittedBy(join(CAREER_OPS, '__does-not-exist__.json')) === 'career-ops', 'resolveEmittedBy degrades to a version-less string when package.json is unreadable');
+    check(resolveEmittedBy(join(CAREER_OPS, '__does-not-exist__.json')) === 'cicerone', 'resolveEmittedBy degrades to a version-less string when package.json is unreadable');
 
     // resolveRegion: a mapped country goes through COUNTRY_REGION_MAP, and an
     // unmapped country degrades to a slugified `unmapped/<slug>` rather than
@@ -1485,7 +1485,7 @@ async function runSelfTest() {
       );
       const { records: noRegionSignals, warnings: noRegionWarnings } = buildNoResponseFrictionSignals(
         noRegionResult,
-        { profilePath: noRegionProfilePath, emittedBy: 'career-ops vTEST' },
+        { profilePath: noRegionProfilePath, emittedBy: 'cicerone vTEST' },
       );
       check(noRegionSignals.length === 0, 'unresolvable region: no no-response-friction record emitted, no crash');
       check(noRegionWarnings.length === 1 && noRegionWarnings[0].includes(noRegionResult.companies[0].key), 'unresolvable region: exactly one warning naming the skipped companyKey');
@@ -1502,7 +1502,7 @@ async function runSelfTest() {
       { now: NOW, silenceWindowDays: 28 },
     );
     check(agencyResult.companies[0].responsiveness.facts[0].via === 'Hays', 'row.via survives onto the silent fact');
-    const { records: agencySignals } = buildNoResponseFrictionSignals(agencyResult, { region: 'north-america/canada', emittedBy: 'career-ops vTEST' });
+    const { records: agencySignals } = buildNoResponseFrictionSignals(agencyResult, { region: 'north-america/canada', emittedBy: 'cicerone vTEST' });
     check(agencySignals[0]?.postingChannel === 'staffing-agency', 'a tagged agency via value emits postingChannel: staffing-agency');
 
     // em-dash via (tracker's own "confirmed direct" convention) -> direct-employer.
@@ -1510,7 +1510,7 @@ async function runSelfTest() {
       { trackerRows: [{ ...row(261, 'DirectConfirmedCo', 'Applied', '2026-05-01'), via: '—' }], followupRows: [], repostClusters: [], sourcesLoaded: { tracker: true, followups: false, scanHistory: false, statusLog: false } },
       { now: NOW, silenceWindowDays: 28 },
     );
-    const { records: directSignals } = buildNoResponseFrictionSignals(directResult, { region: 'north-america/canada', emittedBy: 'career-ops vTEST' });
+    const { records: directSignals } = buildNoResponseFrictionSignals(directResult, { region: 'north-america/canada', emittedBy: 'cicerone vTEST' });
     check(directSignals[0]?.postingChannel === 'direct-employer', 'an em-dash via value (confirmed direct, no agency) emits postingChannel: direct-employer');
 
     // absent/blank via -> unknown (never guessed as direct-employer).
@@ -1518,7 +1518,7 @@ async function runSelfTest() {
       { trackerRows: [row(262, 'NoViaDataCo', 'Applied', '2026-05-01')], followupRows: [], repostClusters: [], sourcesLoaded: { tracker: true, followups: false, scanHistory: false, statusLog: false } },
       { now: NOW, silenceWindowDays: 28 },
     );
-    const { records: noDataSignals } = buildNoResponseFrictionSignals(noDataResult, { region: 'north-america/canada', emittedBy: 'career-ops vTEST' });
+    const { records: noDataSignals } = buildNoResponseFrictionSignals(noDataResult, { region: 'north-america/canada', emittedBy: 'cicerone vTEST' });
     check(noDataSignals[0]?.postingChannel === 'unknown', 'a row with no recorded via emits postingChannel: unknown, never a guessed direct-employer');
 
     check(resolvePostingChannel('  ') === 'unknown', 'resolvePostingChannel: whitespace-only via is unknown, not staffing-agency');

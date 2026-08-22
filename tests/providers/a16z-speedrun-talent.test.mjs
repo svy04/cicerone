@@ -96,12 +96,12 @@ try {
   const jobs = await provider.fetch({ name: 'a16z speedrun talent network', max_pages: 5, q: 'engineer' }, ctx);
   const urlsOk = calls.length === 2
     && calls.every((u) => u.startsWith('https://speedrun-talent-network.com/api/v1/jobs?'))
-    && calls.every((u) => new URL(u).searchParams.get('source') === 'career-ops')
+    && calls.every((u) => new URL(u).searchParams.get('source') === 'cicerone')
     && calls.every((u) => new URL(u).searchParams.get('q') === 'engineer')
     && new URL(calls[0]).searchParams.get('page') === '0'
     && new URL(calls[1]).searchParams.get('page') === '1';
   if (urlsOk && jobs.length === 52 && jobs[0].title === 'Role 0' && jobs[51].title === 'Role 51') {
-    pass('fetch() paginates 0-based with source=career-ops + q passthrough, stops after total_pages, drops invalid rows');
+    pass('fetch() paginates 0-based with source=cicerone + q passthrough, stops after total_pages, drops invalid rows');
   } else {
     fail(`fetch() = ${JSON.stringify({ calls, count: jobs.length })}`);
   }

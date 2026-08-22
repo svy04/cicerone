@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Bookmark, BookmarkCheck, Loader2, X } from "lucide-react";
-import type { InboxJob } from "@/lib/career-ops";
+import type { InboxJob } from "@/lib/cicerone";
 import type { AtsSource } from "@/lib/explore";
 import { ATS_LABEL } from "@/lib/explore";
 import { Badge } from "@/components/ui/badge";

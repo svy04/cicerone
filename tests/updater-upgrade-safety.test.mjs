@@ -12,7 +12,7 @@
  * These tests drive the real pure exports (`locallyModifiedSystemFiles` and
  * `revertPaths`) and reproduce apply()'s per-path `git checkout` loop locally
  * (apply() does not expose that loop as a callable export), against a throwaway
- * git repo via the git-runner seam — no network, no career-ops-v* tags, no
+ * git repo via the git-runner seam — no network, no cicerone-v* tags, no
  * apply() call. They
  * run in-process on every PR (test-all.mjs auto-discovers tests/**\/*.test.mjs),
  * so the never-touch-user-data property and the #2337 detection are gated on

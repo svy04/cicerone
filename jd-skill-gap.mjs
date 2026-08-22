@@ -16,7 +16,7 @@
  * is inspired by the skill-verification pattern in srbhr/Resume-Matcher
  * (Apache-2.0) — specifically their four-way verify_skill_target_plan() split.
  * This is an independent reimplementation, not a code port: different language,
- * zero LLM calls, and folded down to three buckets because career-ops never
+ * zero LLM calls, and folded down to three buckets because cicerone never
  * auto-adds a claim to cv.md either way (their jd_added/unsupported distinction
  * only matters if a tool is allowed to add something automatically).
  *

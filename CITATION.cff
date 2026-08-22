@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use career-ops, please cite it using these metadata."
+message: "If you use cicerone, please cite it using these metadata."
 title: "Career-Ops: AI-Powered Job Search Pipeline"
 type: software
 authors:
@@ -13,7 +13,7 @@ keywords:
   - job-search
   - claude-code
   - career
-  - career-ops
+  - cicerone
   - careerops
   - automation
   - llmops

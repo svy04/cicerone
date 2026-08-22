@@ -16,11 +16,11 @@ Windows does not create symlinks by default, so Git checks out the CLI skill ent
 
 Pass `--limit <N>` to `batch-runner.sh` to cap the number of offers processed in a single run (e.g. `./batch/batch-runner.sh --limit 5`) — this lets you inspect output quality before committing to a larger run. If a run is interrupted mid-way by a rate limit or network error, do not restart from scratch; use `./batch/batch-runner.sh --resume-paused` to skip already-completed jobs and pick up where you left off, avoiding wasted tokens on work that finished successfully.
 
-## 4. Can I run career-ops on a cheaper or local model?
+## 4. Can I run cicerone on a cheaper or local model?
 
-Yes — career-ops is fully AI-agnostic and works with any AI coding CLI or standalone script. See [docs/RUNNING_ON_A_BUDGET.md](RUNNING_ON_A_BUDGET.md) for a full guide covering OpenCode, Qwen CLI, DeepSeek, OpenRouter, Ollama, and other local or low-cost providers, along with recommended model sizes and token-saving best practices.
+Yes — cicerone is fully AI-agnostic and works with any AI coding CLI or standalone script. See [docs/RUNNING_ON_A_BUDGET.md](RUNNING_ON_A_BUDGET.md) for a full guide covering OpenCode, Qwen CLI, DeepSeek, OpenRouter, Ollama, and other local or low-cost providers, along with recommended model sizes and token-saving best practices.
 
-**For zero cost specifically**, see [docs/FREE_TIER.md](FREE_TIER.md): career-ops runs on Antigravity CLI's free tier with no API key and no paid subscription, within Google's daily caps.
+**For zero cost specifically**, see [docs/FREE_TIER.md](FREE_TIER.md): cicerone runs on Antigravity CLI's free tier with no API key and no paid subscription, within Google's daily caps.
 
 **And if you already pay for a plan but are being billed per token anyway**, that is usually an `ANTHROPIC_API_KEY` in your environment taking precedence over your subscription: see [the subscription section of the budget guide](RUNNING_ON_A_BUDGET.md#2b-already-paying-for-a-subscription-make-sure-you-are-using-it).
 
@@ -46,7 +46,7 @@ it means the job description text of two listings from **different companies** i
 
 ## 6. Can I use my own CV template?
 
-Yes. Set `cv.template` (and/or `cover_letter.template`) in `config/profile.yml` to the kebab-case name of a template file in `templates/` — a value of `modern` resolves to `templates/cv-template.modern.html` (cover letters use `templates/cover-letter-template.<name>.html`). Leave the field unset and career-ops falls back to the built-in default template (`templates/cv-template.html`). You can also pick a template per generation just by asking (e.g. "use the modern template"). See the commented `cv.template` / `cover_letter.template` fields in `config/profile.example.yml` for the full reference.
+Yes. Set `cv.template` (and/or `cover_letter.template`) in `config/profile.yml` to the kebab-case name of a template file in `templates/` — a value of `modern` resolves to `templates/cv-template.modern.html` (cover letters use `templates/cover-letter-template.<name>.html`). Leave the field unset and cicerone falls back to the built-in default template (`templates/cv-template.html`). You can also pick a template per generation just by asking (e.g. "use the modern template"). See the commented `cv.template` / `cover_letter.template` fields in `config/profile.example.yml` for the full reference.
 
 ## How do I stop a company from showing up in scans?
 
@@ -68,11 +68,11 @@ No. `templates/` has `cv-template.html`, `cv-template.tex` (LaTeX/Overleaf), `cv
 
 Chromium only launches with `--verify`. A normal scan reads public ATS APIs and needs no browser; `--verify` checks a posting is genuinely still live, which needs a real page load. If it fails, the error asks you to run `npx playwright install chromium`.
 
-## Can I run career-ops in Docker / self-hosted?
+## Can I run cicerone in Docker / self-hosted?
 
-Yes: there's a `Dockerfile` and `docker-compose.yml` in the repo root. Note that career-ops is local-first and human-in-the-loop, so Docker packages the environment: it does not turn career-ops into a service that runs on its own or applies to jobs for you.
+Yes: there's a `Dockerfile` and `docker-compose.yml` in the repo root. Note that cicerone is local-first and human-in-the-loop, so Docker packages the environment: it does not turn cicerone into a service that runs on its own or applies to jobs for you.
 
-## Does career-ops sync across devices?
+## Does cicerone sync across devices?
 
 No. Everything is files in your checkout, and there is no cloud component. People who want this put the directory in a synced folder.
 
@@ -80,6 +80,6 @@ No. Everything is files in your checkout, and there is no cloud component. Peopl
 
 Comment on it and we'll assign it (this is in CONTRIBUTING.md). A PR with no prior issue is welcome for bug fixes, zero-auth scanner providers, docs and translations. Issue-first applies only to new features, new modes and architecture changes.
 
-## Can I use career-ops without a terminal?
+## Can I use cicerone without a terminal?
 
 Yes: see [`docs/COWORK.md`](COWORK.md) which covers running it inside Claude Cowork, verified end to end. One step people trip on: Cowork's shell has no npm network access, so clone and `npm install` in a terminal *before* opening the folder.

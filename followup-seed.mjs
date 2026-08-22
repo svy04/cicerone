@@ -87,7 +87,7 @@ export const FOLLOWUPS_HEADER = [
   '|---|---|---|---|---|---|---|---|',
 ].join('\n');
 
-const FOLLOWUPS_LOCK_PREFIX = 'career-ops-followups-';
+const FOLLOWUPS_LOCK_PREFIX = 'cicerone-followups-';
 
 /**
  * Minimum age before directory age alone may condemn an ownerless lock.

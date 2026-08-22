@@ -17,8 +17,8 @@ import (
 // matcher via their recorded paths.
 type PDFManifestEntry struct {
 	ReportNumber string
-	PDFPath      string // relative to the career-ops root
-	HTMLPath     string // relative to the career-ops root, "" if unknown
+	PDFPath      string // relative to the cicerone root
+	HTMLPath     string // relative to the cicerone root, "" if unknown
 	Format       string // "letter" or "a4"
 	Date         string // YYYY-MM-DD generation date
 }

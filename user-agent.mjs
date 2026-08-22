@@ -1,7 +1,7 @@
 // Shared User-Agent string, so every caller advertises the same identifier
 // instead of a hand-copied one that drifts stale or diverges per file (past
 // variants: career-ops/1.3, career-ops/1.0, career-ops-seeds/1.0,
-// career-ops-liveness/1.0 — no known reason for the distinct identifiers,
+// cicerone-liveness/1.0 — no known reason for the distinct identifiers,
 // treated as copy-paste drift, not intentional server-side traffic splitting).
 //
 // The trailing /1.0 is a UA-format version, bumped by hand only if this
@@ -10,11 +10,11 @@
 // release would be an unintended variable in every provider's fingerprint,
 // introduced without anyone deciding it should be there. Pin it.
 
-export const DEFAULT_USER_AGENT = 'Mozilla/5.0 (compatible; career-ops/1.0; +https://github.com/svy04/cicerone)';
+export const DEFAULT_USER_AGENT = 'Mozilla/5.0 (compatible; cicerone/1.0; +https://github.com/svy04/cicerone)';
 
 /**
  * Browser-like User-Agent for callers that must clear WAF/CDN bot management
- * blocking the plain career-ops UA outright (seen live: Glints' firewall,
+ * blocking the plain cicerone UA outright (seen live: Glints' firewall,
  * Geico's Cloudflare-gated Workday tenant). Shared so every caller working
  * around such a block bumps one constant instead of drifting Chrome versions
  * independently per file.

@@ -67,7 +67,7 @@ test("a crash that printed no JSON never puts stderr in the response body", () =
   // greps tracked sources for an absolute-path literal and would flag this file.
   // The string still IS an absolute path at run time, which is what the assertion
   // needs; only the source form differs.
-  const root = ["", "Users", "someone", "Developer", "private", "career-ops"].join("/");
+  const root = ["", "Users", "someone", "Developer", "private", "cicerone"].join("/");
   const stack = [
     `file://${root}/set-status.mjs:41`,
     "        throw new Error('boom');",

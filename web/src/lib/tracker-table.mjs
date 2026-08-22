@@ -3,12 +3,12 @@
  * for the web read path.
  *
  * The header-alias table is NOT mirrored here: it is loaded at runtime from
- * `tracker-aliases.json` in the career-ops root — the same single source
+ * `tracker-aliases.json` in the cicerone root — the same single source
  * tracker-parse.mjs exports as HEADER_ALIASES — so the web reader and the Node
  * tracker tooling can never drift (PR #1598 review). A build-time import of the
  * core module is impossible: Turbopack's root is pinned to web/ (see
  * next.config.mjs) and refuses modules outside it, so the shared source is a
- * JSON file read with fs, like every other career-ops file this app consumes.
+ * JSON file read with fs, like every other cicerone file this app consumes.
  *
  * Plain .mjs (same pattern as clean-chips.mjs) so tracker-columns-tests.mjs can
  * import it directly under Node and regression-test the REAL alias chain.
@@ -44,7 +44,7 @@ const aliasCache = new Map();
  * table — no header row is then detected and parseApplications falls back to
  * the legacy fixed column order — and the cache entry is cleared so a later
  * recovered file is loaded immediately.
- * @param {string} rootDir - career-ops root (careerOpsRoot() on the web side).
+ * @param {string} rootDir - cicerone root (ciceroneRoot() on the web side).
  * @returns {Record<string, string>}
  */
 export function loadHeaderAliases(rootDir) {
@@ -115,7 +115,7 @@ export function detectColumnMap(lines, aliases) {
  * Rows without a numeric # cell (header, separator, stray pipes) are skipped,
  * mirroring parseTrackerRow in tracker-parse.mjs.
  * @param {string} md - content of data/applications.md.
- * @param {string} rootDir - career-ops root holding tracker-aliases.json.
+ * @param {string} rootDir - cicerone root holding tracker-aliases.json.
  * @returns {{n: string, date: string, company: string, via: string, role: string, score: string, status: string, pdf: string, report: string, notes: string}[]}
  */
 export function parseApplications(md, rootDir) {

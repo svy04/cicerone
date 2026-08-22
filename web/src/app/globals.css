@@ -2,7 +2,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ──────────────────────────────────────────────────────────────────────────
-   Design tokens — inherited from career-ops-docs. Brand burnt-orange #dd7627
+   Design tokens — inherited from cicerone-docs. Brand burnt-orange #dd7627
    (mode-invariant), zinc neutrals, light + dark (Fumadocs neutral values).
    ────────────────────────────────────────────────────────────────────────── */
 @theme {

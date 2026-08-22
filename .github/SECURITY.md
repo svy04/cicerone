@@ -27,7 +27,7 @@ Security issues in the following are in scope:
 - Issues in third-party dependencies (report upstream)
 - Issues requiring physical access to the user's machine
 - Social engineering attacks
-- career-ops is a local tool — there is no hosted service to attack
+- cicerone is a local tool — there is no hosted service to attack
 
 ## Disclosure Policy
 

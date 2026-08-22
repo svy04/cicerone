@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * rejection-latency.mjs — Post-Interview Response-Latency Signal for career-ops
+ * rejection-latency.mjs — Post-Interview Response-Latency Signal for cicerone
  *
  * Cross-references data/active-interviews.md (interview round dates) with
  * data/applications.md (tracker status) and flags companies whose
@@ -351,7 +351,7 @@ function readNormalized(path) {
 // --- Summary mode ---
 function printSummary(result, meta) {
   console.log(`\n${'='.repeat(78)}`);
-  console.log('  Rejection Latency — career-ops');
+  console.log('  Rejection Latency — cicerone');
   console.log(`  as of: ${meta.today} | courtesy: ${meta.courtesyDays}d`);
   console.log(`${'='.repeat(78)}\n`);
 

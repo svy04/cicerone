@@ -8,7 +8,7 @@ import path from "node:path";
 import { resolveCli } from "@/lib/clis";
 import { accumulateTokens, hasNewCompletedReport, isFatalGenericStderr } from "@/lib/run-cli-support.mjs";
 import { spawnHeadlessCli } from "@/lib/spawn-cli.mjs";
-import { careerOpsRoot, readMemory, findReportFile, readInbox, readScanDates } from "@/lib/career-ops";
+import { careerOpsRoot, readMemory, findReportFile, readInbox, readScanDates } from "@/lib/cicerone";
 import { resolvePdfPaths, type PdfPaths } from "@/lib/pdf-paths.mjs";
 import { renderAndMarkPdf, writeCvHtml, pdfRunOutcome } from "@/lib/pdf-render.mjs";
 import { createCvEnvelopeFilter, type CvEnvelope } from "@/lib/cv-envelope.mjs";
@@ -47,7 +47,7 @@ export async function POST(req: Request) {
   if (required && !fs.existsSync(path.join(careerOpsRoot(), required))) {
     return new Response(
       JSON.stringify({
-        error: `This needs a complete career-ops checkout (${required}). CAREER_OPS_ROOT has data only — point it at a full checkout.`,
+        error: `This needs a complete cicerone checkout (${required}). CAREER_OPS_ROOT has data only — point it at a full checkout.`,
       }),
       { status: 400, headers: { "Content-Type": "application/json" } },
     );
@@ -396,7 +396,7 @@ export async function POST(req: Request) {
         // a PDF — one place for the condition/message pair instead of two.
         const noOutputError = (): string | null => {
           if (!emittedText && !sawError && !cleanExit) return "The CLI exited with an error — is it installed and authenticated?";
-          if (!emittedText && !sawError) return "The CLI produced no output — is it installed and authenticated? (career-ops is best on Claude Code.)";
+          if (!emittedText && !sawError) return "The CLI produced no output — is it installed and authenticated? (cicerone is best on Claude Code.)";
           return null;
         };
 

@@ -1,6 +1,6 @@
 import { Inter, Instrument_Serif } from "next/font/google";
 
-// Body / UI — Inter, same as the career-ops-docs home (next/font/google,
+// Body / UI — Inter, same as the cicerone-docs home (next/font/google,
 // self-hosted: no CLS, GDPR-safe).
 export const inter = Inter({
   subsets: ["latin"],
@@ -9,7 +9,7 @@ export const inter = Inter({
 });
 
 // Editorial display — Instrument Serif. The home uses it for the hero display
-// copy and section headings (the "career-ops" editorial voice). Regular +
+// copy and section headings (the "cicerone" editorial voice). Regular +
 // italic (pull-quotes) mirror the docs lib/fonts.ts.
 export const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],

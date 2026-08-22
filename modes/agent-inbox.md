@@ -1,6 +1,6 @@
 # Mode: agent-inbox — Queue requests for the next session
 
-A durable bridge between *looking at* the pipeline and *acting on* it. career-ops
+A durable bridge between *looking at* the pipeline and *acting on* it. cicerone
 runs from an AI session, but there's no place to drop a request when you're not
 in one. The agent inbox is that place: an append-only checklist
 (`data/agent-inbox.md`) that any tool — this CLI, a dashboard button, a cron job,

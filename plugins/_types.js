@@ -1,4 +1,4 @@
-// Type catalog for the career-ops plugin contract.
+// Type catalog for the cicerone plugin contract.
 //
 // Documentation-only — pure JSDoc @typedef annotations, no build step (the
 // project is plain ESM JavaScript). Plugin authors reference these via

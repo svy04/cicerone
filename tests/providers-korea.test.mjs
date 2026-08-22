@@ -798,52 +798,52 @@ const INCRUIT_ROBOTS = [
 ].join('\n');
 
 test('robots: 사람인은 공고 경로를 허용하고 feed.php 만 막는다', () => {
-  const r = parseRobots(SARAMIN_ROBOTS, 'career-ops');
+  const r = parseRobots(SARAMIN_ROBOTS, 'cicerone');
   assert.equal(isAllowed(r, '/zf_user/jobs/relay/recruit-view?rec_idx=1'), true);
   assert.equal(isAllowed(r, '/zf_user/search/recruit'), true);
   assert.equal(isAllowed(r, '/feed.php'), false, 'robots 가 막은 경로를 허용으로 판정했다');
 });
 
 test('robots: 인크루트는 우리에게 전면 금지다', () => {
-  const r = parseRobots(INCRUIT_ROBOTS, 'career-ops');
+  const r = parseRobots(INCRUIT_ROBOTS, 'cicerone');
   assert.equal(isAllowed(r, '/list/'), false);
   assert.equal(isAllowed(r, '/'), false);
 });
 
 test('robots: 우리 이름 그룹이 있으면 그것을 쓴다', () => {
-  const src = ['User-agent: career-ops', 'Disallow: /private/', 'User-agent: *', 'Disallow: /'].join('\n');
-  const mine = parseRobots(src, 'career-ops');
+  const src = ['User-agent: cicerone', 'Disallow: /private/', 'User-agent: *', 'Disallow: /'].join('\n');
+  const mine = parseRobots(src, 'cicerone');
   assert.equal(isAllowed(mine, '/jobs/'), true, '내 그룹이 있는데 * 그룹을 적용했다');
   assert.equal(isAllowed(mine, '/private/'), false);
 });
 
 test('robots: 더 긴 경로 규칙이 이긴다', () => {
   const src = ['User-agent: *', 'Disallow: /jobs/', 'Allow: /jobs/public/'].join('\n');
-  const r = parseRobots(src, 'career-ops');
+  const r = parseRobots(src, 'cicerone');
   assert.equal(isAllowed(r, '/jobs/private/1'), false);
   assert.equal(isAllowed(r, '/jobs/public/1'), true, '더 긴 Allow 가 이겨야 한다');
 });
 
 test('robots: 와일드카드와 끝 표시를 처리한다', () => {
   const src = ['User-agent: *', 'Disallow: /*.pdf$', 'Disallow: /tmp/*/private'].join('\n');
-  const r = parseRobots(src, 'career-ops');
+  const r = parseRobots(src, 'cicerone');
   assert.equal(isAllowed(r, '/a/b/file.pdf'), false);
   assert.equal(isAllowed(r, '/a/b/file.pdf.html'), true, '$ 를 끝 표시로 처리하지 않았다');
   assert.equal(isAllowed(r, '/tmp/x/private'), false);
 });
 
 test('robots: 빈 Disallow 는 아무것도 막지 않는다', () => {
-  const r = parseRobots(['User-agent: *', 'Disallow:'].join('\n'), 'career-ops');
+  const r = parseRobots(['User-agent: *', 'Disallow:'].join('\n'), 'cicerone');
   assert.equal(isAllowed(r, '/anything'), true);
 });
 
 test('robots: Crawl-delay 를 읽는다', () => {
-  const r = parseRobots(['User-agent: *', 'Crawl-delay: 5', 'Disallow: /x'].join('\n'), 'career-ops');
+  const r = parseRobots(['User-agent: *', 'Crawl-delay: 5', 'Disallow: /x'].join('\n'), 'cicerone');
   assert.equal(r.crawlDelay, 5);
 });
 
 test('robots: 파일이 없으면 막지 않는다', () => {
-  const r = parseRobots('', 'career-ops');
+  const r = parseRobots('', 'cicerone');
   assert.equal(isAllowed(r, '/anything'), true);
 });
 

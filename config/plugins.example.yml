@@ -1,4 +1,4 @@
-# career-ops — Plugin activation (opt-in)
+# cicerone — Plugin activation (opt-in)
 #
 #   cp config/plugins.example.yml config/plugins.yml
 #

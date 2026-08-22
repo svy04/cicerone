@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import fs from "node:fs";
 import path from "node:path";
-import { careerOpsRoot } from "@/lib/career-ops";
+import { careerOpsRoot } from "@/lib/cicerone";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -28,7 +28,7 @@ export async function POST(req: Request) {
   }
   if (!b.id) return NextResponse.json({ error: "id required" }, { status: 400 });
 
-  const dir = path.join(careerOpsRoot(), ".career-ops-web", "runs");
+  const dir = path.join(ciceroneRoot(), ".cicerone-web", "runs");
   try {
     fs.mkdirSync(dir, { recursive: true });
   } catch {

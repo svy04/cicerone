@@ -1,9 +1,9 @@
 {
   "name": "@svy04/cicerone",
   "version": "1.28.0",
-  "description": "One-command installer for career-ops — the AI-powered job search pipeline built on Claude Code.",
+  "description": "One-command installer for cicerone — the AI-powered job search pipeline built on Claude Code.",
   "bin": {
-    "career-ops": "bin/cli.mjs"
+    "cicerone": "bin/cli.mjs"
   },
   "type": "module",
   "files": [
@@ -15,7 +15,7 @@
     "node": ">=18"
   },
   "keywords": [
-    "career-ops",
+    "cicerone",
     "claude-code",
     "job-search",
     "scaffold",

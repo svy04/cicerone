@@ -8,7 +8,7 @@
 //   1. The scanner is ABSENT from this checkout: a data-only or pre-onboarding
 //      install. /api/explore reports this BEFORE any stream starts. This is the
 //      only failure the "Discovery needs the full toolkit" panel should cover,
-//      because its call to action is "update career-ops".
+//      because its call to action is "update cicerone".
 //
 //   2. The scanner RAN but errored: a transient/runtime failure surfaced through
 //      the response stream after a 200 (e.g. "The scanner returned no readable

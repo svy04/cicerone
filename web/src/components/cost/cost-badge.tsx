@@ -1,7 +1,7 @@
 import { Leaf, Coins, Sparkles } from "lucide-react";
 import { COST_META, type CostClass } from "@/lib/explore-cost";
 
-// One primitive, four variants — the app's cost color-semantics (career-ops-ux
+// One primitive, four variants — the app's cost color-semantics (cicerone-ux
 // lock, for DESIGN_SYSTEM.md): GREEN = free/positive (celebrate); NEUTRAL/muted
 // (+ coin icon) = spend ("Uses tokens") — it INFORMS, it must not alarm nor
 // celebrate, and crucially it must NOT be brand-orange: orange is reserved for

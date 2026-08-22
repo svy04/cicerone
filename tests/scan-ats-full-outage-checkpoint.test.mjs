@@ -42,7 +42,7 @@ const CHECKPOINT_REL = join('data', 'cache', 'ats-full-checkpoint.json');
  * @returns {string} Sandbox directory.
  */
 function makeSandbox() {
-  const dir = mkdtempSync(join(tmpdir(), 'career-ops-outage-'));
+  const dir = mkdtempSync(join(tmpdir(), 'cicerone-outage-'));
   // Minimal portals.yml: main() exits early without one. The filters never
   // matter here — no board is reachable, so no posting reaches them.
   writeFileSync(join(dir, 'portals.yml'), 'title_filter:\n  positive:\n    - director\n', 'utf-8');

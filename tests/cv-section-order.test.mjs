@@ -134,7 +134,7 @@ try {
     fail('cvSectionOrderFrom should return [] unless `sections` is a list');
   }
 
-  const dir = mkdtempSync(join(tmpdir(), 'career-ops-sections-'));
+  const dir = mkdtempSync(join(tmpdir(), 'cicerone-sections-'));
   try {
     const profile = join(dir, 'profile.yml');
     writeFileSync(profile, 'candidate:\n  full_name: X\ncv:\n  output_format: html\n  sections: [skills, education]\n');

@@ -1,6 +1,6 @@
 # tests/
 
-Auto-discovered test files for the career-ops suite.
+Auto-discovered test files for the cicerone suite.
 
 ## Purpose
 

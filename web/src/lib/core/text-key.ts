@@ -1,6 +1,6 @@
 import path from "node:path";
 import { pathToFileURL } from "node:url";
-import { careerOpsRoot } from "@/lib/career-ops";
+import { careerOpsRoot } from "@/lib/cicerone";
 import { normalizeTextKey as fallbackKey } from "./normalize-text-key.mjs";
 
 /**
@@ -49,14 +49,14 @@ export async function getNormalizeTextKey(): Promise<NormalizeTextKey> {
     if (!warned) {
       warned = true;
       console.warn(
-        `[career-ops] ${file} has no normalizeTextKey export — company matching falls back to a local Unicode-safe key. Update career-ops to keep web dedup identical to CLI dedup.`,
+        `[cicerone] ${file} has no normalizeTextKey export — company matching falls back to a local Unicode-safe key. Update cicerone to keep web dedup identical to CLI dedup.`,
       );
     }
   } catch {
     if (!warned) {
       warned = true;
       console.warn(
-        `[career-ops] could not load ${file} — company matching falls back to a local Unicode-safe key. Update career-ops to keep web dedup identical to CLI dedup.`,
+        `[cicerone] could not load ${file} — company matching falls back to a local Unicode-safe key. Update cicerone to keep web dedup identical to CLI dedup.`,
       );
     }
   }

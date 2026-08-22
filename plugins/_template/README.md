@@ -1,4 +1,4 @@
-# career-ops-plugin-{{NAME}}
+# cicerone-plugin-{{NAME}}
 
 A community plugin for [career-ops](https://github.com/svy04/cicerone).
 
@@ -9,7 +9,7 @@ TODO: one paragraph.
 ## Install
 
 ```bash
-# Once it's in the career-ops registry:
+# Once it's in the cicerone registry:
 node plugins.mjs add {{NAME}}
 
 # Before listing (install directly from your repo at a pinned commit):
@@ -30,7 +30,7 @@ node plugins.mjs enable {{NAME}} --confirm  # grants it
 
 ## Get it listed as approved
 
-Open a registry PR against career-ops (see
+Open a registry PR against cicerone (see
 [docs/PLUGINS.md](https://github.com/svy04/cicerone/blob/main/docs/PLUGINS.md)).
 
 ## License

@@ -44,7 +44,7 @@ test('normalizeCompany preserves meaningful non-Latin company names', () => {
 });
 
 test('tracker paths follow the workspace selected by the tracker', () => {
-  const root = mkdtempSync(join(tmpdir(), 'career-ops-tracker-utils-'));
+  const root = mkdtempSync(join(tmpdir(), 'cicerone-tracker-utils-'));
   const oldTracker = process.env.CAREER_OPS_TRACKER;
   const oldPdfIndex = process.env.CAREER_OPS_PDF_INDEX;
   try {

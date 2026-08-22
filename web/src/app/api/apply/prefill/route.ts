@@ -2,7 +2,7 @@ import { spawnHeadlessCli } from "@/lib/spawn-cli.mjs";
 import fs from "node:fs";
 import path from "node:path";
 import { resolveCli } from "@/lib/clis";
-import { careerOpsRoot, readMemory } from "@/lib/career-ops";
+import { careerOpsRoot, readMemory } from "@/lib/cicerone";
 import { getSession } from "@/lib/apply/session";
 
 export const runtime = "nodejs";
@@ -71,7 +71,7 @@ function extractJsonObject(text: string): { obj: Record<string, unknown> | null;
 // browser access) drafts an answer per field from cv.md / profile / the job's
 // report. We stream a live diagnostic log of every step (spawn, heartbeats,
 // exit code/signal, parse outcome) so a stuck/empty prefill is observable on the
-// page AND written to <root>/.career-ops-web/apply-prefill.log for debugging.
+// page AND written to <root>/.cicerone-web/apply-prefill.log for debugging.
 export async function POST(req: Request) {
   let body: { sessionId?: string; cliId?: string };
   try {
@@ -82,7 +82,7 @@ export async function POST(req: Request) {
   const { sessionId, cliId } = body;
   const t0 = Date.now();
   const encoder = new TextEncoder();
-  const logPath = path.join(careerOpsRoot(), ".career-ops-web", "apply-prefill.log");
+  const logPath = path.join(ciceroneRoot(), ".cicerone-web", "apply-prefill.log");
   try {
     fs.mkdirSync(path.dirname(logPath), { recursive: true });
   } catch {

@@ -22,9 +22,9 @@ function makeSandbox(trackerContent) {
   const dir = mkdtempSync(join(tmpdir(), 'co-markpdf-'));
   const tracker = join(dir, 'applications.md');
   writeFileSync(tracker, trackerContent);
-  // Must live under tmpdir and use the career-ops lock-name prefix (see
+  // Must live under tmpdir and use the cicerone lock-name prefix (see
   // trackerLockDirFor) or it's ignored — still safe, just a shared-lock risk.
-  const lock = join(dir, 'career-ops-merge-tracker-test.lock');
+  const lock = join(dir, 'cicerone-merge-tracker-test.lock');
   return { dir, tracker, lock };
 }
 
@@ -303,7 +303,7 @@ const TRACKER_DUP_REPORT = `# Applications Tracker
 {
   // Given CAREER_OPS_TRACKER points at a path with no tracker
   const dir = mkdtempSync(join(tmpdir(), 'co-markpdf-missing-'));
-  const sandbox = { tracker: join(dir, 'does-not-exist.md'), lock: join(dir, 'career-ops-merge-tracker-test.lock') };
+  const sandbox = { tracker: join(dir, 'does-not-exist.md'), lock: join(dir, 'cicerone-merge-tracker-test.lock') };
   try {
     // When mark-pdf-ready is run for any report number
     const r = runMarkPdfReady(['1', '--json'], sandbox);
@@ -381,9 +381,9 @@ const TRACKER_DUP_REPORT = `# Applications Tracker
   const dir = mkdtempSync(join(tmpdir(), 'co-markpdf-lockerr-'));
   const tracker = join(dir, 'applications.md');
   writeFileSync(tracker, TRACKER_9);
-  const blocker = join(dir, 'career-ops-merge-tracker-blocker');
+  const blocker = join(dir, 'cicerone-merge-tracker-blocker');
   writeFileSync(blocker, 'not a directory');
-  const badLock = join(blocker, 'career-ops-merge-tracker-bad.lock');
+  const badLock = join(blocker, 'cicerone-merge-tracker-bad.lock');
   try {
     // When mark-pdf-ready is run against that unusable lock path
     const r = runMarkPdfReady(['1', '--json'], { tracker, lock: badLock });
@@ -412,7 +412,7 @@ const TRACKER_DUP_REPORT = `# Applications Tracker
     mkdirSync(roDir);
     const tracker = join(roDir, 'applications.md');
     writeFileSync(tracker, TRACKER_9);
-    const lock = join(dir, 'career-ops-merge-tracker-wf.lock');
+    const lock = join(dir, 'cicerone-merge-tracker-wf.lock');
     // On Windows, directory read-only bits don't block file creation — deny
     // write-data/append-data for Everyone (*S-1-1-0) via icacls instead
     // (mirrors set-status-tests.mjs's write-failure test).

@@ -5,7 +5,7 @@ import { Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
 
-const KEY = "career-ops:theme";
+const KEY = "cicerone:theme";
 
 export function ThemeToggle({ className }: { className?: string }) {
   const [dark, setDark] = useState(true);

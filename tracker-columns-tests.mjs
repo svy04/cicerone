@@ -324,7 +324,7 @@ const TSV_NO_LOCATION = '2\t2026-02-02\tGlobex\tManager\tApplied\tN/A\t✅\t—\
 }
 
 // ── Test 8: web read path resolves headers via the SHARED alias table ───────
-// web/src/lib/tracker-table.mjs (behind readApplications() in career-ops.ts)
+// web/src/lib/tracker-table.mjs (behind readApplications() in cicerone.ts)
 // loads tracker-aliases.json — the same file tracker-parse.mjs exports as
 // HEADER_ALIASES — instead of mirroring it. Passing ROOT here exercises the
 // REAL alias file, so an alias added/renamed there is either honored by the

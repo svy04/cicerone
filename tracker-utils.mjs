@@ -96,7 +96,7 @@ export function cell(v) {
  * canonicalized so every script that locks or hashes the tracker path agrees
  * on one spelling.
  *
- * @param {string} rootDir - The career-ops repository root.
+ * @param {string} rootDir - The cicerone repository root.
  * @returns {string} Absolute canonical tracker path.
  */
 export function resolveTrackerPath(rootDir) {
@@ -190,7 +190,7 @@ function pathIsInside(childPath, parentDir) {
  * contends on the same lock. `CAREER_OPS_TRACKER_LOCK` exists for tests and
  * unusual local layouts, but lock directories are removed recursively, so
  * env-provided paths must be absolute, live under the OS temp directory, and
- * use the career-ops lock-name prefix. Invalid values are ignored and the
+ * use the cicerone lock-name prefix. Invalid values are ignored and the
  * deterministic temp-dir default is used instead.
  *
  * @param {string} appsFile - Canonical tracker path (see canonicalizeTrackerPath).
@@ -199,7 +199,7 @@ function pathIsInside(childPath, parentDir) {
 export function trackerLockDirFor(appsFile) {
   const lockKey = createHash('sha256').update(appsFile).digest('hex').slice(0, 16);
   const tmpRoot = realpathSync(tmpdir());
-  const fallback = join(tmpRoot, `career-ops-merge-tracker-${lockKey}.lock`);
+  const fallback = join(tmpRoot, `cicerone-merge-tracker-${lockKey}.lock`);
   const envValue = process.env.CAREER_OPS_TRACKER_LOCK;
   if (!envValue || !isAbsolute(envValue)) return fallback;
 
@@ -207,7 +207,7 @@ export function trackerLockDirFor(appsFile) {
   const parentDir = dirname(candidate);
   const canonicalParent = existsSync(parentDir) ? realpathSync(parentDir) : resolve(parentDir);
   if (!pathIsInside(canonicalParent, tmpRoot)) return fallback;
-  if (!basename(candidate).startsWith('career-ops-merge-tracker-')) return fallback;
+  if (!basename(candidate).startsWith('cicerone-merge-tracker-')) return fallback;
   return candidate;
 }
 

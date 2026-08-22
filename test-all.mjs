@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * test-all.mjs — Comprehensive test suite for career-ops
+ * test-all.mjs — Comprehensive test suite for cicerone
  *
  * Run before merging any PR or pushing changes.
  * Tests: syntax, scripts, dashboard, data contract, personal data, paths.
@@ -61,7 +61,7 @@ import { flagValue, hasFlag } from './lib/cli-flags.mjs';
 /**
  * Read a repo-relative text file as UTF-8.
  *
- * @param {string} path - Path relative to the career-ops repository root.
+ * @param {string} path - Path relative to the cicerone repository root.
  * @returns {string} File contents.
  */
 function readFile(path) {
@@ -94,7 +94,7 @@ const normalizeEol = (text) => text.replace(/\r\n/g, '\n');
  * Use for doc-content reads that feed `\n`-anchored regex assertions.
  * Do NOT use where byte-exact content matters.
  *
- * @param {string} path - Path relative to the career-ops repository root.
+ * @param {string} path - Path relative to the cicerone repository root.
  * @returns {string} File contents with LF-only line endings.
  */
 const readTextLF = (path) => normalizeEol(readFile(path));
@@ -211,12 +211,12 @@ if (ONLY !== null) {
     console.log('  ❌ --only requires a path substring, e.g. --only providers/themuse');
     process.exit(1);
   }
-  console.log('\n🧪 career-ops test suite (--only ' + ONLY + ')\n');
+  console.log('\n🧪 cicerone test suite (--only ' + ONLY + ')\n');
   await runDiscovered(ONLY);
   finish();
 }
 
-console.log('\n🧪 career-ops test suite\n');
+console.log('\n🧪 cicerone test suite\n');
 
 // ── 1. SYNTAX CHECKS ────────────────────────────────────────────
 
@@ -290,7 +290,7 @@ const scripts = [
   // data/applications.md (or data/pipeline.md) in place. On a provisioned working
   // copy with a real tracker present, running them without --dry-run mutates user
   // data. Harmless in this repo (no tracker shipped), risky for end users who run
-  // tests inside their active career-ops workspace.
+  // tests inside their active cicerone workspace.
   { name: 'normalize-statuses.mjs --dry-run', expectExit: 0 },
   { name: 'dedup-tracker.mjs --dry-run', expectExit: 0 },
   { name: 'merge-tracker.mjs --dry-run', expectExit: 0 },
@@ -405,7 +405,7 @@ try {
     // drops them wherever they occur, root included.
     'data',
     'reports',
-    '.career-ops-web',
+    '.cicerone-web',
     '.playwright-mcp',
     '.agents',
     'cdp-diff.patch',
@@ -612,7 +612,7 @@ try {
 }
 
 try {
-  const tmp = mkdtempSync(join(tmpdir(), 'career-ops-cv-facts-'));
+  const tmp = mkdtempSync(join(tmpdir(), 'cicerone-cv-facts-'));
   const hiddenScriptMetric = join(tmp, 'hidden-script-metric.html');
   const visibleMetric = join(tmp, 'visible-metric.html');
   writeFileSync(
@@ -1537,7 +1537,7 @@ if (!QUICK) {
     const outPath = join(dashboardBuildTmp, isWindows ? 'career-dashboard-test.exe' : 'career-dashboard-test');
     const goEnv = { ...process.env };
     if (isWindows && !goEnv.GOCACHE) {
-      goEnv.GOCACHE = join(tmpdir(), 'career-ops-go-build-cache');
+      goEnv.GOCACHE = join(tmpdir(), 'cicerone-go-build-cache');
     }
     if (goEnv.GOCACHE) {
       try { mkdirSync(goEnv.GOCACHE, { recursive: true }); } catch (e) {}
@@ -2064,7 +2064,7 @@ try {
   const injectedPageCss = injectPrintPageCss('<html><head><title>CV</title></head><body></body></html>', 'letter');
   if (
     injectedPageCss.includes('@page { size: Letter; margin: var(--page-margin, 0.6in); }') &&
-    injectedPageCss.indexOf('career-ops-page-setup') < injectedPageCss.indexOf('</head>')
+    injectedPageCss.indexOf('cicerone-page-setup') < injectedPageCss.indexOf('</head>')
   ) {
     pass('PDF renderer injects CSS page size and margins before rendering');
   } else {
@@ -2081,7 +2081,7 @@ try {
   const doctypeNoHead = injectPrintPageCss('<!doctype html><html lang="en"><body></body></html>');
   if (
     doctypeNoHead.startsWith('<!doctype html>') &&
-    doctypeNoHead.includes('<html lang="en">\n<head>\n<style id="career-ops-page-setup">') &&
+    doctypeNoHead.includes('<html lang="en">\n<head>\n<style id="cicerone-page-setup">') &&
     doctypeNoHead.indexOf('<head>') < doctypeNoHead.indexOf('<body>')
   ) {
     pass('PDF renderer preserves doctype when injecting page CSS into full HTML without head');
@@ -2090,7 +2090,7 @@ try {
   }
 
   const fragmentPageCss = injectPrintPageCss('<section>CV</section>');
-  if (fragmentPageCss.startsWith('<style id="career-ops-page-setup">')) {
+  if (fragmentPageCss.startsWith('<style id="cicerone-page-setup">')) {
     pass('PDF renderer still prepends page CSS for HTML fragments');
   } else {
     fail('PDF renderer no longer handles HTML fragments with fallback CSS injection');
@@ -2114,7 +2114,7 @@ console.log('\n7b2. PDF renderer temporary-file cleanup');
 
 try {
   const { renderHtmlToPdf } = await import(pathToFileURL(join(ROOT, 'generate-pdf.mjs')).href);
-  const fixtureRoot = mkdtempSync(join(tmpdir(), 'career-ops-pdf-cleanup-launch-'));
+  const fixtureRoot = mkdtempSync(join(tmpdir(), 'cicerone-pdf-cleanup-launch-'));
   const launchError = new Error('injected browser launch failure');
   let caught;
   try {
@@ -2126,7 +2126,7 @@ try {
     caught = error;
   }
   const leftovers = readdirSync(fixtureRoot)
-    .filter((name) => name.startsWith('.career-ops-render-'));
+    .filter((name) => name.startsWith('.cicerone-render-'));
   if (caught === launchError && leftovers.length === 0) {
     pass('PDF renderer removes temporary HTML when Chromium launch fails');
   } else {
@@ -2139,7 +2139,7 @@ try {
 
 try {
   const { renderHtmlToPdf } = await import(pathToFileURL(join(ROOT, 'generate-pdf.mjs')).href);
-  const fixtureRoot = mkdtempSync(join(tmpdir(), 'career-ops-pdf-cleanup-page-'));
+  const fixtureRoot = mkdtempSync(join(tmpdir(), 'cicerone-pdf-cleanup-page-'));
   const pageError = new Error('injected newPage failure');
   let closeCalls = 0;
   let caught;
@@ -2155,7 +2155,7 @@ try {
     caught = error;
   }
   const leftovers = readdirSync(fixtureRoot)
-    .filter((name) => name.startsWith('.career-ops-render-'));
+    .filter((name) => name.startsWith('.cicerone-render-'));
   if (caught === pageError && closeCalls === 1 && leftovers.length === 0) {
     pass('PDF renderer closes Chromium and removes temporary HTML after launch');
   } else {
@@ -2319,9 +2319,9 @@ for (const [docName, docText] of marketModeDocs) {
 }
 
 if (/language\.output/.test(careerOpsSkill) && /human-facing output/i.test(careerOpsSkill)) {
-  pass('career-ops skill injects the output language rule');
+  pass('cicerone skill injects the output language rule');
 } else {
-  fail('career-ops skill does not inject the output language rule');
+  fail('cicerone skill does not inject the output language rule');
 }
 
 if (/Language Rule/i.test(batchPrompt) && /language\.output/.test(batchPrompt) && /write all human-facing output/i.test(batchPrompt)) {
@@ -4211,7 +4211,7 @@ try {
 
 try {
   const { appendToPipeline } = await import(pathToFileURL(join(ROOT, 'scan.mjs')).href);
-  const fixtureRoot = mkdtempSync(join(tmpdir(), 'career-ops-missing-pipeline-'));
+  const fixtureRoot = mkdtempSync(join(tmpdir(), 'cicerone-missing-pipeline-'));
   const originalCwd = process.cwd();
   try {
     mkdirSync(join(fixtureRoot, 'data'), { recursive: true });
@@ -4238,7 +4238,7 @@ try {
 try {
   const { appendToPipeline } = await import(pathToFileURL(join(ROOT, 'scan.mjs')).href);
   const { acquirePipelineLock, LockTimeoutError } = await import(pathToFileURL(join(ROOT, 'pipeline-lock.mjs')).href);
-  const fixtureRoot = mkdtempSync(join(tmpdir(), 'career-ops-pipeline-lock-'));
+  const fixtureRoot = mkdtempSync(join(tmpdir(), 'cicerone-pipeline-lock-'));
   const originalCwd = process.cwd();
   let prevTimeout;
   let prevRetry;
@@ -4321,7 +4321,7 @@ try {
     fail('normalizeUrlForDedup must not lowercase query values — gh_jid is identity-bearing');
   }
 
-  const fixtureRoot = mkdtempSync(join(tmpdir(), 'career-ops-seen-urls-'));
+  const fixtureRoot = mkdtempSync(join(tmpdir(), 'cicerone-seen-urls-'));
   const originalCwd = process.cwd();
   try {
     mkdirSync(join(fixtureRoot, 'data'), { recursive: true });
@@ -4400,7 +4400,7 @@ try {
     fail('scan.mjs blacklist matching misses case/punctuation company variants');
   }
 
-  const fixtureRoot = mkdtempSync(join(tmpdir(), 'career-ops-blacklist-'));
+  const fixtureRoot = mkdtempSync(join(tmpdir(), 'cicerone-blacklist-'));
   try {
     const absent = loadBlacklist(join(fixtureRoot, 'data', 'blacklist.md'));
     if (absent instanceof Map && absent.size === 0) {
@@ -4989,7 +4989,7 @@ try {
 console.log('\n10. Portals config validator');
 
 try {
-  const tmp = mkdtempSync(join(tmpdir(), 'career-ops-portals-validator-'));
+  const tmp = mkdtempSync(join(tmpdir(), 'cicerone-portals-validator-'));
   const validPath = join(tmp, 'valid.yml');
   const validProviderPluginPath = join(tmp, 'valid-provider-plugin.yml');
   const invalidProviderPath = join(tmp, 'invalid-provider.yml');
@@ -5632,7 +5632,7 @@ try {
   }
 
   // End-to-end CLI --dry-run must not write to disk.
-  const dryRunTmp = mkdtempSync(join(tmpdir(), 'career-ops-fix-slugs-dryrun-'));
+  const dryRunTmp = mkdtempSync(join(tmpdir(), 'cicerone-fix-slugs-dryrun-'));
   const dryRunPortals = join(dryRunTmp, 'portals.yml');
   writeFileSync(dryRunPortals, fixture);
   const beforeDryRun = readFileSync(dryRunPortals, 'utf-8');
@@ -5751,9 +5751,9 @@ for (const [name, marker] of criticalRoutingContracts) {
 }
 const claudeSkillEntrypoint = readFile('.claude/skills/cicerone/SKILL.md');
 if (/\.agents\/skills\/cicerone\/SKILL\.md/.test(claudeSkillEntrypoint) || claudeSkillEntrypoint === readFile('.agents/skills/cicerone/SKILL.md')) {
-  pass('Claude skill invocation resolves to the canonical career-ops router');
+  pass('Claude skill invocation resolves to the canonical cicerone router');
 } else {
-  fail('Claude skill invocation does not resolve to the canonical career-ops router');
+  fail('Claude skill invocation does not resolve to the canonical cicerone router');
 }
 
 // ── 12. SKILL SYMLINK INTEGRITY ─────────────────────────────
@@ -5813,9 +5813,9 @@ if (
   /prompt/i.test(canonicalContent ?? '') &&
   /\/cicerone/.test(canonicalContent ?? '')
 ) {
-  pass('career-ops skill router documents the Codex invocation model');
+  pass('cicerone skill router documents the Codex invocation model');
 } else {
-  fail('career-ops skill router is missing Codex invocation guidance');
+  fail('cicerone skill router is missing Codex invocation guidance');
 }
 
 console.log('\n12c. Codex documentation guidance');
@@ -5858,7 +5858,7 @@ if (
 console.log('\n12a. Skill entrypoint materialization');
 
 {
-  const fixtureRoot = mkdtempSync(join(tmpdir(), 'career-ops-skills-'));
+  const fixtureRoot = mkdtempSync(join(tmpdir(), 'cicerone-skills-'));
   try {
     const canonicalDir = join(fixtureRoot, '.agents', 'skills', 'cicerone');
     const claudeDir = join(fixtureRoot, '.claude', 'skills', 'cicerone');
@@ -5867,7 +5867,7 @@ console.log('\n12a. Skill entrypoint materialization');
     mkdirSync(claudeDir, { recursive: true });
     mkdirSync(opencodeDir, { recursive: true });
 
-    const fixtureSkill = '---\nname: career-ops\n---\n\n# canonical skill\n';
+    const fixtureSkill = '---\nname: cicerone\n---\n\n# canonical skill\n';
     const pointer = '../../../.agents/skills/cicerone/SKILL.md';
     writeFileSync(join(canonicalDir, 'SKILL.md'), fixtureSkill);
     writeFileSync(join(claudeDir, 'SKILL.md'), pointer);
@@ -5942,14 +5942,14 @@ console.log('\n12a-bis. Every tracked skill entrypoint is materializable');
 console.log('\n12b. Skill entrypoint bootstrap (npx / old releases)');
 
 {
-  const fixtureRoot = mkdtempSync(join(tmpdir(), 'career-ops-ensure-skills-'));
+  const fixtureRoot = mkdtempSync(join(tmpdir(), 'cicerone-ensure-skills-'));
   try {
     const canonicalDir = join(fixtureRoot, '.agents', 'skills', 'cicerone');
     const claudeDir = join(fixtureRoot, '.claude', 'skills', 'cicerone');
     mkdirSync(canonicalDir, { recursive: true });
     mkdirSync(claudeDir, { recursive: true });
 
-    const fixtureSkill = '---\nname: career-ops\n---\n\n# canonical skill\n';
+    const fixtureSkill = '---\nname: cicerone\n---\n\n# canonical skill\n';
     const pointer = '../../../.agents/skills/cicerone/SKILL.md';
     writeFileSync(join(canonicalDir, 'SKILL.md'), fixtureSkill);
     writeFileSync(join(claudeDir, 'SKILL.md'), pointer);
@@ -6036,7 +6036,7 @@ console.log('\n12b. Skill entrypoint bootstrap (npx / old releases)');
   // ONLY update-system.mjs into an otherwise-empty dir (no scaffolder/) and
   // importing it. Before the lazy-import fix this threw ERR_MODULE_NOT_FOUND at
   // module load; it must now load standalone.
-  const isolatedRoot = mkdtempSync(join(tmpdir(), 'career-ops-updater-standalone-'));
+  const isolatedRoot = mkdtempSync(join(tmpdir(), 'cicerone-updater-standalone-'));
   try {
     const updaterSource = readFileSync(join(ROOT, 'update-system.mjs'), 'utf-8');
     const isolatedUpdater = join(isolatedRoot, 'update-system.mjs');
@@ -6053,7 +6053,7 @@ console.log('\n12b. Skill entrypoint bootstrap (npx / old releases)');
 }
 
 {
-  const fixtureRoot = mkdtempSync(join(tmpdir(), 'career-ops-skills-unreadable-'));
+  const fixtureRoot = mkdtempSync(join(tmpdir(), 'cicerone-skills-unreadable-'));
   try {
     const canonicalDir = join(fixtureRoot, '.agents', 'skills', 'cicerone');
     const claudeDir = join(fixtureRoot, '.claude', 'skills', 'cicerone');
@@ -6080,7 +6080,7 @@ console.log('\n12b. Skill entrypoint bootstrap (npx / old releases)');
 }
 
 {
-  const fixtureRoot = mkdtempSync(join(tmpdir(), 'career-ops-skills-entry-dir-'));
+  const fixtureRoot = mkdtempSync(join(tmpdir(), 'cicerone-skills-entry-dir-'));
   try {
     const canonicalDir = join(fixtureRoot, '.agents', 'skills', 'cicerone');
     const claudeDir = join(fixtureRoot, '.claude', 'skills', 'cicerone');
@@ -6089,7 +6089,7 @@ console.log('\n12b. Skill entrypoint bootstrap (npx / old releases)');
     mkdirSync(claudeDir, { recursive: true });
     mkdirSync(opencodeDir, { recursive: true });
 
-    const fixtureSkill = '---\nname: career-ops\n---\n\n# canonical skill\n';
+    const fixtureSkill = '---\nname: cicerone\n---\n\n# canonical skill\n';
     const pointer = '../../../.agents/skills/cicerone/SKILL.md';
     writeFileSync(join(canonicalDir, 'SKILL.md'), fixtureSkill);
     mkdirSync(join(claudeDir, 'SKILL.md'));
@@ -6163,7 +6163,7 @@ function hermeticGitEnv(gitConfigPath, base = process.env) {
 // deletes them after git has already been handed the environment. What matters
 // is that the injection does not reach git.
 {
-  const root = mkdtempSync(join(tmpdir(), 'career-ops-hermetic-env-'));
+  const root = mkdtempSync(join(tmpdir(), 'cicerone-hermetic-env-'));
   try {
     const pinned = join(root, 'gitconfig');
     writeFileSync(pinned, '');
@@ -6217,8 +6217,8 @@ function hermeticGitEnv(gitConfigPath, base = process.env) {
 }
 
 {
-  const fixtureRoot = mkdtempSync(join(tmpdir(), 'career-ops-skill-git-'));
-  // The fixture stages the very paths career-ops legitimately tracks - .agents/,
+  const fixtureRoot = mkdtempSync(join(tmpdir(), 'cicerone-skill-git-'));
+  // The fixture stages the very paths cicerone legitimately tracks - .agents/,
   // .claude/, .opencode/ - and those are exactly the paths agent-tool users
   // exclude machine-wide. A fresh `git init` still honours the ambient global
   // and system config, so on such a machine `git add` refused the path and the
@@ -6230,7 +6230,7 @@ function hermeticGitEnv(gitConfigPath, base = process.env) {
   // init.templateDir and core.autocrlf as much as core.excludesFile. Same shape
   // as the GIT_CONFIG_GLOBAL pin in upgrade-tests.mjs. Empty on purpose; the
   // fixture's own `git config` calls below set everything it actually needs.
-  const gitConfigRoot = mkdtempSync(join(tmpdir(), 'career-ops-skill-gitcfg-'));
+  const gitConfigRoot = mkdtempSync(join(tmpdir(), 'cicerone-skill-gitcfg-'));
   const gitConfigPath = join(gitConfigRoot, 'gitconfig');
   writeFileSync(gitConfigPath, '');
   // That pin alone does NOT close the ignore path. When core.excludesFile is
@@ -6265,7 +6265,7 @@ function hermeticGitEnv(gitConfigPath, base = process.env) {
     mkdirSync(claudeDir, { recursive: true });
     mkdirSync(opencodeDir, { recursive: true });
 
-    const fixtureSkill = '---\nname: career-ops\n---\n\n# canonical skill\n';
+    const fixtureSkill = '---\nname: cicerone\n---\n\n# canonical skill\n';
     const pointer = '../../../.agents/skills/cicerone/SKILL.md';
 
     gitRun(['init']);
@@ -6361,8 +6361,8 @@ function hermeticGitEnv(gitConfigPath, base = process.env) {
 // So inject the leak on purpose and assert the pin absorbs it (CodeRabbit,
 // reviewing #2567).
 {
-  const fixtureRoot = mkdtempSync(join(tmpdir(), 'career-ops-skill-gitinject-'));
-  const gitConfigRoot = mkdtempSync(join(tmpdir(), 'career-ops-skill-gitinject-cfg-'));
+  const fixtureRoot = mkdtempSync(join(tmpdir(), 'cicerone-skill-gitinject-'));
+  const gitConfigRoot = mkdtempSync(join(tmpdir(), 'cicerone-skill-gitinject-cfg-'));
   try {
     const gitConfigPath = join(gitConfigRoot, 'gitconfig');
     writeFileSync(gitConfigPath, '');
@@ -6395,7 +6395,7 @@ function hermeticGitEnv(gitConfigPath, base = process.env) {
     mkdirSync(dirname(excludePath), { recursive: true });
     writeFileSync(excludePath, '');
     gitRun(['config', 'core.excludesFile', emptyExcludes]);
-    writeFileSync(join(canonicalDir, 'SKILL.md'), '---\nname: career-ops\n---\n');
+    writeFileSync(join(canonicalDir, 'SKILL.md'), '---\nname: cicerone\n---\n');
 
     let staged = '';
     try {
@@ -8748,7 +8748,7 @@ try {
 
   // CLI wiring: --dry-run reports without writing; a real run writes and is then
   // idempotent. Exercised against isolated fixture files via env overrides.
-  const cliTmp = mkdtempSync(join(tmpdir(), 'career-ops-add-cli-'));
+  const cliTmp = mkdtempSync(join(tmpdir(), 'cicerone-add-cli-'));
   try {
     const cvPath = join(cliTmp, 'cv.md');
     const adPath = join(cliTmp, 'article-digest.md');
@@ -8818,7 +8818,7 @@ try {
   // user had supplied, and two different headings both keying to '' matched
   // each other, so an entry could land under the wrong section.
   {
-    const jpTmp = mkdtempSync(join(tmpdir(), 'career-ops-add-jp-'));
+    const jpTmp = mkdtempSync(join(tmpdir(), 'cicerone-add-jp-'));
     try {
       const cvPath = join(jpTmp, 'cv.md');
       writeFileSync(cvPath, '# CV\n\n## \u30D7\u30ED\u30B8\u30A7\u30AF\u30C8\n\n- \u65E2\u5B58\n\n## \u8077\u52D9\u7D4C\u6B74\n\n- \u65E2\u5B58\n');
@@ -8911,7 +8911,7 @@ try {
   }
 
   // End-to-end migration against a fictional fixture tracker (no personal data)
-  const tmpDir = mkdtempSync(join(tmpdir(), 'career-ops-migrate-'));
+  const tmpDir = mkdtempSync(join(tmpdir(), 'cicerone-migrate-'));
   try {
     mkdirSync(join(tmpDir, 'data'));
     mkdirSync(join(tmpDir, 'reports'));
@@ -8936,7 +8936,7 @@ try {
   }
 
   const { resolveReportPath } = await import(pathToFileURL(join(ROOT, 'followup-cadence.mjs')).href);
-  const followupTmp = mkdtempSync(join(tmpdir(), 'career-ops-followup-link-'));
+  const followupTmp = mkdtempSync(join(tmpdir(), 'cicerone-followup-link-'));
   try {
     mkdirSync(join(followupTmp, 'data'), { recursive: true });
     mkdirSync(join(followupTmp, 'reports'), { recursive: true });
@@ -8976,7 +8976,7 @@ try {
 
   // Importing the module must expose the same allocator used by the CLI,
   // without running the CLI as an import side effect.
-  const apiTmp = mkdtempSync(join(tmpdir(), 'career-ops-reserve-api-'));
+  const apiTmp = mkdtempSync(join(tmpdir(), 'cicerone-reserve-api-'));
   const apiTracker = join(apiTmp, 'applications.md');
   const apiProbe = execFileSync(NODE, ['--input-type=module', '--eval', `
     const api = await import(${JSON.stringify(pathToFileURL(RESERVE).href)});
@@ -9045,7 +9045,7 @@ try {
     fail(`complex tracker report links parsed incorrectly: ${complexLinkNums} / ${angleLinkNums}`);
   }
 
-  const reserveTmp = mkdtempSync(join(tmpdir(), 'career-ops-reserve-'));
+  const reserveTmp = mkdtempSync(join(tmpdir(), 'cicerone-reserve-'));
   const single = reserveRun([], reserveTmp);
   if (single === '001' && existsSync(join(reserveTmp, '001-RESERVED.md'))) {
     pass('CAREER_OPS_REPORTS_DIR override redirects sentinel to temp dir');
@@ -9056,7 +9056,7 @@ try {
 
   // Tracker IDs and linked report IDs are occupied even when their report
   // files are missing (for example after a partial sync or manual archive).
-  const trackerTmp = mkdtempSync(join(tmpdir(), 'career-ops-reserve-tracker-'));
+  const trackerTmp = mkdtempSync(join(tmpdir(), 'cicerone-reserve-tracker-'));
   const trackerFile = join(trackerTmp, 'applications.md');
   writeFileSync(trackerFile,
     '# Applications Tracker\n\n' +
@@ -9072,7 +9072,7 @@ try {
   rmSync(trackerTmp, { recursive: true, force: true });
 
   // Formatting is a minimum width, not a three-digit ceiling.
-  const fourDigitTmp = mkdtempSync(join(tmpdir(), 'career-ops-reserve-4digit-'));
+  const fourDigitTmp = mkdtempSync(join(tmpdir(), 'cicerone-reserve-4digit-'));
   const fourDigitTracker = join(fourDigitTmp, 'applications.md');
   writeFileSync(fourDigitTracker,
     '# Applications Tracker\n\n' +
@@ -9087,7 +9087,7 @@ try {
   }
   rmSync(fourDigitTmp, { recursive: true, force: true });
 
-  const unsafeRangeTmp = mkdtempSync(join(tmpdir(), 'career-ops-reserve-unsafe-range-'));
+  const unsafeRangeTmp = mkdtempSync(join(tmpdir(), 'cicerone-reserve-unsafe-range-'));
   const unsafeRangeReports = join(unsafeRangeTmp, 'reports');
   const unsafeRangeTracker = join(unsafeRangeTmp, 'applications.md');
   mkdirSync(unsafeRangeReports);
@@ -9128,7 +9128,7 @@ try {
   }
 
   // --count N: contiguous range from an empty dir.
-  const rangeTmp = mkdtempSync(join(tmpdir(), 'career-ops-reserve-range-'));
+  const rangeTmp = mkdtempSync(join(tmpdir(), 'cicerone-reserve-range-'));
   const range = reserveRun(['--count', '3'], rangeTmp);
   const rangeSentinels = ['001', '002', '003']
     .every(n => existsSync(join(rangeTmp, `${n}-RESERVED.md`)));
@@ -9160,7 +9160,7 @@ try {
   // maxSlot() counts RESERVED sentinels as occupied, so a foreign sentinel at
   // 007 bases the range past it (008-) — no slot below is ever attempted.
   // (The rollback path is exercised by the next test, not this one.)
-  const collideTmp = mkdtempSync(join(tmpdir(), 'career-ops-reserve-collide-'));
+  const collideTmp = mkdtempSync(join(tmpdir(), 'cicerone-reserve-collide-'));
   writeFileSync(join(collideTmp, '005-acme-2026-07-02.md'), '# stub');
   writeFileSync(join(collideTmp, '007-RESERVED.md'), '');
   const collided = reserveRun(['--count', '3'], collideTmp);
@@ -9174,7 +9174,7 @@ try {
   rmSync(collideTmp, { recursive: true, force: true });
 
   // Existing four-digit report names participate in the same occupancy scan.
-  const highRangeTmp = mkdtempSync(join(tmpdir(), 'career-ops-reserve-high-range-'));
+  const highRangeTmp = mkdtempSync(join(tmpdir(), 'cicerone-reserve-high-range-'));
   writeFileSync(join(highRangeTmp, '999-acme-2026-07-02.md'), '# stub');
   writeFileSync(join(highRangeTmp, '1001-taken.md'), '# stub');
   const highRange = reserveRun(['--count', '3'], highRangeTmp);
@@ -9193,7 +9193,7 @@ try {
   // Terminates by construction: each restart strictly advances the base.
   let reserveRetries = 1;
   while (reserveRetries >= 0) {
-    const concTmp = mkdtempSync(join(tmpdir(), 'career-ops-reserve-conc-'));
+    const concTmp = mkdtempSync(join(tmpdir(), 'cicerone-reserve-conc-'));
     try {
       const spawnReserve = () => new Promise(resolve => {
         const child = spawn(NODE, [RESERVE, '--count', '4'], {
@@ -9241,7 +9241,7 @@ try {
       return err.status;
     }
   };
-  const relTmp = mkdtempSync(join(tmpdir(), 'career-ops-reserve-release-'));
+  const relTmp = mkdtempSync(join(tmpdir(), 'cicerone-reserve-release-'));
   reserveRun(['--count', '4'], relTmp); // reserves 001-004
   reserveRun(['--release', '001-004'], relTmp);
   const anyLeft = ['001', '002', '003', '004']
@@ -9275,7 +9275,7 @@ try {
 // must surface both as warnings (not errors — re-evaluations are legitimate).
 console.log('\n🧪 Testing verify-pipeline duplicate/orphan report checks...');
 try {
-  const vpTmp = mkdtempSync(join(tmpdir(), 'career-ops-verify-reports-'));
+  const vpTmp = mkdtempSync(join(tmpdir(), 'cicerone-verify-reports-'));
   try {
     const vpReports = join(vpTmp, 'reports');
     mkdirSync(vpReports, { recursive: true });
@@ -9366,7 +9366,7 @@ try {
 // lockstep with the web.
 console.log('\n🧪 Testing verify-pipeline duplicate detection across alphabets...');
 try {
-  const tkTmp = mkdtempSync(join(tmpdir(), 'career-ops-verify-turkish-'));
+  const tkTmp = mkdtempSync(join(tmpdir(), 'cicerone-verify-turkish-'));
   try {
     const tkReports = join(tkTmp, 'reports');
     mkdirSync(tkReports, { recursive: true });
@@ -9446,7 +9446,7 @@ try {
 //       unrelated report sharing its number, masking a real orphan.
 console.log('\n🧪 Testing verify-pipeline orphan reference resolution (#1425 follow-up)');
 try {
-  const orTmp = mkdtempSync(join(tmpdir(), 'career-ops-verify-orphan-'));
+  const orTmp = mkdtempSync(join(tmpdir(), 'cicerone-verify-orphan-'));
   try {
     const orReports = join(orTmp, 'reports');
     mkdirSync(orReports, { recursive: true });
@@ -9523,7 +9523,7 @@ try {
 // on a genuine re-application) — verify-pipeline must flag it as an error.
 console.log('\n🧪 Testing verify-pipeline duplicate tracker # check (#1704)...');
 try {
-  const dupNumTmp = mkdtempSync(join(tmpdir(), 'career-ops-verify-dupnum-'));
+  const dupNumTmp = mkdtempSync(join(tmpdir(), 'cicerone-verify-dupnum-'));
   try {
     const dupNumTracker = join(dupNumTmp, 'applications.md');
     const dupNumEnv = { ...process.env, CAREER_OPS_TRACKER: dupNumTracker };
@@ -9564,7 +9564,7 @@ try {
   }
 
   // Clean fixture: no duplicate numbers — must pass green.
-  const cleanTmp = mkdtempSync(join(tmpdir(), 'career-ops-verify-dupnum-clean-'));
+  const cleanTmp = mkdtempSync(join(tmpdir(), 'cicerone-verify-dupnum-clean-'));
   try {
     const cleanTracker = join(cleanTmp, 'applications.md');
     writeFileSync(cleanTracker,
@@ -9864,7 +9864,7 @@ try {
     fail('accented "Júnior" collapsed a sub-baseline req into the bare title');
   }
 
-  const dedupTmp = mkdtempSync(join(tmpdir(), 'career-ops-dedup-'));
+  const dedupTmp = mkdtempSync(join(tmpdir(), 'cicerone-dedup-'));
   try {
     mkdirSync(join(dedupTmp, 'data'));
     const tracker = join(dedupTmp, 'data', 'applications.md');
@@ -9992,7 +9992,7 @@ try {
 // happened for real. Same shape as scan-ats-full.mjs (#1633/#1635).
 console.log('\n🧪 Testing dedup-tracker flag validation (#2744)...');
 try {
-  const flagTmp = mkdtempSync(join(tmpdir(), 'career-ops-dedup-flags-'));
+  const flagTmp = mkdtempSync(join(tmpdir(), 'cicerone-dedup-flags-'));
   try {
     mkdirSync(join(flagTmp, 'data'));
     const tracker = join(flagTmp, 'data', 'applications.md');
@@ -10103,7 +10103,7 @@ try {
 // re-blast must still collapse, otherwise the fix would just be "never merge".
 console.log('\n🧪 Testing dedup blind-via channel key with non-Latin agencies (#2393)...');
 try {
-  const viaDedupTmp = mkdtempSync(join(tmpdir(), 'career-ops-dedup-via-'));
+  const viaDedupTmp = mkdtempSync(join(tmpdir(), 'cicerone-dedup-via-'));
   try {
     mkdirSync(join(viaDedupTmp, 'data'));
     const tracker = join(viaDedupTmp, 'data', 'applications.md');
@@ -10172,7 +10172,7 @@ try {
 // merge, and two distinct Latin employers must still stay apart.
 console.log('\n🧪 Testing dedup company key with non-Latin companies (#2429)...');
 try {
-  const coDedupTmp = mkdtempSync(join(tmpdir(), 'career-ops-dedup-company-'));
+  const coDedupTmp = mkdtempSync(join(tmpdir(), 'cicerone-dedup-company-'));
   try {
     mkdirSync(join(coDedupTmp, 'data'));
     const tracker = join(coDedupTmp, 'data', 'applications.md');
@@ -10237,7 +10237,7 @@ try {
 // fired. Controls: genuine same-company+same-role pairs must still be flagged.
 console.log('\n🧪 Testing verify-pipeline grouping keys with non-Latin text (#2393)...');
 try {
-  const vpKeyTmp = mkdtempSync(join(tmpdir(), 'career-ops-verify-unicode-'));
+  const vpKeyTmp = mkdtempSync(join(tmpdir(), 'cicerone-verify-unicode-'));
   try {
     const vpKeyReports = join(vpKeyTmp, 'reports');
     mkdirSync(vpKeyReports, { recursive: true });
@@ -10340,7 +10340,7 @@ try {
 // when promoting a keeper's status during dedup. rebuildRow() now preserves it.
 console.log('\n🧪 Testing dedup row rebuild preserves notes on no-trailing-pipe rows...');
 try {
-  const rebuildTmp = mkdtempSync(join(tmpdir(), 'career-ops-rebuild-'));
+  const rebuildTmp = mkdtempSync(join(tmpdir(), 'cicerone-rebuild-'));
   try {
     mkdirSync(join(rebuildTmp, 'data'));
     const tracker = join(rebuildTmp, 'data', 'applications.md');
@@ -10526,7 +10526,7 @@ try {
 // promotion must target the Status cell, not fixed parts[6].
 console.log('\n🧪 Testing dedup-tracker with an inserted Location column...');
 try {
-  const locTmp = mkdtempSync(join(tmpdir(), 'career-ops-dedup-loc-'));
+  const locTmp = mkdtempSync(join(tmpdir(), 'cicerone-dedup-loc-'));
   try {
     mkdirSync(join(locTmp, 'data'));
     const tracker = join(locTmp, 'data', 'applications.md');
@@ -10570,7 +10570,7 @@ try {
 // distinct specialties fall below the 0.6 threshold.
 console.log('\n🧪 Testing merge-tracker fuzzy dedup (distinct roles vs reposts)...');
 try {
-  const mergeTmp = mkdtempSync(join(tmpdir(), 'career-ops-merge-'));
+  const mergeTmp = mkdtempSync(join(tmpdir(), 'cicerone-merge-'));
   try {
     mkdirSync(join(mergeTmp, 'data'));
     mkdirSync(join(mergeTmp, 'reports'));
@@ -10640,7 +10640,7 @@ try {
 // has no Report column.
 console.log('\n🧪 Testing merge-tracker custom header width (extra columns, no Report column)...');
 try {
-  const widthTmp = mkdtempSync(join(tmpdir(), 'career-ops-width-'));
+  const widthTmp = mkdtempSync(join(tmpdir(), 'cicerone-width-'));
   try {
     mkdirSync(join(widthTmp, 'data'));
     mkdirSync(join(widthTmp, 'reports'));
@@ -10682,7 +10682,7 @@ try {
       }
 
       if (cells[8] === '—' && cells[9] === '—') {
-        pass('columns career-ops has no field for are written as "—"');
+        pass('columns cicerone has no field for are written as "—"');
       } else {
         fail(`unmapped columns not '—': apply link='${cells[8]}', follow-up='${cells[9]}'`);
       }
@@ -10713,7 +10713,7 @@ try {
       }
 
       // Rebuild-preservation half: updating an EXISTING row must keep the
-      // user-entered values in columns career-ops has no field for (the
+      // user-entered values in columns cicerone has no field for (the
       // seeded StreamCo row carries an Apply Link URL and a Follow-up date).
       // Without seeding from the row's current cells, the '—' fill would
       // wipe both on every update.
@@ -10752,7 +10752,7 @@ try {
 // survive tokenization, and non-report-number matches never rewrite the title.
 console.log('\n🧪 Testing merge-tracker sibling-req clobber guard (slash acronyms + title preservation)...');
 try {
-  const clobberTmp = mkdtempSync(join(tmpdir(), 'career-ops-clobber-'));
+  const clobberTmp = mkdtempSync(join(tmpdir(), 'cicerone-clobber-'));
   try {
     mkdirSync(join(clobberTmp, 'data'));
     mkdirSync(join(clobberTmp, 'reports'));
@@ -10829,7 +10829,7 @@ try {
 console.log('\n🧪 Testing merge-tracker tier-2 (entry num) title preservation...');
 try {
   const { roleFuzzyMatch } = await import(pathToFileURL(join(ROOT, 'role-matcher.mjs')).href);
-  const tier2Tmp = mkdtempSync(join(tmpdir(), 'career-ops-tier2-'));
+  const tier2Tmp = mkdtempSync(join(tmpdir(), 'cicerone-tier2-'));
   try {
     mkdirSync(join(tier2Tmp, 'data'));
     mkdirSync(join(tier2Tmp, 'reports'));
@@ -10899,7 +10899,7 @@ try {
 // comparison must use a Unicode-aware key.
 console.log('\n🧪 Testing merge-tracker via guard with non-Latin agencies (#1603)...');
 try {
-  const viaTmp = mkdtempSync(join(tmpdir(), 'career-ops-via-'));
+  const viaTmp = mkdtempSync(join(tmpdir(), 'cicerone-via-'));
   try {
     mkdirSync(join(viaTmp, 'data'));
     mkdirSync(join(viaTmp, 'reports'));
@@ -11168,7 +11168,7 @@ try {
   }
 
   // End-to-end: two different non-Latin companies, fuzzy-matching role titles.
-  const coTmp = mkdtempSync(join(tmpdir(), 'career-ops-nonlatin-co-'));
+  const coTmp = mkdtempSync(join(tmpdir(), 'cicerone-nonlatin-co-'));
   try {
     mkdirSync(join(coTmp, 'data'));
     mkdirSync(join(coTmp, 'reports'));
@@ -11272,7 +11272,7 @@ try {
   }
 
   // End-to-end: a swapped-column TSV merges correctly; an undecidable one is skipped.
-  const colTmp = mkdtempSync(join(tmpdir(), 'career-ops-colorder-'));
+  const colTmp = mkdtempSync(join(tmpdir(), 'cicerone-colorder-'));
   try {
     mkdirSync(join(colTmp, 'data'));
     mkdirSync(join(colTmp, 'reports'));
@@ -11336,7 +11336,7 @@ try {
 console.log('\n🧪 Testing merge-tracker PDF flag sync from data/pdf-index.tsv (#1429)...');
 try {
   const runPdfSyncFixture = (name, trackerRow, pdfIndex = null, additions = []) => {
-    const tmp = mkdtempSync(join(tmpdir(), `career-ops-merge-pdf-${name}-`));
+    const tmp = mkdtempSync(join(tmpdir(), `cicerone-merge-pdf-${name}-`));
     mkdirSync(join(tmp, 'data'), { recursive: true });
     const additionsDir = join(tmp, 'additions');
     const tracker = join(tmp, 'data', 'applications.md');
@@ -11478,7 +11478,7 @@ try {
 // update it in-place instead of appending NewCo as a new row.
 console.log('\n🧪 Testing merge-tracker report-number cross-company collision (#912)...');
 try {
-  const col912Tmp = mkdtempSync(join(tmpdir(), 'career-ops-merge-912-'));
+  const col912Tmp = mkdtempSync(join(tmpdir(), 'cicerone-merge-912-'));
   try {
     mkdirSync(join(col912Tmp, 'data'));
     mkdirSync(join(col912Tmp, 'reports'));
@@ -11547,7 +11547,7 @@ try {
 // heuristic) and refuses to trust a number already in it.
 console.log('\n🧪 Testing merge-tracker stale-number collision with a hidden existing row (#1704)...');
 try {
-  const staleNumTmp = mkdtempSync(join(tmpdir(), 'career-ops-merge-1704-'));
+  const staleNumTmp = mkdtempSync(join(tmpdir(), 'cicerone-merge-1704-'));
   try {
     mkdirSync(join(staleNumTmp, 'data'));
     const staleNumAdditions = join(staleNumTmp, 'additions');
@@ -11618,7 +11618,7 @@ try {
 // real collision (with a visible warning).
 console.log('\n🧪 Testing merge-tracker reserved-number fidelity (#1733)...');
 try {
-  const reservedTmp = mkdtempSync(join(tmpdir(), 'career-ops-merge-reserved-'));
+  const reservedTmp = mkdtempSync(join(tmpdir(), 'cicerone-merge-reserved-'));
   try {
     mkdirSync(join(reservedTmp, 'data'));
     const reservedAdditions = join(reservedTmp, 'additions');
@@ -11680,7 +11680,7 @@ try {
 // the same heuristic.
 console.log('\n🧪 Testing dedup blindness from `---` / "Empresa" in a data row...');
 try {
-  const hyphenTmp = mkdtempSync(join(tmpdir(), 'career-ops-dedup-hyphen-'));
+  const hyphenTmp = mkdtempSync(join(tmpdir(), 'cicerone-dedup-hyphen-'));
   try {
     const hData = join(hyphenTmp, 'data');
     const hReports = join(hyphenTmp, 'reports');
@@ -11861,7 +11861,7 @@ try {
 // falls back to fuzzy-match behavior (can't prove a mismatch without both).
 console.log('\n🧪 Testing merge-tracker req/job-number dedup guard (#1524)...');
 try {
-  const reqTmp = mkdtempSync(join(tmpdir(), 'career-ops-merge-1524-'));
+  const reqTmp = mkdtempSync(join(tmpdir(), 'cicerone-merge-1524-'));
   try {
     mkdirSync(join(reqTmp, 'data'));
     mkdirSync(join(reqTmp, 'reports'));
@@ -11958,7 +11958,7 @@ console.log('\n🧪 Testing merge-tracker concurrent writes...');
 try {
   let retries = 1;
   while (retries >= 0) {
-    const mergeTmp = mkdtempSync(join(tmpdir(), 'career-ops-merge-lock-'));
+    const mergeTmp = mkdtempSync(join(tmpdir(), 'cicerone-merge-lock-'));
     /**
      * Spawn one isolated `merge-tracker.mjs` process against the temporary fixture.
      *
@@ -11985,7 +11985,7 @@ try {
             ...process.env,
             CAREER_OPS_TRACKER: join(mergeTmp, 'data', 'applications.md'),
             CAREER_OPS_ADDITIONS: additionsDir,
-            CAREER_OPS_TRACKER_LOCK: join(mergeTmp, 'career-ops-merge-tracker-fixture.lock'),
+            CAREER_OPS_TRACKER_LOCK: join(mergeTmp, 'cicerone-merge-tracker-fixture.lock'),
             CAREER_OPS_MERGE_HOLD_MS: String(holdMs),
             CAREER_OPS_MERGE_READY_IPC: '1',
           },
@@ -12183,7 +12183,7 @@ if (!sqliteAvailable) {
   warn('node:sqlite unavailable (Node < 22.5) — tracker index tests skipped');
 } else {
   try {
-    const idxTmp = mkdtempSync(join(tmpdir(), 'career-ops-index-'));
+    const idxTmp = mkdtempSync(join(tmpdir(), 'cicerone-index-'));
     try {
       const md = join(idxTmp, 'applications.md');
       const env = { ...process.env, CAREER_OPS_TRACKER: md };
@@ -12859,12 +12859,12 @@ try {
   const { SEMVER_RE } = await import(pathToFileURL(join(ROOT, 'update-system.mjs')).href);
   const parse = (tag) => String(tag).trim().match(SEMVER_RE)?.[1] ?? null;
 
-  // Release Please tags carry the component prefix (career-ops-v1.9.0); the
+  // Release Please tags carry the component prefix (cicerone-v1.9.0); the
   // prefix must be stripped or the releases-API fallback is dead code (#923).
-  if (parse('career-ops-v1.9.0') === '1.9.0') {
-    pass('SEMVER_RE parses Release Please component-prefixed tag (career-ops-v1.9.0 → 1.9.0)');
+  if (parse('cicerone-v1.9.0') === '1.9.0') {
+    pass('SEMVER_RE parses Release Please component-prefixed tag (cicerone-v1.9.0 → 1.9.0)');
   } else {
-    fail(`SEMVER_RE failed on career-ops-v1.9.0 (got ${parse('career-ops-v1.9.0')}) — releases-API fallback is dead code (#923)`);
+    fail(`SEMVER_RE failed on cicerone-v1.9.0 (got ${parse('cicerone-v1.9.0')}) — releases-API fallback is dead code (#923)`);
   }
 
   // No regression on plain tags.
@@ -12875,10 +12875,10 @@ try {
   }
 
   // Non-semver input must not match.
-  if (parse('career-ops') === null && parse('v1.9') === null) {
+  if (parse('cicerone') === null && parse('v1.9') === null) {
     pass('SEMVER_RE rejects non-semver input');
   } else {
-    fail(`SEMVER_RE matched non-semver input (career-ops → ${parse('career-ops')}, v1.9 → ${parse('v1.9')})`);
+    fail(`SEMVER_RE matched non-semver input (cicerone → ${parse('cicerone')}, v1.9 → ${parse('v1.9')})`);
   }
 } catch (e) {
   fail(`update-system SEMVER_RE test crashed: ${e.message}`);
@@ -13211,14 +13211,14 @@ try {
   const compileOnlyTex = `\\documentclass{article}\\begin{document}Minimal user CV\\end{document}`;
   const compileOnlyValidation = validateLatexContent(compileOnlyTex, true);
   if (compileOnlyValidation.issues.length === 0) {
-    pass('--compile-only validation accepts minimal user .tex without career-ops macros');
+    pass('--compile-only validation accepts minimal user .tex without cicerone macros');
   } else {
     fail(`compile-only validation too strict: ${compileOnlyValidation.issues.join('; ')}`);
   }
 
   const strictValidation = validateLatexContent(compileOnlyTex, false);
   if (strictValidation.issues.some(i => /section|resumeSubheading|pdfgentounicode/i.test(i))) {
-    pass('default validation still enforces career-ops template checks');
+    pass('default validation still enforces cicerone template checks');
   } else {
     fail('default validation should reject non-template .tex');
   }
@@ -14246,10 +14246,10 @@ try {
   if (vreg.validateRegistry(ROOT).length === 0) pass('registry: shipped plugins-registry.json validates clean');
   else fail('registry: shipped registry should be valid');
 
-  const goodEntry = { name: 'career-ops-plugin-x', id: 'x', repo: 'https://github.com/a/career-ops-plugin-x', author: 'a', hooks: ['ingest'], requiredEnv: [], allowedHosts: ['api.x.com'], license: 'MIT', version: '1.0.0', sha: 'a'.repeat(40) };
+  const goodEntry = { name: 'cicerone-plugin-x', id: 'x', repo: 'https://github.com/a/cicerone-plugin-x', author: 'a', hooks: ['ingest'], requiredEnv: [], allowedHosts: ['api.x.com'], license: 'MIT', version: '1.0.0', sha: 'a'.repeat(40) };
   if (reg.validateRegistryEntry(goodEntry, regOpts).length === 0) pass('registry: a well-formed entry validates');
   else fail('registry: a good entry should validate');
-  if (reg.validateRegistryEntry({ ...goodEntry, name: 'evil-x' }, regOpts).length > 0) pass('registry: name must start with career-ops-plugin-');
+  if (reg.validateRegistryEntry({ ...goodEntry, name: 'evil-x' }, regOpts).length > 0) pass('registry: name must start with cicerone-plugin-');
   else fail('registry: a bad name should fail');
   if (reg.validateRegistryEntry({ ...goodEntry, requiredEnv: ['GEMINI_API_KEY'] }, regOpts).length > 0) pass('registry: a reserved/core env var is rejected');
   else fail('registry: reserved env should fail');
@@ -14270,7 +14270,7 @@ try {
   mkdirSync(join(succTmp, 'plugins.local', 'gmail'), { recursive: true });
   writeFileSync(join(succTmp, 'plugins.local', 'gmail', 'manifest.json'), JSON.stringify({ id: 'gmail', apiVersion: 1, description: 'community successor gmail', hooks: ['ingest'], requiredEnv: [], allowedHosts: [], humanInTheLoop: true }));
   writeFileSync(join(succTmp, 'plugins.local', 'gmail', 'index.mjs'), 'export default { ingest: async () => [] };');
-  writeFileSync(join(succTmp, 'plugins-registry.json'), JSON.stringify({ registryVersion: 1, plugins: [{ name: 'career-ops-plugin-gmail', id: 'gmail', repo: 'https://github.com/a/career-ops-plugin-gmail', author: 'a', hooks: ['ingest'], requiredEnv: [], allowedHosts: [], license: 'MIT', version: '2.0.0', sha: SUCC_SHA, supersedesBundled: true }] }));
+  writeFileSync(join(succTmp, 'plugins-registry.json'), JSON.stringify({ registryVersion: 1, plugins: [{ name: 'cicerone-plugin-gmail', id: 'gmail', repo: 'https://github.com/a/cicerone-plugin-gmail', author: 'a', hooks: ['ingest'], requiredEnv: [], allowedHosts: [], license: 'MIT', version: '2.0.0', sha: SUCC_SHA, supersedesBundled: true }] }));
   const bundledGmail = join(succTmp, 'plugins', 'gmail');
   const localGmail = join(succTmp, 'plugins.local', 'gmail');
 
@@ -14294,17 +14294,17 @@ try {
   const disc1 = eng.discoverPlugins(eng.pluginRoots(succTmp), ids1).find(m => m.id === 'gmail');
   if (disc1 && disc1.dir === localGmail) pass('successor: an approved+pinned successor overrides the bundled reference of the same id');
   else fail('successor: approved successor should override the bundled reference');
-  if (reg.successorFor(succTmp, 'gmail')?.name === 'career-ops-plugin-gmail') pass('successor: successorFor() surfaces the maintained version of a bundled id');
+  if (reg.successorFor(succTmp, 'gmail')?.name === 'cicerone-plugin-gmail') pass('successor: successorFor() surfaces the maintained version of a bundled id');
   else fail('successor: successorFor should return the registered successor');
   rmSync(succTmp, { recursive: true, force: true });
 
-  if (install.parseRepoArg('alice/career-ops-plugin-foo').id === 'foo') pass('install: owner/career-ops-plugin-foo parses to id "foo"');
+  if (install.parseRepoArg('alice/cicerone-plugin-foo').id === 'foo') pass('install: owner/cicerone-plugin-foo parses to id "foo"');
   else fail('install: should parse owner/repo');
   let extRej = false; try { install.parseRepoArg('ext::sh -c whoami'); } catch { extRej = true; }
   if (extRej) pass('install: refuses a non-GitHub / ext:: repo URL (clone-RCE guard)');
   else fail('install: should refuse an ext:: URL');
   let nameRej = false; try { install.parseRepoArg('alice/not-a-plugin'); } catch { nameRej = true; }
-  if (nameRej) pass('install: refuses a repo not named career-ops-plugin-*');
+  if (nameRej) pass('install: refuses a repo not named cicerone-plugin-*');
   else fail('install: should refuse a bad repo name');
 
   const auditTmp = mkdtempSync(join(tmpdir(), 'co-audit-'));
@@ -14854,7 +14854,7 @@ try {
       fail(`web status list(s) missing canonical state(s) — dashboard can't set/count them (#2249): ${drift.join(' | ')}`);
     }
 
-    // 55.3b+ the degraded-path FALLBACK in the states ACL (career-ops-ui's
+    // 55.3b+ the degraded-path FALLBACK in the states ACL (cicerone-ui's
     // find, #2282). It promised to mirror states.yml, drifted to 8 states
     // while the live path had 9, and later to 31 missing aliases (#2705).
     //
@@ -14888,7 +14888,7 @@ try {
         // failure direction from red to green. A reformat or a rename would have
         // passed silently with seven states unaccounted for. A future legitimate
         // form (`= buildFrom(CANONICAL_STATES)`) fails this on purpose: widening
-        // the guard should be a decision, not a silence. (career-ops-ui's find.)
+        // the guard should be a decision, not a silence. (cicerone-ui's find.)
       } else if (/const FALLBACK[^=]*=\s*CANONICAL_STATES\b/.test(aclSrc)) {
         pass('states ACL fallback derives from the frozen CANONICAL_STATES instead of copying states.yml (#2282)');
       } else {
@@ -14971,16 +14971,16 @@ try {
   }
 
   // 55.3d the web onboarding banner's prereq list must match doctor.mjs.
-  // doctorState() in web/src/lib/career-ops.ts hand-copies USER_LAYER_PREREQS
+  // doctorState() in web/src/lib/cicerone.ts hand-copies USER_LAYER_PREREQS
   // as a deliberate fast-path (server components can't execFile doctor per
   // render) — if the core gains a fifth prereq, the banner silently stops
   // asking for it and the user believes they're configured. Same mechanism as
-  // #2282, different symptom (career-ops-ui's census, 31-jul).
+  // #2282, different symptom (cicerone-ui's census, 31-jul).
   {
     const corePrereqBlock = readFileSync(join(ROOT, 'doctor.mjs'), 'utf-8')
       .match(/const USER_LAYER_PREREQS = \[([\s\S]*?)\n\];/)?.[1] ?? '';
     const corePrereqs = [...corePrereqBlock.matchAll(/path:\s*'([^']+)'/g)].map((m) => m[1]);
-    const webDoctorPath = join(ROOT, 'web', 'src', 'lib', 'career-ops.ts');
+    const webDoctorPath = join(ROOT, 'web', 'src', 'lib', 'cicerone.ts');
     if (corePrereqs.length > 0 && existsSync(webDoctorPath)) {
       const webPrereqBlock = readFileSync(webDoctorPath, 'utf-8')
         .match(/const prereqs[^=]*=\s*\[([\s\S]*?)\n\s*\];/)?.[1] ?? '';
@@ -15005,18 +15005,18 @@ try {
   }
 
   // 55.5 cross-check: the web parser still speaks the same column names
-  const webParserPath = join(ROOT, 'web', 'src', 'lib', 'career-ops.ts');
+  const webParserPath = join(ROOT, 'web', 'src', 'lib', 'cicerone.ts');
   if (existsSync(webParserPath)) {
     const webSrc = readFileSync(webParserPath, 'utf-8');
     const ESSENTIAL_COLS = ['Company', 'Role', 'Score', 'Status'];
     const missingCols = ESSENTIAL_COLS.filter((c) => !webSrc.toLowerCase().includes(c.toLowerCase()));
     if (missingCols.length === 0) {
-      pass('web/src/lib/career-ops.ts still references the essential tracker columns');
+      pass('web/src/lib/cicerone.ts still references the essential tracker columns');
     } else {
       fail(`web parser no longer references column(s): ${missingCols.join(', ')} — core and web drifted`);
     }
   } else {
-    warn('web/src/lib/career-ops.ts not found — web layer moved? update contract freeze section');
+    warn('web/src/lib/cicerone.ts not found — web layer moved? update contract freeze section');
   }
 
   // 55.6 pdf mode must never hand the agent write access (#2185).
@@ -15825,7 +15825,7 @@ console.log('\n59. CV template resolver (cv-templates.mjs)');
 
   // Hermetic: point at a nonexistent profile so this exercises the unset -> base
   // fallback regardless of the developer's real config/profile.yml (cv.template).
-  const noProfile = { env: { ...process.env, CAREER_OPS_PROFILE: join(tmpdir(), 'career-ops-no-such-profile.yml') } };
+  const noProfile = { env: { ...process.env, CAREER_OPS_PROFILE: join(tmpdir(), 'cicerone-no-such-profile.yml') } };
   const resolved = run(NODE, ['cv-templates.mjs', 'resolve', 'cv'], noProfile);
   if (resolved && resolved.endsWith('cv-template.html')) pass('CLI: resolve cv (unset) -> base template');
   else fail(`CLI: resolve cv (unset) unexpected: ${resolved}`);

@@ -15,7 +15,7 @@ import {
 
 // The data-only / pre-onboarding checkout has no scanner. /api/explore signals it
 // with an explicit code in the response body. This is the only failure the
-// "Discovery needs the full toolkit" panel (call to action: update career-ops)
+// "Discovery needs the full toolkit" panel (call to action: update cicerone)
 // should ever cover.
 test("the scanner-missing code is scanner-missing", () => {
   assert.equal(isScannerMissing({ code: SCANNER_MISSING_CODE }), true);
@@ -30,15 +30,15 @@ test("the scanner-missing code is scanner-missing", () => {
 //
 //   { error: "bad json" }
 //   { error: "query and cliId required" }
-//   { code: "MODE_MISSING", error: "AI search needs a newer career-ops — …" }
+//   { code: "MODE_MISSING", error: "AI search needs a newer cicerone — …" }
 //
 // So a malformed request rendered the "Discovery needs the full toolkit" panel
-// and told the user to update career-ops when nothing was wrong with their
+// and told the user to update cicerone when nothing was wrong with their
 // checkout. MODE_MISSING is the sharpest case: it is a real, DIFFERENT missing
 // -capability error with its own copy, and it was overwritten by the scanner
 // panel's.
 test("the other 400s on the shared channel are NOT scanner-missing", () => {
-  assert.equal(isScannerMissing({ code: "MODE_MISSING", error: "AI search needs a newer career-ops — update to enable it." }), false);
+  assert.equal(isScannerMissing({ code: "MODE_MISSING", error: "AI search needs a newer cicerone — update to enable it." }), false);
   assert.equal(isScannerMissing({ error: "bad json" }), false);
   assert.equal(isScannerMissing({ error: "query and cliId required" }), false);
 });

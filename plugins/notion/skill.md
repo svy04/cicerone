@@ -1,6 +1,6 @@
 ---
-name: career-ops-plugin-notion
-description: How to mirror the career-ops tracker to a Notion database and read records back as job leads.
+name: cicerone-plugin-notion
+description: How to mirror the cicerone tracker to a Notion database and read records back as job leads.
 license: MIT
 ---
 

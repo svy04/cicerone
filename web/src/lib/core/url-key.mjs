@@ -6,7 +6,7 @@
  * bundles can import it without a TS runner or Node-only deps — this file has
  * none, same as the core it mirrors (only the global `URL`).
  *
- * WHY A COPY EXISTS AT ALL: the live core lives in the user's career-ops
+ * WHY A COPY EXISTS AT ALL: the live core lives in the user's cicerone
  * checkout and is resolved at runtime via careerOpsRoot() — unavailable to the
  * client bundle. Unlike normalize-text-key.mjs's split (a Node-only live
  * loader server-side, this mirror client-side), the URL key here is used to

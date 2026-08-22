@@ -8,7 +8,7 @@
 // 안정적이고, 아직 안 받은 사용자도 바로 쓸 수 있어야 합니다.
 //
 // ── 지키는 넷 ────────────────────────────────────────────────
-//   1. 정체를 밝힌다 — ctx 가 붙이는 career-ops 사용자 에이전트를 씁니다.
+//   1. 정체를 밝힌다 — ctx 가 붙이는 cicerone 사용자 에이전트를 씁니다.
 //      브라우저 문자열을 흉내 내지 않습니다
 //   2. robots.txt 를 본다 — 요청 전에 `assertAllowed` 가 판정합니다.
 //      실측(2026-08-21): `/zf_user/search/recruit` 은 User-agent `*` 에서 허용,
@@ -139,7 +139,7 @@ export default {
     }
 
     // robots 관문 — 막힌 경로면 여기서 멈춥니다
-    const { crawlDelay } = await assertAllowed(base.toString(), ctx, 'career-ops');
+    const { crawlDelay } = await assertAllowed(base.toString(), ctx, 'cicerone');
     const pace = Math.max(PACE_MS, (crawlDelay || 0) * 1000);
 
     const jobs = [];

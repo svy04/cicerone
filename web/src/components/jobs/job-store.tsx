@@ -40,7 +40,7 @@ export function useJobs() {
   return c;
 }
 
-const JOBS_KEY = "career-ops:jobs";
+const JOBS_KEY = "cicerone:jobs";
 
 function parseVerdict(text: string): JobResult {
   const m = text.match(/VERDICT:\s*([\d.]+)\s*\/\s*5\s*[—:|-]+\s*(.+)/i);

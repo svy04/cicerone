@@ -152,7 +152,7 @@ that there is **no contact discovery**.
 **Greeting rules:**
 - Platform-agnostic — never assume LinkedIn; works for any chat/opener surface.
 - Within `outreach.greeting_max_chars` (default 150). Never exceed it.
-- Same non-fabrication rule as the rest of career-ops: reformulate real experience
+- Same non-fabrication rule as the rest of cicerone: reformulate real experience
   from `cv.md`, never invent a skill, metric, or claim.
 - NO corporate-speak, NO "I'm passionate about...", NEVER share a phone number.
 - Persona changes the EMPHASIS, not the structure.

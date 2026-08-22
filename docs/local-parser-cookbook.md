@@ -4,7 +4,7 @@ Local parsers let `scan.mjs` read SSR or static career pages without asking an a
 
 ## When To Use This
 
-Use `scan_method: local_parser` when a company career page has stable HTML, a documented endpoint, or another deterministic source that is easier to parse locally than with Playwright. The parser can be written in JavaScript, Python, shell, Go, or any executable available on the user's machine. `career-ops` does not bundle company-specific parser scripts; users bring their own script and point `portals.yml` at it.
+Use `scan_method: local_parser` when a company career page has stable HTML, a documented endpoint, or another deterministic source that is easier to parse locally than with Playwright. The parser can be written in JavaScript, Python, shell, Go, or any executable available on the user's machine. `cicerone` does not bundle company-specific parser scripts; users bring their own script and point `portals.yml` at it.
 
 ## Portal Configuration
 

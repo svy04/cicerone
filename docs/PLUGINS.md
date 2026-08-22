@@ -1,12 +1,12 @@
 # Plugins
 
-Plugins extend career-ops with integrations that need an API key or talk to an
+Plugins extend cicerone with integrations that need an API key or talk to an
 external service — things the zero-keys, local-first core doesn't carry. They are
 **opt-in**, sandboxed-by-convention, and additive: with no plugins enabled, the
 core runs exactly as it always has.
 
 > This is **not** the Claude Code plugin (`.claude-plugin/`). These plugins
-> extend career-ops itself.
+> extend cicerone itself.
 
 ## Using plugins
 
@@ -31,7 +31,7 @@ keys must be in your `.env`. `node doctor.mjs` shows what's missing.
 | `❓ community-unverified` | You installed it from a repo we haven't reviewed — you're trusting the author. |
 | `⚠️ off-registry` | Installed commit differs from the approved one. |
 
-If a plugin's files change without a version bump, career-ops **blocks it** and
+If a plugin's files change without a version bump, cicerone **blocks it** and
 asks you to review + `node plugins.mjs trust <id>` to re-pin (tamper detection).
 
 ## Writing a plugin
@@ -55,7 +55,7 @@ trust).
 ## Publishing + getting approved
 
 1. Develop locally, then publish your plugin as its **own public GitHub repo**
-   named exactly `career-ops-plugin-<name>` (the template repo gives you the
+   named exactly `cicerone-plugin-<name>` (the template repo gives you the
    right shape + a release workflow). Minimum files: `manifest.json`,
    `index.mjs`, `README.md`, `LICENSE`, plus `skill.md` + `test/smoke.mjs` to be
    listable.
@@ -81,13 +81,13 @@ and stable on purpose, **not** a home for ongoing feature work.
 We **don't take feature PRs against bundled plugins.** If you want to extend one
 (more options, a richer mapping, new behavior), own it properly:
 
-1. Publish `career-ops-plugin-<id>` with the **same `id`** as the bundled plugin
+1. Publish `cicerone-plugin-<id>` with the **same `id`** as the bundled plugin
    (start from the bundled plugin's code — it's MIT and credits its origins).
 2. In your registry PR, set **`"supersedesBundled": true`** on your entry.
-3. Once approved + pinned, anyone who runs `node plugins.mjs add career-ops-plugin-<id>`
+3. Once approved + pinned, anyone who runs `node plugins.mjs add cicerone-plugin-<id>`
    installs your version, and the engine gives **your maintained successor
    precedence over the bundled reference** of the same id. `node plugins.mjs available`
-   surfaces the link: *"gmail — 🔁 maintained version: career-ops-plugin-gmail"*.
+   surfaces the link: *"gmail — 🔁 maintained version: cicerone-plugin-gmail"*.
 
 This keeps the core lean and **puts the integration in your hands, with your name
 on it** — while the bundled seed stays as the always-present fallback, so the
@@ -99,7 +99,7 @@ unprompted, unreviewed community plugin can never shadow a bundled one.
 registry is a reviewed system file and installs pin an exact commit, so no
 upstream author can push code over a bundled plugin without a maintainer merging
 their entry. It does **not** try to stop *you* from running your own modified
-code on your own machine — career-ops is local-first and the source is yours; if
+code on your own machine — cicerone is local-first and the source is yours; if
 you edit `plugins.local/` or your `plugins.lock`, you're choosing to run your own
 version, exactly as you always could. Removing a successor restores the bundled
 reference.
@@ -110,11 +110,11 @@ Every community plugin in the registry is reviewed and pinned to an exact commit
 
 | Plugin | What it does | Hooks | Keys needed | Author |
 | --- | --- | --- | --- | --- |
-| [career-ops-plugin-tavily](https://github.com/Schlaflied/career-ops-plugin-tavily) | Tavily search/extract for job scanning, liveness checks, and company research. | search | `TAVILY_API_KEY` | @Schlaflied |
-| [career-ops-plugin-google-calendar](https://github.com/Schlaflied/career-ops-plugin-google-calendar) | Google Calendar ingest — detect upcoming interview events and surface them in the career-ops pipeline. | ingest | `GOOGLE_CALENDAR_CLIENT_ID`, `GOOGLE_CALENDAR_CLIENT_SECRET`, `GOOGLE_CALENDAR_REFRESH_TOKEN` | @Schlaflied |
-| [career-ops-plugin-linkedin-alerts](https://github.com/Schlaflied/career-ops-plugin-linkedin-alerts) | LinkedIn job alert ingest — parse LinkedIn alert emails from your Gmail inbox, normalize tracking links to canonical job URLs, and surface them in the career-ops pipeline. | ingest | `GMAIL_CLIENT_ID`, `GMAIL_CLIENT_SECRET`, `GMAIL_REFRESH_TOKEN` | @Schlaflied |
-| [career-ops-plugin-outlook-interviews](https://github.com/Schlaflied/career-ops-plugin-outlook-interviews) | Outlook interview ingest — detect interview invitation emails via Microsoft Graph, extract company / role / meeting link, and surface them in the career-ops pipeline. | ingest | `MSGRAPH_CLIENT_ID`, `MSGRAPH_REFRESH_TOKEN` (optional: `MSGRAPH_CLIENT_SECRET`) | @Schlaflied |
-| [career-ops-plugin-obsidian](https://github.com/Schlaflied/career-ops-plugin-obsidian) | Obsidian export — mirror the tracker into your vault as frontmatter notes queryable by Dataview/Bases; frontmatter belongs to the machine, the note body belongs to you. | export | None | @Schlaflied |
+| [cicerone-plugin-tavily](https://github.com/Schlaflied/cicerone-plugin-tavily) | Tavily search/extract for job scanning, liveness checks, and company research. | search | `TAVILY_API_KEY` | @Schlaflied |
+| [cicerone-plugin-google-calendar](https://github.com/Schlaflied/cicerone-plugin-google-calendar) | Google Calendar ingest — detect upcoming interview events and surface them in the career-ops pipeline. | ingest | `GOOGLE_CALENDAR_CLIENT_ID`, `GOOGLE_CALENDAR_CLIENT_SECRET`, `GOOGLE_CALENDAR_REFRESH_TOKEN` | @Schlaflied |
+| [cicerone-plugin-linkedin-alerts](https://github.com/Schlaflied/cicerone-plugin-linkedin-alerts) | LinkedIn job alert ingest — parse LinkedIn alert emails from your Gmail inbox, normalize tracking links to canonical job URLs, and surface them in the career-ops pipeline. | ingest | `GMAIL_CLIENT_ID`, `GMAIL_CLIENT_SECRET`, `GMAIL_REFRESH_TOKEN` | @Schlaflied |
+| [cicerone-plugin-outlook-interviews](https://github.com/Schlaflied/cicerone-plugin-outlook-interviews) | Outlook interview ingest — detect interview invitation emails via Microsoft Graph, extract company / role / meeting link, and surface them in the career-ops pipeline. | ingest | `MSGRAPH_CLIENT_ID`, `MSGRAPH_REFRESH_TOKEN` (optional: `MSGRAPH_CLIENT_SECRET`) | @Schlaflied |
+| [cicerone-plugin-obsidian](https://github.com/Schlaflied/cicerone-plugin-obsidian) | Obsidian export — mirror the tracker into your vault as frontmatter notes queryable by Dataview/Bases; frontmatter belongs to the machine, the note body belongs to you. | export | None | @Schlaflied |
 
 To add your own plugin to the registry, follow the [Publishing + getting approved](#publishing--getting-approved) flow above.
 
@@ -123,5 +123,5 @@ To add your own plugin to the registry, follow the [Publishing + getting approve
 - **Centralized infrastructure** the project would run (hosted aggregation,
   shared services, proxies) → a separate, opt-in service, see
   [Discussion #904](https://github.com/svy04/cicerone/discussions/904).
-- **Auto-submitting / blind-applying** → out of the core everywhere. career-ops
+- **Auto-submitting / blind-applying** → out of the core everywhere. cicerone
   drafts for you to review and submit; it is a decision-support tool, not a bot.

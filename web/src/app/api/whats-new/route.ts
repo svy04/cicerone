@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { careerOpsRoot, readApplications } from "@/lib/career-ops";
+import { careerOpsRoot, readApplications } from "@/lib/cicerone";
 import { getNormalizeTextKey } from "@/lib/core/text-key";
 import type { DiscoveredOffer } from "@/lib/explore";
 

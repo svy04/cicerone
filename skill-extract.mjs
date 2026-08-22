@@ -2,7 +2,7 @@
 /**
  * skill-extract.mjs — the shared skill vocabulary + canonical extractor (#1896)
  *
- * Single source of truth for how career-ops recognizes and canonicalizes hard
+ * Single source of truth for how cicerone recognizes and canonicalizes hard
  * skills. Lifted verbatim from upskill.mjs (the most-tested copy) so upskill,
  * jd-skill-gap, and analyze-patterns can converge on ONE vocabulary + canonical
  * form instead of three drifting ones — the drift class that shipped #1851

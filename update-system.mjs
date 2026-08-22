@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * update-system.mjs — Safe auto-updater for career-ops
+ * update-system.mjs — Safe auto-updater for cicerone
  *
  * Updates ONLY system layer files (modes, scripts, dashboard, templates).
  * NEVER touches user data (cv.md, profile.yml, _profile.md, data/, reports/).
@@ -42,7 +42,7 @@ const RAW_VERSION_URL = 'https://raw.githubusercontent.com/svy04/cicerone/main/V
 const RELEASES_API = 'https://api.github.com/repos/svy04/cicerone/releases/latest';
 
 // Matches a semver, with or without a leading `v` and an optional
-// Release Please component prefix (e.g. `career-ops-v1.9.0` → `1.9.0`).
+// Release Please component prefix (e.g. `cicerone-v1.9.0` → `1.9.0`).
 // Anchoring on `(?:^|-)` lets the releases-API fallback parse our tags,
 // which Release Please always prefixes with the component name.
 export const SEMVER_RE = /(?:^|-)v?(\d+\.\d+\.\d+)$/i;
@@ -1157,7 +1157,7 @@ function contentPublishedUpstream(files, baseline, upstreamRef, runGit) {
     // `--full-history` keeps commits history simplification would prune, and
     // `--no-renames` keeps the question about this exact path. A path git has to
     // C-quote (a space, a quote) simply will not match a `files` entry and stays
-    // reported — the safe direction, and career-ops ships no such path.
+    // reported — the safe direction, and cicerone ships no such path.
     raw = runGit('log', '--full-history', '--no-renames', '--format=', '--raw',
       '--no-abbrev', `${baseline}..${upstreamRef}`, '--', ...files);
   } catch {
@@ -1424,7 +1424,7 @@ async function check() {
     curlGet(RAW_VERSION_URL),
     curlGet(RELEASES_API, [
       '--header', 'Accept: application/vnd.github.v3+json',
-      '--header', 'User-Agent: career-ops-update-checker',
+      '--header', 'User-Agent: cicerone-update-checker',
     ]),
   ]);
 
@@ -1436,7 +1436,7 @@ async function check() {
   try { localCommit = gitQuiet('rev-parse', 'HEAD'); } catch { /* no git checkout */ }
   const remoteRef = await curlGet('https://api.github.com/repos/svy04/cicerone/git/ref/heads/main', [
     '--header', 'Accept: application/vnd.github+json',
-    '--header', 'User-Agent: career-ops-update-checker',
+    '--header', 'User-Agent: cicerone-update-checker',
   ]);
   if (remoteRef !== null) {
     try { remoteCommit = String(JSON.parse(remoteRef)?.object?.sha || '').trim(); } catch { /* malformed API response */ }
@@ -1507,7 +1507,7 @@ async function check() {
 // reconciler keys off pattern presence, never off this marker, so a user who
 // deletes or moves it loses nothing.
 const GITIGNORE_BLOCK_HEADER = [
-  '# Added by career-ops update-system.mjs.',
+  '# Added by cicerone update-system.mjs.',
   '# System-owned ignore rules that were missing from this file. Your own rules',
   '# are never modified, reordered or removed: the updater only appends patterns',
   '# it cannot already find somewhere in this file. Reordering these lines, or',

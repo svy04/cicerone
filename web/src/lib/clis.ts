@@ -3,8 +3,8 @@ import os from "node:os";
 import path from "node:path";
 import { codexStreamArgs, isFatalClaudeStderr, isFatalCodexStderr, parseClaudeEvent, parseCodexEvent } from "./run-cli-support.mjs";
 
-// Server-only (node imports). The agnostic runtimes career-ops can delegate to
-// in headless mode (AGENTS.md). Install URLs from career-ops-docs.
+// Server-only (node imports). The agnostic runtimes cicerone can delegate to
+// in headless mode (AGENTS.md). Install URLs from cicerone-docs.
 export type CliSpec = {
   id: string;
   name: string;

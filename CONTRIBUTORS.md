@@ -318,4 +318,4 @@ open a PR. You can also ask on your own behalf — that is not rude here.
 
 ## How to become a contributor
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) and the [Contributor Ladder](GOVERNANCE.md#contributor-ladder) in GOVERNANCE.md. Open an issue first for anything beyond a typo fix — we merge fast when scope is clear.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for what a pull request needs to carry, and [GOVERNANCE.md](GOVERNANCE.md) for how decisions get made here. Open an issue first for anything beyond a typo fix — scope that is clear merges fast.

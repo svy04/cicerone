@@ -14,7 +14,7 @@ try {
   const { resolveExtractorMode, compactText, normalizeJd, normalizeListing, parseArgs } = mod;
 
   // resolveExtractorMode — default mcp, explicit cli, garbage → mcp, missing → mcp
-  const tmp = mkdtempSync(join(tmpdir(), 'career-ops-extractor-'));
+  const tmp = mkdtempSync(join(tmpdir(), 'cicerone-extractor-'));
   try {
     const write = (name, body) => { const p = join(tmp, name); writeFileSync(p, body); return p; };
     if (resolveExtractorMode(write('cli.yml', 'scan:\n  extractor: cli\n')) === 'cli') pass('resolveExtractorMode reads scan.extractor: cli');

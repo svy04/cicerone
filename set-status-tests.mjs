@@ -64,10 +64,10 @@ function makeSandbox(trackerContent) {
   const dir = mkdtempSync(join(tmpdir(), 'co-setstatus-'));
   const tracker = join(dir, 'applications.md');
   writeFileSync(tracker, trackerContent);
-  // The lock env value must live under tmpdir and use the career-ops prefix
+  // The lock env value must live under tmpdir and use the cicerone prefix
   // (see trackerLockDirFor) or it is ignored — which would still be safe,
   // just contending on the real default lock.
-  const lock = join(dir, 'career-ops-merge-tracker-test.lock');
+  const lock = join(dir, 'cicerone-merge-tracker-test.lock');
   return { dir, tracker, lock };
 }
 
@@ -721,9 +721,9 @@ const TRACKER_REPORT_MISMATCH = `# Applications Tracker
   // then fails with ENOTDIR/ENOENT — a config error, not a busy lock — and
   // must map to exit 1 / lock-error, keeping exit 4 reserved for retryable
   // timeouts.
-  const blocker = join(sb.dir, 'career-ops-merge-tracker-blocker');
+  const blocker = join(sb.dir, 'cicerone-merge-tracker-blocker');
   writeFileSync(blocker, 'not a directory');
-  const badLock = join(blocker, 'career-ops-merge-tracker-bad.lock');
+  const badLock = join(blocker, 'cicerone-merge-tracker-bad.lock');
   const r = runSetStatus(['2', 'Applied', '--json'], { ...sb, lock: badLock });
   let parsed = null;
   try { parsed = JSON.parse(r.stdout); } catch {}
@@ -738,7 +738,7 @@ const TRACKER_REPORT_MISMATCH = `# Applications Tracker
 // ── 15. Orphaned recovery guard does not block stale-lock recovery ─
 {
   const dir = mkdtempSync(join(tmpdir(), 'co-setstatus-guard-'));
-  const lockDir = join(dir, 'career-ops-merge-tracker-guardtest.lock');
+  const lockDir = join(dir, 'cicerone-merge-tracker-guardtest.lock');
   // Stale lock: dead owner PID → recoverable.
   mkdirSync(lockDir, { recursive: true });
   writeFileSync(join(lockDir, 'owner.json'), JSON.stringify({ pid: 999999999, token: 'dead', tracker: 'x' }));
@@ -775,7 +775,7 @@ const TRACKER_REPORT_MISMATCH = `# Applications Tracker
     mkdirSync(roDir);
     const tracker = join(roDir, 'applications.md');
     writeFileSync(tracker, TRACKER_9);
-    const lock = join(dir, 'career-ops-merge-tracker-wf.lock');
+    const lock = join(dir, 'cicerone-merge-tracker-wf.lock');
     // Make the tracker's directory readable but unwritable, so the atomic
     // temp-file write fails after a successful read. On Windows, directory
     // read-only bits don't block file creation — deny write-data/append-data
