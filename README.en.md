@@ -1,4 +1,4 @@
-<img src="docs/banner.en.png" alt="cicerone — Whether to apply is your call. What you are looking at, this takes apart." width="100%">
+<img src="docs/banner.png" alt="cicerone" width="100%">
 
 A command-line tool for evaluating Korean job postings and preparing application documents. It runs inside an AI coding CLI (Claude Code, Codex, and others) and keeps every file on your own machine.
 

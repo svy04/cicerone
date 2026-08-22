@@ -1,4 +1,4 @@
-<img src="docs/banner.png" alt="cicerone — 지원할지는 당신이 정합니다. 무엇을 보고 있는지는 풀어 드립니다." width="100%">
+<img src="docs/banner.png" alt="cicerone" width="100%">
 
 한국 채용 공고를 평가하고 지원 서류를 준비하는 명령줄 도구입니다. 클로드 코드나 코덱스 같은 인공지능 명령줄 도구 안에서 돌아가고, 파일은 전부 내 컴퓨터에 남습니다.
 
