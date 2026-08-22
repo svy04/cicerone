@@ -196,6 +196,55 @@ protected_grounds:
       - "Tokyo Labour Bureau — 公正な採用選考 page (jsite.mhlw.go.jp/tokyo-roudoukyoku)"
     as_of: "2026-07-18"
 
+  - jurisdiction: KR
+    jurisdiction_name: "South Korea"
+    grounds:
+      # 채용절차법 제4조의3 각 호. 열거된 것만 금지이므로 각 호를 그대로 나눠 적는다.
+      - topic: "용모·키·체중 등 신체적 조건 (physical attributes — appearance, height, weight)"
+        group: "제4조의3 제1호 — 신체적 조건"
+        example_question_patterns:
+          - "키가 어떻게 되세요? / 몸무게는? (How tall are you? What do you weigh?)"
+          - "사진과 실물이 다르네요 (You look different from your photo)"
+        legitimate_contexts:
+          - "직무 수행에 반드시 필요한 경우에 한해 수집할 수 있다 — 조문 자체가 '그 직무의 수행에 필요하지 아니한' 정보로 범위를 한정한다"
+      - topic: "출신지역 (region of origin)"
+        group: "제4조의3 제2호 — 출신지역·혼인여부·재산"
+        example_question_patterns:
+          - "고향이 어디세요? / 어디 출신이세요? (Where are you from originally?)"
+      - topic: "혼인 여부 (marital status)"
+        group: "제4조의3 제2호 — 출신지역·혼인여부·재산"
+        example_question_patterns:
+          - "결혼은 하셨나요? / 아이 계획은요? (Are you married? Are you planning children?)"
+        legitimate_contexts:
+          - "채용 이후 가족수당 지급 등을 위한 혼인 확인은 채용절차법 적용 밖이다 — 선발 단계가 아니라 입사 후 행정 절차다"
+      - topic: "재산 (assets / property)"
+        group: "제4조의3 제2호 — 출신지역·혼인여부·재산"
+        example_question_patterns:
+          - "자가세요, 전세세요? / 집은 어디신가요 (Do you own or rent?)"
+      - topic: "직계 존비속 및 형제자매의 학력 (parents'/siblings' education)"
+        group: "제4조의3 제3호 — 가족의 학력·직업·재산"
+        example_question_patterns:
+          - "부모님은 어느 학교 나오셨어요? (Where did your parents go to school?)"
+      - topic: "직계 존비속 및 형제자매의 직업 (parents'/siblings' occupation)"
+        group: "제4조의3 제3호 — 가족의 학력·직업·재산"
+        example_question_patterns:
+          - "아버지는 무슨 일 하세요? (What does your father do?)"
+      - topic: "직계 존비속 및 형제자매의 재산 (parents'/siblings' assets)"
+        group: "제4조의3 제3호 — 가족의 학력·직업·재산"
+    legal_basis: >-
+      채용절차의 공정화에 관한 법률 제4조의3(출신지역 등 개인정보 요구 금지),
+      2019-04-16 신설(법률 제16321호), 2019-07-17 시행. 구인자는 열거된 정보를
+      기초심사자료에 기재하도록 요구하거나 수집할 수 없고, **구직자의 동의를 받아도
+      수집할 수 없는 강행규정**이다. 위반 시 500만원 이하 과태료(제17조).
+      상시 30명 이상 근로자를 사용하는 사업장에 적용된다.
+      금지되는 것은 **열거된 정보뿐**이다 — 사진·종교·생년월일·성별·현 거주지·출신학교는
+      이 조문의 금지 목록이 아니므로, 그것을 물었다고 이 조문 위반으로 적지 않는다.
+    sources:
+      - "국가법령정보센터 — 채용절차의 공정화에 관한 법률 (law.go.kr/lsInfoP.do?lsiSeq=208371)"
+      - "CaseNote — 채용절차의 공정화에 관한 법률 제4조의3 조문 (casenote.kr)"
+      - "정책브리핑 — 채용절차법 시행 안내 (korea.kr/special/policyCurationView.do?newsId=148866903)"
+    as_of: "2026-08-22"
+
   - jurisdiction: DE
     jurisdiction_name: "Germany"
     grounds:

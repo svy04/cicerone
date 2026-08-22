@@ -274,54 +274,16 @@ If the form has more questions than the visible ones:
 - Or paste the remaining questions
 - Process in iterations until the entire form is covered
 
-## Known ATS Quirks
+## 한국 지원에서 다른 것
 
-Field-tested across ~12 Playwright-driven applications (Ashby, Greenhouse, Lever, Workable). These quirks silently break an apply run if not accounted for.
+**대기업은 자체 채용 사이트에서 받습니다.** 삼성·LG·현대차 계열은 각자 채용 사이트가 있고, 국내 채용 관리 시스템(그리팅 등)을 쓰는 회사는 `{회사}.career.greetinghr.com` 형태입니다. 해외 채용 시스템처럼 벤더별 동작 차이를 외울 필요가 적은 대신, 회사마다 화면이 다릅니다.
 
-### Ashby — email-based candidate dedup
+**자기소개서 문항이 지원서 안에 있습니다.** 폼에 문항과 글자 수가 함께 나오면 그 자리에서 채우지 말고 `modes/cover.md` 로 갑니다. 문항별 재료 배정과 글자 수 계산이 거기 있습니다.
 
-- **Symptom:** Submitting a second application at the same company silently fails or merges into the existing candidate record. Ashby deduplicates by email per company.
-- **Agent:** Before filling the email field, check whether an earlier report for the same company already exists in `reports/`. If it does, warn the candidate and pre-fill a `+tag` alias (e.g., `user+teamname@domain.com`) as the suggested value.
-- **Candidate:** Confirms or changes the email before the form is submitted.
+**금지 항목을 요구하는 폼이 있습니다.** 위 Step 5ko 가 채용절차법 제4조의3 이 금지한 항목(신체 조건·출신 지역·혼인 여부·재산·가족의 학력과 직업)을 폼에서 찾습니다. 공고 본문보다 지원서 폼에 더 자주 나타납니다.
 
-### Lever — hCaptcha intercepts checkbox/radio clicks
+## 해외·외국계에 지원할 때
 
-- **Symptom:** Programmatic `click()` on checkboxes or radio buttons triggers an hCaptcha challenge mid-form, blocking the rest of the fill.
-- **Agent:** Fill `<input type="text">`, `<textarea>`, and `<select>` fields only. Skip all checkboxes, radio buttons, and the captcha widget. List the skipped fields with their recommended values so the candidate can tick them.
-- **Candidate:** Completes the checkboxes, solves the captcha, and clicks Submit.
+해외 채용 관리 시스템(Ashby·Greenhouse·Lever·Workday·SuccessFactors)의 알려진 동작 문제 — 이메일 기반 중복 판정, 리액트 필드에 값이 안 들어가는 것, 업로드한 이력서가 다시 읽히지 않는 것 — 는 `modes/global/apply.md` 에 그대로 있습니다. 그쪽을 씁니다.
 
-### Workable — SPA re-renders break form refs
-
-- **Symptom:** Workable's SPA re-renders form components between fills, invalidating element references. Sequential `fill()` calls hit stale-element errors.
-- **Agent:** Copy each answer to the clipboard and present a numbered paste list. If Playwright is active, dispatch `Ctrl+V` per field with a fresh element query before each paste — do not cache refs across fields.
-- **Candidate:** Pastes remaining answers manually if clipboard dispatch fails, then submits.
-
-### React-select autocomplete widgets
-
-- **Symptom:** `react-select` (common in Greenhouse, Ashby, Lever for location/department fields) destroys and recreates its internal DOM on every keystroke. Cached refs go stale instantly.
-- **Agent:** Type character-by-character with short delays (~100 ms). Re-snapshot after every selection to pick up the new DOM state. Never cache element references across interactions.
-- **Candidate:** Verifies each selected value is correct before moving on; corrects any mis-selection inline.
-
-### Huge native `<select>` elements (1 000+ options)
-
-- **Symptom:** Country, university, or field-of-study dropdowns contain thousands of `<option>` entries. Snapshotting them floods context and stalls the agent.
-- **Agent:** Use `select_option` directly by value or visible label. Never snapshot the full option list. If the exact label is unknown, ask the candidate for the value instead of dumping options into context.
-- **Candidate:** Provides the correct label when the agent cannot infer it from `config/profile.yml`.
-
-### Job-board host ≠ application host — re-check the URL after "Apply"
-
-- **Symptom:** The posting is discovered on one ATS, but clicking **Apply** hands off to a *different* ATS for the actual form. Enterprise career sites (commonly Phenom-, iCIMS-, or Radancy-hosted) frequently redirect into a Workday, Greenhouse, or SmartRecruiters application flow. Choosing fill tactics from the *board* URL applies the wrong quirks.
-- **Agent:** After the Step 5 preflight, follow the Apply button/redirect and read the URL of the page that actually renders the form fields. Match your fill tactics to *that* host — not the board the job was discovered on. A `myworkdayjobs.com` handoff in particular means the Workday quirk below applies.
-- **Candidate:** Confirms the destination page looks like the right company/role before the agent starts filling.
-
-### Workday — set-value doesn't register on React fields
-
-- **Symptom:** Setting a Workday text field's value programmatically (without real keystrokes) leaves it visually filled but empty to Workday's validation — the React `onChange` never fires, so Save throws "required" on a visibly-filled field. Yes/No dropdowns also vary their option order per question, so a positional click can select the wrong answer (e.g. "No" on *are you authorized to work?*).
-- **Agent:** For required text fields, **type** real keystrokes (focus → select-all → type), or verify each value registered before Save. Survey the whole step top-to-bottom first (the address block is often below the fold) and fill from the candidate's saved profile (`config/profile.yml` / `cv.md`) proactively, rather than discovering fields via validation errors. For dropdowns, use **type-ahead** (open → type the option text → confirm the highlight) instead of positional clicks, and verify each selection.
-- **Candidate:** Reviews the filled step — especially work-authorization/sponsorship dropdowns and any EEO/legal attestations — before Save/Submit.
-
-### SuccessFactors-family — uploaded resume can silently diverge from the stored profile (#1870)
-
-- **Symptom:** Some ATS portals (SuccessFactors-family confirmed; likely others) parse and store an uploaded resume once and don't reliably re-parse it on a later re-upload or profile edit. The portal's internal record can silently drift from the file the candidate believes they submitted — especially for work-history entries added *after* the initial profile was created. There is no error, no warning, and no diff shown to the candidate; the loss surfaces only if someone downstream (a recruiter reading the stored profile back on a call, for example) notices the gap. This is distinct from #1560 (cicerone reading a careers board) and #1741 (recovering a stuck pipeline) — this is the employer's own system corrupting what was submitted.
-- **Agent:** After a submission through one of these portals, if the portal exposes any "preview my profile," "view submitted resume," or "review application" step, surface it to the candidate as a **required check** before closing out the apply flow — don't stop at confirming the upload succeeded. If the candidate later confirms a truncation or mismatch at a given vendor, flag it in the report and prompt them to spot-check other still-active applications through that same vendor (see the apply-mode checklist below) — one confirmed case raises the prior for the rest of that vendor's in-flight applications.
-- **Candidate:** If a profile/resume preview step exists, use it and compare against your actual work history before considering the application done. If no preview step exists, there is currently no way to verify what the portal actually stored — treat this as a known blind spot rather than assuming silence means success.
+같은 내용을 두 모드에 두면 한쪽만 고쳐지고 다른 쪽이 낡습니다. 해외 사정은 해외 모드가 정본입니다.

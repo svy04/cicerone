@@ -56,6 +56,35 @@ entries:
       - "Littler insight on Ontario's Working for Workers Four/Five Acts job-posting rules (2026)"
       - "Hicks Morley FTR Now bulletin on the ESA job-posting requirements effective January 1, 2026"
 
+  - jurisdiction: KR
+    jurisdiction_name: "South Korea"
+    prohibited: >-
+      직무 수행에 필요하지 않은 다음 정보를 기초심사자료(이력서·지원서)에 기재하도록
+      요구하거나 수집하는 것 — (1) 구직자 본인의 용모·키·체중 등 신체적 조건,
+      (2) 구직자 본인의 출신지역·혼인여부·재산, (3) 구직자의 직계 존비속 및 형제자매의
+      학력·직업·재산. 구직자가 동의해도 수집할 수 없는 강행규정이다.
+    matching: >-
+      Fires when a posting or application form asks for height, weight, physical
+      appearance, a photo requirement framed as an appearance check, region of origin
+      (고향·출신지역), marital status (혼인 여부·기혼/미혼), the applicant's assets or
+      housing tenure (재산·자가/전세), or the education, occupation, or assets of the
+      applicant's parents, grandparents, children, or siblings (가족의 학력·직업·재산).
+      Does NOT fire on items outside the enumerated list — a photo field on its own,
+      religion, date of birth, gender, current address, or school attended are not
+      prohibited by this article, and flagging them as 채용절차법 violations would be
+      wrong. Does NOT fire on collection that is genuinely required to perform the job
+      (the article limits itself to information "필요하지 아니한"), nor on post-hire
+      administrative collection such as confirming marital status for family allowance.
+    legal_basis: >-
+      채용절차의 공정화에 관한 법률 제4조의3 (출신지역 등 개인정보 요구 금지),
+      신설 2019-04-16 법률 제16321호. 위반 시 500만원 이하 과태료(제17조).
+      상시 30명 이상 근로자를 사용하는 사업장에 적용된다.
+    effective: 2019-07-17
+    sources:
+      - "국가법령정보센터 — 채용절차의 공정화에 관한 법률 (law.go.kr/lsInfoP.do?lsiSeq=208371)"
+      - "CaseNote — 제4조의3 조문 (casenote.kr)"
+      - "정책브리핑 — 채용절차법 시행 안내 (korea.kr/special/policyCurationView.do?newsId=148866903)"
+
   - jurisdiction: US-CA
     jurisdiction_name: "California, USA"
     prohibited: >-
