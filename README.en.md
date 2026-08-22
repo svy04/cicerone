@@ -145,6 +145,6 @@ Thanks to Santiago Fernández de Valderrama for publishing it under MIT. Because
 
 GPL-3.0-or-later. Use it and change it freely; if you distribute your changes, the source has to go with them under the same terms.
 
-The upstream project [santifer/career-ops](https://github.com/santifer/career-ops) is MIT-licensed, and those terms permit redistribution under the GPL. The upstream MIT notice is kept verbatim in [LICENSE.upstream-MIT](LICENSE.upstream-MIT).
+The upstream project [santifer/career-ops](https://github.com/santifer/career-ops) is MIT-licensed, and those terms permit redistribution under the GPL. The upstream MIT notice is kept verbatim in [LICENSE.upstream-MIT](LICENSE.upstream-MIT), and [NOTICE](NOTICE) states how the two licenses relate.
 
 The upstream name "career-ops" is a trademark reserved by its author, so this fork carries its own name.

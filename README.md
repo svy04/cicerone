@@ -334,6 +334,6 @@ MIT 라이선스로 이만한 것을 공개해 준 Santiago Fernández de Valder
 
 GPL-3.0-or-later. 가져다 쓰고 고치는 것은 자유이고, 고친 것을 배포할 때는 같은 조건으로 소스를 공개해야 합니다.
 
-원본 [santifer/career-ops](https://github.com/santifer/career-ops)는 MIT 라이선스로 공개돼 있고, 그 조건이 GPL 로 재배포하는 것을 허용합니다. 원저자의 MIT 고지는 [LICENSE.upstream-MIT](LICENSE.upstream-MIT)에 그대로 두었습니다.
+원본 [santifer/career-ops](https://github.com/santifer/career-ops)는 MIT 라이선스로 공개돼 있고, 그 조건이 GPL 로 재배포하는 것을 허용합니다. 원저자의 MIT 고지는 [LICENSE.upstream-MIT](LICENSE.upstream-MIT)에 그대로 두었고, 두 라이선스의 관계는 [NOTICE](NOTICE)에 적었습니다.
 
 원본의 이름 "career-ops"는 원저자가 상표로 유보하고 있어 이 저장소는 다른 이름을 씁니다.

@@ -1,35 +1,3 @@
-cicerone is licensed under the GNU General Public License, version 3
-or (at your option) any later version.
-
-    Copyright (C) 2026 svy04
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-
-UPSTREAM CODE
-=============
-
-This program is a fork of santifer/career-ops, which is distributed under
-the MIT License and is copyright (c) 2026 Santiago Fernandez de Valderrama.
-That code remains available under its original MIT terms from its own
-repository. The MIT License permits redistribution under the GPL, and this
-combined work is distributed under the GPL as stated above.
-
-The upstream MIT notice is preserved verbatim in LICENSE.upstream-MIT and
-must be retained in any redistribution of this work.
-
-
                     GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
 

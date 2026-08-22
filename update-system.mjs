@@ -313,6 +313,7 @@ const SYSTEM_PATHS = [
   'TRADEMARK.md',
   'LICENSE',
   'LICENSE.upstream-MIT',
+  'NOTICE',
   'CITATION.cff',
   '.editorconfig',
   '.github/',
