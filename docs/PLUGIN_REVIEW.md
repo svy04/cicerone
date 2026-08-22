@@ -41,7 +41,7 @@ stop.
 - **Skill (if any):** domain-scoped — it teaches how to drive the plugin, and
   does NOT instruct the agent to edit core files, change scoring, reveal secrets,
   or act outside the plugin's hooks.
-- **License:** MIT-compatible.
+- **License:** GPL-3.0-compatible.
 
 ## Auto-merge (only when it's truly safe)
 

@@ -22,7 +22,7 @@ Paste the registry entry (one object), pinned to the exact reviewed commit:
   "requiredEnv": [],
   "allowedHosts": ["api.example.com"],
   "skill": true,
-  "license": "MIT",
+  "license": "GPL-3.0-or-later",
   "version": "1.0.0",
   "sha": "<40-hex-commit>"
 }
@@ -33,7 +33,7 @@ Paste the registry entry (one object), pinned to the exact reviewed commit:
 - [ ] Naming `cicerone-plugin-<name>`; `id` == name minus the prefix
 - [ ] Minimum files present (manifest.json, index.mjs, README.md, LICENSE)
 - [ ] Manifest valid: apiVersion 1, `humanInTheLoop: true`, hooks ⊆ {provider, ingest, search, notify, export} — **no apply/submit**
-- [ ] MIT-compatible LICENSE; no personal data in the repo
+- [ ] GPL-3.0-compatible LICENSE; no personal data in the repo
 - [ ] Egress: `allowedHosts` are real public hosts; no IP literals / metadata / `*.internal`; no localhost without `allowsLocalhost` + a reason
 - [ ] Static audit clean: no `child_process`/`playwright`/raw sockets/global `fetch`/`eval`/bare-dependency imports (egress only via `ctx.fetch`)
 - [ ] No core-owned secrets in `requiredEnv`

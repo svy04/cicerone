@@ -4,6 +4,10 @@
 
 [한국어](README.md) | [English](README.en.md)
 
+[![라이선스: GPL-3.0-or-later](https://img.shields.io/badge/%EB%9D%BC%EC%9D%B4%EC%84%A0%EC%8A%A4-GPL--3.0--or--later-%23FF4D8D?style=flat-square)](LICENSE)
+[![Node.js 18+](https://img.shields.io/badge/Node.js-18%2B-%239BA0AE?style=flat-square)](https://nodejs.org)
+[![검사 5,056건](https://img.shields.io/badge/%EA%B2%80%EC%82%AC-5%2C056%EA%B1%B4-%239BA0AE?style=flat-square)](test-all.mjs)
+
 - **공채와 수시를 갈라서 봅니다.** 전형 순서도 필요한 서류도 다르기 때문에, 평가 첫 단계가 이 판정입니다
 - **자기소개서를 문항별로 씁니다.** 회사가 정한 문항과 글자 수에 맞춰 초안을 만들고, 어느 경험을 근거로 썼는지와 고쳐 쓰면 좋은 자리를 함께 표시합니다
 - **제시받은 연봉을 분해합니다.** 퇴직금이 들어 있는지, 고정 초과근로수당이 몇 시간분인지, 성과급을 미리 넣었는지를 묻습니다
@@ -328,4 +332,8 @@ MIT 라이선스로 이만한 것을 공개해 준 Santiago Fernández de Valder
 
 ## 라이선스
 
-MIT. 원본의 이름 "career-ops"는 원저자가 상표로 유보하고 있어 이 저장소는 다른 이름을 씁니다.
+GPL-3.0-or-later. 가져다 쓰고 고치는 것은 자유이고, 고친 것을 배포할 때는 같은 조건으로 소스를 공개해야 합니다.
+
+원본 [santifer/career-ops](https://github.com/santifer/career-ops)는 MIT 라이선스로 공개돼 있고, 그 조건이 GPL 로 재배포하는 것을 허용합니다. 원저자의 MIT 고지는 [LICENSE.upstream-MIT](LICENSE.upstream-MIT)에 그대로 두었습니다.
+
+원본의 이름 "career-ops"는 원저자가 상표로 유보하고 있어 이 저장소는 다른 이름을 씁니다.

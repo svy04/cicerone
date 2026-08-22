@@ -46,7 +46,7 @@ body:
           required: true
         - label: It reads PUBLIC data or the user's OWN account only — no centralized infrastructure
           required: true
-        - label: MIT-compatible license; no personal data in the repo
+        - label: GPL-3.0-compatible license; no personal data in the repo
           required: true
         - label: No commercial / hosted-service / monetization wording — cicerone is free and local-first
           required: true

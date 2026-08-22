@@ -4,6 +4,10 @@ A command-line tool for evaluating Korean job postings and preparing application
 
 [한국어](README.md) | [English](README.en.md)
 
+[![License: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-%23FF4D8D?style=flat-square)](LICENSE)
+[![Node.js 18+](https://img.shields.io/badge/Node.js-18%2B-%239BA0AE?style=flat-square)](https://nodejs.org)
+[![5,056 checks](https://img.shields.io/badge/checks-5%2C056-%239BA0AE?style=flat-square)](test-all.mjs)
+
 - **Splits open recruitment from rolling hiring.** Korea runs two tracks with different stages and different documents, so the evaluation decides which one you are in before anything else
 - **Drafts your 자기소개서 prompt by prompt.** It reads the employer's questions, assigns which of your experiences answer each one, writes to the character limit, and marks the places worth rewriting in your own words
 - **Decomposes a stated salary.** Whether severance is folded in, how many hours of fixed overtime it covers, whether a target bonus was counted up front
@@ -139,4 +143,8 @@ Thanks to Santiago Fernández de Valderrama for publishing it under MIT. Because
 
 ## License
 
-MIT. The upstream name "career-ops" is a trademark reserved by its author, so this fork carries its own name.
+GPL-3.0-or-later. Use it and change it freely; if you distribute your changes, the source has to go with them under the same terms.
+
+The upstream project [santifer/career-ops](https://github.com/santifer/career-ops) is MIT-licensed, and those terms permit redistribution under the GPL. The upstream MIT notice is kept verbatim in [LICENSE.upstream-MIT](LICENSE.upstream-MIT).
+
+The upstream name "career-ops" is a trademark reserved by its author, so this fork carries its own name.

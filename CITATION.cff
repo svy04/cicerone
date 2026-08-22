@@ -7,7 +7,7 @@ authors:
     given-names: "Santiago"
 url: "https://github.com/svy04/cicerone"
 repository-code: "https://github.com/svy04/cicerone"
-license: MIT
+license: GPL-3.0-or-later
 keywords:
   - ai
   - job-search

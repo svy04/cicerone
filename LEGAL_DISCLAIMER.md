@@ -61,16 +61,18 @@ By using cicerone, you agree to indemnify, defend, and hold harmless the authors
 
 If you use paid AI providers (Anthropic API, OpenAI API, etc.), you are solely responsible for monitoring and managing your own token usage and associated costs. The maintainers are not responsible for unexpected charges.
 
-## 9. MIT License
+## 9. License
 
 As stated in the [LICENSE](LICENSE) file:
 
-> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+> THIS PROGRAM IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL, BUT WITHOUT ANY WARRANTY; WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. SEE THE GNU GENERAL PUBLIC LICENSE FOR MORE DETAILS.
+
+The code inherited from the upstream project came under the MIT License; that notice is kept in [LICENSE.upstream-MIT](LICENSE.upstream-MIT).
 
 ## 10. Trademark
 
-The "cicerone" name and brand identity are separate from the MIT
-license that governs the source code. The MIT license grants broad
+The "cicerone" name and brand identity are separate from the GPL
+license that governs the source code. The GPL grants broad
 rights to use, modify, and redistribute the code; it does not grant
 rights to use the project name in commercial product naming,
 endorsement claims, or affiliation messaging.

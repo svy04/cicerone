@@ -82,7 +82,7 @@ We **don't take feature PRs against bundled plugins.** If you want to extend one
 (more options, a richer mapping, new behavior), own it properly:
 
 1. Publish `cicerone-plugin-<id>` with the **same `id`** as the bundled plugin
-   (start from the bundled plugin's code — it's MIT and credits its origins).
+   (start from the bundled plugin's code — it credits its origins).
 2. In your registry PR, set **`"supersedesBundled": true`** on your entry.
 3. Once approved + pinned, anyone who runs `node plugins.mjs add cicerone-plugin-<id>`
    installs your version, and the engine gives **your maintained successor

@@ -173,10 +173,10 @@ etc.). A green `--only` run is **not** a green suite — always run the full
 
 ## Brand and Trademark
 
-Contributions to the codebase are governed by the MIT [LICENSE](LICENSE).
+Contributions to the codebase are governed by the GPL-3.0-or-later [LICENSE](LICENSE).
 The "cicerone" name itself is governed by [TRADEMARK.md](TRADEMARK.md).
 If you fork the project for commercial use, you're welcome to do so
-under MIT — please give it your own product name and follow the
+under the GPL — please give it your own product name and follow the
 trademark policy regarding commercial naming and endorsement claims.
 
 ## Need Help?
