@@ -10,6 +10,7 @@ A command-line tool for evaluating Korean job postings and preparing application
 - **Builds a 경력기술서 separately.** It is the main document for experienced hires and a different thing from a résumé
 - **Treats the written stage as a real gate.** Aptitude tests and coding tests sit between documents and interviews
 - **Flags what the Fair Hiring Procedure Act prohibits** when a posting asks for it
+- **Sorts by what closes soonest.** Open recruitment clusters in March and September; a missed window costs six months
 - **Keeps every application in one file** instead of scattered across job sites
 
 ```
@@ -104,6 +105,21 @@ The tool drafts it. One fact belongs alongside that: **some Korean employers scr
 So the tool marks what to rewrite, and recommends you put it in your own words before sending — an even voice is what stands out, and you have to defend those sentences in the interview. The notice appears once, not on every run.
 
 It does not help evade the detection: scrambling the prose to fool a checker is worse when it fails. It also writes nothing your résumé and career record do not support — an invented project collapses the moment an interviewer asks about it.
+
+## Not missing a deadline
+
+Open-recruitment windows are short and cluster in March and September. Miss one and the next is six months away.
+
+```
+$ node deadlines.mjs --within 7
+
+마감이 가까운 순서
+
+❗#  2  토스                   서버 개발자                 2026-09-16  내일 마감
+· #  1  카카오페이             백엔드 개발자               2026-09-20  5일 남음
+```
+
+Evaluating a posting records its deadline alongside the application. Writing one by hand means a `due: 2026-09-20` segment in the Notes cell.
 
 ## Where your data goes
 

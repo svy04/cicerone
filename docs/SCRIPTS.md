@@ -41,6 +41,8 @@ All scripts live in the project root as `.mjs` modules. Most are exposed via
 | `npm run reconcile` | `reconcile-pipeline.mjs` | Remove batch-evaluated offers from pipeline.md "Pendientes" |
 | `npm run cover-letter` | `generate-cover-letter.mjs` | Render a cover-letter JSON payload to PDF |
 | `npm run verify:portals` | `verify-portals.mjs` | Probe ATS endpoints to confirm portals.yml slugs resolve (network) |
+| `node deadlines.mjs` | `deadlines.mjs` | 한국 공채 마감을 가까운 순서로 — 지원 추적 표의 Notes 칸에 있는 `due: YYYY-MM-DD` 를 읽는다. `--within N` 으로 좁히고 `--all` 로 지난 것까지 |
+| `node salary-korea.mjs` | `salary-korea.mjs` | 제시 연봉 분해(퇴직금·고정 초과근로·성과급)와 실수령액 추정 |
 | `node fix-slugs.mjs` | `fix-slugs.mjs` | Write `verify-portals.mjs`'s suggested ATS slug fixes back to portals.yml (dry run by default, `--fix` to write) |
 | `npm run reposts` | `detect-reposts.mjs` | Flag re-listed (ghost) postings from scan history |
 | `node rank-pipeline.mjs` | `rank-pipeline.mjs` | Opt-in LLM relevance re-ranker — annotates pending pipeline rows with a score + reason (off by default) |

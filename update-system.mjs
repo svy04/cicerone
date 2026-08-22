@@ -223,6 +223,7 @@ const SYSTEM_PATHS = [
   'rejection-latency.mjs',
   'salary-gap.mjs',
   'salary-korea.mjs',
+  'deadlines.mjs',
   'salary-korea.test.mjs',
   'negotiation-roi.mjs',
   'funnel-velocity.mjs',
